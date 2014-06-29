@@ -1,0 +1,30 @@
+NixOS has some work-in-progress support for running [OpenStack
+Compute](http://openstack.org/projects/compute/) (also known as
+**Nova**), an infrastructure-as-a-service cloud computing platform. It's
+currently limited to running all of Nova on a single machine, so it's
+mostly useful for experimentation.
+
+Enabling Nova
+-------------
+
+Add the following to your `configuration.nix`:
+
+    virtualisation.nova.enableSingleNode = true;
+
+and run `nixos-rebuild switch`. This will enable several daemons:
+
+-   `nova-api` is the API server that receives and executes requests
+    from cloud users, e.g. to start, query or terminate virtual
+    machines.
+-   `nova-objectstore` is a simple disk image server. It serves images
+    placed in `/var/lib/nova/images/`.
+-   `nova-scheduler` schedules VM execution requests and hands them over
+    to a `nova-compute` node.
+-   `nova-network` manages networks and allocates IP addresses.
+-   `nova-compute` starts and manages virtual machines. It downloads
+    disk images from `nova-objectstore`.
+-   `libvirtd` is the low-level daemon responsible for running and
+    managing virtual machines.
+-   `rabbitmq` is a messaging protocol used by the various Nova
+    components to communicate with each other.
+
