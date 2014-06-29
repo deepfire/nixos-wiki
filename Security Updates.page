@@ -1,0 +1,55 @@
+When a new security update is committed to
+<https://github.com/NixOS/nixpkgs> it might not be readily available in
+the nixos channel for multiple reasons:
+
+1.  A base library has been updated like openssl or libc, thus requiring
+    a lot of packages to be rebuilt. This may take a few days in hydra
+    or even by compiling everything by yourself on you server.
+2.  Even if all the packages were updated, nixos tests may fail and thus
+    the channel will not update. In this case you may use the hydra
+    cache, but it's better to wait for tests to pass for obvious
+    reasons.
+
+To overcome this issue, NixOS provides an option for replacing runtime
+dependencies of the system (note, not packages installed by nix-env)
+without the need to rebuild everything.
+
+Let's say we have to update openssl and that the update has landed in
+nixpkgs. First of all we want to get openssl from nixpkgs:
+
+    cd /some/path
+    git clone https://github.com/NixOS/nixpkgs
+
+Note that in pkgs/top-level/all-packages.nix openssl is called as:
+
+      openssl = callPackage ../development/libraries/openssl {
+        fetchurl = fetchurlBoot;
+        cryptodevHeaders = linuxPackages.cryptodev.override {
+          fetchurl = fetchurlBoot;
+          onlyHeaders = true;
+        };
+      };
+
+Then we may put this in configuration.nix:
+
+      system.replaceRuntimeDependencies = with pkgs; [
+        ({ original = openssl;
+           replacement = callPackage /some/path/nixpkgs/pkgs/development/libraries/openssl {
+             fetchurl = fetchurlBoot;
+             cryptodevHeaders = linuxPackages.cryptodev.override {
+               fetchurl = fetchurlBoot;
+               onlyHeaders = true;
+             };
+           };
+        })
+      ];
+
+system.replaceRuntimeDependencies expects a list of attributes {
+original, replacement }. You may put several of those updates. It's
+important that the replacement derivation has the same name length of
+the original derivation (if it's not the case, an error will be reported
+before switching to the new configuration).
+
+Make sure you keep track of this update and to remove it once you
+upgrade to a nixos version that includes the update.
+
