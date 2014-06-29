@@ -23,6 +23,6 @@ Upgrading Btrfs to 2.6.37+ kernel resolves the issue.
     'myfile-0.1.2.tar.gz "index of"' one usually can find the file an
     download it manually.
 
-to move that file into the sore one can use: nix-prefetch-url
+to move that file into the store one can use: nix-prefetch-url
 file://myfile-0.1.2.tar.gz if the file is in the current directory
 
