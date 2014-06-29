@@ -3,44 +3,88 @@ Terms and Definitions
 
 If you come across a term or word you don't know, add it here.
 
-  ---------------------------------------------------------------------------
-  Term
-  Context
-  Meaning
-  Related Links
-  ------------------ ------------------ ------------------ ------------------
-  `rec { }`          `expression evalua Derivation         `stdenv`
-  Nix expressions    tor`               Nix                Nix expressions
-  The `{ }` block    Nix                A Nix expression   An attribute which
-  contains "mutually The part of the    which describes a  contains things
-  recursive"         Nix program which  build action. When expected in the
-  attributes, which  reads and          evaluated, it      most basic Unix
-  means they can     evaluates a Nix    creates one or     environment. (e.g.
-  refer to each      expression.        more entries in    Bash shell, `gcc`,
-  other.             [Nix Manual:       the Nix Store. The `cp`, `tar`,
-  [Composing the     Common             `nix-instantiate`  `grep`, etc.)
-  Hello              Options](http://ni command is the     [all-packages.nix:
-  Package](http://ni xos.org/nix/manual command which      `stdenv =`](https:
-  xos.org/nix/manual /#sec-common-optio creates entries in //github.com/NixOS
-  /#ex-hello-composi ns) `--arg`\       the Nix Store,     /nixpkgs/blob/mast
-  tion)               [Nix Manual:      while the          er/pkgs/top-level/
-                     Built-in           `nix-env` and      all-packages.nix#L
-                     Functions](http:// `nix-build`        224)]
-                     nixos.org/nix/manu commands are its   
-                     al/#ssec-builtins) user-friendly      
-                                        interface.         
-                                        [Nix Manual:       
-                                        Glossary -\>       
-                                        Derivation](http:/ 
-                                        /nixos.org/nix/man 
-                                        ual/#gloss-derivat 
-                                        ion)\              
-                                                           
-                                        [<http://nixos.org 
-                                        /nix/manual/#ssec- 
-                                        derivation>        
-                                        Nix Manual:        
-                                        Derivation         
-  ---------------------------------------------------------------------------
+Term
 
+Context
+
+Meaning
+
+Related Links
+
+`rec { }`
+
+Nix expressions
+
+The `{ }` block contains "mutually recursive" attributes, which means
+they can refer to each other.
+
+[Composing the Hello
+Package](http://nixos.org/nix/manual/#ex-hello-composition)
+
+`expression evaluator`
+
+Nix
+
+The part of the Nix program which reads and evaluates a Nix expression.
+
+[Nix Manual: Common
+Options](http://nixos.org/nix/manual/#sec-common-options) `--arg`\
+ [Nix Manual: Built-in
+Functions](http://nixos.org/nix/manual/#ssec-builtins)
+
+Derivation
+
+Nix
+
+A Nix expression which describes a build action. When evaluated, it
+creates one or more entries in the Nix Store. The `nix-instantiate`
+command is the command which creates entries in the Nix Store, while the
+`nix-env` and `nix-build` commands are its user-friendly interface.
+
+[Nix Manual: Glossary -\>
+Derivation](http://nixos.org/nix/manual/#gloss-derivation)\
+ [Nix Manual: Derivation](http://nixos.org/nix/manual/#ssec-derivation)
+
+`stdenv`
+
+Nix expressions
+
+An attribute which contains things expected in the most basic Unix
+environment. (e.g. Bash shell, `gcc`, `cp`, `tar`, `grep`, etc.)
+
+[all-packages.nix:
+`stdenv =`](https://github.com/NixOS/nixpkgs/blob/master/pkgs/top-level/all-packages.nix#L224)]
+
+User Environment
+
+Nix
+
+A set of "active" applications. These applications often exist in the
+Nix store. A single Nix user may have multiple User Environments.
+
+[Nix Manual: Glossary](http://nixos.org/nix/manual/#idp26825824)
+
+User Profile
+
+Nix
+
+A user's currently selected User Environment.
+
+[Nix Manual: Glossary](http://nixos.org/nix/manual/#idp26825824)
+
+`config.nix` or `nixpkgs-config.nix`
+
+NixOS Wiki
+
+A Nix expression retrieved by and applied to the `all-packages.nix` Nix
+expression. This file enables an end-user to customize the Nix
+expressions contained in the community-owned NixPkgs list or to define
+entirely new Nix expressions to use with Nix commands. This file's path
+can be overridden by the `NIXPKGS_CONFIG` environment variable.
+
+[all-packages.nix:
+`config`](https://github.com/NixOS/nixpkgs/blob/master/pkgs/top-level/all-packages.nix#L54)
+
+[NixPkgs Release
+Notes](https://github.com/NixOS/nixpkgs/blob/master/doc/release-notes.xml#L366)
 
