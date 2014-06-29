@@ -317,3 +317,15 @@ packages.
 
 [To be written.]
 
+### What is the wrapper about?
+
+ghc has to know about its core and additional libraries. While the
+unwrapped haskellPackages.ghc.ghc ghc only knows about the core packages
+(try its ghc-pkg list command) the wrapped does no longer, but it knows
+about additional libraries installed by looking at \$PATH env. That the
+wrapped ghc-pkg does not list core packages can be considered a bug -
+but its not annoying enough - so nobody has spent the time to fix it.
+Just have a look at the wrapper to understand how it works. Are there
+alternatives? - using GHC\_PACKAGE\_PATH - using a local package file -
+...
+
