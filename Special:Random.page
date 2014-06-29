@@ -7,7 +7,8 @@ This should NO LONGER BE NEEDED on NixOS, because for a while, the emacs
 expression installs a site-start.el that uses NIX\_PROFILES as base for
 extending the load-path.
 
-However, when using a non-NixOS
+However, when using an emacs not from nixpkgs, you may still need a
+similar expression.
 
 Tramp
 -----
