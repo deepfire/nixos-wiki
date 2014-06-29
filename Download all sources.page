@@ -1,20 +1,30 @@
+Sometimes we need to download all source dependencies of a package. An
+example is if a long build is being planned, so we first download all
+needed files - and after that we only need to worry about local
+(non-Internet) issues.
+
 Here is a one-liner for downloading all the source dependencies of a
-package:
+package (thanks Eelco Dolstra!):
 
-nix-store -r $(grep -l outputHash $(nix-store -qR
-$(nix-instantiate '<nixpkgs>' -A geeqie) | grep '.drv$'))
+$> nix-store -r $(grep -l outputHash $(nix-store -qR $(nix-instantiate
+'\<nixpkgs\>' -A geeqie) | grep '.drv\$'))
 
-Here's how it works:
+Explaining how it works:
 
--   \$(nix-instantiate '\<nixpkgs\>' -A geeqie): instantiate geeqie into
-    .drv files and print the file names
--   $(nix-store -qR PREVIOUS | grep '.drv$'): print all
+-   **\$(nix-instantiate '\<nixpkgs\>' -A geeqie)**: instantiate geeqie
+    into .drv files and print the file names
+-   **$(nix-store -qR PREVIOUS | grep '.drv$')**: print all
     references/requirements of the above and keep only the .drv files
     (which is where static derivations live)
--   \$(grep -l outputHash PREVIOUS): keep only the source derivations,
-    since those will have a predefined hash of the output
--   nix-store -r PREVIOUS: realize those derivations, downloading all
-    sources and storing them in the nix store
+-   **\$(grep -l outputHash PREVIOUS)**: keep only the source
+    derivations, since those will have a predefined hash of the output
+-   **nix-store -r PREVIOUS**: realize those derivations, downloading
+    all sources and storing them in the nix store
 
-Phew :-)
+After that, all sources will be locally stored!
+
+Phew!
+
+ Source:
+<http://lists.science.uu.nl/pipermail/nix-dev/2013-January/010438.html>
 
