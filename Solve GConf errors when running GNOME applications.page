@@ -1,0 +1,27 @@
+GNOME's GConf implements a system-wide registry (like on Windows) that
+applications can use to store and retrieve internal configuration data.
+That concept is inherently impure, and it's very hard to support on
+NixOS. The result is that applications that use GConf -- like GnuCash --
+will report tons of error messages at start-up. To remedy those errors,
+the GConf daemon must be told the path to the application-specific
+\${out}/etc/gconf/gconf.xml.defaults/ directory, and the DBus daemon
+must be told how to start gconfd whenever an application needs it. To
+accomplish that, follow these steps:
+
+-   Add the following line to **\~/.gconf.path**:
+
+<!-- -->
+
+       xml:readonly:$(HOME)/.nix-profile/etc/gconf/gconf.xml.defaults/
+
+-   Add the following line to **/etc/nixos/configuration.nix**:
+
+<!-- -->
+
+       services.dbus.packages = [ pkgs.gnome.GConf ];
+
+-   Run **nixos-rebuild switch**. It may also be necessary to run
+    **gconftool-2 --shutdown**, in case there already is an active
+    gconfd, but those beasts typically terminate on their own after a
+    few moments of inactivity.
+
