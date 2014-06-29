@@ -1,3 +1,6 @@
+Using Unetbootin
+----------------
+
 It is possible to install NixOS from a USB stick, rather than from a CD.
 This is useful if you want to install NixOS on a machine that doesn't
 have a CD-ROM drive (such as most netbooks), or if you don't want to
@@ -20,4 +23,19 @@ waste a blank CD. Here is how to do it:
     to the USB stick and installs the GRUB boot loader.
 5.  You should now be able to boot NixOS from the USB stick, and perform
     the installation as usual.
+
+Using syslinux
+--------------
+
+If you have trouble booting from a USB drive or sdcard with Unetbootin
+(I just got a blinking cursor instead of a bootloader on an Asus eee
+1000) the procedure described on
+<http://www.knoppix.net/wiki/Bootable_USB_Key> may work.
+
+The syslinux.cfg needs to be created manually, but the details can be
+derived from the grub.cfg on the NixOS install cd.
+
+The root device can be specified by UUID, to get the UUID:
+
+blkid /dev/mmcblk0p1
 
