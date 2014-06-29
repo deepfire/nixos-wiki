@@ -1,5 +1,5 @@
-Overview
---------
+[[edit](/w/index.php?title=NixPkgs_Standard_Environment&action=edit&section=1 "Edit section: Overview")] Overview
+-----------------------------------------------------------------------------------------------------------------
 
 The purpose of the "standard environment", known as `stdenv` in the
 NixPkgs codebase, is to set up an environment in which to run a Nix
@@ -17,13 +17,13 @@ file. The `setup.sh` script contains the definition of the standard
 environment's build framework, which consists of shell functions for the
 build phases and for library functions.
 
-Standard Environment
---------------------
+[[edit](/w/index.php?title=NixPkgs_Standard_Environment&action=edit&section=2 "Edit section: Standard Environment")] Standard Environment
+-----------------------------------------------------------------------------------------------------------------------------------------
 
 The standard environment is implemented in two parts: a Nix expression
 and a script to set up and run the package's builder.
 
-### Nix Expression
+### [[edit](/w/index.php?title=NixPkgs_Standard_Environment&action=edit&section=3 "Edit section: Nix Expression")] Nix Expression
 
 The [standard environment's Nix
 expression](https://github.com/NixOS/nixpkgs/blob/master/pkgs/stdenv/generic/default.nix)
@@ -40,7 +40,7 @@ Most package variation lies in its build script, so it should be well
 documented and well organized. Let's look at how to organize a package's
 build variations.
 
-### Default Builder
+### [[edit](/w/index.php?title=NixPkgs_Standard_Environment&action=edit&section=4 "Edit section: Default Builder")] Default Builder
 
 To be useable by every package, the standard environment must be able to
 build every package. Many build tools exist, so the standard environment
@@ -62,7 +62,7 @@ build process used by these tools, such as configure, make, and install.
 Having defined these phases, the `genericBuild` function sequentially
 executes them to build the packaged application.
 
-#### Generic Build
+#### [[edit](/w/index.php?title=NixPkgs_Standard_Environment&action=edit&section=5 "Edit section: Generic Build")] Generic Build
 
 [`genericBuild()`](https://github.com/NixOS/nixpkgs/blob/bee4c41e13a9276db4f4a582234c670d74edfa1a/pkgs/stdenv/generic/setup.sh#L815)
 
@@ -88,7 +88,7 @@ executes them to build the packaged application.
     -   Leave the current phase's nesting level by calling the
         `stopNest` function.
 
-### Build Phases
+### [[edit](/w/index.php?title=NixPkgs_Standard_Environment&action=edit&section=6 "Edit section: Build Phases")] Build Phases
 
 [`unpackPhase()`](https://github.com/NixOS/nixpkgs/blob/bee4c41e13a9276db4f4a582234c670d74edfa1a/pkgs/stdenv/generic/setup.sh#L463)
 
@@ -162,7 +162,7 @@ executes them to build the packaged application.
     specified by the `$installTargets`, `$makeFlags`, `$makeFlagsArray`,
     `$installFlags`, and `$installFlagsArray` environment variables. The
     `$installTargets` default value is `install`.
--   Run the `preInstall` hook.
+-   Run the `postInstall` hook.
 
 [`fixupPhase()`](https://github.com/NixOS/nixpkgs/blob/bee4c41e13a9276db4f4a582234c670d74edfa1a/pkgs/stdenv/generic/setup.sh#L687)
 
@@ -226,7 +226,7 @@ executes them to build the packaged application.
     `*.tar.gz`.
 -   Run the `postDist` hook.
 
-### Hooks
+### [[edit](/w/index.php?title=NixPkgs_Standard_Environment&action=edit&section=7 "Edit section: Hooks")] Hooks
 
 **`preHook()`** - Arbitrary code to execute before the "standard
 environment" setup script executes. This is executed after the initial
@@ -260,7 +260,7 @@ setup scripts defined in the packages specified by the `$buildInputs`,
 `$propagatedBuildInputs`, `$nativeBuildInputs`, and
 `$propagatedNativeBuildInputs` environment variables.
 
-### Environment Variables
+### [[edit](/w/index.php?title=NixPkgs_Standard_Environment&action=edit&section=8 "Edit section: Environment Variables")] Environment Variables
 
 -   `PATH_DELIMITER=':'`
 -   `NIX_GCC=@gcc@`
@@ -281,7 +281,7 @@ setup scripts defined in the packages specified by the `$buildInputs`,
 -   `NIX_BUILD_CORES=(autoCalculated)`, overridable
 -   `nestingLevel=0`
 
-### Library Functions
+### [[edit](/w/index.php?title=NixPkgs_Standard_Environment&action=edit&section=9 "Edit section: Library Functions")] Library Functions
 
 **`runHook(function or fileName or envVarName)`** - Run the named hook,
 either by calling the function with that name or by evaluating the
@@ -415,7 +415,7 @@ dependent packages are added to the environment.
 user and start a new level of nesting by passing the specified phase to
 the `header` function.
 
-### Following a Nix Package Build
+### [[edit](/w/index.php?title=NixPkgs_Standard_Environment&action=edit&section=10 "Edit section: Following a Nix Package Build")] Following a Nix Package Build
 
 When is the default builder called when installing a package? Let's
 follow the build process.
