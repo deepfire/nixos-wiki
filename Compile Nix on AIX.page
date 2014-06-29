@@ -112,3 +112,18 @@ correct user-envs.sh and remote-store.sh failure
     && make \
     && make check \
     && make install
+
+Run nix-env
+===========
+
+I discovered that nix-env requires memory in data segment I had to use
+<http://publib.boulder.ibm.com/tividd/td/ITAME/GC32-0846-00/en_US/HTML/am39_perftune11.htm>
+
+    export LDR_CNTRL=MAXDATA=0x2000000
+
+Next you can use instructions for simple verification of nix-env
+<http://nixos.org/nixpkgs/download.html>
+
+    nix-channel --add http://nixos.org/releases/nixpkgs/channels/nixpkgs-unstable
+    nix-channel --update
+    nix-env -qa \*
