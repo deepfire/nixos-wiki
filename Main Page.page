@@ -3,14 +3,18 @@ Welcome to the Nix wiki!
 Getting started
 ---------------
 
--   [Nix
-    manual](http://hydra.nixos.org/job/nix/trunk/tarball/latest/download-by-type/doc/manual)
--   [NixOS
-    manual](http://hydra.nixos.org/job/nix/trunk/tarball/latest/download-by-type/doc/manual)
--   [Nixpkgs
-    manual](http://hydra.nixos.org/job/nixpkgs/trunk/tarball/latest/download-by-type/doc/manual)
--   [Nixops
-    manual](http://hydra.nixos.org/job/nixops/master/tarball/latest/download-by-type/doc/manual)
+-   Nix
+    [manual](http://hydra.nixos.org/job/nix/trunk/tarball/latest/download-by-type/doc/manual)
+    [source code](https://github.com/NixOS/nix)
+-   NixOS
+    [manual](http://hydra.nixos.org/job/nix/trunk/tarball/latest/download-by-type/doc/manual)
+    [source code](https://github.com/NixOS/nixos)
+-   Nixpkgs
+    [manual](http://hydra.nixos.org/job/nixpkgs/trunk/tarball/latest/download-by-type/doc/manual)
+    [source code](https://github.com/NixOS/nixpkgs)
+-   Nixops
+    [manual](http://hydra.nixos.org/job/nixops/master/tarball/latest/download-by-type/doc/manual)
+    [source code](https://github.com/NixOS/nixops)
 
 -   [Getting Help](//Getting Help)
 -   [FAQ](//FAQ)
