@@ -1,107 +1,164 @@
-Google Page Rank Is Dead - Part II
+Welcome to the Nix wiki!
 
-    I mentioned how Google's Page Ranking System has become obsolete, but in the same time, many business experienced entrepreneurs however give it credit and might discredit or credit your site consequently to it is rank. 
+Wiki meta
+---------
 
-Partly I - Google Page List Is Useless - Or Ist It?
+-   [How to contribute to the nix wiki](//Contributing to the Nix wiki)
+    (keep top)
 
-I discussed how Google's Page Ranking System has become useless, but at
-the same time, many business informed entrepreneurs still give it credit
-and could possibly discredit or credit your internet site appropriately
-to it is position.
+TROUBLE?
+--------
 
-"Let us really go in depth to take our 1st steps towards leaving
-Google's page ranking behind!"
+-   [Getting Help](//Getting Help)
+-   [FAQ](//FAQ)
+-   [install/remove software](//Install/remove software) - also list
+    installed software
+-   [modify software](//Modify software)
+-   [xorg/xserver
+    settings](/w/index.php?title=Xorg/xserver_settings&action=edit&redlink=1 "Xorg/xserver settings (page does not exist)")
+-   [NixOS issue tracker](http://yellowgrass.org/project/NixOS)
+-   [GIT workflow](//GIT workflow)
 
-If you're like 1000's of men and women on the web, you've been following
-page rank so close for so long, it may be really however for you to
-break the habit. "No routine could be completely broken, it has to be
-replaced with another."
+HOWTOs
+------
 
-1st Step: Eliminate Pr From Your Own Google ToolBar
+-   [How to find the package you're looking for in
+    Nix](//Howto find a package in NixOS)
+-   [How to keep multiple packages up to date at once (example for
+    pkgs.misc.collection)](//Howto keep multiple packages up to date at once)
+-   [How to find any text in code fast (gnu idutils)](//HOWTO:idutils)
+-   [Howto develop software on nixos](//Howto develop software on nixos)
+    (NOT how to develop for nixos or nix)
+-   [How to set up MediaWiki in NixOS with
+    vhosts](//Setting up MediaWiki & vhosts)
+-   [How to write a NixOS module](//NixOS:Modules)
+-   [How to install NixOS from a USB
+    stick](//Installing NixOS from a USB stick)
+-   [How to install NixOS from Linux](//How to install NixOS from Linux)
+-   [How to escape from dependency hell when compiling recent
+    packages](//Escape from dependency hell)
+-   [How to write patches using TopGit in a collaborative
+    manner](//Nixpkgs and TopGit)
+-   [How to install Firefox with Java plugin](//Firefox)
+-   [Encrypted root(home, swap) on NixOS](//Encrypted Root on NixOS)
+    luks
+-   [Audio Howto](//Audio HOWTO)
+-   [TexLive Howto](//TexLive HOWTO)
+-   [Mercurial and Nix repositories](//Mercurial and Nix repositories)
+-   [Emacs configuration](//Emacs configuration)
+-   [Enable GTK themes in KDE](//Enable GTK themes in KDE)
+-   [Solve GConf errors when running GNOME applications (such as
+    GnuCash)](//Solve GConf errors when running GNOME applications)
+-   [How to watch digital TV (DVB-T)](//How to watch digital TV (DVB-T))
+-   [How to unpack a package's
+    sourcecode](//How to unpack a package's sourcecode)
+-   [How to setup UPS/NUT](//How to setup UPS/NUT)
+-   [How to get a chroot close enough to LSB for impure binary packages
+    to
+    work](//How to get a chroot close enough to LSB for impure binary packages to work)
+-   [How to enable subpixel rendering in
+    freetype](//How to enable subpixel rendering in freetype)
+-   [Using the ZSH SHELL](//Using the ZSH SHELL)
+-   [Android](//Android)
+-   [Plone development](//Plone development)
+-   [How to tweak Linux kernel config
+    options](//How to tweak Linux kernel config options)
 
-Google will probably perhaps not like me for this one but I recommend
-hitting "Options" inside your google toolbar, lose "Page Rank."
+### Virtualisation
 
-Congratulations, you have done it. Marketing your website has taken a
-new turn, a road is ahead!!
+-   [NixOS and Xen](//NixOS and Xen)
+-   [How to install NixOS on Amazon EC2](//NixOS on Amazon EC2)
+-   [NixOS and OpenStack Compute](//NixOS and OpenStack Compute)
+-   [NixOS and libvirt](//NixOS and libvirt)
+-   [How to install NixOS on linode.com](//Install NixOS on Linode)
+-   [How to install NixOS on
+    Rackspace](//Install NixOS on Rackspace Cloud Servers)
+-   [How to install NixOS as OpenVZ
+    guest](//Install NixOS as OpenVZ guest)
+-   [Install NixOS on VirtualBox](//InstallingOnVirtualBox)
+-   [Installing VirtualBox on NixOS](//Installing VirtualBox on NixOS)
+-   [Writing and running NixOS VM tests](//NixOS VM tests)
+-   [How to install Nix OS on a hetzner rootserver](//NixOS on Hetzner)
+-   [QEMU guest with networking and
+    virtfs](//QEMU guest with networking and virtfs)
+-   [Soft-RAID mdadm (/dev/md0), LVM
+    (PVs,VGs,LVs)](//Soft-RAID mdadm (/dev/md0), LVM (PVs,VGs,LVs)) and
+    booting from LVM on top of a mdadm volume
 
-We could now go back and search on the internet. Before we do, try NOT
-to think of how a website's importance was measured by Google's page
-rank, rather have a good look at each site that you visit.
+Networking setup
+----------------
 
-Pay special attention to the content, structure, simplicity, and
-friendliness. Do you enjoy it? Why do you like it? All the way down
-things, images, styles, anything that you like from sites that you
-overlook.
+-   [Wireless
+    networking](/w/index.php?title=Wireless_networking&action=edit&redlink=1 "Wireless networking (page does not exist)")
+-   [How to setup wireless network using
+    wicd](/w/index.php?title=How_to_setup_wireless_network_using_wicd&action=edit&redlink=1 "How to setup wireless network using wicd (page does not exist)")
+-   [Network Manager](//Network Manager)
 
-Produce a "Favorites Folder" within your browser, call it
-"Opportunities." In this file, include websites that interest you, or
-that would interest your visitors.
+Development
+-----------
 
-Combine all these favorite things that you like to form new ventures for
-your company. Carry ON BACK to these web resources that you loved and
-take a peek to see if there are any good opportunities for both
-companies to flourish together.
+-   [Contributing to NixOS or Nix related projects](//Contributing)
+-   [CrossCompiling](//CrossCompiling)
+-   [Multiplatform NixOS](//Multiplatform NixOS) - PC, qemu arm
+    versatile, sheevaplug, fuloong 2f minipc, raspberry pi
+-   [open issues:derivation styles](//Open issues:derivation styles)
+-   [open issues:ways of updating sources
+    automatically](//Open issues:ways of updating sources automatically)
+-   [Nix on Windows](//Nix on Windows)
+-   [Creating a Nix OS live CD](//Creating a Nix OS live CD) iso live
+    cdrom, (usb boot stick)
+-   [The Many Cooks Method](//The Many Cooks Method)
+-   [long-term open issues:build
+    determinism](//Long-term open issues:build determinism)
+-   [Using Profiles for Development
+    Environments](//Using Profiles for Development Environments)
 
-Web Marketing is never done alone, effective marketing on the web wants
-you to develop your personal "web" to capture readers with. What better
-way to take action then by linking with sites that you want.
+-   [proposal: release
+    cycles](/w/index.php?title=Proposal:_release_cycles&action=edit&redlink=1 "Proposal: release cycles (page does not exist)")
 
-Why should we do this?
+### Licenses
 
-So that you can stay away from Google's Page Ranking completely, we have
-to replace it with our very own "web measurement system" to determine
-whether or not our organization must propose, trade adverts, or conduct
-business with the other.
+-   [Software
+    Licenses](https://fedoraproject.org/wiki/Licensing#SoftwareLicenses)
+    (Fedora Project)
 
-    linkbuilding services
+misc
+----
 
-In the end, we won't be selecting websites because they rank well, we
-will eventually be selecting only websites that we all personally like.
+-   [Anatomy of Nix Package
+    Management](//Anatomy of Nix Package Management)
+-   [Real World NixOS Dotfiles](//Real World NixOS Dotfiles)
+-   [Samba on nix](//Samba on nix)
+-   [Hosting providers & NixOS](//Hosting providers & NixOS)
+-   [Nix(OS) related repositories and
+    work](//Nix(OS) related repositories and work)
+-   [User Reviews](//User Reviews)
+-   [Nix(OS) on the media](//Nix(OS) on the media)
+-   [Nix impurities](//Nix impurities)
+-   [Compile Nix on AIX](//Compile Nix on AIX)
+-   [python discussion](//Python discussion)
+-   [TODO - What is missing in the nix
+    community?](//TODO - What is missing in the nix community)
+-   [Steam](//Steam)
 
-Individual methods create a better world for the visitors. Just
-remember, many of your visitors have no idea concerning the earth of
-Google Page Ranking and the manner in which you might of been dependent
-on it.
+### Laptops
 
-Building A Personal Rank System:
+-   [Acer 4810T](//Acer 4810T)
+-   [ASUS M60J-JX041V](//ASUS M60J-JX041V)
+-   [ASUS
+    N53JN-SZ074V](/w/index.php?title=ASUS_N53JN-SZ074V&action=edit&redlink=1 "ASUS N53JN-SZ074V (page does not exist)")
+-   [Airis N990](//Airis N990)
+-   [Compaq Presario
+    2144EA](/w/index.php?title=Compaq_Presario_2144EA&action=edit&redlink=1 "Compaq Presario 2144EA (page does not exist)")
+-   [Lenovo Thinkpad x200](//Lenovo Thinkpad x200)
+-   [Lenovo Thinkpad Helix](//Lenovo Thinkpad Helix)
+-   [Samsung NP900X3c](//Samsung NP900X3c)
 
-To be able to personally list websites, there are always a few
-measurements you can take... Ask yourself these questions when
-browsing...
+Events
+------
 
--   What's their alexa position? or Rank from Ranking.com? [seo
-    affiliate](http://www.linkemperor.com/affiliate-program)
-
-Does the site seem to be getting matching traffic with yours?
-
-    backlink build
-
-Does the website you are looking at have incoming links from Google in
-the same market as yours? Pay close awareness of who links for the
-websites your study.
-
--   Most Important: Do you get a good feeling when you visit their site?
-
-8 times out of 10, other guests won't both, If you do not. I never
-advise a website that does not feel right. 1st impressions mean far more
-than people think. Sometimes, the web is really a action and a lot of
-things that we see make us react to it without even knowing it. You want
-people to like you and trust you enough to do with business with you.
-
-    link building outsource
-
--   Last but not least: Will you be happy knowing that your readers can
-    be better off as a result of it and the web sites you advise have a
-    personal contact?
-
-Even as we all be in a great groove online and start adding full private
-resources on our internet sites, the world wide web will be a better
-position for all our readers.
-
-Decide to try and allow the greater source sites within your field to
-list every thing possible, the best plan of action for your business is
-to build something together with your own personal contact.
-
-I really hope you have loved this II part line!
+-   [Nixos Hackday: 2013-03-01](//Nixos Hackday: 2013-03-01)
+-   [Nix Hackfest: 2012-07 20th to
+    22nd](//Nix Hackfest: 2012-07 20th to 22nd)
+-   [NixOS install fest](//NixOS install fest)
 
