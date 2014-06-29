@@ -13,6 +13,9 @@ HOWTOs
 -   [How to contribute to the nix wiki](//Contributing to the Nix wiki)
     (keep top)
 
+-   [How to keep multiple packages up to date at once (example for
+    pkgs.misc.collection)](//Howto keep multiple packages up to date at once)
+
 -   [How to set up MediaWiki in NixOS](//Setting up MediaWiki)
 
 -   [How to write a NixOS module](//NixOS:Modules)
