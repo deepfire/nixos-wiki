@@ -19,6 +19,7 @@ If all you want is to use the xmonad window manager, then put the
 following options into your `/etc/nixos/configuration.nix`:
 
       services.xserver.windowManager.xmonad.enable = true;     # installs xmonad and makes it available
+      services.xserver.windowManager.xmonad.enableContribAndExtras = true; # makes xmonad-contrib and xmonad-extras available
       services.xserver.windowManager.default       = "xmonad"; # sets it as default
       services.xserver.desktopManager.default      = "none";   # the plain xmonad experience
 
