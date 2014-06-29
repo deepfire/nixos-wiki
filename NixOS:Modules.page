@@ -81,7 +81,7 @@ The following arguments can be retrieved from this attribute set:
 
 For more information, you should refer to NixOS sources, with more
 insight into
-[`nixos/lib/eval-config.nix`](https://svn.nixos.org/repos/nix/nixos/trunk/pkgs/lib/eval-config.nix%7C).
+[`nixos/lib/eval-config.nix`](https://github.com/NixOS/nixos/blob/master/lib/eval-config.nix%7C).
 
 More computation or organisation can be necessary to enhance modules. In
 which case, you can add a `let .. in ..` statement between the argument
