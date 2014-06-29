@@ -100,8 +100,8 @@ Environment? An app was created which helps us define a custom User
 Environment and then switch to it. This package is called `myEnvFun`.
 
 How do we use `myEnvFun`? Currently, it requires a bit of setup. If you
-want to read existing documentation, you have to read the [`myEnvFun`
-source
+want to [read more](http://www.qulix.com/) existing documentation, you
+have to read the [`myEnvFun` source
 code](https://github.com/NixOS/nixpkgs/blob/master/pkgs/misc/my-env/default.nix).
 I'm trying to better document this tool with this Wiki page.
 
