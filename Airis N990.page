@@ -1,0 +1,33 @@
+Overview
+========
+
+-   Processor: AMD Sempron 2600
+-   HD: IDE 2,5"
+-   Screen: 1024x768
+
+Manufacturer Website: [Airis](http://www.airis.es)
+
+Configuration
+=============
+
+Minimal configuration:
+
+    boot.initrd.kernelModules = [
+      "pata_via"
+    ];
+    boot.kernelModules = [
+      "powersave"
+      "cpufreq_ondemand"
+      "cpufreq_userspace"
+      "cpufreq_powersave"
+      "powernow-k8"
+    ];
+    services.xserver = {
+      videoDriver = "unichrome";
+      synaptics = {
+        enable = true;
+        dev = "/dev/input/event7"; # On linux 2.6.31
+      };
+    };
+    # Wifi card
+    networking.enableIntel2200BGFirmware = true;
