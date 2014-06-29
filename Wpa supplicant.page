@@ -11,7 +11,7 @@ Configuration
 To enable wireless networking add the following attribute to your
 `configuration.nix` and reconfigure your system.
 
-    networking.enableWLAN = true;
+    networking.wireless.enable = true;
 
 You should already have set `networking.hostName` and it might be
 mandatory for wireless networking to have this set. (Is this true?)
