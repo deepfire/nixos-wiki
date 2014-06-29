@@ -1,9 +1,13 @@
--   create disk images (partitions)
+-   create disk images (partitions) for NixOS to be installed on to via
+    the linode dashboard
+    [[1]](https://www.linode.com/members/linode/dashboard.cfm) "Create a
+    new Disk Image" option.
 -   create a configuration profile starting their Finnix rescue system
--   select Finnix Kernel, iso image as /dev/xvda, Finnix initrd, your
-    disk image as /dev/xvdb
--   create a configuration assigning your disk image to /dev/xvda
-    (/sbin/init will be started), choose a kernel.
+    [[2]](http://www.linode.com/wiki/index.php/Finnix_LiveCD_Recovery_Distribution#Setting_it_up)
+    -   select Finnix Kernel, iso image as /dev/xvda, Finnix initrd,
+        your disk image as /dev/xvdb
+-   create a configuration profile assigning your disk image to
+    /dev/xvda (/sbin/init will be started), choose a kernel.
 -   boot into Finnix, connect to linshell, mount xvdb
 -   install following the archive installation README. Force creating a
     init script and get networking options from the configuration
