@@ -27,20 +27,8 @@ HOWTOs
 
 -   [NixOS issue tracker](http://bugs.strategoxt.org/browse/NIXOS)
 
--   [Install NixOS on VirtualBox](//InstallingOnVirtualBox)
-
--   [How to remote control a vm within a build
-    job](//Remote controlling a vm)
-
--   [How to install NixOS on linode.com](//Install NixOS on Linode)
-
--   [How to install NixOS on Amazon EC2](//NixOS on Amazon EC2)
-
 -   [How to install NixOS from a USB
     stick](//Installing NixOS from a USB stick)
-
--   [How to install NixOS as OpenVZ
-    guest](//Install NixOS as OpenVZ guest)
 
 -   [How to escape from dependency hell when compiling recent
     packages](//Escape from dependency hell)
@@ -55,6 +43,22 @@ HOWTOs
 -   [Audio Howto](//Audio HOWTO)
 
 -   [TexLive Howto](//TexLive HOWTO)
+
+### Virtualisation
+
+-   [NixOS and Xen](//NixOS and Xen)
+
+-   [How to install NixOS on Amazon EC2](//NixOS on Amazon EC2)
+
+-   [How to install NixOS on linode.com](//Install NixOS on Linode)
+
+-   [How to install NixOS as OpenVZ
+    guest](//Install NixOS as OpenVZ guest)
+
+-   [Install NixOS on VirtualBox](//InstallingOnVirtualBox)
+
+-   [How to remote control a VM within a build
+    job](//Remote controlling a vm)
 
 Development
 -----------
