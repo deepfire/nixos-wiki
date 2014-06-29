@@ -128,8 +128,8 @@ will call the next gcc in PATH in the builds, not using /usr/bin/gcc.
 
 ### Server side
 
-Having a copy of stdenv-updates nixpkgs, you can build your
-cross-compilers for distcc. Prepare a directory for them:
+Having a copy of nixpkgs, you can build your cross-compilers for distcc.
+Prepare a directory for them:
 
     mkdir distcc
     cd distcc
