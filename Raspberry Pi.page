@@ -162,16 +162,11 @@ And create a nix file (`pi.nix`) for example there with these contents:
 
        config = pkgs: {
          packageOverrides = pkgs : {
-           platform = pkgs.platforms.sheevaplug;
            distccMasquerade = pkgs.distccMasquerade.override {
              gccRaw = pkgs.gccCrossStageFinal.gcc;
              binutils = pkgs.binutilsCross;
            };
          };
-         kernel.extraConfig = 
-           IPV6 y
-           BLK_DEV_LOOP y
-         ;
        };
     }
 
