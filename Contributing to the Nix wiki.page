@@ -87,3 +87,11 @@ Don't create this
 page](/w/index.php?title=NixOS/Modules&action=edit&redlink=1 "NixOS/Modules (page does not exist)")
 as well using a slash?
 
+It is possible configure MediaWiki to treat slashes as a hierarchy, but
+I suspect we're better off using categories: [[Category:NixOS]] It is
+also possible to have hierarchical categories but it gets a bit messy. I
+really like the look of the Semantic MediaWiki extensions
+<http://semantic-mediawiki.org> which allows for very rich
+categorization and queries: e.g.
+"[Concepts](http://semantic-mediawiki.org/wiki/Concepts)" (goibhniu)
+
