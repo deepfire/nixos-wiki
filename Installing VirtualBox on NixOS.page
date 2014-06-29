@@ -1,7 +1,7 @@
 This page describes how to run VirtualBox on NixOS.
 
-Enabling VirtualBox
--------------------
+[[edit](/w/index.php?title=Installing_VirtualBox_on_NixOS&action=edit&section=1 "Edit section: Enabling VirtualBox")] Enabling VirtualBox
+-----------------------------------------------------------------------------------------------------------------------------------------
 
 +--------------------------------------------------------------------------+
 | **WARNING: VirtualBox is currently built with the "--disable-hardening"  |
@@ -11,7 +11,7 @@ Enabling VirtualBox
 
  Add the following to your `configuration.nix`:
 
-    require = [ <nixos/modules/programs/virtualbox.nix> ];
+    imports = [ <nixos/modules/programs/virtualbox.nix> ];
 
 Then run:
 
@@ -22,7 +22,7 @@ enable VirtualBox for user `alice`, do:
 
     $ usermod -a -G vboxusers alice
 
-### Enabling VirtualBox Extension Pack
+### [[edit](/w/index.php?title=Installing_VirtualBox_on_NixOS&action=edit&section=2 "Edit section: Enabling VirtualBox Extension Pack")] Enabling VirtualBox Extension Pack
 
 This is necessary for the USB subsystem and remote desktop access.
 Unfortunately, the extension pack is behind a license agrreement, you
@@ -56,8 +56,8 @@ Switch to the new system configuration:
 This will take a long time because Nix will compile VirtualBox from
 source.
 
-Running VirtualBox
-------------------
+[[edit](/w/index.php?title=Installing_VirtualBox_on_NixOS&action=edit&section=3 "Edit section: Running VirtualBox")] Running VirtualBox
+---------------------------------------------------------------------------------------------------------------------------------------
 
 Just do:
 
@@ -66,13 +66,13 @@ Just do:
 Note since there is no setuid root you can not ping from the guest
 machines!!
 
-Error messages
---------------
+[[edit](/w/index.php?title=Installing_VirtualBox_on_NixOS&action=edit&section=4 "Edit section: Error messages")] Error messages
+-------------------------------------------------------------------------------------------------------------------------------
 
 Since this expression implements the open source VirtualBox it **does
 not include VirtualBox Extension Pack(s)**.
 
-### Failed to access the USB subsystem
+### [[edit](/w/index.php?title=Installing_VirtualBox_on_NixOS&action=edit&section=5 "Edit section: Failed to access the USB subsystem")] Failed to access the USB subsystem
 
 The message:
 
@@ -84,7 +84,7 @@ require Oracle VirtualBox (non-free) and the VirtualBox Extension Pack
 installed** on the Host computer, as well as the user being part of the
 vboxusers group.
 
-### Missing kernel modules
+### [[edit](/w/index.php?title=Installing_VirtualBox_on_NixOS&action=edit&section=6 "Edit section: Missing kernel modules")] Missing kernel modules
 
 If you get this error message (like this), something went wrong:
 
