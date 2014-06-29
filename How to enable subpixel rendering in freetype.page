@@ -86,11 +86,10 @@ Rebuild the system and reboot. Our env should look like this:
     $ env | grep LD_LIBR
     LD_LIBRARY_PATH=/nix/store/jxss54j52paqwns8zvm6mwr7f89ck7ya-freetype-2.4.4/lib:/run/opengl-driver/lib:/run/opengl-driver-32/lib
 
-Here is useful link which helps to choose between RGB and BGR types of
-rendering:
+Here are some usfull links:
 
-[Subpixel layout](http://www.lagom.nl/lcd-test/subpixel.php) [Font
-testing page](http://www.infinality.net/files/font.html)
+-   [Subpixel layout](http://www.lagom.nl/lcd-test/subpixel.php)
+-   [Font testing page](http://www.infinality.net/files/font.html)
 
 Thanks Eelco for the idea.
 
