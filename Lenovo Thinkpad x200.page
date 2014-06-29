@@ -37,8 +37,8 @@ Then add tp\_smapi to boot.kernelModules in
 
     boot.kernelModules = [ "tp_smapi" ];
 
-See the following link[[1]](http://www.thinkwiki.org/wiki/Tp_smapi) for
-more information about tp\_smapi module.
+You can find additional information about the tp\_smapi module in the
+[ThinkPad Wiki](http://www.thinkwiki.org/wiki/Tp_smapi).
 
 Tips & Tricks
 -------------
