@@ -1,30 +1,45 @@
-This tutorial covers the major points of NixOS configuration. As an
-example, we show how a user can configure NixOS to start an irc client
-each time his computer starts. This page will follow the evolution of
-the configuration files from a simple setup to a more advanced modular
-setup.
+This tutorial covers the major points of NixOS configuration. In this
+tutorial, we configure NixOS to start an IRC client every time the OS
+starts. This tutorial will start by adding this functionality to the
+`configuration.nix` file. Then, this functionality is extracted into a
+separate file, which NixOS calls a "module".
 
-Simple Configuration
+Example Introduction
 ====================
 
-The user wants to start his irc session inside NixOS on boot. In other
-distributions, you would typically add an init script inside
-`/etc/init.d` or a similar directory. In NixOS, you have to keep your
-dependencies clean, this implies that you have to use your configuration
-to register the init script.
+Suppose you want to start an IRC client and connect to your favorite
+channel every time your NixOS starts. To do this, we will start the IRC
+client using a shell command. In other distributions, to perform an
+action on system start, you place the shell command in an init script,
+which is usually the `/etc/init.d` file.
 
-Lets start the irc session with irssi inside a screen daemon. The user's
-`/etc/nixos/configuration.nix` will become something like:
+In NixOS, on the other hand, all system files are overwritten when the
+`configuration.nix` file is updated and the system is rebuilt. How does
+a NixOS user execute a shell command on system start? In NixOS, all
+dependencies are clean and organized, which means they are changed in a
+single place - the `configuration.nix` and the modules it loads. To
+change the system's behavior, then, we must add this IRC shell command
+to this configuration file.
+
+Simple Implementation - In Main Configuration File
+==================================================
+
+Lets start the IRC session using `irssi` as the IRC client. We'll run it
+inside a `screen` daemon, which enables the IRC session to continue even
+after we log out of our shell session.
+
+To implement this, we can add the following code to the
+`/etc/nixos/configuration.nix` file:
 
     {pkgs, ...}:
 
     # pkgs is used to fetch screen & irssi.
-
+     
     {
       jobs.ircSession = {
         description = "Start the irc client of username."
         startOn = "started network-interfaces";
-        exec = ''/var/setuid-wrappers/sudo -u username -- ${pkgs.screen}/bin/screen -m -d -S irc ${pkgs.irssi}/bin/irssi'';
+        exec = /var/setuid-wrappers/sudo -u username -- ${pkgs.screen}/bin/screen -m -d -S irc ${pkgs.irssi}/bin/irssi;
       };
 
       environment.systemPackages = [ pkgs.screen ];
@@ -33,12 +48,22 @@ Lets start the irc session with irssi inside a screen daemon. The user's
       # ... usual configuration ...
     }
 
-The user evaluates this expression on his server and can then use an
-alias for the command
+What does this do? The `jobs.ircSession` bit is a configuration option
+which creates system services. You can see a list of all NixOS
+configuration options in the [NixOS Manual: List of
+Options](http://nixos.org/nixos/manual/#ch-options). Then, we add
+attributes, which are parameters used to start this new service. This
+system service will start when the network connects, and it will execute
+the specified command.
+
+After rebuilding the NixOS configuration with this file, our IRC session
+should start when our network connects. The IRC session is started as a
+child to the screen daemon, which is independent of any user's session
+and will continue running when we log out. To connect to the IRC
+session, we reconnect to the screen session and go to the IRC window.
+Here's the command:
 
     ssh username@my-server -t screen -d -R irc
-
-to connect to his irc session.
 
 Conditions
 ==========
