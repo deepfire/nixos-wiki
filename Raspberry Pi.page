@@ -9,10 +9,8 @@ can bootstrap properly an armhf nixpkgs for the raspberrypi.
 State of NixOS
 --------------
 
-The [viric raspberry
-branch](https://github.com/viric/nixpkgs/tree/stdenv-updates) at
-[2c27a416864](https://github.com/viric/nixos/commit/2c27a416864916db3c8e7ed4c6c8a4cf00f47990)
-can prepare a proper bootloader (vfat at /boot).
+NixOS [master](https://github.com/viric/nixos/tree/master) can prepare a
+proper bootloader (vfat at /boot).
 
 Having the SD vfat that the dumb loader will read at /boot, this is an
 example configuration.nix:
