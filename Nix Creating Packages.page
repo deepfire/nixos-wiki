@@ -1,5 +1,5 @@
-Quick Guide
------------
+[[edit](/w/index.php?title=Nix_Creating_Packages&action=edit&section=1 "Edit section: Quick Guide")] Quick Guide
+----------------------------------------------------------------------------------------------------------------
 
 What you need to quickly test building packages is already on the
 system. There are various ways to approach this, but for brevity, ease
@@ -17,7 +17,11 @@ Press `(KeyCmb: ALT+F2, write "konsole" and press enter)`
 Let's put it inside a folder called *"Builds"* in your *[Home
 Folder](/w/index.php?title=NixOS_User_Reference&action=edit&redlink=1 "NixOS User Reference (page does not exist)")*.
 
+* * * * *
+
 **In Dolphin**
+
+* * * * *
 
 Open Dolphin `(KeyCmb: ALT+F2, write "Dolphin" and press enter)` and
 select the home directory. Create a Builds folder and create the nixpkgs
@@ -25,17 +29,21 @@ folder inside of that folder
 
 * * * * *
 
-***In Terminal***
-
-`mkdir -p /home/$USER/Builds/nixpkgs`
+**Terminal Procedure**
 
 * * * * *
 
- **2. Find the nixpkgs channel stored in NixOS**
+`mkdir -p /home/$USER/Builds/nixpkgs`
+
+**3. Find the currently used version of nixpkgs**
 
 Switch to an open terminal
 
+* * * * *
+
 **Echo the NIX\_PATH**
+
+* * * * *
 
 Simply run `echo $NIX_PATH`, which should output something like this:
 
@@ -45,18 +53,88 @@ Here we can see that `nixpkgs=/etc/nixos/nixpkgs` is a virtual directory
 (or symlinked directory) that leads to the current active set of
 channels that provides the various versions and iterations of `nixpkgs`.
 
-Quick Guide Notes
------------------
+**4. Copy the currently used nixpkgs**
+
+Let's copy the nixpkgs directly from the system so that your package can
+be built and used using the same dependencies.
+
+* * * * *
+
+**In Dolphin**
+
+* * * * *
+
+Navigate to the folder in
+`/nix/var/nix/profiles/per-user/root/channels/nixos/` and copy the
+folder `nixpkgs` to the `Builds` directory.
+
+* * * * *
+
+**Terminal Procedure**
+
+* * * * *
+
+Run this from an open terminal
+
+` cp -f -R /nix/var/nix/profiles/per-user/root/channels/nixos/nixpkgs/ ~/Builds/`
+
+**5. Start testing!**
+
+From this point you have the current set of nixpkgs copied to your build
+folder.
+
+Now you need to find the right
+[Directory](/w/index.php?title=NixPkgs&action=edit&redlink=1 "NixPkgs (page does not exist)")
+where you need to place the package or nix expressions file.
+
+`mkdir ~/Builds/nixpkgs/pkgs/<category>/<application>`
+
+`touch ~/Builds/nixpkgs/pkgs/<category>/<application>/default.nix`
+
+Edit the default.nix file that you've just created according to the
+guidelines of the documentation.
+
+Add this package to the user or systems `environment.systemPackages`
+
+Then run `nixos-rebuild` while pointing towards the folder you just
+copied.
+
+`nixos-rebuild switch -I nixpkgs=/home/USER/Builds/nixpkgs`
+
+The package is now installed on your system and can be tested in a
+real-world test case, much like most distributions. But the point of
+Nix(OS) is that this is strictly not necessary. But for the sake of ease
+of use, the touch-and-go learning principle, this small guide serves
+it's purpose. For a better way of testing software please refer to the
+**Beginners Guide**.
+
+[[edit](/w/index.php?title=Nix_Creating_Packages&action=edit&section=2 "Edit section: Quick Guide Notes")] Quick Guide Notes
+----------------------------------------------------------------------------------------------------------------------------
+
+Re: **echo \$NIX\_PATH**
+
+> echo interprets BASH functions and variables and outputs them on to
+> one line. In this case it's the variable \$NIX\_PATH
 
 Re: **mkdir -p**
 
 > *mkdir stands for "make directory" and "-p" stands for --parents, visa
 > vi parent folders or directories*
 
+Re: **touch**
+
+> touch merely creates an empty files on the file system which will
+> receive input from the user or the system
+
+Re: **cp -f -R**
+
+> This command copies everything that it is pointed towards, including
+> supdirectories, without stopping for errors
+
 To do: Add content for this page: "Creating Nix Packages"
 
-Standard Environment
---------------------
+[[edit](/w/index.php?title=Nix_Creating_Packages&action=edit&section=3 "Edit section: Standard Environment")] Standard Environment
+----------------------------------------------------------------------------------------------------------------------------------
 
 Most packages build their software in the "standard environment". Read
 the [Standard Environment wiki
