@@ -3,6 +3,9 @@ Welcome to the Nix wiki!
 HOWTOs
 ------
 
+-   [How to contribute to the nix wiki](//Contributing to the Nix wiki)
+    (keep top)
+
 -   [How to set up MediaWiki in NixOS](//Setting up MediaWiki)
 
 Development
