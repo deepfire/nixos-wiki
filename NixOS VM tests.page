@@ -35,7 +35,10 @@ packages needed to run a NixOS VM). The test is defined in
 `nixos/tests/nfs.nix`. If the test succeeds, `nix-build` will place a
 symlink `./result` in the current directory pointing at the location in
 the Nix store of the test results (e.g., screenshots, test reports, and
-so on).
+so on). In particular, a pretty-printed log of the test is written to
+`log.html`, which you can view by doing something like
+
+    $ firefox ./result/log.html
 
 ### Interactive testing
 
