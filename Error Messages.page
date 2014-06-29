@@ -1,5 +1,5 @@
-Error Messages
---------------
+[[edit](/w/index.php?title=Error_Messages&action=edit&section=1 "Edit section: Error Messages")] Error Messages
+---------------------------------------------------------------------------------------------------------------
 
 If you are stumped by an error message, add it here.
 
@@ -80,4 +80,17 @@ Change ownership of `/nix/store` to the current user.
 `$ chown -R <current user name> /nix/store /nix/var/nix`
 
 [Nix Manual: Single-user Mode](http://nixos.org/nix/manual/#idp24312864)
+
+`` error: getting information about `*/.nix-defexpr`: No such file or directory ``
+
+Using `nix-env -i $X`
+
+Nix is looking for the X package. By default, it looks in the user's
+`.nix-defexpr` directory.
+
+Add a NixPkgs channel for the user.
+
+`$ nix-channel --add http://nixos.org/channels/nixpkgs-unstable && nix-channel --update`
+
+[Nix Manual: Quick Start](http://nixos.org/nix/manual/#chap-quick-start)
 
