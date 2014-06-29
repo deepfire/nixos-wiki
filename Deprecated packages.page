@@ -127,3 +127,29 @@ kde3.kphone
 
 qcad
 
+kde3.kuickshow
+
+djvulibre (djview)
+
+djview4
+
+Remove useQt3 (done in stdenv-updates)
+
+taskjuggler
+
+valknut
+
+twinkle
+
+applications/science/electronics/qucs/default.nix
+
+applications/video/mythtv/default.nix
+
+development/libraries/avahi/default.nix
+
+development/tools/misc/xxdiff/3.2.nix
+
+games/six/default.nix
+
+tools/misc/qdu/default.nix
+
