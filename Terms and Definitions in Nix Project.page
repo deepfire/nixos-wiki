@@ -1,5 +1,5 @@
-Terms and Definitions
----------------------
+[[edit](/w/index.php?title=Terms_and_Definitions_in_Nix_Project&action=edit&section=1 "Edit section: Terms and Definitions")] Terms and Definitions
+---------------------------------------------------------------------------------------------------------------------------------------------------
 
 If you come across a term or word you don't know, add it here.
 
@@ -71,6 +71,16 @@ Nix
 A user's currently selected User Environment.
 
 [Nix Manual: Glossary](http://nixos.org/nix/manual/#idp26825824)
+
+Generation
+
+Nix
+
+A past revision of a user's environment. This term connotes the cloning
+and modification of an existing user environment. Nix's environment
+rollback facilities rely on Generations.
+
+[Nix Manual: Profiles](http://nixos.org/nix/manual/#sec-profiles)
 
 `config.nix` or `nixpkgs-config.nix`
 
