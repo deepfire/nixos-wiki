@@ -1,15 +1,17 @@
 Installing Python interpreters
 ==============================
 
-nix-env -i python (installs default python, currently 2.7) nix-env -i
-python33 nix-env -i python32 nix-env -i python26 nix-env -i pypy
+     nix-env -i python (installs default python, currently 2.7)
+     nix-env -i python33
+     nix-env -i python32
+     nix-env -i python26
+     nix-env -i pypy
 
 Installing Packages
 ===================
 
-nix-env -i pythonPackages.pyramid (installs pyramid with default python,
-currently 2.7) nix-env -i python33Packages.pyramid (install pyramid with
-python 3.3)
+     nix-env -i pythonPackages.pyramid (installs pyramid with default python, currently 2.7)
+     nix-env -i python33Packages.pyramid (install pyramid with python 3.3)
 
 Rationale of not polluting global site packages
 ===============================================
