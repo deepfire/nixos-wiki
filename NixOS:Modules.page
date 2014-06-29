@@ -100,3 +100,16 @@ References
 
 -   [NixOS Documentation](http://nixos.org/nixos/docs.html)
 
+Related Work
+------------
+
+-   Debian
+    [[1]](http://wiki.debian.org/PackageConfigUpgrade%7CConfig::Model):
+
+target configuration upgrades by abstracting the option of the
+configuration. Each file is a tree structure where leaves are values
+defined with an interpreted type. The interpreters are defined for each
+meta-configuration files name \*.conf. Configuration files does not
+seems to interact with each other to make consistent configuration. They
+provide an UI for editing their configuration file.
+
