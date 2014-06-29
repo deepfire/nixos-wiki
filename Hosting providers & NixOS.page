@@ -13,18 +13,25 @@ www.linode.com:
 -   Rob Vermaas and Marc Weber are running NixOS on linode.com - see
     [Install NixOS on Linode](//Install NixOS on Linode).
 
+netcup.de:
+
+-   Starting from january 2013 netcup provides KVM servers. Installing
+    NixOS works without problems, since you are able able to run your
+    own kernel and upload ISOs to boot from.
+
 NixOs experiences about other providers
 ---------------------------------------
 
 I tried:
 
--   netcup.de: Support let's you use your init if you ask them.
+-   netcup.de:
 
 <!-- -->
 
+     Support let's you use your init if you ask them.
      But Upstart is causing trouble. It dosn't recognize when jobs have finished or started.
      Thus you don't pass the start script. So you don't even start sshd.
-     Thu Dec 17 2009: upstart-0.6.3 doesn't work either.
+     Thu Dec 17 2009: upstart-0.6.3 doesn't work either. (Outdated)
      
 
 -   vc-server.de:
