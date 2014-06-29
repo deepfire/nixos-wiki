@@ -89,7 +89,7 @@ Using NixOS
 -   [Multiplatform NixOS](//Multiplatform NixOS) - (PC, QEMU ARM
     Versatile, SheevaPlug, Fuloong Mini-PC, Raspberry Pi)
 
-#### Examples
+#### Configuration Files for Hardware
 
 -   [Acer 4810T](//Acer 4810T)
 -   [ASUS M60J-JX041V](//ASUS M60J-JX041V)
@@ -101,6 +101,10 @@ Using NixOS
 -   [Lenovo Thinkpad x200](//Lenovo Thinkpad x200)
 -   [Lenovo Thinkpad Helix](//Lenovo Thinkpad Helix)
 -   [Samsung NP900X3c](//Samsung NP900X3c)
+
+#### Advanced Configuration
+
+-   [Hardened NixOS (More Secure)](//Hardened NixOS)
 
 ### On Virtual Machine
 
