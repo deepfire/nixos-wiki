@@ -19,9 +19,9 @@ Known issues
 -   As of 2014-03-04, you shouldn't use a ZVol as a swap device, as it
     can deadlock under memory pressure
 -   As of 2014-03-04, you should set the `mountpoint` property of your
-    ZFS filesystems to be `legacy` and let NixOS mount them using
-    systemd, otherwise some filesystems may fail to mount due to
-    ordering issues
+    ZFS filesystems to be `legacy` and let NixOS mount them like any
+    other filesystem (such as ext4 or btrfs), otherwise some filesystems
+    may fail to mount due to ordering issues
 -   As of 2014-03-04, all ZFS pools available to the system will be
     forcibly imported during boot, regardless if you had imported them
     before or not. You should be careful not to have any other system
@@ -41,15 +41,20 @@ And run `nixos-rebuild switch`, as usual.
 All ZFS functionality should now be available.
 
 If you want NixOS to auto-mount your ZFS filesystems during boot, you
-should set their `mountpoint` property to `legacy`, mount the filesystem
-manually and regenerate your list of filesystems, as such:
+should set their `mountpoint` property to `legacy` and treat it like if
+it were any other filesystem, i.e.: mount the filesystem manually and
+regenerate your list of filesystems, as such:
 
       zfs set mountpoint=legacy <pool>/<fs>
       mount -t zfs <pool>/<fs> <mountpoint>
+
+      # This will regenerate your /etc/nixos/hardware-configuration.nix file:
       nixos-generate-config
 
-NixOS will now make sure that your filesystem is mounted during boot.
-The last command regenerates your
+      nixos-rebuild switch
+
+NixOS will now make sure that your filesystem is always mounted during
+boot. The `nixos-generate-config` command regenerates your
 `/etc/nixos/hardware-configuration.nix` file, which includes the list of
 filesystems for NixOS to mount during boot, e.g.:
 
