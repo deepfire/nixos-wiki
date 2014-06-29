@@ -11,8 +11,8 @@ excerpt of /etc/nixos/configuration.nix
      services.samba.securityType = "share";
      services.samba.extraConfig = 
        workgroup = WORKGROUP
-       server string = albstadt
-       netbios name = albstadt
+       server string = smbnix
+       netbios name = smbnix
        security = share 
        #use sendfile = yes
        #max protocol = smb2
