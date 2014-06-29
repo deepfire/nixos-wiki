@@ -1,9 +1,10 @@
-1\. goto the derivation and add a postBuild="fail" or such 2. run this
-command:
+1\. goto the derivation and add a postBuild="fail" or such
+
+2\. run this command:
 
      nix-env -i firefox -K
 
-3\. then go into the faild build directory shown in the end of the error
+3\. then go into the failed build directory shown in the end of the error
 message, like:
 
      cd /tmp/nix-build-f3slzg4g3h99yqcj6lzjwc1cvcdwg6dd-torcx.drv-0
