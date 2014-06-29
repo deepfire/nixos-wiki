@@ -210,49 +210,6 @@ opening several projects in the same KDevelop session.
 Sample Development Environments
 -------------------------------
 
-### Python - Plone Development Environment
-
-       {
-         # Define a myEnvFun environment, which makes use of pythonPlone
-         packageOverrides = pkgs: rec {
-        
-           # Define a version of Python which has access to all the Plone modules
-           pythonPlone = pkgs.pythonFull.override {
-             extraLibs = with pkgs.python27Packages; [ Plone ];
-           };
-        
-           plone = pkgs.myEnvFun {
-             name = "plone";
-             buildInputs = with pkgs; [
-               pythonPlone
-               python27Packages.zc_buildout_nix
-               stdenv # provides gcc for building python c extensions
-            ];
-            # Export the path to the custom version of Python with all the goodies
-            # Other Python command line utilies could also be used, e.g. IPython
-            extraCmds = 
-              export PYTHONHOME=${pythonPlone}
-              unset http_proxy # otherwise downloads will fail ("nodtd.invalid")
-            ;
-           };
-        
-         };
-       }
-
-Summary
--------
-
-We can add several different environments to our `~/.nixpkgs/config.nix`
-file, one for each project we work on. These can be used one at a time
-to develop a variety of projects while keeping each relatively isolated.
-We can exit these environments as one would exit any shell session, by
-using the `CTRL+D` shortcut or the `exit` command.
-
-What's the main benefit of using this technique? We don't pollute our
-main profile with many development tools, which may have conflicts.
-Also, we can use different versions of a library on the same system,
-selecting them by selecting a development environment.
-
 ### Example 1: Using nix-shell to Initialize a Development Shell
 
 This example shows a Nix expression which packages an application that
@@ -323,3 +280,47 @@ into the current directory.
        
        # Optionally, rollback to an earlier generation of this profile.
        $ nix-env --list-generations -p /nix/var/nix/gcroots/per-user/clang
+
+### Example 3: Python - Plone Development Environment
+
+       {
+         # Define a myEnvFun environment, which makes use of pythonPlone
+         packageOverrides = pkgs: rec {
+        
+           # Define a version of Python which has access to all the Plone modules
+           pythonPlone = pkgs.pythonFull.override {
+             extraLibs = with pkgs.python27Packages; [ Plone ];
+           };
+        
+           plone = pkgs.myEnvFun {
+             name = "plone";
+             buildInputs = with pkgs; [
+               pythonPlone
+               python27Packages.zc_buildout_nix
+               stdenv # provides gcc for building python c extensions
+            ];
+            # Export the path to the custom version of Python with all the goodies
+            # Other Python command line utilies could also be used, e.g. IPython
+            extraCmds = 
+              export PYTHONHOME=${pythonPlone}
+              unset http_proxy # otherwise downloads will fail ("nodtd.invalid")
+            ;
+           };
+        
+         };
+       }
+
+Summary
+-------
+
+We can add several different environments to our `~/.nixpkgs/config.nix`
+file, one for each project we work on. These can be used one at a time
+to develop a variety of projects while keeping each relatively isolated.
+We can exit these environments as one would exit any shell session, by
+using the `CTRL+D` shortcut or the `exit` command.
+
+What's the main benefit of using this technique? We don't pollute our
+main profile with many development tools, which may have conflicts.
+Also, we can use different versions of a library on the same system,
+selecting them by selecting a development environment.
+
