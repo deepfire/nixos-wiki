@@ -17,6 +17,7 @@ Hardware
 -   CPU: Core i7 720 QM (4 core, 2 threads per core)
 -   RAM: 4 GB
 -   HDD: 2\* 320 GB, 5200 rpm.
+-   Fingerprint Sensor.
 
 Support
 -------
@@ -29,6 +30,7 @@ Support
 -   Software Raid: Yes.
 -   Keyboard: some Function (Fn) keys are not recognized / mapped
     correctly.
+-   Fingerprint Sensor: Not tested. (listed by lshal)
 
 Tests
 -----
