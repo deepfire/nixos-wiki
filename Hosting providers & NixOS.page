@@ -8,12 +8,6 @@ some libraries to make them work with older kernels.
 Hosting providers known to run NixOS
 ------------------------------------
 
-[MilesWeb.com](http://www.milesweb.com)
-
--   We provide NixOS pre-installed with VPS & Dedicated Servers. We
-    provide NixOS based VPS/Dedicated Servers in India, USA, UK &
-    Romania.
-
 www.linode.com:
 
 -   Rob Vermaas and Marc Weber are running NixOS on linode.com - see
