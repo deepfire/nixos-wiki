@@ -1,0 +1,43 @@
+background
+----------
+
+NixOS is using very recent software & kernels by default. If you try to
+install NixOS on virtualizing systems be prepared that you have to patch
+some libraries to make them work with older kernels.
+
+Hosting providers known to run NixOS
+------------------------------------
+
+-   Rob Vermaas is running NixOS on www.linode.com
+
+NixOs experiences about other providers
+---------------------------------------
+
+I tried:
+
+-   netcup.de: Support let's you use your init if you ask them.
+
+<!-- -->
+
+     But Upstart is causing trouble. It dosn't recognize when jobs have finished or started.
+     Thus you don't pass the start script. So you don't even start sshd.
+     
+
+-   vc-server.de:
+
+<!-- -->
+
+     If you remove /bin/cp your data is lost. Older but probably very stable kernels.
+     I got a stystem running using some kind of bind mound magic keeping the original debian in place.
+     However I gave up updating it. It's still running my irssi client and hosting my .git repositories.
+     Eg I had to patch coreutils because touch failed. This was fixed in a newer corutils release.
+     This actually means you can't use binaries at all.
+
+-   OVH:
+
+<!-- -->
+
+     Nice: You can use an API to switch to the rescue system, You probably can scale easily by API.
+           You get kind of root server. Thus running virtualized systems yourself should be possible.
+     NixOs booted in kvm mode (Qemu/ vnc like interface). However when upstart was started it restarted.
+     When booting from hd the normal way nothing happened and I didn't know how to debug it.
