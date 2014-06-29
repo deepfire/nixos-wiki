@@ -5,7 +5,8 @@ question over and over again.
 Why is Nix written in C++ and Perl rather than a functional language like Haskell or OCaml, given the strong influence that functional programming has obviously had on Nix
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Mainly because Nix is intended to be lightweight and portable
+Mainly because Nix is intended to be lightweight, easy to learn and
+portable (zero dependencies).
 
 NixOS segfaults when running on VirtualPC:
 ------------------------------------------
@@ -37,8 +38,8 @@ to move that file into the store one can use:
 
      nix-prefetch-url "http://myfoohost.com/programs/foo/myfile-0.1.2.tar.gz"
 
-How to restart a systemd service
---------------------------------
+How to restart a systemd service?
+---------------------------------
 
      systemctl restart unit
 
@@ -46,8 +47,8 @@ A list of services can be found with:
 
      systemctl list-units
 
-How to keep build-time dependencies around / be able to rebuild while being offline
------------------------------------------------------------------------------------
+How to keep build-time dependencies around / be able to rebuild while being offline?
+------------------------------------------------------------------------------------
 
 configuration.nix:
 
@@ -78,8 +79,8 @@ The warning can be ignored for profiles that are listed/linked in
 Consult man pages of nix-store and nix-instantiate for further
 information.
 
-how to add a custom udev rule in nixos
---------------------------------------
+how to add a custom udev rule in nixos?
+---------------------------------------
 
 add something like this to your `/etc/nixos/configuration.nix` file:
 
