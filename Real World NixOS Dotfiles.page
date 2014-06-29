@@ -1,5 +1,13 @@
 Dotfiles
 --------
 
+### shelvy
+
 [[1]](https://github.com/shlevy/dotfiles/tree/master/nixos) (Xmonad)
+
+### Sergey
+
+Wicd, Almost all X11 libs, No window manager, xmonad is to be installed
+using nix-env -i xmonad.
+[[2]](https://github.com/ierton/nixosfiles-ierton/tree/master/nixos)
 
