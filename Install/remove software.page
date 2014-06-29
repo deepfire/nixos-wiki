@@ -216,6 +216,8 @@ or check for more recent entries by:
 how to use a different version of a package
 -------------------------------------------
 
+### kde
+
 1\. look into pkgs/top-level/all-packages.nix (when you have checked out
 nixpkgs using git) and try to find something like this:
 
@@ -233,3 +235,11 @@ nixpkgs using git) and try to find something like this:
 3\. finally do:
 
      nixos-rebuild switch
+
+### grub
+
+1\. similar to the kde example search the all-packages.nix for available
+grub versions 2. to use a different version of grub add this line to
+/etc/nixos/configuration.nix
+
+     nixpkgs.config.packageOverrides = pkgs : rec { grub2 = pkgs.grub198; };
