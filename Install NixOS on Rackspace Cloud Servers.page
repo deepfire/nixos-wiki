@@ -135,6 +135,7 @@ Cloud Server.
       fileSystems = [
         { mountPoint = "/";
           device = "/dev/xvda1";
+          options = "noatime,nodiratime,errors=remount-ro,barrier=0";
         }
       ];
 
