@@ -22,19 +22,23 @@ Using nix to install new software requires to download the source from upstream 
 
 -   download manually and copy into /tmp, then:
 
-to move that file into the store one can use: nix-prefetch-url
-file:///tmp/myfile-0.1.2.tar.gz if the file is in the /tmp directory
+to move that file into the store one can use:
+
+     nix-prefetch-url file:///tmp/myfile-0.1.2.tar.gz if the file is in the /tmp directory
 
 -   download directly
 
-nix-prefetch-url
-"<http://myfoohost.com/programs/foo/myfile-0.1.2.tar.gz>"
+<!-- -->
+
+     nix-prefetch-url "http://myfoohost.com/programs/foo/myfile-0.1.2.tar.gz"
 
 How to restart an UPSTART service
 ---------------------------------
 
 either:
 
--   **restart sshd** or
--   **initctl restart sshd**
+     restart sshd 
 
+or
+
+     initctl restart sshd
