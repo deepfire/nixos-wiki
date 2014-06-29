@@ -34,6 +34,9 @@ This is what needs to be put into /etc/nixos/configuration.nix:
 
 ### Make sure grub finds unencrypted kernels
 
+Since encrypted root setups use an external boot partition, we need to
+copy kernels to it instead of symlinking:
+
       boot.loader.grub.copyKernels = true;
 
 ### Extra modules you might need
