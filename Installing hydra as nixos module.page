@@ -6,8 +6,8 @@ alongside for instance sshd and other system daemons you need to:
 -   Include the hydra module in the nixos system composition
     /etc/nixos/configuration.nix
 
-/etc/nixos/configuration.nix
-----------------------------
+[[edit](/w/index.php?title=Installing_hydra_as_nixos_module&action=edit&section=1 "Edit section: /etc/nixos/configuration.nix")] /etc/nixos/configuration.nix
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Add the con hydra-module.nix to the require list, and configure it:
 
@@ -44,8 +44,8 @@ services.postgresql.package = pkgs.postgresql;
 
 }
 
-Letting nix handle the git repository
--------------------------------------
+[[edit](/w/index.php?title=Installing_hydra_as_nixos_module&action=edit&section=2 "Edit section: Letting nix handle the git repository")] Letting nix handle the git repository
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Alternatively, you can reference the hydra repository directly from
 /etc/nixos/configuration.nix:
@@ -53,7 +53,7 @@ Alternatively, you can reference the hydra repository directly from
 { config, pkgs, ... }:
 
 let hydra = pkgs.fetchgit { url = <https://github.com/NixOS/hydra>; rev
-= "refs/heads/master"; :: };
+= "refs/heads/master"; };
 
 in {
 
@@ -88,8 +88,8 @@ This will include the hydra repository in the nix store. The repository
 will be kept there until garbage collected, at which time
 nixos-rebuilding will refetch the (possibly updated) repository.
 
-Building the configuration
---------------------------
+[[edit](/w/index.php?title=Installing_hydra_as_nixos_module&action=edit&section=3 "Edit section: Building the configuration")] Building the configuration
+---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Then, running 'nixos-rebuild switch' and rebooting, hydra initialises
 itself through systemd scripts, enabled as part of the installation.
