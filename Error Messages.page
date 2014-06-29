@@ -6,16 +6,16 @@ If you are stumped by an error message, add it here.
   --------------------------------------------------------------------------
   Error Message
   Meaning
-  How to Fix
+  Suggested Solution
   ------------------------ ------------------------ ------------------------
-  `` error: cannot auto-ca `(your error)`
-  ll a function that has a (meaning)
-  n argument without a def (opt: suggested
-  ault value (`stdenv') `` solution)
-  A Nix function was       
-  called, but it wasn't    
-  given a parameter.       
-  Solution?                
+  `` error: cannot auto-ca
+  ll a function that has a
+  n argument without a def
+  ault value (`stdenv') ``
+  A Nix function was
+  called, but it wasn't
+  given a parameter.
+  Please help.
   --------------------------------------------------------------------------
 
 
