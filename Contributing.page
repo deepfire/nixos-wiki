@@ -53,7 +53,15 @@ change by checking the build job status on [[1]](http://hydra.nixos.org)
 HOW to verify that you didn't break evaluation by accident ?
 ------------------------------------------------------------
 
-Run a script like this: (TODO: improve it and add more documentation)
+To find out which packages are effected by your change:
+
+    $ nix-env -f . -qaP \* --drv-path | sort > l1
+    (...modify package...)
+    $ nix-env -f . -qaP \* --drv-path | sort > l2
+    $ changed=$(diff l1 l2 | awk '{print $2}' | sort | uniq)
+
+    # This list can be used to create a release.nix for testing you can build all the relevant packages
+    $ nix-build $(for i in $changed; do echo -A $i; done)
 
     #!/bin/sh
     set -e -x
@@ -73,7 +81,7 @@ Run a script like this: (TODO: improve it and add more documentation)
 
 TODO: explain what is done exactly
 
-The nixpkgs-dev-utilities referenced on [Nix(OS) related repositories
+ The nixpkgs-dev-utilities referenced on [Nix(OS) related repositories
 and work](//Nix(OS) related repositories and work) tries to implement
 this for your convinience
 
