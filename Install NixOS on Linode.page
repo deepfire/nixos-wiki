@@ -1,64 +1,73 @@
-1\) Select "Deploy a Distribution" from the linode dashboard
-[[1]](https://www.linode.com/members/linode/dashboard.cfm), and select
-Distribution "Debian 5.0 64bit" (the smallest disk requirement),
-Deployment Disk Size 384MB, Swap Disk the size you want for your final
-NixOS swap space (this volume can be shared as only one OS will be
-booted at a time).
+The high level approach that these directions will take is to boot into
+the Rescue Mode, then mount the partitions we'll install on, install
+NixOS and NixPkgs on the Rescue Disk and then have it install to the
+mounted partition we actually want it installed on.
 
-This Debian 5.0 image be used to bootstrap NixOS, and also as a rescue
-medium in the future. Note that you can not use "Finnix" if you want to
-use NixOS x86\_64, as linode does't support finnix64, so you can't run
-64-bit NixOS binaries from Finnix. And we can't think of any reason
-you'd want to use NixOS i686 on a VPS.
+1.  Setup your Disk Image partions. You will need:
+    1.  A small partition we will call 'boot', it should be \~200 mb
+        this will be /dev/xvda
+    2.  Make the rest of your disk space one other parition, we'll call
+        this 'nixos' this will be /dev/xvdc
+    3.  And of course, the swap disk this will be /dev/xvdb
 
-2\) Create a disk image (partition) for NixOS to be installed on to via
-the linode dashboard
-[[2]](https://www.linode.com/members/linode/dashboard.cfm) "Create a new
-Disk Image" option.
-
-3\) Edit the "My Debian 5.0 64bit Profile" to have your NixOS disk be
-xvdc, and save the profile
-
-4\) boot into "My Debian 5.0 64bit Profile", connect to it via linshell,
-and mount xvdc
-
-5\) The x86\_64 bootstrap archive can be downloaded from\
-
-<http://hydra.nixos.org/job/nixos/trunk/minimal_install_archive/latest-for/x86_64-linux/download/1/nixos-install-archive.tar.bz2>
-
-6\) Install following the archive installation README, which is named
-"README-BOOTSTRAP-NIXOS". (Except that doesn't really work unless you
-already have a lot of NixOS clue, so doing step-by-step below, and will
-then try to write up replacement for README-BOOTSTRAP-NIXOS)
-
-6.1) Force creating a init script and get networking options from the
-configuration profile editing page:
-
-    mkdir /mnt/etc/nixos
-
-    cat >  /mnt/etc/nixos/configuration.nix << EOF
+2.  Boot into Rescue Mode and use LISH to connect to your machine
+3.  mount /dev/xvdc /mnt
+4.  mkdir /mnt/boot
+5.  mount /dev/xvda /mnt/boot
+6.  mkdir -p /mnt/nix/store
+7.  mkdir -p /nix/store
+8.  mount --bind /mnt/nix/store /nix/store
+9.  cd /
+10. wget -O -
+    <http://hydra.nixos.org/job/nix/trunk/binaryTarball.x86_64-linux/latest/download>
+    | tar xvj
+11. /usr/bin/nix-finish-install
+12. source /etc/profile.d/nix.sh
+13. nix-channel --update
+14. nix-env -i git
+15. cd
+16. git clone <git://github.com/NixOS/nixos.git>
+17. git clone <git://github.com/NixOS/nixpkgs.git>
+18. nix-env -i vim
+19. cat \<\<EOF \> configuration.nix
     {
-     boot.loader.initScript.enable = true;
+    fileSystems."/" = {};
+    boot.loader.grub.enable = false;
     }
     EOF
+20. export
+    NIX\_PATH=nixos=/root/nixos:nixpkgs=/root/nixpkgs:nixos-config=/root/configuration.nix
+21. nix-env -i -A config.system.build.nixosInstall -A
+    config.system.build.nixosOption -A
+    config.system.build.nixosHardwareScan -f "\<nixos\>"
+22. e2label /dev/xvdc nixos
+23. Edit your configuration.nix, below are the minimal number of changes
+    you'll have to make, you probably also want to turn sshd on, and
+    perhaps create a user.
+    vi /mnt/etc/nixos/configuration.nix
+    \
+    \# Use the GRUB 1 boot loader.
+    boot.loader.grub.enable = true;
+    boot.loader.grub.version = 1;
+    boot.loader.grub.extraPerEntryConfig = "root (hd0)";
+    boot.loader.grub.device = "nodev";
+    \
+    fileSystems."/boot".fsType = "ext2";
+    fileSystems."/boot".device = "/dev/xvda";
+    fileSystems."/".label = "nixos";
+    fileSystems."/".fsType = "ext4";
+    \
+    \# List swap partitions activated at boot time.
+    swapDevices =
+    [ { device = "/dev/xvdb"; }
+    ];
+24. nixos-install
+25. mkdir -p /mnt/boot/boot/grub
+26. Because of how Linode will try to load grub on the /boot partition,
+    we need to make this symlink so it can find it:
+    ln -sv ../../grub/menu.lst /mnt/boot/boot/grub
+27. You can now reboot, and you should boot into your NixOS install
+28. nix-channel --update
 
-6.2) Get the NixOS Sources via SVN
-
-    aptitude install subversion
-    [... subversion and deps installed in debian install/rescue image ...]
-
-    bash /mnt/nix/store/nixos-prepare-install checkout-sources
-    [... lots of stuff checked out ...]
-
-6.3) Prepare the install from the SVN sources
-
-    bash /mnt/nix/store/nixos-prepare-install copy-nix
-
-6.4) TODO
-
-7\) Create a configuration profile assigning your NixOS disk image to
-/dev/xvda (/sbin/init will be started). Choose a kernel, and also assign
-swapspace as xvdb.
-
-8\) Reboot. Have fun.
+You now should have a fully functional NixOS install on Linode, enjoy!
 
