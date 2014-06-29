@@ -3,7 +3,35 @@ This page is a work in progress.
 Overview
 ========
 
-comming ...
+Most of the features seem to be working with Linux 2.6.32.
+
+Hardware
+--------
+
+-   Ethernet: Attansic Technology Corp. Device 1063 (rev c0)
+-   Wireless: Intel Corporation Wifi Link 100 Series
+-   Bluetooth:
+-   Sound: nVidia Corporation Device 0be2 (rev a1)
+-   Video: nVidia GeForce GT 240M
+-   Video RAM: 1GB DDR3
+-   CPU: Core i7 720 QM (4 core, 2 threads per core)
+-   RAM: 4 GB
+-   HDD: 2\* 320 GB, 5200 rpm.
+
+Support
+-------
+
+-   Ethernet: Yes.
+-   Wireless: Not tested.
+-   Bluetooth: Not tested.
+-   Sound: Not tested.
+-   Video: Yes.
+-   HDD Raid: Yes.
+
+Tests
+-----
+
+-   Video: Not tested.
 
 Final Laptop Configuration
 ==========================
@@ -16,7 +44,7 @@ Problems & Solutions
 No Ethernet
 -----------
 
-This problem appear if you are using an older kernel.
+This problem appear if you are using an old kernel.
 
     [root@nixos:]# lspci -v | sed -n '/Ethernet/ { :loop p; n; s/^$//; T loop; q}'
     07:00.0 Ethernet controller: Attansic Technology Corp. Device 1063 (rev c0)
@@ -67,8 +95,8 @@ Sources:
 
 -   <http://platonic.techfiz.info/2009/10/25/ethernet-controller-attansic-technology-corp-device-1063-on-ubuntu/>
 
-Grub entries
-------------
+Grub
+----
 
 -   Changing the boot sequence in the BIOS is changing the apparent
     mapping of hard-drives. Thus `hd0` and `hd1` are inverted in GRUB 2.
