@@ -14,9 +14,9 @@ Check that your wireless adapter is working
               collisions:0 txqueuelen:1000 
               RX bytes:7196191 (6.8 Mb)  TX bytes:7611727 (7.2 Mb)
 
-If not, consult dmesg. One possible reason is missing firmware. Some
-firmware types should be enabled explicitly, see
-networking.enableIntel2100BGFirmware option as example.
+If not, consult dmesg. One possible reason is missing firmware.
+Sometimes you may need to enable it explicitly, see
+networking.enableIntel2100BGFirmware option as an example.
 
 ### Enable wicd, disable other networking
 
