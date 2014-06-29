@@ -1,0 +1,63 @@
+box configuration
+=================
+
+    > /usr/sbin/prtconf
+    Processor Type: PowerPC_POWER5
+    Processor Implementation Mode: POWER 5
+    Processor Version: PV_5_3 <= aix 5.3
+    Number Of Processors: 1
+    Processor Clock Speed: 2097 MHz
+    CPU Type: 64-bit
+    Kernel Type: 64-bit
+
+Requirements
+============
+
+My box had very minimal configuration. So I discovered that need to
+install some additional software to compile nix. All packages above you
+can find on <http://www.perzl.org/aix/>
+
+    #!/bin/sh -x
+    #
+    # Prereq:
+    # src/
+    # |- curl-7.9.3-2.aix4.3.ppc.rpm
+    # |- make-3.80-1.aix5.1.ppc.rpm
+    # |- gcc-4.2.4-2.aix5.2.ppc.rpm
+    # |- gcc-c++-4.2.4-2.aix5.2.ppc.rpm
+    # |- gcc-cpp-4.2.4-2.aix5.2.ppc.rpm
+    # |- libgcc-4.2.4-2.aix5.2.ppc.rpm
+    # |- libstdc++-4.2.4-2.aix5.2.ppc.rpm
+    # |- libstdc++-devel-4.2.4-2.aix5.2.ppc.rpm
+    # |  `- info-4.6-1.aix5.1.ppc.rpm
+    # | tools below were compiled from sources just because they could destabilize the box if replaced 
+    # |- sed-4.2
+    # `- coreutils-8.4
+    #    `- libm.a - I had to copy it from another box
+    #
+    #
+    # --enable-static - otherwise nix-env coredumps
+    # --enable-static-nix - otherwise nix-env coredumps
+    # --disable-largefile - prevent linking issues
+    # --localstatedir - point to /home/lowes/ with enough space
+    # --with-store-dir - point to /home/lowes/ with enough space
+    # --with-system - uname -m works incorrectly on AIX so configure
+    #                 was not able to set properly machine
+    #
+    #
+    #
+    #fallocate function does not work correctly on AIX
+    #
+    INSTALL_DIR=/opt/qib/app/nix-0.16 \
+    && rm -rf ${INSTALL_DIR} \
+    && CFLAGS=-g CXXFLAGS=-g \
+     ./configure \
+     --prefix=${INSTALL_DIR} \
+     --localstatedir=/home/lowes/nix/var \
+     --with-store-dir=/home/lowes/nix/store \
+     --enable-static \
+     --enable-static-nix \
+     --disable-largefile \
+     --with-system=powerpc-aix \
+     --with-coreutils-bin=/opt/qib/app/coreutils-8.4/bin \
+    && perl -p -i -e 's/#define HAVE_POSIX_FALLOCATE 1/\/\*#define HAVE_POSIX_FALLOCATE 1\*\//g' config.h
