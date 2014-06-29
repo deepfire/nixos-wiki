@@ -206,6 +206,39 @@ set of packages in its global package database. The easiest way to use
 this function is via `~/.nixpkgs/config.nix` or
 `/etc/nixos/configuration.nix`.
 
+#### Local use via Nixpkgs config
+
+Here is a simple yet complete example of how to use `ghcWithPackages` in
+`~/.nixpkgs/config.nix`:
+
+     pkgs : {
+       packageOverrides = self : rec {
+         hsEnv = self.haskellPackages.ghcWithPackages (self : [
+             self.haskellPlatform
+             # add more packages here
+         ]);
+     }
+
+If you now the Nix attribute name of a particular package (you only need
+the last component), you can add it to the list to have it (and its
+dependencies) installed for the selected version of GHC. As always, by
+using `haskellPackages.ghcWithPackages`, we refer to the current version
+of GHC. You can explicitly select another version of GHC, too. For
+example, to use GHC 7.4.2, you would say
+`haskellPackages.ghcWithPackages_ghc742`.
+
+The configuration above defines a *new* attribute called *hsEnv* that
+you can subsequently install into an environment by saying
+
+     $ nix-env -iA nixos.pkgs.hsEnv
+
+It is trivial to keep this environment up-to-date. You can just
+reinstall the package from time to time.
+
+#### System-wide use via NixOS config
+
+[To be written.]
+
 Contributing Haskell packages to Nixpkgs
 ----------------------------------------
 
