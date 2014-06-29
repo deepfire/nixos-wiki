@@ -48,7 +48,7 @@ is shown by alsamixer without using the 'S' key).
 
 (alsamixer shows my audio card by default, but i get no sound in KDE)
 
--   be sure to explicitly install pkgs.kde4.phonon in
+-   be sure to explicitly install pkgs.kde44.phonon in
     /etc/nixos/configuration.nix (environment.kdePackages option) or via
     nix-env -i
 
@@ -71,4 +71,29 @@ your audio device in systemsettings / Computer Administration /
 Multimedia
 
 Test the audio and enjoy the relaxing KDE's arpeggio.
+
+### Making PulseAudio work for most of apps
+
+This routes default ALSA sound streams via PulseAudio
+
+-   Install alsa-plugins(pkgs.alsaPlugins)
+-   Put this into \~/.asoundrc:
+
+<!-- -->
+
+     pcm.pulse {                                                                                              
+       type pulse                                                                                               
+       }                                                                                                        
+                                                                                                                
+       ctl.pulse {                                                                                              
+       type pulse                                                                                               
+       }                                                                                                        
+                                                                                                                
+       pcm.!default {                                                                                           
+       type pulse                                                                                               
+       }                                                                                                        
+                                                                                                                
+       ctl.!default {                                                                                           
+       type pulse                                                                                               
+       }            
 
