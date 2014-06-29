@@ -11,6 +11,11 @@ general python integration into nixos
 ### requirements
 
 -   mix python 2.x and 3.x in the same profile
+
+<!-- -->
+
+     marcweber and qknight vote against that. it makes packaging complicated: to mix python2 and python3? We could introduce NIX_PYTHON_SITES_2 and NIX_PYTHON_SITES_3 or such.
+
 -   pyLibA (python wrapper for a library) is used by pyLibB: nix
     expressions must be able to use either
 
