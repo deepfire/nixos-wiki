@@ -18,25 +18,11 @@ Nicolas Pierron
 
 Nicolass will test nut without HAL near end of January 2011
 
-pmount
-
-No meta.maintainer
-
-Use udisks --mount
-
 Xfce-4.6
 
 No meta.maintainer
 
 Switch to 4.8 and remove 4.6
-
-pam\_usb
-
-No meta.maintainer
-
-Hotplug, needs both HAL and pmount
-
-Try version from [github](https://github.com/aluzzardi/pam_usb)
 
 Policykit (not polkit!)
 -----------------------
