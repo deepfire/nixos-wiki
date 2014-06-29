@@ -68,7 +68,7 @@ at the end of
 
     vi /etc/nixos/nixos/modules/installer/cd-dvd/system-tarball-pc.nix
 
-add:
+comment this line with a leading '\#':
 
     jobs.openssh.startOn = pkgs.lib.mkOverrideTemplate 50 {} "";
 
