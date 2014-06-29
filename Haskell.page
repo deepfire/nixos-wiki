@@ -198,7 +198,7 @@ times.
 
 Cabal can depend on a number of binaries at run time, which are not
 installed by default when cabal is, including **ar**, **happy**,
-**alex**, and **haddock**. In particular **ar** the library achiever is
+**alex**, and **haddock**. In particular **ar** the library archiver is
 needed for the **cabal install** command to work properly. **ar** can be
 found in the standard environment and there are few methods to get
 **cabal install** working properly with it.
