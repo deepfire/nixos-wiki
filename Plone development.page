@@ -5,43 +5,42 @@ The following expression allows all plone42Packages available:
 
 /root/.nixpkgs/config.nix
 
-\<syntaxhighlight\> {
-
-     packageOverrides = pkgs: {
-       envPythonPlonedev = pkgs.buildEnv {
-         name = "env-python-plonedev-1.0";
-         ignoreCollisions = true;
-         paths = with pkgs; (
-           lib.filter (v: (v.type or null) == "derivation")
-                      (lib.attrValues plone42Packages)
-         );
-       };
-     };
-
-} \</syntaxhighlight\>
+    {
+      packageOverrides = pkgs: {
+        envPythonPlonedev = pkgs.buildEnv {
+          name = "env-python-plonedev-1.0";
+          ignoreCollisions = true;
+          paths = with pkgs; (
+            lib.filter (v: (v.type or null) == "derivation")
+                       (lib.attrValues plone42Packages)
+          );
+        };
+      };
+    } 
 
  These can be then be installed into a profile:
 
-` `
-
-1.  nix-env -iA pkgs.envPythonPlonedev -p /nix/var/nix/profiles/plone
+    # nix-env -iA pkgs.envPythonPlonedev -p /nix/var/nix/profiles/plone
 
 To make use of this profile you can create an activation script which
 sets some environment variables:
 
-` /home/me/dev/plone/$ cat activate PROFILE=plone NIXPROFILE=/nix/var/nix/profiles/$PROFILE`
+    /home/me/dev/plone/$ cat activate
+    PROFILE=plone
+    NIXPROFILE=/nix/var/nix/profiles/$PROFILE
 
-export PATH=$NIXPROFILE/bin:$PATH export
-PYTHONPATH=$NIXPROFILE/lib/python2.7/site-packages export LD_LIBRARY_PATH="$NIXPROFILE/lib"
-export NIX\_LDFLAGS="-L
-$NIXPROFILE/lib" export NIX_CFLAGS_COMPILE="-I $NIXPROFILE/include"
-export PKG\_CONFIG\_PATH="\$NIXPROFILE/lib/pkgconfig"
+    export PATH=$NIXPROFILE/bin:$PATH
+    export PYTHONPATH=$NIXPROFILE/lib/python2.7/site-packages
+    export LD_LIBRARY_PATH="$NIXPROFILE/lib"
+    export NIX_LDFLAGS="-L $NIXPROFILE/lib"
+    export NIX_CFLAGS_COMPILE="-I $NIXPROFILE/include"
+    export PKG_CONFIG_PATH="$NIXPROFILE/lib/pkgconfig"
 
-PS1='\\[\\033[0;36m\\][$PROFILE]'$PS1
+    PS1='\[\033[0;36m\][$PROFILE]'$PS1
 
 source this file to set the variables in your current shell:
 
-` /home/me/dev/plone $ . activate`
+     /home/me/dev/plone $ . activate
 
 You should now have all you need to run buildout. A patched version of
 buildout is included in the profile. This allows buildout to recognize
@@ -53,29 +52,38 @@ starting a zope instance so that it includes all eggs, development
 packages and the nix profile packages in the path.
 
 Here is an example: nix.cfg
-` [buildout] extends = buildout.cfg parts += `
 
-       zopenix
+    [buildout]
+    extends = buildout.cfg
+    parts +=
+        zopenix
 
-[instance] eggs +=
+    [instance]
+    eggs +=
+         plone.recipe.zope2instance
+         Pillow
 
-        plone.recipe.zope2instance
-        Pillow
+    [zopenix]
+    recipe = zc.recipe.egg
+    eggs = ${instance:eggs}
+    interpreter = instance-py
 
-[zopenix] recipe = zc.recipe.egg eggs = \${instance:eggs} interpreter =
-instance-py
-
-[versions] docutils = 0.9.1 lxml = 3.0.2 pytz = 2012c zc.buildout =
-1.7.0
+    [versions]
+    docutils = 0.9.1
+    lxml = 3.0.2
+    pytz = 2012c
+    zc.buildout = 1.7.0
 
 This has been tested with the plone.api buildout:
 
-`  $ git clone https://github.com/plone/plone.api.git . $ cp ../nix.cfg ./ # the file mentioned above $ buildout -c nix.cfg`
+     
+    $ git clone https://github.com/plone/plone.api.git .
+    $ cp ../nix.cfg ./ # the file mentioned above
+    $ buildout -c nix.cfg
 
 This will install a few extra eggs into ./eggs and can be used for
 development. You can run ./bin/test to run the plone.api tests etc. The
 normal ./bin/instance script does not like this environment, but you can
 start it in debug mode like so (equivalent to \`./bin/instance fg\`):
 
-`` $ ./bin/instance-py `which .runzope-wrapped` -C parts/instance/etc/zope.conf  -X debug-mode=on ``
-
+    $ ./bin/instance-py `which .runzope-wrapped` -C parts/instance/etc/zope.conf  -X debug-mode=on
