@@ -154,3 +154,9 @@ messages like:
 My 'solution' was checking out some older git revision of nixos and
 nixpkgs.
 
+Concretely, the changesets below (referencing the status of about
+September 01. 2013) have been reported to work.
+
+nixos: e0dcfac2e2bf0ffb07f445654ff8bb1387ed96e9 nixpkgs:
+9dcca4e3f504f76dede1947ac2548650cfbfc9ef
+
