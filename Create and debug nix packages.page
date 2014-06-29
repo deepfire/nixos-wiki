@@ -1,0 +1,5 @@
+ \$ nixos-rebuild -I nixos=\~/code/nixos -I nixpkgs=\~/code/nixpkgs
+build
+
+<https://github.com/diaspora/diaspora/wiki/Git-Workflow>
+
