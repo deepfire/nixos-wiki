@@ -106,7 +106,7 @@ existing packages, this file must contain an attribute named
 original NixPkgs list as a parameter. Here are some example `config.nix`
 files.
 
-Override a package's arguments:
+ Override a package's arguments:
 
        {
          packageOverrides = pkgs: rec {
@@ -118,7 +118,7 @@ Override a package's arguments:
          };
        }
 
-Override a package's attributes:
+ Override a package's attributes:
 
        {
          packageOverrides = pkgs: rec {
@@ -158,7 +158,7 @@ Override a package's attributes:
          };
        }
 
-Create a package which contains a set of packages by using the
+ Create a package which contains a set of packages by using the
 [`myEnvFun`](//Howto develop software on nixos#Introducing myEnvFun)
 function.
 
