@@ -1,8 +1,8 @@
-Lenovo ThinkPad X200
-====================
+[[edit](/w/index.php?title=Lenovo_Thinkpad_x200&action=edit&section=1 "Edit section: Lenovo ThinkPad X200")] Lenovo ThinkPad X200
+=================================================================================================================================
 
-Overview
---------
+[[edit](/w/index.php?title=Lenovo_Thinkpad_x200&action=edit&section=2 "Edit section: Overview")] Overview
+---------------------------------------------------------------------------------------------------------
 
   -------------------------------------------------------------------------
   Component
@@ -14,10 +14,10 @@ Overview
 
   :  Hardware support
 
-Manual configuration
---------------------
+[[edit](/w/index.php?title=Lenovo_Thinkpad_x200&action=edit&section=3 "Edit section: Manual configuration")] Manual configuration
+---------------------------------------------------------------------------------------------------------------------------------
 
-### System Management Application Program Interface
+### [[edit](/w/index.php?title=Lenovo_Thinkpad_x200&action=edit&section=4 "Edit section: System Management Application Program Interface")] System Management Application Program Interface
 
 On the ThinkPad X200 some system information is made available through
 the System Management Application Program Interface (SMAPI) instead of
@@ -32,15 +32,16 @@ boot.kernelModules in /etc/nixos/configuration.nix.
     boot.kernelModules = [ ... "tp_smapi" ];
     boot.extraModulePackages = [ ... config.boot.kernelPackages.tp_smapi ];
 
-Then rebuild your system using the nixos-rebuild command.
+Then rebuild your system using the nixos-rebuild command. [Lenovo
+W540](http://www.youtube.com/watch?v=9igP27En4M0)
 
 You can find additional information about the tp\_smapi module in the
 [ThinkPad Wiki](http://www.thinkwiki.org/wiki/Tp_smapi).
 
-Tips & Tricks
--------------
+[[edit](/w/index.php?title=Lenovo_Thinkpad_x200&action=edit&section=5 "Edit section: Tips & Tricks")] Tips & Tricks
+-------------------------------------------------------------------------------------------------------------------
 
-### Disable speaker
+### [[edit](/w/index.php?title=Lenovo_Thinkpad_x200&action=edit&section=6 "Edit section: Disable speaker")] Disable speaker
 
 Add this to your /etc/nixos/configuration.nix.
 
