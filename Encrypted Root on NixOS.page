@@ -16,10 +16,12 @@ Updating from how it was previously
 Luks got changed lately (see mailinglist from 3.3.2012 titled "[Nix-dev]
 luks changes")
 
-     If you had:
+If you had:
+
      boot.initrd.luksRoot = "/dev/sda2";
-     
-     Then now you have to write:
+
+Then now you have to write:
+
      boot.initrd.luks.devices = [ { name = "luksroot"; device = "/dev/sda2"; } ];
 
 the configuration of /etc/nixos/configuration.nix
