@@ -38,9 +38,9 @@ Usually you follow upstream. Eg ` `
      git checkout master; git pull;
      git checkout MY_BRANCH; git merge master
 
-This last step merging with master (which is svn's trunk) is very
-important. It ensures that your patche(s) doesn't drift away too much.
-However it pollutes history a little bit.
+This last step merging with master is very important. It ensures that
+your patche(s) doesn't drift away too much. However it pollutes history
+a little bit.
 
 So development usually looks like this after some time: (\* denotes a
 merging trunk into MY\_BRANCH). `  `
@@ -184,13 +184,6 @@ creating new ones: ` `
              git branch -D $exported
              tg export "$@" $exported
      }
-
-How to try this? Doesn't Nix\* use SVN?
----------------------------------------
-
-You're right. We have a git svn clone of both: NixOS and Nixpkgs on
-gitorious. You can get commit access easily. Ask urkud on irc so that he
-adds you to the nix-developers group on gitorious
 
 Questions
 ---------
