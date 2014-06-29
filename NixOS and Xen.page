@@ -27,3 +27,92 @@ set the option `virtualisation.xen.domain0MemorySize` to limit the
 amount of memory reserved for Dom0, e.g.
 
     virtualisation.xen.domain0MemorySize = 512;
+
+Creating NixOS guests
+---------------------
+
+You can create a paravirtualised NixOS guest (DomU) from Dom0 as
+follows. First, create a sufficiently large disk image to hold the root
+filesystem:
+
+    $ dd if=/dev/zero of=/vmdisks/mrkitty-root.img bs=1M count=4096
+    $ mkfs.ext3 -F -L nixos /vmdisks/mrkitty-root.img
+
+Warning: because we're going to use pv-grub to boot the domain, the
+filesystem that holds `/boot` must be one that is supported by pv-grub.
+This includes `ext2` and `ext3`, but excludes `ext4`. Thus, if you want
+to use `ext4` as the root filesystem, you should set up a separate
+`/boot` disk.
+
+Now we install NixOS on this filesystem in the usual manner (see the
+[NixOS
+manual](http://hydra.nixos.org/job/nixos/trunk/manual/latest/download)
+for details):
+
+    $ mount -o loop /vmdisks/mrkitty-root.img /mnt
+    $ mkdir -p /mnt/etc/nixos
+    $ nano /mnt/etc/nixos/configuration.nix
+
+Here is a minimal `configuration.nix`:
+
+    { config, pkgs, modulesPath, ... }:
+
+    {
+      require = [ "${modulesPath}/virtualisation/xen-domU.nix" ];
+
+      fileSystems = 
+        [ { mountPoint = "/";
+            label = "nixos";
+          }
+        ];
+    }
+
+Note that you need to include the module `xen-domU.nix`, which defines
+the necessary configuration for running as a DomU system on Xen. For
+instance, it enables a `mingetty` on the Xen console (`/dev/hvc0`) and
+disables NTP.
+
+You can now perform the installation:
+
+    $ nixos-install
+
+If it succeeds:
+
+    $ umount /mnt
+
+To actually create the domain, we need to define a Xen domain
+configuration file. It's customary to place these in `/etc/xen` or
+`/etc/xen/auto` (if you want it to be booted automatically when Dom0
+starts), e.g., `/etc/xen/auto/mrkitty`:
+
+    from xen.util.path import *
+    memory = 512
+    kernel = XENFIRMWAREDIR + '/pv-grub-x86_64.gz'
+    extra = '(hd0)/boot/grub/menu.lst'
+    disk = [ 'file:/vmdisks/mrkitty-root.img,xvda1,w' ]
+    vif = [ '' ]
+
+Now we can start the domain:
+
+    $ xm create -c auto/mrkitty
+
+You should see GRUB appear, which, after a few seconds, will boot NixOS.
+Eventually you should get a login prompt. (You can exit the Xen console
+by pressing Ctrl-]. You can reconnect by running `xm console domain`.)
+
+Managing domains
+----------------
+
+The `xendomains` Upstart job automatically starts all domains defined in
+`/etc/xen/auto` at boot time. It also saves and restores all running
+domains when the system is rebooted. You can manually save and restore
+running domains by doing
+
+    $ stop xendomains
+
+and
+
+    $ start xendomains
+
+The state of the domains is saved in `/var/lib/xen/save/`.
+
