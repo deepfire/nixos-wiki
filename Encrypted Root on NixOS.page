@@ -70,6 +70,7 @@ models of the Microsoft Internet keyboard, for example, need the module
       fileSystems = [ {
         mountPoint = "/";
         device = "/dev/mapper/vg-root";
+        #device = "/dev/mapper/luksRoot"; # use this instead, when NOT using LVM
       } {
         mountPoint = "/boot";
         device = "/dev/sda1";
