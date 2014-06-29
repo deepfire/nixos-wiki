@@ -1,0 +1,44 @@
+how to install software
+-----------------------
+
+there are multiple possibilities, as there is:
+
+### system environment installation
+
+-   software which is installed in the core system:
+
+-   Note: it is important to NOT install using nix-env this time because
+    of the kernel modules!
+-   just add this line to the /etc/nixos/configuration.nix
+
+<!-- -->
+
+     environment.systemPackages = [ config.boot.kernelPackages.virtualbox ];
+
+-   afterwards do: nixos-rebuild switch
+
+### normal user installation
+
+-   software which is installed per user:
+
+<!-- -->
+
+    nix-env -i links2
+
+how to remove installed software
+--------------------------------
+
+also depending on where the software was installed:
+
+### system environment installation
+
+    remove the entry in environment.systemPackages = [  ];
+    nixos-rebuild switch
+    nix-env --delete-generations old
+    nix-collect-garbage
+
+### normal user installation
+
+    nix-env -e links2
+    nix-env --delete-generations old
+    nix-collect-garbage
