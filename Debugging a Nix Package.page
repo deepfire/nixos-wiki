@@ -82,6 +82,11 @@ phases are `unpackPhase`, `configurePhase`, `buildPhase`, and
 `installPhase`. First, let's enter the build environment using
 `nix-shell`.
 
+You can call nix-shell exactly like you do `nix-build`, but you can also
+add the `--pure` flag to make your environment as pure as possible and
+`-p less vim ...` to add (in this case) less and vim to the build
+environment.
+
        nix-shell /my-sources/pkgs/top-level/all-packages.nix -A hello
        these derivations will be built:
          /nix/store/kzr1q8i10a4lpxgyjg4zpf76rh2mzjr8-hello-2.8.tar.gz.drv
