@@ -25,17 +25,14 @@ the Advanced Configuration and Power Interface (ACPI) or Advanced Power
 Management (APM). This mostly concernes more detailed battery and
 improved accellerometer information.
 
-For this to work you need to install the tp\_smapi package.
+For this to work you need to add tp\_smapi to the
+boot.extraModulePackages option and also specify the tp\_smapi module in
+boot.kernelModules in /etc/nixos/configuration.nix.
 
-    nix-env -i tp_smapi
+    boot.kernelModules = [ ... "tp_smapi" ];
+    boot.extraModulePackages = [ ... config.boot.kernelPackages.tp_smapi ];
 
-**Note:** This package is not available in official repositories yet.
-This notice will be removed as soon as it is.
-
-Then add tp\_smapi to boot.kernelModules in
-/etc/nixos/configuration.nix.
-
-    boot.kernelModules = [ "tp_smapi" ];
+Then rebuild your system using the nixos-rebuild command.
 
 You can find additional information about the tp\_smapi module in the
 [ThinkPad Wiki](http://www.thinkwiki.org/wiki/Tp_smapi).
