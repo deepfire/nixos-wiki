@@ -1,53 +1,82 @@
-what is this?
--------------
+Example Case
+------------
 
-say you develop a program using the kdevelop IDE. the software you are
-developing uses cmake, qt and is managed using git. in that case you
-need need a toolchain in your environment composed of this components:
+Many software developers use an IDE to edit source code. In this
+tutorial, we will discuss using the [KDevelop
+IDE](http://www.kdevelop.org) to develop an application. This
+application is built by using a standard compiler, CMake, and QT, and it
+is managed using Git. So, to get started developing this application, we
+need to install these tools in our environment.
 
--   cmake
--   qt4
--   make
--   compiler
+Unlike other Linux or Unix systems, a normal NixOS instance has none of
+these tools. What does this mean? If a NixOS user types `make` in a
+normal terminal, an error will be displayed which says a program named
+"make" does not exist.
 
-unlike other linux or unix systems, on nixos, a normal environment used
-by any user on the system does not contain such tools at all. that means
-if you type `make` in a normal shell you will get an error that there is
-no program called make.
+So, how can we use Nix to obtain an environment which contains all tools
+required to work on a project?
 
-however keep in mind that on nixos you can install several different
-versions of a single library on the same system.
+Two solutions: A) Rely on app's package B) Manually define build
+environment
 
-**this guide describes how to build an environment for development which
-contains all the tools needed!**
+### A) Rely on Nix Package
 
-**note:** since svn revision 33421 the naming scheme has changed, for
-newly installed environments this means you have to type:
-**load-env-sdl** instead of load-sdl-env
+A Nix package declares everything required to build the packaged code.
+Therefore, if we want to work on the packaged app, we can ask the
+package manager to set up the tools for us. Normally, when Nix builds a
+package, it builds it in an isolated environment. It does this by
+creating a child shell, clearing it to a blank slate, then adding only
+the dependencies the package declares. After setting up the
+dependencies, it runs the build script, moves the built app into the Nix
+store, and sets up the environment to point to it. Finally, it destroys
+this child shell.
 
-there are two ways achiving this:
-
--   AAA with support of the package manager
--   BBB where things have to be put together manually
-
-AAA changing into an environment using the package manager
-----------------------------------------------------------
+We want to iteratively modify and build the packaged app. Can we ask Nix
+to \`\`\`not\`\`\` destroy the child shell, and instead let us use it
+for working on the app? Yes we can. A Nix command was created for
+exactly this use-case - the `nix-shell` command. To work on the `nvi`
+app, which is a Nix-packaged app, use the following command to set up
+all build tools in a child shell.
 
      nix-shell [--command /bin/sh] nvi
 
-to get the build environment of the package nvi running code in an
-interactive shell.
-
-Additional info
+ Additional info:
 <https://github.com/NixOS/nix/commit/7f38087f35e6f74a73bfdb28da8acd8930565d51>
 
-BBB manual cloning of an environment not using the package manager
-------------------------------------------------------------------
+### B) Manually Define Build Environment
 
-the nix expression, `nixpkgs/pkgs/misc/my-env/default.nix`, is intended
-to be used by a normal user. just open the mentioned file with the text
-editor of choice and look at the comments (which should basically the
-same described here in this wiki page), so read on.
+The first solution, to rely on the Nix package, will give us a single
+shell which can build the app, which is a very useful tool. Sometimes,
+however, we want to use the entire OS as a development environment,
+rather than a single shell. This implies that every new shell, as well
+as every application we launch from the desktop, will be able to build
+the app. How can we do this?
+
+If we answer this question in the context of NixOS, we are asking about
+the "User Environment", which is a set of "active" applications.
+Remember, a user can install many applications using Nix, but they are
+all hidden in the Nix store behind hash-named directories. To use these
+applications, they must be made visible to a shell by adding these
+applications to the `PATH` environment variable. The implementation is
+rather complicated, but the key idea is that Nix manages which of its
+applications are visible. This set of applications is called a "User
+Environment".
+
+#### Managing User Environments with myEnvFun
+
+So, our goal is to create a User Environment which contains all required
+tools to edit a Nix-packaged app. How do we create this User
+Environment? An app was created which helps us define a custom User
+Environment and then switch to it. This package is called `myEnvFun`.
+
+How do we use `myEnvFun`? Currently, it requires a bit of setup. The
+documentation for this setup exists in the [`myEnvFun` source
+code](https://github.com/NixOS/nixpkgs/blob/master/pkgs/misc/my-env/default.nix).
+
+The `nixpkgs/pkgs/misc/my-env/default.nix` Nix expression is intended to
+be used by a normal user. Just open the mentioned file with the text
+editor of choice and look at the comments (which should be very similar
+to the contents of this Wiki page), so read on.
 
 ### a simple example \~/.nixpkgs/config.nix
 
