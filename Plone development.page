@@ -1,96 +1,116 @@
-Using buildEnv to create a profile for Plone development
---------------------------------------------------------
+How to use Nix to create Plone development environment
+------------------------------------------------------
 
-The following expression allows all plone42Packages available:
+All files can also be downloaded from following gist:
+<https://gist.github.com/garbas/5293558>
 
-/root/.nixpkgs/config.nix
+In above gist there is also script called "install\_nix.sh" which might
+help you with setting up Nix.
 
-    {
-      packageOverrides = pkgs: {
-        envPythonPlonedev = pkgs.buildEnv {
-          name = "env-python-plonedev-1.0";
-          ignoreCollisions = true;
-          paths = with pkgs; [
-            python27Packages.buildout
-            python27Packages.distutils2
-            python27Packages.ipython
-            python27Packages.lxml
-            python27Packages.pillow
-            python27Packages.recursivePthLoader
-            python27Packages.setuptools
-          ] ++ (
-            lib.filter (v: (v.type or null) == "derivation")
-                       (lib.attrValues plone42Packages)
-          );
-        };
-      };
-    }
+For rest of the steps It is assumed you already installed Nix on your
+system.
 
- These can be then be installed into a profile:
+--Quickstart--
 
-    # nix-env -iA pkgs.envPythonPlonedev -p /nix/var/nix/profiles/plone
+1\. Download gist from link above 2. (optional) In case you don't have
+Nix install you can use "install\_nix.sh" to install it. 3. Run "make"
+in folder you extracted Gist files 4. Depending on your connection
+(\~5min fast, \~20min slow) Plone 4.3rc1 (at the time of writing this
+HowTo) will be installed.
 
-To make use of this profile you can create an activation script which
-sets some environment variables:
+--What actually happened above?--
 
-    /home/me/dev/plone/$ cat activate
-    PROFILE=plone
-    NIXPROFILE=/nix/var/nix/profiles/$PROFILE
+Gist from above contains few files:
 
-    export PATH=$NIXPROFILE/bin:$PATH
-    export PYTHONPATH=$NIXPROFILE/lib/python2.7/site-packages
-    export LD_LIBRARY_PATH="$NIXPROFILE/lib"
-    export NIX_LDFLAGS="-L $NIXPROFILE/lib"
-    export NIX_CFLAGS_COMPILE="-I $NIXPROFILE/include"
-    export PKG_CONFIG_PATH="$NIXPROFILE/lib/pkgconfig"
+    - buildout.cfg
+    - plone.nix
+    - Makefile
 
-    PS1='\[\033[0;36m\][$PROFILE]'$PS1
-
-source this file to set the variables in your current shell:
-
-     /home/me/dev/plone $ . activate
-
-You should now have all you need to run buildout. A patched version of
-buildout is included in the profile. This allows buildout to recognize
-and use packages from the nix profile.
-
-You need to pin some versions in your buildout.cfg to keep it happy, and
-you also need to install a helper script to set the environment for
-starting a zope instance so that it includes all eggs, development
-packages and the nix profile packages in the path.
-
-Here is an example: nix.cfg
+"buildout.cfg" is actually a normal buildout configuration file we are
+used in Plone already. Only thing special about it that we have to pin
+few eggs to specific versions (look at versions section).
 
     [buildout]
-    extends = buildout.cfg
-    parts +=
-        zopenix
+    extends = http://dist.plone.org/release/4.3rc1/versions.cfg
+    eggs-directory = eggs
+    versions = versions
+    unzip = true
+    parts =
+    instance
 
     [instance]
-    eggs +=
-         plone.recipe.zope2instance
-
-    [zopenix]
-    recipe = zc.recipe.egg
-    eggs = ${instance:eggs}
-    interpreter = instance-py
+    recipe = plone.recipe.zope2instance
+    user = admin:admin
+    debug-mode = on
+    verbose-security = on
+    eggs =
+        Pillow
+        Plone
 
     [versions]
-    docutils = 0.9.1
-    lxml = 3.0.2
-    pytz = 2012c
     zc.buildout = 1.7.0
+    distribute = 0.6.34
+    plone.recipe.zope2instance = 4.2.10
 
-This has been tested with the plone.api buildout:
+"plone.nix" is nix expression where we define which things should be
+installed for us by nix. Expression below tells to use Python 2.7, Plone
+and some other eggs which are listed under "paths".
 
-     
-    $ git clone https://github.com/plone/plone.api.git .
-    $ cp ../nix.cfg ./ # the file mentioned above
-    $ buildout -c nix.cfg
+    { }:
 
-This will install a few extra eggs into ./eggs and can be used for
-development. You can run ./bin/test to run the plone.api tests etc. The
-normal ./bin/instance script does not like this environment, but you can
-start it in debug mode like so (equivalent to \`./bin/instance fg\`):
+    let
+        pkgs = import <nixpkgs> { };
+    in
 
-    $ ./bin/instance-py `which .runzope-wrapped` -C parts/instance/etc/zope.conf  -X debug-mode=on
+    with pkgs;
+
+    buildEnv {
+        name = "plone-env";
+        paths = [
+            python27
+            python27Packages.distribute
+            python27Packages.recursivePthLoader
+            python27Packages.virtualenv
+            plone43Packages.plone
+            plone43Packages.pillow
+            plone43Packages.mailinglogger
+            plone43Packages.plone_recipe_zope2instance
+            plone43Packages.zc_recipe_egg
+        ] ++ lib.attrValues python27.modules;
+    }
+
+"Makefile". Convinient place to gather commands but essantially what
+happends when you run make is:
+
+1\. NIX\_PATH=\~/.nix-defexpr/channels nix-build --out-link nixenv
+plone.nix
+
+       Download (if not already downloaded) all nix packages listed in "plone.nix" and create profile in current folder called "nixenv".
+
+2\. ./nixenv/bin/virtualenv --distribute --clear .
+
+       Using virtualenv command which you installed from previous command create python virtual environment.
+
+3\. echo ../../../nixenv/lib/python2.7/site-packages \>
+lib/python2.7/site-packages/nixenv.pth
+
+       Make sure virtual environment we created in previous step sees all eggs we installed with nix (in step 1).
+
+4\. ./bin/easy\_install -H "" zc.buildout
+
+       Use this weird easy_install feature that creates binaries if it doesn't exists already even if egg is already installed.
+
+5\. bin/buildout
+
+       "bin/buildout" command created in previous step and you use it like you would with any other buildout installation.
+
+6\. bin/instance fg
+
+       "bin/buildout" should create "bin/instance" or whatever you specified in "buildout.cfg" and by running "bin/instance fg" you'll start Plone in foreground mode.
+
+Conclusion
+----------
+
+Above example should work cross-platform on Darwin(OSX)/Linux/FreeBSD.
+I(garbas) tested Linux and OSX 10.8.
+
