@@ -1,0 +1,9 @@
+If you are using a Nix family project in production, please list
+yourself here:
+
+-   [LogicBlox](http://zef.me/5966/setting-up-development-environments-with-nix):
+    They sponsor NixOS by employing developers and use it in production
+-   [Zalora](http://www.reddit.com/r/haskell/comments/1y2vx8/nixos_added_to_distrowatch_after_7_years_on/cfh4we4):
+    Using it internally and preparing to use it in production ([they're
+    hiring!](http://jobs.zalora.com/apply/lOd9Ir/Global-DevOps-Engineer-Remote.html))
+
