@@ -134,7 +134,9 @@ same time as using JACK applications (e.g. Ardour).
 3.  Configure QjackCtl
     1.  Enable jackdbus
         Setup -\> Settings -\> Server Path: jackdbus
+        [![Qjackctl-settings.png](/w/images/3/38/Qjackctl-settings.png)](//File:Qjackctl-settings.png)
         Setup -\> Misc -\> Enable D-Bus interface: check
+        [![Qjackctl-misc.png](/w/images/4/4f/Qjackctl-misc.png)](//File:Qjackctl-misc.png)
     2.  Load the jack modules for pulseaudio after starting jackdbus
 
         Setup -\> Settings -\> Options -\> Execute script after Startup:
@@ -147,8 +149,11 @@ same time as using JACK applications (e.g. Ardour).
 
             pactl unload-module `pactl list|grep -A 3 jack-source|tail -1|awk '{ print $NF }'`;pactl unload-module `pactl list|grep -A 3 jack-sink|tail -1|awk '{ print $NF }'`
 
+        [![Qjackctl-options.png](/w/images/c/c2/Qjackctl-options.png)](//File:Qjackctl-options.png)
+
 You should now be able to start JACK with QjackCtl, you will notice a
 new playback and capture device in your sound mixer along with your
 normal devices.
+
 [![Kmix-pulseaudio-with-jack.png](/w/images/f/f4/Kmix-pulseaudio-with-jack.png)](//File:Kmix-pulseaudio-with-jack.png)
 
