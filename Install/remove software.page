@@ -44,6 +44,21 @@ remove the entry in environment.systemPackages = [ ];
     nix-env --delete-generations old
     nix-collect-garbage
 
+how to list installed software
+------------------------------
+
+### software per user
+
+that works for each 'shell' of a single user:
+
+     nix-env -q '*'
+
+the other command i don't know what it's good for:
+
+     nix-env -q '*' --system
+
+### software in the environment.systemPackages
+
 how to change the used kernel version
 -------------------------------------
 
