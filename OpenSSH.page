@@ -1,0 +1,15 @@
+[[edit](/w/index.php?title=OpenSSH&action=edit&section=1 "Edit section: OpenSSH")] OpenSSH
+==========================================================================================
+
+[[edit](/w/index.php?title=OpenSSH&action=edit&section=2 "Edit section: Installation")] Installation
+----------------------------------------------------------------------------------------------------
+
+    nix-env -i openssh
+
+[[edit](/w/index.php?title=OpenSSH&action=edit&section=3 "Edit section: Tips and Tricks")] Tips and Tricks
+----------------------------------------------------------------------------------------------------------
+
+### [[edit](/w/index.php?title=OpenSSH&action=edit&section=4 "Edit section: Key based authentication")] Key based authentication
+
+    ssh-keygen -t rsa
+    ssh-copy-id -i id_rsa.pub login@target.com
