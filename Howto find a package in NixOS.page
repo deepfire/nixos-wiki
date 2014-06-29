@@ -2,8 +2,8 @@ This page's intended audience is advanced Nix users. For a
 newbie-friendly and more up-to-date page, see [Installing
 Packages](//Nix Installing Packages)
 
-Simple package query
---------------------
+[[edit](/w/index.php?title=Howto_find_a_package_in_NixOS&action=edit&section=1 "Edit section: Simple package query")] Simple package query
+------------------------------------------------------------------------------------------------------------------------------------------
 
 The most straight-forward way to see a list of all available packages is
 to use the `nix-env` command. This method is a bit slow, as every
@@ -12,8 +12,8 @@ results, the first column is the package's attribute path.)
 
       nix-env -qa [-P] [--out-path] [ -f $NIXPKGS_ALL ]
 
-Aliases
--------
+[[edit](/w/index.php?title=Howto_find_a_package_in_NixOS&action=edit&section=2 "Edit section: Aliases")] Aliases
+----------------------------------------------------------------------------------------------------------------
 
 The command to query available packages is relatively long, but we can
 define shortcuts or aliases. To define a shell function as an alias,
@@ -21,8 +21,8 @@ Bash-shell users can add this to their `~/.bashrc` file.
 
     queryNixPkgs(){ nix-env -qa \* -P -f $NIXPKGS_ALL | grep -i "$1"; }
 
-Install by attribute
---------------------
+[[edit](/w/index.php?title=Howto_find_a_package_in_NixOS&action=edit&section=3 "Edit section: Install by attribute")] Install by attribute
+------------------------------------------------------------------------------------------------------------------------------------------
 
 A package can be defined in a few different ways. Sometimes, a package
 is implemented in a complicated way, likely to share part of its
@@ -51,8 +51,8 @@ flag.
 
     nix-env -i -A attr.subattr.subattr.package
 
-Indexing and searching Nix files
---------------------------------
+[[edit](/w/index.php?title=Howto_find_a_package_in_NixOS&action=edit&section=4 "Edit section: Indexing and searching Nix files")] Indexing and searching Nix files
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 One method of quickly finding the attribute names of packages is to use
 the Ctags program, which is a tool used for code navigation. To use this
@@ -65,7 +65,7 @@ definition for the Nix syntax. To learn more about the Ctags program,
 read the [ctags website](http://ctags.sourceforge.net/).
 
 Another method of indexing Nix expressions is to use the ID Utils
-program. The [HOWTO:idutils|IdUtils] wiki page has more details. To
+program. The [IdUtils](//HOWTO:idutils) wiki page has more details. To
 learn more about the ID Utils program, read the [ID Utils
 website](https://www.gnu.org/software/idutils/).
 
