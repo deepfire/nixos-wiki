@@ -71,6 +71,10 @@ but there is this workaround (tnx to niksnut!):
 
      nix-store -q --references /var/run/current-system/sw
 
+Run this to see package names only:
+
+     nix-store -q --references /var/run/current-system/sw | cut -d'-' -f2-
+
 how to update installed software
 --------------------------------
 
