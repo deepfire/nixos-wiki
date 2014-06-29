@@ -14,5 +14,4 @@ wireshark](https://www.mail-archive.com/nix-commits@lists.science.uu.nl/msg09639
      ];
      users.extraGroups.wireshark.gid = 500;
 
-\<code\>
 
