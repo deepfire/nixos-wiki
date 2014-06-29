@@ -21,7 +21,26 @@ new python software. It only provides the binary executables to run.
 
 If you want to make a collection of python packages available to the
 python interpreter, you can either use \*virtualenv\* to install the
-packages inside or create another nix profile, see the next section.
+packages inside
+
+or create another nix profile, see the next section.
+
+Packaging python software
+=========================
+
+with setup.py
+-------------
+
+Nix provides function \*\*buildPythonPackage\*\* with tons of examples
+in \*\*nixpkgs/pkgs/top-level/python-packages.nix\*\*.
+
+package providing python modules
+--------------------------------
+
+If you want to provide python modules for reverse dependencies to pick
+it up, add postInstall phase:
+
+      cp -v src/swig/python/mlt.py $out/lib/${python.libPrefix}/site-packages/
 
 Creating environments with packages
 ===================================
