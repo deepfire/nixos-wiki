@@ -17,7 +17,7 @@ Let's see the definition of freetype in top-level.nix:
          useEncumberedCode = getconfig [ "freetype" "useencumberedcode" ] false;
       };
 
-definition shows that it has useEncumberedCode option set to false by
+it shows that freetype has useEncumberedCode option set to false by
 default. Enabling it in config does the job, but leads to mass local
 rebuilding of packages which are depend on freetype. Probably, it is not
 what user expects so we need a trick.
