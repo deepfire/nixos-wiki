@@ -199,9 +199,10 @@ How-tos
 -   [Encrypted root(home, swap) on NixOS](//Encrypted Root on NixOS) -
     Using luks
 -   [ZFS on NixOS](//ZFS on NixOS)
-
 -   [How to tweak Linux kernel config
     options](//How to tweak Linux kernel config options)
+-   [Timezone
+    settings](/w/index.php?title=Timezone_settings&action=edit&redlink=1 "Timezone settings (page does not exist)")
 
 ### Hardware
 
