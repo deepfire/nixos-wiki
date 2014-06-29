@@ -9,6 +9,8 @@ alongside for instance sshd and other system daemons you need to:
 /etc/nixos/configuration.nix
 ----------------------------
 
+Add the con hydra-module.nix to the require list, and configure it:
+
 { config, pkgs, ... }:
 
 {
@@ -28,9 +30,9 @@ enable = true;
 hydra = (import /root/hydra/release.nix {}).build.x86\_64-linux; \# or
 i686-linux if appropriate.
 
-hydraURL = "<http://212.71.253.80:3000>";
+hydraURL = "<http://>\<your listening ip goes here\>:3000";
 
-notificationSender = "hydra@my-buildserver.net";
+notificationSender = "hydra@my-buildserver.domain";
 
 };
 
@@ -41,4 +43,20 @@ services.postgresql.enable = true;
 services.postgresql.package = pkgs.postgresql;
 
 }
+
+Then, running 'nixos-rebuild switch' and rebooting, hydra initialises
+itself through systemd scripts, enabled as part of the installation.
+
+Now you should be ready to log in to hydra. The password for user
+'admin' is generated at initialisation time, and found in
+'/var/lib/hydra/.pgpass', which incidentally is also the password used
+by hydra to connect to postgresql.
+
+The contents are:
+
+localhost:\*:hydra:hydra:\<random password for admin\>
+
+Now, refer to the [Hydra](//Hydra)
+[manual](http://hydra.nixos.org/job/hydra/trunk/tarball/latest/download-by-type/doc-pdf/manual)
+for more info
 
