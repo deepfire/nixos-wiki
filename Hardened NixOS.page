@@ -27,9 +27,10 @@ in goals to AppArmor and SELinux.
 
 You can read a full (and quite extensive) list of grsecurity's features
 here:
-[[1]](https://en.wikibooks.org/wiki/Grsecurity/Appendix/Grsecurity_and_PaX_Configuration_Options)
+<https://en.wikibooks.org/wiki/Grsecurity/Appendix/Grsecurity_and_PaX_Configuration_Options>
+
 You can find more of its documentation here:
-[[2]](https://en.wikibooks.org/wiki/Grsecurity)
+<https://en.wikibooks.org/wiki/Grsecurity>
 
 Note that this feature is still a work in progress and there are known
 unfixed issues (detailed below). Please do not use it unless you expect
@@ -73,11 +74,11 @@ grsecurity patch:
          };
        };
 
-Please read grsecurity's documentation at
-[[3]](https://en.wikibooks.org/wiki/Grsecurity/Appendix/Grsecurity_and_PaX_Configuration_Options)
-in order to properly configure your kernel.
+In order to properly configure your kernel, please read grsecurity's
+documentation at
+<https://en.wikibooks.org/wiki/Grsecurity/Appendix/Grsecurity_and_PaX_Configuration_Options>.
 
-Configuration tips:
+Also please read the configuration tips below:
 
 -   There are 2 main ways of configuring grsec: "GRKERNSEC\_CONFIG\_AUTO
     y", which tries to set up some reasonable defaults, or
