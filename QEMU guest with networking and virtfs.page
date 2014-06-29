@@ -34,7 +34,7 @@ OS at this stage if you like.
 Alternatively you can download a QEMU image with an OS already installed
 e.g. Debian: <http://people.debian.org/~aurel32/qemu/>
 
-    qemu-kvm -m 1024 -drive file=/home/goibhniu/Downloads/debian_squeeze_amd64_standard.qcow2
+    qemu-kvm -m 1024 -drive file=/mnt/OSImages/debian_squeeze_amd64_standard.qcow2
 
 Prepare host network
 --------------------
@@ -76,22 +76,57 @@ Guest network config
 You can now start the VM as a normal user by adding the following
 options \`-net nic,model=virtio -net vde\`:
 
+    qemu-kvm -m 1024 -net nic,model=virtio -net vde -drive file=/mnt/OSImages/debian_squeeze_amd64_standard.qcow2
+
+Within the VM you can setup the network:
+
+    root@guest# ip addr add 10.0.2.100/24 dev eth0
+    root@guest# ip link set dev eth0 up
+    root@guest# ip route add default via 10.0.2.1
+    root@guest# echo 'nameserver 8.8.8.8' >> /etc/resolv.conf
+
+You can now access this VM on 10.0.2.100
+
 VirtFS
 ------
+
+VirtFS enables folders to be shared between the host and guest very
+efficiently. Some extra qemu options are required:
+
+    qemu-kvm -m 1024 -net nic,model=virtio -net vde -drive file=/mnt/OSImages/debian_squeeze_amd64_standard.qcow2,if=virtio -virtfs local,path=/home/username/shared/,security_model=passthrough,mount_tag=host_share
+
+This will share /home/username/shared on the host with the guest,
+passing through permissions. See the [QEMU
+wiki](http://wiki.qemu.org/Documentation/9psetup) for more details.
+
+To mount this on the guest:
+
+    mount -t 9p -o trans=virtio host_share /mnt/host_share -oversion=9p2000.L
 
 Tips
 ----
 
-=
-=
+Reset the size of the QEMU window: ctrl-alt-u
 
 ### Snapshots
 
 You can save the current state of the VM (including the CPU state) and
-then load it later. This
+then load it later.
 
-References:
+1.  Enter the QEMU monitor with ctrl-alt-2
+2.  savevm snap1
+3.  Return to the QEMU VM with ctrl-alt-1
+4.  Do something noticable: \`ls /\`
+5.  Return to the QEMU monitor and \`savevm snap2\`
+6.  Load snap1 \`loadvm snap1\`
+
+You can also load the snapshot directly from the command line:
+
+    qemu-kvm -m 1024 -net nic,model=virtio -net vde -drive file=/mnt/OSImages/debian_squeeze_amd64_standard.qcow2,if=virtio -virtfs local,path=/home/username/shared/,security_model=passthrough,mount_tag=host_share -loadvm snap1
+
+ References:
 
 -   [Building a Virtual
     Army](http://blog.falconindy.com/articles/build-a-virtual-army.html)
+-   [VirtFS](http://wiki.qemu.org/Documentation/9psetup)
 
