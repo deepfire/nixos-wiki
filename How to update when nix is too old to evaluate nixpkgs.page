@@ -1,0 +1,16 @@
+### How to update when nix is too old to evaluate nixpkgs
+
+This situation can happen if you don't update nix for longer time, so
+new features of nix are already used in nixpkgs, preventing you to
+evaluate it. Currently it's typical for 1.5.x -\> 1.6.x transition, I
+think.
+
+You only need to acquire a newer version of nix to continue. The easiest
+way is (probably) to just fetch the binaries from Hydra, which can be
+done *without* evaluation of nixpkgs.
+
+Just go to
+<http://hydra.nixos.org/job/nixos/trunk-combined/nixpkgs.nix.x86_64-linux/latest-finished>
+and perform a one-click install (substitute your platform name if it's
+different). Description of that is directly on the Hydra page.
+
