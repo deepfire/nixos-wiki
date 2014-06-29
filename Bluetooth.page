@@ -1,0 +1,25 @@
+[[edit](/w/index.php?title=Bluetooth&action=edit&section=1 "Edit section: Enabling Bluetooth in NixOS")] Enabling Bluetooth in NixOS
+------------------------------------------------------------------------------------------------------------------------------------
+
+Enabling Bluetooth is as simple as putting this in your
+configuration.nix:
+
+    hardware.bluetooth.enable = true;
+
+[[edit](/w/index.php?title=Bluetooth&action=edit&section=2 "Edit section: Bluez 4")] Bluez 4
+--------------------------------------------------------------------------------------------
+
+This is the default for now (as of August 2013), as KDE 4.10 and
+Pulseaudio 4.0 do not yet support Bluez 5.
+
+[[edit](/w/index.php?title=Bluetooth&action=edit&section=3 "Edit section: Bluez 5")] Bluez 5
+--------------------------------------------------------------------------------------------
+
+To use Bluez 5, you need something like this in your Nixpkgs config (in
+your `~/.nixpkgs/config.nix`):
+
+    pkgs : {
+      packageOverrides = pkgs : {
+        bluez = pkgs.bluez5;
+      }
+    }
