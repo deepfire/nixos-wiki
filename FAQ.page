@@ -37,18 +37,14 @@ to move that file into the store one can use:
 
      nix-prefetch-url "http://myfoohost.com/programs/foo/myfile-0.1.2.tar.gz"
 
-How to restart an UPSTART service
----------------------------------
+How to restart a systemd service
+--------------------------------
 
-either:
+     systemctl restart unit
 
-     restart sshd 
+A list of services can be found with:
 
-or
-
-     initctl restart sshd
-
-A list of services can be found in "/etc/init".
+     systemctl list-units
 
 How to keep build-time dependencies around / be able to rebuild while being offline
 -----------------------------------------------------------------------------------
