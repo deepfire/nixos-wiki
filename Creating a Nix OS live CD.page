@@ -11,9 +11,14 @@ gives you the benefits:
 how to build such an image
 --------------------------
 
+we will use the NIXREPOS variable, which points to the nixpkgs/nixos
+checkouts, see [Create and debug nix
+packages](//Create and debug nix packages)
+
 just run this command:
 
-    nix-build -A iso_minimal /etc/nixos/nixos/release.nix
+    export NIX_PATH=$NIXREPOS
+    nix-build -A iso_graphical $NIXREPOS/nixos/release.nix
 
 once the building process is over, you should see multiple nix
 distributions built (for multiple archs). See contents to find iso image
