@@ -9,6 +9,7 @@ TROUBLE?
     installed software
 -   [xorg/xserver
     settings](/w/index.php?title=Xorg/xserver_settings&action=edit&redlink=1 "Xorg/xserver settings (page does not exist)")
+-   [NixOS issue tracker](http://yellowgrass.org/project/NixOS)
 
 HOWTOs
 ------
@@ -23,7 +24,6 @@ HOWTOs
 -   [How to set up MediaWiki in NixOS with
     vhosts](//Setting up MediaWiki & vhosts)
 -   [How to write a NixOS module](//NixOS:Modules)
--   [NixOS issue tracker](http://yellowgrass.org/project/NixOS)
 -   [How to install NixOS from a USB
     stick](//Installing NixOS from a USB stick)
 -   [How to install NixOS from linux](//How to install NixOS from linux)
