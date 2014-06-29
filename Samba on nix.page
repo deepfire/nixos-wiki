@@ -27,7 +27,7 @@ quite trivial ;-)
 afterwards apply the changes made to configuration.nix
 ------------------------------------------------------
 
-nixos-rebuild switch
+     nixos-rebuild switch
 
 samba should startup afterwards
 
