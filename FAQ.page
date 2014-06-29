@@ -21,8 +21,19 @@ Upgrading Btrfs to 2.6.37+ kernel resolves the issue.
     from upstream and sometimes that source has moved and therefore the
     download won't work but after some google search with:
     'myfile-0.1.2.tar.gz "index of"' one usually can find the file an
-    download it manually.
+    download it either:
+
+-   download manually and copy into /tmp, then:
 
 to move that file into the store one can use: nix-prefetch-url
-file://myfile-0.1.2.tar.gz if the file is in the current directory
+file:///tmp/myfile-0.1.2.tar.gz if the file is in the /tmp directory
+
+-   download directly
+
+nix-prefetch-url
+"<http://myfoohost.com/programs/foo/myfile-0.1.2.tar.gz>"
+
+-   How to restart an UPSTART service
+
+either: 'restart sshd' or 'initctl restart sshd'
 
