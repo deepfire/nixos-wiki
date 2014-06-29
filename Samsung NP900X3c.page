@@ -16,20 +16,7 @@ Configuration
 =============
 
 Full configurations is in my
-[nixrc](https://github.com/ierton/nixrc/blob/master/samsung-np900x3c.nix).
-
-### Graphics
-
-i915 / xf86-video-intel-2.17.0 are able to handle the graphics.
-Currently, Nixos uses 2.15.0 as default, which is too old. One can
-overcome this using overrides. configuration snippet:
-
-      nixpkgs.config = {
-        packageOverrides = pkgs: {
-          xorg = pkgs.xorg // {
-            xf86videointel = pkgs.xorg.xf86videointel_2_17_0;
-          };
-      };
+[nixrc](https://github.com/grwlf/nixdev/blob/master/cfg/samsung-np900x3c-v2.nix).
 
 ### Touchpad
 
