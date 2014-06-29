@@ -21,7 +21,8 @@ HOWTOs
 
 -   [How to find any text in code fast (gnu idutils)](//HOWTO:idutils)
 
--   [How to set up MediaWiki in NixOS](//Setting up MediaWiki)
+-   [How to set up MediaWiki in NixOS with
+    vhosts](//Setting up MediaWiki & vhosts)
 
 -   [How to write a NixOS module](//NixOS:Modules)
 
