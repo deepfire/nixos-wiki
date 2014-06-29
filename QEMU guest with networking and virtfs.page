@@ -106,6 +106,8 @@ To mount this on the guest:
 Tips
 ----
 
+### Shortcuts
+
 Reset the size of the QEMU window: ctrl-alt-u
 
 ### Snapshots
@@ -124,7 +126,8 @@ You can also load the snapshot directly from the command line:
 
     qemu-kvm -m 1024 -net nic,model=virtio -net vde -drive file=/mnt/OSImages/debian_squeeze_amd64_standard.qcow2,if=virtio -virtfs local,path=/home/username/shared/,security_model=passthrough,mount_tag=host_share -loadvm snap1
 
- References:
+References
+----------
 
 -   [Building a Virtual
     Army](http://blog.falconindy.com/articles/build-a-virtual-army.html)
