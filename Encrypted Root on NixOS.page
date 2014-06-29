@@ -13,9 +13,11 @@ or other detailed guide.
 Config
 ------
 
-In this example we assume that your boot partition is /dev/sda1 and your
-luks-encrypted partition is /dev/sda2 that contains the LVM volume group
-"vg".
+In this example we assume that:
+
+-   your **boot partition** is **/dev/sda1** and
+-   your **luks-encrypted partition** is **/dev/sda2** that contains the
+    LVM volume group "vg".
 
 This is what needs to be put into /etc/nixos/configuration.nix:
 
