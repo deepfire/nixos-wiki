@@ -20,15 +20,21 @@ NixOS Desktop
 
 Audio & KDE & Xorg
 
-  Infrastructure & Deployment
-  -------------------------------------------
-  Test Infrastructure & NixOps & Deployment
+Infrastructure & Deployment
+
+Test Infrastructure
+
+Deployment & NixOps
 
 Contribute (Code, Docs, etc.)
 
 [Contributing](//Main Page Contributing)
 
-Git / Github intructions
+Git / Github
+
+Manual
+
+Wiki
 
 NixOS Modules
 
@@ -42,8 +48,9 @@ NixOS Modules
 
 Syntax & Tutorial & Usage & Examples
 
-  Community
-  ---------------------------------------------
-  Events & Press & Frequently asked questions
+Community
 
+Events & Press
+
+Frequently Asked Questions
 
