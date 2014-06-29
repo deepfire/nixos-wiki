@@ -157,7 +157,7 @@ global alsa settings?.
       pulseaudi 14080 goibhniu   30u   CHR  116,7      0t0 5169 /dev/snd/controlC0
       pulseaudi 14080 goibhniu   37u   CHR  116,7      0t0 5169 /dev/snd/controlC0
 
-### Using JACK with pulseaudio
+### Using JACK with PulseAudio
 
 [Jack Audio Connection Kit](http://jackaudio.org:The) is used by most of
 the serious audio applications on Linux. It provides real-time, low
@@ -207,3 +207,16 @@ normal devices.
 
 [![Kmix-pulseaudio-with-jack.png](/w/images/f/f4/Kmix-pulseaudio-with-jack.png)](//File:Kmix-pulseaudio-with-jack.png)
 
+Troubleshooting JACK and PulseAudio
+-----------------------------------
+
+    $ pactl load-module module-jack-sink channels=2
+    Failure: Module initalization failed
+
+Check if you have previous settings in \~/.config/jack/conf.xml. Try
+renaming this file and running the pactl command again.
+
+Otherwise, you may get further info by disabling PulseAudio respawning
+(see above) and starting it in verbose mode:
+
+    $ pulseaudio -vvv
