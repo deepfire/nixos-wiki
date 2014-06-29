@@ -1,0 +1,115 @@
+Overview
+========
+
+All the development happens in the stdenv-updates branch.
+
+The current supported platforms are:
+
+-   PC (i686-linux, x86\_64-linux)
+-   Sheevaplug (armv5tel-linux)
+
+Sheevaplug configuration
+========================
+
+     boot = {
+       initrd = {
+         enableSplashScreen = false;
+         kernelModules = [ ];
+         lvm = false;
+       };
+       kernelParams = [
+           "selinux=0"
+           "console=tty1"
+         ];
+       kernelModules = [ "fuse" ];
+       kernelPackages = pkgs.kernelPackages_2_6_32;
+       loader = {
+         grub = {
+           enable = false;
+         };
+         generationsDir = {
+           enable = true;
+           copyKernels = true;
+         };
+       };
+     };
+     services = {
+       nixosManual = {
+         enable = false;
+       };
+       mingetty = {
+         ttys = [ "ttyS0" ];
+       };
+     };
+     sound.enable = false;
+     fileSystems = [
+       { mountPoint = "/";
+         device = "/dev/mmcblk0p2";
+         options = "relatime";
+         }
+       { mountPoint = "/boot";
+         device = "/dev/mmcblk0p1";
+         neededForBoot = true;
+         }
+       { mountPoint = "/var/log";
+         device = "tmpfs";
+         fsType = "tmpfs";
+         options = "size=128m";
+         neededForBoot = true;
+         }
+       { mountPoint = "/var/run";
+         device = "tmpfs";
+         fsType = "tmpfs";
+         options = "size=32m";
+         neededForBoot = true;
+         }
+       { mountPoint = "/tmp";
+         device = "tmpfs";
+         fsType = "tmpfs";
+         options = "size=128m";
+         }
+       { mountPoint = "/nix/var/log";
+         device = "tmpfs";
+         fsType = "tmpfs";
+         options = "size=32m";
+         }
+       { mountPoint = "/mnt/hd";
+         device = "/dev/sda1";
+         options = "relatime";
+         }
+       { mountPoint = "/var/postfix";
+         device = "/mnt/hd/var/postfix";
+         options = "bind";
+         }
+       { mountPoint = "/var/spool/mail";
+         device = "/mnt/hd/var/spool/mail";
+         options = "bind";
+         }
+       { mountPoint = "/var/mysql";
+         device = "/mnt/hd/var/mysql";
+         options = "bind";
+         }
+       ];
+     nixpkgs = {
+       config = {
+         php = {
+           mysqli = false;
+           pdo_mysqli = false;
+           bcmath = false;
+           postgresql = false;
+           sqlite = false;
+           soap = false;
+           gd = true;
+         };
+         git = {
+           svnSupport = true;
+           guiSupport = true;
+         };
+         subversion = {
+           perlBindings = true;
+         };
+         packageOverrides = pkgs: with pkgs; rec {
+           platform = platforms.sheevaplug;
+         };
+       };
+     };
