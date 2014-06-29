@@ -95,7 +95,7 @@ Development
 -   [Contributing to NixOS or Nix related projects](//Contributing)
 -   [CrossCompiling](//CrossCompiling)
 -   [Multiplatform NixOS](//Multiplatform NixOS) - PC, qemu arm
-    versatile and sheevaplug by now
+    versatile, sheevaplug, fuloong 2f minipc, raspberry pi
 -   [open issues:derivation styles](//Open issues:derivation styles)
 -   [open issues:ways of updating sources
     automatically](//Open issues:ways of updating sources automatically)
