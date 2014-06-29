@@ -151,6 +151,9 @@ comments taken from commit -r :17160
        argument.  But this inhibits error detection if you call it with
        an misspelled (or obsolete) argument.
 
+[Mail by Eelco giving more
+details](http://thread.gmane.org/gmane.linux.distributions.nixos/3753/focus=3764)
+
 string-with-deps-style
 ----------------------
 
