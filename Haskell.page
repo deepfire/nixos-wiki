@@ -270,8 +270,8 @@ to the `environment.systemPackages` attribute in your
 
 [This whole part still has to be filled with (more) content.]
 
-Contributing Haskell packages to Nixpkgs
-----------------------------------------
+Generating new Haskell packages and contributing them to Nixpkgs
+----------------------------------------------------------------
 
 Expressions for individual packages are all auto-generated using the
 `cabal2nix` and `hackage4nix` tools that are explained below. Additional
