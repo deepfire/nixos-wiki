@@ -33,6 +33,31 @@ And run `nixos-rebuild switch`, as usual.
 
 All ZFS functionality should now be available.
 
+If you want NixOS to auto-mount your ZFS filesystems during boot, you
+should set their `mountpoint` property to `legacy`, mount the filesystem
+manually and regenerate your list of filesystems, as such:
+
+      zfs set mountpoint=legacy <pool>/<fs>
+      mount -t zfs <pool>/<fs> <mountpoint>
+      nixos-generate-config
+
+NixOS will now make sure that your filesystem is mounted during boot.
+The last command regenerates your
+`/etc/nixos/hardware-configuration.nix` file, which includes the list of
+filesystems for NixOS to mount during boot, e.g.:
+
+    (...)
+      fileSystems."/home" =
+        { device = "rpool/home";
+          fsType = "zfs";
+        };
+
+      fileSystems."/backup" =
+        { device = "rpool/backup";
+          fsType = "zfs";
+        };
+    (...)
+
 How to install NixOS on a ZFS root filesystem
 ---------------------------------------------
 
