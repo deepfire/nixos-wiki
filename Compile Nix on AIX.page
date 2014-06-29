@@ -45,6 +45,12 @@ To install in the folder with all rpms
 
     rpm -i *.rpm
 
+You need to make sure that you have proper version of tar. I had very
+old 1.13 version and had issues during unpacking of some
+nixexprs.tar.bz2
+
+    tar-1.26-1.aix5.1.ppc.rpm
+
 coreutils
 ---------
 
