@@ -81,7 +81,7 @@ snippet there.
 
 ### That's it
 
-Rebuild the system and reboot. Our env should look like this:
+Rebuild the system and reboot. env should look like this:
 
     $ env | grep LD_LIBR
     LD_LIBRARY_PATH=/nix/store/jxss54j52paqwns8zvm6mwr7f89ck7ya-freetype-2.4.4/lib:/run/opengl-driver/lib:/run/opengl-driver-32/lib
