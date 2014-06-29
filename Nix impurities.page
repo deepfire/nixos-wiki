@@ -21,3 +21,11 @@ kernel API, and not talk to the running kernel.
 <!-- -->
 
      "Cannot mix incompatible Qt library (version 0x40800) with this library (version 0x40801)"
+
+runtime impurities
+------------------
+
+Stateful directories in NixOS: /etc, /var, /home can cause packages to
+do what they usually do. In case of trouble make a backup, delete and
+recreate those to trouble shoot a problem.
+
