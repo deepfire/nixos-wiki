@@ -19,9 +19,7 @@ here.
 
 -   haskell on Nix howto. (Marc Weber is going to write this?)
 
--   vim and .nix files. (Marc Weber is going to write this?)
-
-<!-- -->
+### vim and .nix files. (Marc Weber is going to write this?)
 
     mkdir -p ~/.vim/ftdetect/
     find / -name syntax/lisp.vim
