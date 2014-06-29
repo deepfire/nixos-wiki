@@ -1,0 +1,126 @@
+This page describes the on-going work to provide a more secure version
+of NixOS, similar in goals to the Hardened Gentoo project ([wiki page
+1](http://wiki.gentoo.org/wiki/Hardened_Gentoo), [wiki page
+2](https://wiki.gentoo.org/wiki/Project:Hardened)), but applied to the
+base NixOS system instead.
+
+Developed features
+------------------
+
+Currently, no feature is completely developed and ready to be used in
+production.
+
+If you are interested in developing and/or contributing, please continue
+reading.
+
+Features in development
+-----------------------
+
+### grsecurity/PaX
+
+[grsecurity](https://grsecurity.net/) is a Linux kernel patch which adds
+a large number of optional security enhancements to both the kernel
+itself and userspace programs. It's main focus is in preventing the
+successful execution of (known and unknown) exploits, although it also
+has its own optional Role-Based Access Control mechanism (RBAC), similar
+in goals to AppArmor and SELinux.
+
+You can read a full (and quite extensive) list of grsecurity's features
+here:
+[[1]](https://en.wikibooks.org/wiki/Grsecurity/Appendix/Grsecurity_and_PaX_Configuration_Options)
+You can find more of its documentation here:
+[[2]](https://en.wikibooks.org/wiki/Grsecurity)
+
+Note that this feature is still a work in progress and there are known
+unfixed issues (detailed below). Please do not use it unless you expect
+breakage, and wish to contribute with bug reports or wish to develop it
+further.
+
+#### How to use grsecurity
+
+As of November 2013, grsecurity has 2 available versions: a stable patch
+for kernel 3.2 and a test patch for kernel 3.11.
+
+This is an example excerpt of configuration.nix which enables the stable
+grsecurity patch, as well as AppArmor for process confinement:
+
+      security.apparmor.enable = true; 
+      
+      nixpkgs.config = {
+        grsecurity = true;
+      
+        packageOverrides = pkgs: {
+          linuxPackages = pkgs.linuxPackages_3_2_grsecurity;
+      
+          linux_3_2 = pkgs.linux_3_2.override (args: {
+            extraConfig = 
+              ${optionalString (args ? extraConfig) args.extraConfig}
+              SECURITY_APPARMOR y
+              DEFAULT_SECURITY_APPARMOR y
+              XEN n
+              HIBERNATION n
+              DEVKMEM? n
+              GRKERNSEC y
+              GRKERNSEC_CONFIG_AUTO y
+              GRKERNSEC_CONFIG_DESKTOP y
+              GRKERNSEC_CONFIG_VIRT_HOST y
+              GRKERNSEC_CONFIG_VIRT_EPT y
+              GRKERNSEC_CONFIG_VIRT_KVM y
+              GRKERNSEC_CONFIG_PRIORITY_SECURITY y
+              GRKERNSEC_PROC_USER y
+              GRKERNSEC_PROC_GID 0
+              GRKERNSEC_CHROOT_CHMOD n
+              GRKERNSEC_SYSCTL n
+            ;
+          });
+        };
+      };
+
+Please read grsecurity's documentation at
+[[3]](https://en.wikibooks.org/wiki/Grsecurity/Appendix/Grsecurity_and_PaX_Configuration_Options)
+in order to properly configure your kernel.
+
+Configuration tips:
+
+-   There are 2 main ways of configuring grsec: "GRKERNSEC\_CONFIG\_AUTO
+    y", which tries to set up some reasonable defaults, or
+    "GRKERNSEC\_CONFIG\_CUSTOM y", which disables everything and you
+    must enable all needed features manually.
+-   Unless you wish to enable only a few features, or you are very
+    persistent and wish to configure all options one-by-one, it's
+    probably better to use "GRKERNSEC\_CONFIG\_AUTO y".
+-   When using "GRKERNSEC\_CONFIG\_AUTO y", you must select all of the
+    following:
+    -   "GRKERNSEC\_CONFIG\_SERVER y" or "GRKERNSEC\_CONFIG\_DESKTOP y",
+        depending on whether your system is a server or desktop.
+    -   "GRKERNSEC\_CONFIG\_VIRT\_NONE y",
+        "GRKERNSEC\_CONFIG\_VIRT\_GUEST y" or
+        "GRKERNSEC\_CONFIG\_VIRT\_HOST y", depending on whether your
+        system doesn't use virtualization, is a guest or is a
+        virtualization host (respectively).
+        -   If you use virtualization, "GRKERNSEC\_CONFIG\_VIRT\_EPT y"
+            or "GRKERNSEC\_CONFIG\_VIRT\_SOFT y", depending on whether
+            your CPU has hardware virtualization extensions or not
+            (respectively).
+        -   If you use virtualization, "GRKERNSEC\_CONFIG\_VIRT\_XEN y",
+            "GRKERNSEC\_CONFIG\_VIRT\_VMWARE y",
+            "GRKERNSEC\_CONFIG\_VIRT\_KVM y" or
+            "GRKERNSEC\_CONFIG\_VIRT\_VIRTUALBOX y", depending on which
+            virtualization software you use.
+    -   "GRKERNSEC\_CONFIG\_PRIORITY\_PERF y" or
+        "GRKERNSEC\_CONFIG\_PRIORITY\_SECURITY y", depending on whether
+        performance or security is the highest priority (respectively).
+-   Disabling the XEN, HIBERNATION and DEVKMEM features allows
+    grsecurity to enable additional (and important) security
+    enhancements, so be sure to explicitly disable them if you don't use
+    them.
+-   **You must** use "GRKERNSEC\_CHROOT\_CHMOD n" in your kernel config
+    if you wish to use Nix to build software on your system (most people
+    do). This line is not needed if instead you build software using
+    NixOps from another machine (and users of the target system don't
+    need to install software using Nix).
+-   **You must** either use "GRKERNSEC\_SYSCTL n" in the kernel
+    configuration or 'boot.kernel.sysctl."kernel.grsecurity.grsec\_lock"
+    = 1;' in your configuration.nix, so that an attacker cannot disable
+    grsecurity protections easily.
+
