@@ -23,50 +23,39 @@ Getting started
 Installation
 ------------
 
--   [Installation chapter in NixOS
-    manual](http://hydra.nixos.org/build/5578085/download/1/nixos/manual.html#idp50560)
--   [How to install NixOS from a USB
-    stick](//Installing NixOS from a USB stick)
--   [How to install NixOS from Linux](//How to install NixOS from Linux)
--   [How to install NixOS on VirtualBox](//InstallingOnVirtualBox)
+-   [Nix manual:
+    Installation](http://nixos.org/nix/manual/#chap-installation)
+-   [NixOS manual:
+    Installation](http://nixos.org/nixos/manual/#idm24217728)
 
 Using Nix
 ---------
 
-### Nix
+### Package Management
 
--   [install/remove software](//Install/remove software) - also list
-    installed software
--   [modify software](//Modify software)
--   [How to find the package you're looking for in
-    Nix](//Howto find a package in NixOS)
--   [How to keep multiple packages up to date at once (example for
-    pkgs.misc.collection)](//Howto keep multiple packages up to date at once)
+-   [Installing/Viewing Packages](//Install/remove software)
+-   [Searching for a package](//Howto find a package in NixOS)
+-   [How to keep multiple packages up to date at
+    once](//Howto keep multiple packages up to date at once) - (e.g.
+    pkgs.misc.collection)
 -   [How to unpack a package's
     sourcecode](//How to unpack a package's sourcecode)
 -   [How to add large files to the
     nix-store](//How to add large files to the nix-store)
-
-### NixOS
-
--   [Real World NixOS Dotfiles](//Real World NixOS Dotfiles)
+-   [Modifying Software](//Modify software)
 
 ### Platforms
 
 -   [CrossCompiling](//CrossCompiling)
--   [Multiplatform NixOS](//Multiplatform NixOS) - PC, qemu arm
-    versatile, sheevaplug, fuloong 2f minipc, raspberry pi
 -   [Nix on Windows](//Nix on Windows)
--   [Creating a Nix OS live CD](//Creating a Nix OS live CD) iso live
-    cdrom, (usb boot stick)
 
 ### Languages
 
 -   [Haskell](//Haskell)
 -   [Python](//Python)
 -   [python discussion](//Python discussion)
--   [Howto develop software on nixos](//Howto develop software on nixos)
-    - (NOT how to develop \*for\* nixos or nix)
+-   [How to develop on NixOS](//Howto develop software on nixos) - (NOT
+    how to develop \*for\* NixOS or Nix)
 -   [Android](//Android)
 -   [Plone development](//Plone development)
 
@@ -76,11 +65,58 @@ Using Nix
 -   [Solve GConf errors when running GNOME applications (such as
     GnuCash)](//Solve GConf errors when running GNOME applications)
 -   [FAQ](//FAQ)
--   [NixOS Projects on GitHub](https://github.com/NixOS) to search for
-    issues
+-   [NixOS Project on GitHub](https://github.com/NixOS): Search for or
+    create issues
 
-Developing Nix Projects
------------------------
+Using NixOS
+-----------
+
+-   [Real World NixOS Dotfiles](//Real World NixOS Dotfiles) - (Learn by
+    seeing different configurations.)
+
+### On Physical Machine
+
+-   [Creating a Nix OS live CD](//Creating a Nix OS live CD) - Live CD
+    or USB boot stick
+-   [How to install NixOS from a USB
+    stick](//Installing NixOS from a USB stick)
+-   [How to install NixOS from Linux](//How to install NixOS from Linux)
+-   [Multiplatform NixOS](//Multiplatform NixOS) - (PC, QEMU ARM
+    Versatile, SheevaPlug, Fuloong Mini-PC, Raspberry Pi)
+
+#### Examples
+
+-   [Acer 4810T](//Acer 4810T)
+-   [ASUS M60J-JX041V](//ASUS M60J-JX041V)
+-   [ASUS
+    N53JN-SZ074V](/w/index.php?title=ASUS_N53JN-SZ074V&action=edit&redlink=1 "ASUS N53JN-SZ074V (page does not exist)")
+-   [Airis N990](//Airis N990)
+-   [Compaq Presario
+    2144EA](/w/index.php?title=Compaq_Presario_2144EA&action=edit&redlink=1 "Compaq Presario 2144EA (page does not exist)")
+-   [Lenovo Thinkpad x200](//Lenovo Thinkpad x200)
+-   [Lenovo Thinkpad Helix](//Lenovo Thinkpad Helix)
+-   [Samsung NP900X3c](//Samsung NP900X3c)
+
+### On Virtual Machine
+
+-   [How to install NixOS on VirtualBox](//InstallingOnVirtualBox)
+-   [NixOS and Xen](//NixOS and Xen)
+-   [NixOS and OpenStack Compute](//NixOS and OpenStack Compute)
+-   [NixOS and libvirt](//NixOS and libvirt)
+-   [How to install NixOS as OpenVZ
+    guest](//Install NixOS as OpenVZ guest)
+
+### On Hosting Provider
+
+-   [Hosting providers & NixOS](//Hosting providers & NixOS)
+-   [How to install NixOS on Amazon EC2](//NixOS on Amazon EC2)
+-   [How to install Nix OS on a hetzner rootserver](//NixOS on Hetzner)
+-   [How to install NixOS on linode.com](//Install NixOS on Linode)
+-   [How to install NixOS on
+    Rackspace](//Install NixOS on Rackspace Cloud Servers)
+
+Contributing to Nix Projects
+----------------------------
 
 ### Before You Start
 
@@ -126,8 +162,8 @@ Documentation
 -   [User Reviews](//User Reviews)
 -   [Nix(OS) on the media](//Nix(OS) on the media)
 
-HOWTOs
-------
+How-tos
+-------
 
 ### Installing Software
 
@@ -137,10 +173,13 @@ HOWTOs
 -   [Chromium](//Chromium)
 -   [How to setup UPS/NUT](//How to setup UPS/NUT)
 -   [TexLive Howto](//TexLive HOWTO)
+-   [Samba on nix](//Samba on nix)
+-   [Installing VirtualBox on NixOS](//Installing VirtualBox on NixOS)
+-   [Steam](//Steam)
 
 ### Configuration
 
--   [Using the ZSH SHELL](//Using the ZSH SHELL)
+-   [Using ZSH](//Using the ZSH SHELL)
 -   [Emacs configuration](//Emacs configuration)
 -   [Enable GTK themes in KDE](//Enable GTK themes in KDE)
 -   [Encrypted root(home, swap) on NixOS](//Encrypted Root on NixOS) -
@@ -172,18 +211,7 @@ HOWTOs
 
 ### Virtualisation
 
--   [NixOS and Xen](//NixOS and Xen)
--   [How to install NixOS on Amazon EC2](//NixOS on Amazon EC2)
--   [NixOS and OpenStack Compute](//NixOS and OpenStack Compute)
--   [NixOS and libvirt](//NixOS and libvirt)
--   [How to install NixOS on linode.com](//Install NixOS on Linode)
--   [How to install NixOS on
-    Rackspace](//Install NixOS on Rackspace Cloud Servers)
--   [How to install NixOS as OpenVZ
-    guest](//Install NixOS as OpenVZ guest)
--   [Installing VirtualBox on NixOS](//Installing VirtualBox on NixOS)
 -   [Writing and running NixOS VM tests](//NixOS VM tests)
--   [How to install Nix OS on a hetzner rootserver](//NixOS on Hetzner)
 -   [QEMU guest with networking and
     virtfs](//QEMU guest with networking and virtfs)
 -   [Soft-RAID mdadm (/dev/md0), LVM
@@ -213,28 +241,12 @@ Developer Chat
 Misc
 ----
 
--   [Samba on nix](//Samba on nix)
--   [Hosting providers & NixOS](//Hosting providers & NixOS)
 -   [Nix(OS) related repositories and
     work](//Nix(OS) related repositories and work)
 -   [Nix impurities](//Nix impurities)
 -   [Compile Nix on AIX](//Compile Nix on AIX)
--   [Steam](//Steam)
 -   [xorg/xserver example
     settings](/w/index.php?title=Xorg/xserver_example_settings&action=edit&redlink=1 "Xorg/xserver example settings (page does not exist)")
-
-### Laptops
-
--   [Acer 4810T](//Acer 4810T)
--   [ASUS M60J-JX041V](//ASUS M60J-JX041V)
--   [ASUS
-    N53JN-SZ074V](/w/index.php?title=ASUS_N53JN-SZ074V&action=edit&redlink=1 "ASUS N53JN-SZ074V (page does not exist)")
--   [Airis N990](//Airis N990)
--   [Compaq Presario
-    2144EA](/w/index.php?title=Compaq_Presario_2144EA&action=edit&redlink=1 "Compaq Presario 2144EA (page does not exist)")
--   [Lenovo Thinkpad x200](//Lenovo Thinkpad x200)
--   [Lenovo Thinkpad Helix](//Lenovo Thinkpad Helix)
--   [Samsung NP900X3c](//Samsung NP900X3c)
 
 Events
 ------
