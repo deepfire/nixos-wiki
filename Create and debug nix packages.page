@@ -99,10 +99,6 @@ nixos/nixpkgs) if you type **nix-env -i firefox**
 
 #### how does this work
 
-run:
-
-      nix-channel --update
-
 then run:
 
       nixos-version
