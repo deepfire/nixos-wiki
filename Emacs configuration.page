@@ -1,10 +1,13 @@
-Find elisp modules in standard profiles (outdated)
---------------------------------------------------
+Find elisp modules in standard profiles (outdated for NixOS)
+------------------------------------------------------------
 
-     (setq load-path (append (list "~/.nix-profile/share/emacs/site-lisp" "/var/run/current-system/sw/share/emacs/site-lisp") load-path))
+     (setq load-path (append (list "~/.nix-profile/share/emacs/site-lisp" "/run/current-system/sw/share/emacs/site-lisp") load-path))
 
-For a while, the emacs expression installs a site-start.el that uses
-NIX\_PROFILES as base for extending the load-path
+This should NO LONGER BE NEEDED on NixOS, because for a while, the emacs
+expression installs a site-start.el that uses NIX\_PROFILES as base for
+extending the load-path.
+
+However, when using a non-NixOS
 
 Tramp
 -----
@@ -15,7 +18,7 @@ the usual places. To fix this you can add the following to your
 \~/.emacs
 
     (require 'tramp) 
-    (add-to-list 'tramp-remote-path "/var/run/current-system/sw/bin")
+    (add-to-list 'tramp-remote-path "/run/current-system/sw/bin")
 
 You can then edit local files as root e.g.
 
@@ -29,7 +32,7 @@ Enable Nix mode
 ---------------
 
 The library is in the file
-`/var/run/current-system/sw/share/emacs/site-list/nix-mode.el`.
+`/run/current-system/sw/share/emacs/site-list/nix-mode.el`.
 
 Load the library with `M-x load-library<ENTER>nix-mode<ENTER>`, and then
 enable the mode for the current buffer with `M-x nix-mode`.
