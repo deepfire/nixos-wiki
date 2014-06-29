@@ -4,7 +4,13 @@ The Nix Project
 
 Package Manager
 
-[Nix Package Manager](//Main Page Package Manager)
+[Nix Package Manager - Main Page](//Main Page Package Manager)
+
+[Installing Packages](//Nix Installing Packages)
+
+[Creating New Packages](//Nix Creating Packages)
+
+[Modifying Existing Packages](//Nix Modifying Packages)
 
 Android Dev, Cross-compilation
 
