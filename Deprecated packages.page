@@ -16,6 +16,8 @@ Plan
 
 Pierron
 
+Nicolass will try to look at the issue near end of January 2011
+
 [vlc](http://videolan.org/)
 
 No meta.maintainer
@@ -154,4 +156,17 @@ Upgrade
 games/six
 
 qdu
+
+GTK+ 1.x
+--------
+
+Glib-1.x fails to build on x86\_64, no upstream etc.
+
+### Xmms
+
+There are GTK+-2.x forks. Should be removed.
+
+### Generator
+
+All commits made by Eelco Dolstra. Upstream (almost) dead.
 
