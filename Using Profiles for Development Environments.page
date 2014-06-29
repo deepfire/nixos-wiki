@@ -1,7 +1,7 @@
 Using buildEnv to create a profile for development
 --------------------------------------------------
 
-The following expression can be used to create a profile with erlang:
+the following expression can be used to create a profile with erlang:
 
 /root/.nixpkgs/config.nix
 
