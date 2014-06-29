@@ -58,6 +58,15 @@ some\_dir/grub/grub.cfg
 
 Go to the reboot section
 
+#### GRUB 2
+
+A grub entry for ubuntu might look like this:
+
+    menuentry "NixOS Installer / Rescue" {
+      linux /bzImage init=/nix/store/p5n72ay1c1wx4wry90zabr8jnljpdzgx-nixos-0.2pre4601_1def5ba-48a4e91/init root=/dev/sda2
+      initrd /initrd
+    }
+
 #### Other bootloaders
 
 Should also work. Please add instructions here.
