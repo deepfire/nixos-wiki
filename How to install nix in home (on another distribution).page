@@ -1,105 +1,169 @@
-Under construction
+[[edit](/w/index.php?title=How_to_install_nix_in_home_(on_another_distribution)&action=edit&section=1 "Edit section: Introduction")] Introduction
+-------------------------------------------------------------------------------------------------------------------------------------------------
 
-What do we want to achieve?
+Our goal is to install Nix into our home directory as an unprivileged
+user. Possible use cases include:
 
-Install nix in home of a non privileged user.
+-   You don't have root access, but don't want to present your sysadmin
+    with a long list of dependencies to install.
+-   You want to convince a skeptical sysadmin to use Nix.
+-   You need the same development environment across several machines.
+-   You need to quickly deploy software in several locations
+-   You're already used to Nix, or you're just learning.
 
- Why is that important? Can you provide use cases?
+The primary trade-off with a home directory installation is that you
+will be unable to download pre-build binaries from Hydra because hash
+calculation takes the absolute path of the Nix store into account.
 
-Sometimes one does not get root privileges and as engineers we want to
-solve problems fast. Convincing the internal IT team and waiting for
-papers is a slow process. So a package manager that can work in our home
-is a greath way to speed up the resolving of tasks.
+Our ultimate goal is to have a Nix store at `$HOME/nix/store` and a
+default user profile linked to `$HOME/.nix-profile`, as under NixOS. We
+will want to have Nix installed in that profile by Nix itself so that
+future updates are automatic, but we must bootstrap by building Nix
+manually. (We cannot use one of the pre-built binaries available on the
+Nix website because the Nix store path is hard-coded to `/nix/store`.)
 
-Use-cases: - Another way to convince people (skeptical sysadmins) to use
-nix. And later achieve world domination. - Great way to install complex
-software to newbies on mac and GNU/linux. e.g. in sprints or workshops.
-- Great way to get a development environment anywhere (e.g. vim 7.3 on
-ubuntu 10.04) - A way to deploy commercial software in another prefix
-(/opt/supersoftware) (don't tell Valve inc.) - Just because you are used
-to nix
+[[edit](/w/index.php?title=How_to_install_nix_in_home_(on_another_distribution)&action=edit&section=2 "Edit section: Bootstrapping")] Bootstrapping
+---------------------------------------------------------------------------------------------------------------------------------------------------
 
-Trade-offs:
+First, gather the dependencies. We do not have root access, so we will
+download and build most of the dependencies ourselves. We assume that
+the host system provides GCC, make, pkgconfig, and Perl.
 
-because nix packages also take the dependencies paths in the build
-process therefore hash calculation. It is not possible to have the
-binaries from hydra in the home because the hash differs. So It is just
-a source install. But never the less it is simple.
+We will unpack, build, and install everything in `$HOME/nix-boot` so
+that we can easily remove it all when we're done bootstrapping.
 
- <http://releases.nixos.org/nix/latest/>
+     mkdir ~/nix-boot
+     cd ~/nix-boot
 
-     cd ~
-     mkdir .nix_test
-     cd .nix_test/
-     wget http://releases.nixos.org/nix/latest/nix-1.6.1.tar.gz
-     ls
-     tar xvzf nix-1.6.1.tar.gz 
-     cd nix-1.6.1
+Download our dependencies into this directory:
 
- curl is needed
+-   [Nix](http://nixos.org/releases/nix/nix-1.6.1/nix-1.6.1.tar.xz)
+-   [bzip2](http://bzip.org/1.0.6/bzip2-1.0.6.tar.gz)
+-   [cURL](http://curl.haxx.se/download/curl-7.35.0.tar.lzma)
+-   [SQLite3](http://www.sqlite.org/2014/sqlite-autoconf-3080300.tar.gz)
+-   [DBI](http://search.cpan.org/CPAN/authors/id/T/TI/TIMB/DBI-1.631.tar.gz)
+-   [DBD::SQLite](http://search.cpan.org/CPAN/authors/id/I/IS/ISHIGAKI/DBD-SQLite-1.40.tar.gz)
+-   [WWW::Curl](http://search.cpan.org/CPAN/authors/id/S/SZ/SZBALINT/WWW-Curl-4.15.tar.gz)
 
-     configure: error: Nix requires libbz2, which is part of bzip2.  See http://www.bzip.org/.
+ Download and unpack the source tarballs above into `$HOME/nix-boot`.
 
-libbz2-dev musti be installed to have
+### [[edit](/w/index.php?title=How_to_install_nix_in_home_(on_another_distribution)&action=edit&section=3 "Edit section: Environment")] Environment
 
-bzlib.h
+We will set some environment variables so our build tools can find the
+bootstrapping tools:
 
-     checking for SQLITE3... configure: error: Package requirements (sqlite3 >= 3.6.19) were not met:
-     No package 'sqlite3' found
+     export PATH=$HOME/nix-boot/bin:$PATH
+     export PKG_CONFIG_PATH=$HOME/nix-boot/lib/pkgconfig:$PKG_CONFIG_PATH
+     export LDFLAGS="-L$HOME/nix-boot/lib $LDFLAGS"
+     export CPPFLAGS="-I$HOME/nix-boot/include $CPPFLAGS"
+     export PERL5OPT="-I$HOME/nix-boot/lib/perl"
 
-     Consider adjusting the PKG_CONFIG_PATH environment variable if you
-     installed software in a non-standard prefix.
+### [[edit](/w/index.php?title=How_to_install_nix_in_home_(on_another_distribution)&action=edit&section=4 "Edit section: bzip2")] bzip2
 
-     Alternatively, you may set the environment variables SQLITE3_CFLAGS
-     and SQLITE3_LIBS to avoid the need to call pkg-config.
-     See the pkg-config man page for more details.
+To install bzip2, run the following commands from the bzip2 source
+directory:
 
-install sqlite
+     make -f Makefile-libbz2_so
+     make install PREFIX=$HOME/nix-boot
+     cp libbz2.so.1.0 libbz2.so.1.0.6 $HOME/nix-boot/lib
 
-package to old
+### [[edit](/w/index.php?title=How_to_install_nix_in_home_(on_another_distribution)&action=edit&section=5 "Edit section: cURL and SQLite3")] cURL and SQLite3
 
-     checking for SQLITE3... configure: error: Package requirements (sqlite3 >= 3.6.19) were not met:
+We build cURL and SQLite3 with the same sequence of commands in each of
+their respective source directories:
 
- On ubuntu 10.04 Version: 2.8.17-6build2
+     ./configure --prefix=$HOME/nix-boot
+     make
+     make install
 
-     wget "http://www.sqlite.org/2013/sqlite-amalgamation-3080200.zip"
-     unzip sqlite-amalgamation-3080200.zip 
-     cd sqlite-amalgamation-3080200
-     gcc shell.c sqlite3.c -lpthread -ldl
-     mv a.out sqlite
+### [[edit](/w/index.php?title=How_to_install_nix_in_home_(on_another_distribution)&action=edit&section=6 "Edit section: Perl modules")] Perl modules
 
-./configure --with-store-dir=/home/brodul/.nix\_prefix/
-SQLITE3\_CFLAGS="-I /home/brodul/.nix\_test/sqlite-amalgamation-3080200"
-SQLITE3\_LIBS="-L /home/brodul/.nix\_test/sqlite-amalgamation-3080200"
+Install the Perl modules DBI, DBD::SQLite, and WWW::Curl in that order
+with the commands
 
-     checking for openssl... /usr/bin/openssl
-     checking for pkg-config... /usr/bin/pkg-config
-     checking pkg-config is at least version 0.9.0... yes
-     checking for OPENSSL... yes
-     checking for BZ2_bzWriteOpen in -lbz2... yes
-     checking bzlib.h usability... yes
-     checking bzlib.h presence... yes
-     checking for bzlib.h... yes
-     checking for SQLITE3... yes
-     checking whether DBD::SQLite works... no
-     configure: error: in `/home/brodul/.nix_test/nix-1.6.1':
-     configure: error: The Perl modules DBI and/or DBD::SQLite are missing.
-     See `config.log' for more details
+     perl Makefile.PL PREFIX=$HOME/nix-boot
+     make
+     make install
 
-sudo apt-get install libdbi-perl
+### [[edit](/w/index.php?title=How_to_install_nix_in_home_(on_another_distribution)&action=edit&section=7 "Edit section: Nix")] Nix
 
- ./configure --with-store-dir=/home/brodul/.nix\_prefix/
-SQLITE3\_CFLAGS="-I /home/brodul/.nix\_test/sqlite-amalgamation-3080200"
-SQLITE3\_LIBS="-L /home/brodul/.nix\_test/sqlite-amalgamation-3080200"
+At last, we are ready to install Nix. At first, we will install Nix into
+the `$HOME/nix-boot` prefix so we can remove it later. From the Nix
+source directory,
 
-References:
+     ./configure --prefix=$HOME/nix-boot --with-store-dir=$HOME/nix/store --localstatedir=$HOME/nix/var
+     make
+     make install
 
-blog1
-<http://sandervanderburg.blogspot.com/2013/06/setting-up-multi-user-nix-installation.html>,
+[[edit](/w/index.php?title=How_to_install_nix_in_home_(on_another_distribution)&action=edit&section=8 "Edit section: Installing Nix")] Installing Nix
+-----------------------------------------------------------------------------------------------------------------------------------------------------
 
-blog2
-<http://blog.lastlog.de/posts/running_the_nix_package_manager_in_a_prefix_as_the_home_directory/>,
+Now we want to install Nix to the default user profile. First, we need a
+copy of Nixpkgs. If you are planning to do development work on Nixpkgs,
+you may just want to `git clone` a copy of the repository and symlink
+`$HOME/.nix-defexpr` to your copy. Otherwise, we will use `nix-channel`
+to download the Nixpkgs channel:
 
-blog3
-<http://invalidmagic.wordpress.com/2011/01/21/running-the-nix-package-manager-in-a-prefix-as-the-home-directory/>
+     nix-channel --add http://nixos.org/channels/nixpkgs-unstable
+     nix-channel --update
+
+Next, we will configure Nixpkgs. The default options for Nix will cause
+it to use the store at `/nix/store`, so we need to override the Nix
+expression options. Create the file `$HOME/.nixpkgs/config.nix` with the
+following contents:
+
+     pkgs:
+     {
+       packageOverrides = self: {
+         nix = self.nix.override {
+           # Replace $HOME with your actual home directory; it will not
+           # be expanded for you.
+           storeDir = "$HOME/nix/store";
+           stateDir = "$HOME/nix/var";
+         };
+       };
+     }
+
+Now, just install Nix:
+
+     nix-env -iA nix
+
+[[edit](/w/index.php?title=How_to_install_nix_in_home_(on_another_distribution)&action=edit&section=9 "Edit section: Finalizing")] Finalizing
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Finally, we need to add the default user profile to our environment.
+Create a link from `$HOME/.nix-profile` to the default user profile,
+like on NixOS:
+
+     ln -s $HOME/nix/var/nix/profiles/default $HOME/.nix-profile
+
+We want to add the default user profile to our `PATH` whenever we log
+in, so add the following line to your `.profile`, `.bashrc`, or wherever
+you usually put environment variable settings:
+
+     export PATH=$HOME/.nix-profile/bin:$PATH
+
+At this point, you probably want to log out and log back in to make sure
+the environment settings take effect. Check that `nix-env` is on your
+path:
+
+     which nix-env
+
+Assuming this command was successful and doesn't point to the
+bootstrapped version of Nix in `$HOME/nix-boot`, we can safely delete
+`$HOME/nix-boot` entirely!
+
+You're done! You should now be able to use Nix normally. Assuming you
+keep your Nixpkgs channel up to date, Nix will handle its own updates in
+the future.
+
+[[edit](/w/index.php?title=How_to_install_nix_in_home_(on_another_distribution)&action=edit&section=10 "Edit section: References")] References
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+[Setting up a multi-user Nix installation on non-NixOS systems - Sander
+van der
+Burg](http://sandervanderburg.blogspot.com/2013/06/setting-up-multi-user-nix-installation.html)
+
+[running the nix package manager in a prefix as the home
+directory](http://blog.lastlog.de/posts/running_the_nix_package_manager_in_a_prefix_as_the_home_directory/)
 
