@@ -64,6 +64,9 @@ to check what's available.
     hostName
     nproc
 
+Please remember that NixOS by default has a firewall turned on! Add
+rules to allow NFS traffic or switch it off if you don't need it.
+
 Client
 ------
 
