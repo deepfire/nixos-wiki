@@ -62,3 +62,11 @@ now after some modifications ...
      git fetch upstream master
      git pull --rebase upstream master
      git push upstream
+
+nix channels
+------------
+
+nix channels can be used in parallel with your new local repositories,
+see its
+[nix-channel-documentation](//Install/remove software#nix-channels)
+
