@@ -1,0 +1,35 @@
+This wiki was created by the Nix community to help others understand and
+use the Nix Project. Please help by adding pages for missing topics and
+updating information in existing pages.
+
+[[edit](/w/index.php?title=Main_Page_Contributing&action=edit&section=1 "Edit section: Before You Start")] Before You Start
+===========================================================================================================================
+
+-   [Getting Help](//Getting Help)
+-   [Coding
+    Conventions](/w/index.php?title=Coding_Conventions&action=edit&redlink=1 "Coding Conventions (page does not exist)")
+-   [Style Guide for Derivations](//Open issues:derivation styles)
+
+[[edit](/w/index.php?title=Main_Page_Contributing&action=edit&section=2 "Edit section: Contributing")] Contributing
+===================================================================================================================
+
+-   [Creating and Debugging a Nix
+    Package](//Create and debug nix packages)
+-   [Adding a Nix Package](//Contributing to nixpkgs)
+-   [Creating a Pull
+    Request](/w/index.php?title=Pull_Request&action=edit&redlink=1 "Pull Request (page does not exist)")
+
+-   [How to Extend NixOS](//NixOS:extend NixOS)
+
+-   Contributing to this Wiki
+
+[[edit](/w/index.php?title=Main_Page_Contributing&action=edit&section=3 "Edit section: Where to Help")] Where to Help
+=====================================================================================================================
+
+-   [Related Repostories and
+    Work](//Nix(OS) related repositories and work)
+-   [What's Missing in Nix
+    Community?](//TODO - What is missing in the nix community)
+-   [Automatically Updating
+    Sources](//Open issues:ways of updating sources automatically)
+
