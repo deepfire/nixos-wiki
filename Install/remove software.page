@@ -237,7 +237,7 @@ how to change the used kernel version
 -------------------------------------
 
 boot.kernelPackages \# see
-<http://hydra.nixos.org/build/1106908/download/1/nixos/manual.html>
+<http://hydra.nixos.org/job/nixos/trunk/manual/latest/download>
 
 for example: add
 
