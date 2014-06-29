@@ -145,72 +145,77 @@ If we organize our configuration like this, sharing it across machines
 is easier. In addition, our IRC client can be consistent across machines
 that choose to use it.
 
-Sharing Configuration
----------------------
+Generic Module Configuration
+----------------------------
 
-The user has discussed his configuration on irc and some other person
-wants to benefits form his modification. Thus he has to remove all parts
-which are dependent on his system and make it more general. So he
-decides to replace the condition and the username by options.
+Our IRC module is pretty useful, so we tell our friends on IRC about it.
+Now, they want to use our module. We still have our hostname hard-coded
+in our module, which isn't useful to our friends. We should remove stuff
+like this from our module before we distribute it to our friends. We
+should add a parameter so a user can pass their hostname to our module.
+How do we add a parameter to a module?
 
-He modifies irc-client.nix to look like this:
+NixOS supports this idea, but it is called "options". We can add options
+to our module for both the condition and the username. Here is what a
+`irc-client.nix` module with parameters/options looks like:
 
-    {config, pkgs, ...}:
+     {config, pkgs, ...}:
+     
+     let
+       cfg = config.services.ircClient;
+     in
+     
+     with pkgs.lib;
+     
+     {
+       options = {
+         services.ircClient = {
+           enable = mkOption {
+             default = false;
+             type = with types; bool;
+             description = ''
+               Start an irc client for a user.
+             '';
+           };
+     
+           user = mkOption {
+             default = "username";
+             type = with types; uniq string;
+             description = ''
+               Name of the user.
+             '';
+           };
+         };
+       };
+     
+       config = mkIf cfg.enable {
+         jobs.ircSession = {
+           description = "Start the irc client of ${cfg.user}."
+           startOn = "started network-interfaces";
+           exec = ''/var/setuid-wrappers/sudo -u ${cfg.user} -- ${pkgs.screen}/bin/screen -m -d -S irc ${pkgs.irssi}/bin/irssi'';
+         };
+     
+         environment.systemPackages = [ pkgs.screen ];
+         security.sudo.enable = true;
+       };
+     }
 
-    let
-      cfg = config.services.ircClient;
-    in
-
-    with pkgs.lib;
-
-    {
-      options = {
-        services.ircClient = {
-          enable = mkOption {
-            default = false;
-            type = with types; bool;
-            description = ''
-              Start an irc client for a user.
-            '';
-          };
-
-          user = mkOption {
-            default = "username";
-            type = with types; uniq string;
-            description = ''
-              Name of the user.
-            '';
-          };
-        };
-      };
-
-      config = mkIf cfg.enable {
-        jobs.ircSession = {
-          description = "Start the irc client of ${cfg.user}."
-          startOn = "started network-interfaces";
-          exec = ''/var/setuid-wrappers/sudo -u ${cfg.user} -- ${pkgs.screen}/bin/screen -m -d -S irc ${pkgs.irssi}/bin/irssi'';
-        };
-
-        environment.systemPackages = [ pkgs.screen ];
-        security.sudo.enable = true;
-      };
-    }
-
-This module is now independent of the system and the user can modify his
-`configuration.nix` to get his previous configuration.
+This module is now independent of the system. Now, we must update our
+`configuration.nix` file to pass our condition and hostname into our new
+module.
 
     {config, ...}:
 
-    {
-      require = [
-        ./irc-client.nix
-      ];
-
-      services.ircClient.enable = config.networking.hostname == "my-server";
-      services.ircClient.user = "username";
-
-      # ... usual configuration ...
-    }
+     {
+       imports = [
+         ./irc-client.nix
+       ];
+     
+       services.ircClient.enable = config.networking.hostname == "my-server";
+       services.ircClient.user = "username";
+     
+       # ... usual configuration ...
+     }
 
 Multiple Daemons
 ================
