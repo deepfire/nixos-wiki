@@ -111,7 +111,8 @@ the new details:
        advertisedUrl="http://www.apache.org/dist/couchdb/1.0.0/apache-couchdb-1.0.0.tar.gz";
     }
 
-To test that it works, copy it into your current channel and install it
+To test that it works, copy it into your current channel
+(\~/.nix-defexpr) and install it
 
     $ cp nixpkgs_svn/pkgs/servers/http/couchdb/src-for-default.nix /nix/var/nix/gcroots/per-user/root/channels/nixpkgs_unstable/pkgs/servers/http/couchdb/src-for-default.nix
     $ nix-env -i couchdb
