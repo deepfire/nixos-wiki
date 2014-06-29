@@ -1,3 +1,98 @@
+example setup
+-------------
+
+### /etc/nixos/configuration.nix
+
+     # 1. create:
+     #   - /etc/nut/upsd.conf
+     #   - /etc/nut/upsmon.conf
+     #   - /etc/nut/upsd.users
+     #   - /etc/nut/myupssched.conf
+     # 1b. 
+     #   - mkdir -p /var/lib/nut/
+     #   - mkdir -p /etc/nut/upssched
+     # 1c. create:
+     #   - /etc/nut/upssched/upssched-cmd
+     # 2. modify the values below
+     power.ups = {
+       enable = true;
+       mode = "standalone";
+       schedulerRules = "/etc/nut/myupssched.conf";
+       ups.ProtectHome.description = "AEG Protect Home VA600";
+       ups.ProtectHome.driver = "blazer_usb";
+       #ups.ProtectHome.port = "auto";
+       ups.ProtectHome.port = "/dev/hidraw_protecthome"; # see the udev rule which creates this uniq link
+     };
+     # 3. this is relevant for the ups services
+     #    of course you have to adapt the idVendor and idProduct to your UPS, 
+     #    see the nut file: nut-2.6.0/scripts/udev/nut-usbups.rules
+     services.udev.extraRules = 
+       ATTRS{idVendor}=="0665", ATTRS{idProduct}=="5161", MODE="666", SYMLINK+="hidraw_protecthome"
+     ;
+
+### upsd.conf
+
+     LISTEN 127.0.0.1 3493
+
+### upsmon.conf
+
+     MONITOR ProtectHome@localhost 1 local_mon MYSECRETPASSWD master
+     RUN_AS_USER root
+     MINSUPPLIES 1
+     SHUTDOWNCMD "/var/run/current-system/sw/sbin/shutdown -h +0"
+     POLLFREQ 1
+     POLLFREQALERT 1
+     HOSTSYNC 15
+     DEADTIME 15
+     #POWERDOWNFLAG /etc/killpower
+     RBWARNTIME 43200
+     NOCOMMWARNTIME 300
+     FINALDELAY 5
+     NOTIFYCMD /var/run/current-system/sw/sbin/upssched
+     
+     NOTIFYFLAG ONLINE SYSLOG+WALL+EXEC
+     NOTIFYFLAG ONBATT SYSLOG+WALL+EXEC
+     NOTIFYFLAG COMMBAD SYSLOG+EXEC
+     NOTIFYFLAG COMMOK SYSLOG+EXEC
+     NOTIFYFLAG REPLBATT SYSLOG+WALL
+     NOTIFYFLAG FSD SYSLOG+WALL+EXEC
+
+### upsd.users
+
+     [local_mon]
+         password = MYSECRETPASSWD 
+         upsmon master
+
+### myupssched.conf
+
+     CMDSCRIPT /etc/nut/upssched/upssched-cmd
+     
+     PIPEFN /etc/nut/upssched/upssched.pipe
+     LOCKFN /etc/nut/upssched/upssched.lock
+     
+     AT ONBATT * START-TIMER onbatt 25
+     AT ONLINE * CANCEL-TIMER onbatt
+     AT LOWBATT * EXEC battleer
+
+### upssched/upssched-cmd
+
+     #!/bin/sh
+     case $1 in
+       onbatt)
+         /var/run/current-system/sw/sbin/shutdown -h +0;;
+       *)
+         echo "wrong parameter";;
+     esac
+
+how to use this
+---------------
+
+to see what is going on:
+
+     tail -f /var/log/upstart/ups* /var/log/messages
+
+### example log, when unplugging the UPS from power
+
 links
 -----
 
