@@ -1,5 +1,5 @@
-New in all-packages.nix
-=======================
+[[edit](/w/index.php?title=CrossCompiling&action=edit&section=1 "Edit section: New in all-packages.nix")] New in all-packages.nix
+=================================================================================================================================
 
 The main nix packages expression has a parameter setting the information
 for the cross-compilation target. When set, this will allow us to
@@ -48,11 +48,11 @@ the cross-building expressions. And you can look at some crossSystem
 expressions in [my configurations
 directory](https://svn.nixos.org/websvn/nix/configurations/trunk/misc/viric/cross/).
 
-New stdenv.mkDerivation
-=======================
+[[edit](/w/index.php?title=CrossCompiling&action=edit&section=2 "Edit section: New stdenv.mkDerivation")] New stdenv.mkDerivation
+=================================================================================================================================
 
-New derivations
----------------
+[[edit](/w/index.php?title=CrossCompiling&action=edit&section=3 "Edit section: New derivations")] New derivations
+-----------------------------------------------------------------------------------------------------------------
 
 The attribute set resulting from a stdenv.mkDerivation call returns the
 usual result comming from a usual native build, with two additional
@@ -74,8 +74,8 @@ can run:
 
     nix-build -A bison.crossDrv comtrend.nix
 
-New buildInputs
----------------
+[[edit](/w/index.php?title=CrossCompiling&action=edit&section=4 "Edit section: New buildInputs")] New buildInputs
+-----------------------------------------------------------------------------------------------------------------
 
 In the attribute set mkDerivation expect as parameters, the usual
 buildInputs got a new meaning when building hostDrv derivations, and a
@@ -105,34 +105,34 @@ be renamed to "\*hostInputs" and attributes ending with
 renaming is pending until the final merge to avoid the complexity of
 merging mainline updates into the branch.
 
-New variables in the builder
-----------------------------
+[[edit](/w/index.php?title=CrossCompiling&action=edit&section=5 "Edit section: New variables in the builder")] New variables in the builder
+-------------------------------------------------------------------------------------------------------------------------------------------
 
 In the *environment variables* the derivation builder will receive when
 asking for the hostDrv to be built, there will be the new variable
 **\$crossConfig** defined to the GNU Configuration triplet set in the
 crossSystem nixpkgs parameter.
 
-What are we testing
-===================
+[[edit](/w/index.php?title=CrossCompiling&action=edit&section=6 "Edit section: What are we testing")] What are we testing
+=========================================================================================================================
 
-Derivations
------------
+[[edit](/w/index.php?title=CrossCompiling&action=edit&section=7 "Edit section: Derivations")] Derivations
+---------------------------------------------------------------------------------------------------------
 
 -   xorg.xeyes
 -   bison
 -   uboot (this derivation is actually meant for a sheevaplug u-boot)
 
-GNU Configurations
-------------------
+[[edit](/w/index.php?title=CrossCompiling&action=edit&section=8 "Edit section: GNU Configurations")] GNU Configurations
+-----------------------------------------------------------------------------------------------------------------------
 
 -   armv5tel-unknown-linux-gnueabi
 -   armv5tel-unknown-linux-uclibceabi
 -   armv5tel-unknown-linux-uclibceabi
 -   mips-unknown-linux
 
-Actual problems to be solved
-============================
+[[edit](/w/index.php?title=CrossCompiling&action=edit&section=9 "Edit section: Actual problems to be solved")] Actual problems to be solved
+===========================================================================================================================================
 
 -   gcc 4.4.2 cannot be bootstrapped, because building the bare-metal
     (without libc or os) first gcc fails. This does not happen in 4.4.1
@@ -142,16 +142,16 @@ Actual problems to be solved
         host CPP instead of the target, on "configure". [SOLVED in
         nixpkgs]
 
-History
-=======
+[[edit](/w/index.php?title=CrossCompiling&action=edit&section=10 "Edit section: History")] History
+==================================================================================================
 
-Motivation
-----------
+[[edit](/w/index.php?title=CrossCompiling&action=edit&section=11 "Edit section: Motivation")] Motivation
+--------------------------------------------------------------------------------------------------------
 
 I wanted to cross-build uboot for the sheevaplug, in order to debug it.
 
-The stdenv hack
----------------
+[[edit](/w/index.php?title=CrossCompiling&action=edit&section=12 "Edit section: The stdenv hack")] The stdenv hack
+------------------------------------------------------------------------------------------------------------------
 
 When I had a working cross compiler to build uboot, Nicolas Pierron
 insisted on trying to get the whole relationships between packages in
@@ -159,8 +159,8 @@ nixpkgs to be usable also for cross-compilation. He came in with a
 stdenv adapter that I used to bring cross-compilation capabilities to
 nixpkgs stdenv.
 
-Bootstrap of the compiler
--------------------------
+[[edit](/w/index.php?title=CrossCompiling&action=edit&section=13 "Edit section: Bootstrap of the compiler")] Bootstrap of the compiler
+--------------------------------------------------------------------------------------------------------------------------------------
 
 1.  Build binutils for the target (binutilsCross)
 2.  Build a bare-metal gcc (gcc without libc), using the binutils built
@@ -174,8 +174,8 @@ Bootstrap of the compiler
     whatever program (gccCrossStageFinal (from gcc44\_realCross or
     gcc43\_realCross))
 
-gcc-cross-wrapper, the stdenv adapter
--------------------------------------
+[[edit](/w/index.php?title=CrossCompiling&action=edit&section=14 "Edit section: gcc-cross-wrapper, the stdenv adapter")] gcc-cross-wrapper, the stdenv adapter
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 The stdenv adapter brings into the builder PATH the gcc-cross-wrapper
 (it includes the cross-compiler and cross-libc). The gcc-cross-wrapper
@@ -184,8 +184,8 @@ autotools configure script are attempted for a cross build.
 
 Also cmake has an adaptation for crossbuilding.
 
-Final stdenv
-------------
+[[edit](/w/index.php?title=CrossCompiling&action=edit&section=15 "Edit section: Final stdenv")] Final stdenv
+------------------------------------------------------------------------------------------------------------
 
 The stdenv in nixpkgs is aware of the nixpkgs parameter "crossSystem",
 explained above, and according to it, brings into the stdenv generic
