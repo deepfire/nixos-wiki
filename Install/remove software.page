@@ -145,13 +145,9 @@ Some things to note:
 
 -   The downloaded channel sources are stored in
     /nix/var/nix/profiles/per-user/root/channels/nixos (which is
-    actually in the Nix store). The \$NIX\_PATH environment variable
-    contains this directory, so \<nixos\> and \<nixpkgs\> in Nix
-    expressions resolve there unless overriden through
-
-<!-- -->
-
-     $NIX_PATH or the "-I" flag.
+    actually in the Nix store). The
+    $NIX_PATH environment variable contains this directory, so <nixos> and <nixpkgs> in Nix expressions resolve there unless overridden through $NIX\_PATH
+    or the "-I" flag.
 
 -   In principle, you can do rollbacks on the channels profile ("nix-env
     -p /nix/var/nix/profiles/per-user/root/channels --rollback") if you
@@ -164,10 +160,9 @@ Some things to note:
     can of course run "nixos-checkout" if you want a working tree for
     development. (In other news, "nixos-checkout" now accepts a argument
     to specify the desired location of the working trees, e.g.
-    "nixos-checkout /home/eelco/Dev". The
-
-default location /etc/nixos may eventually go away since it's a weird
-location for keeping large source trees.)
+    "nixos-checkout /home/eelco/Dev". The default location /etc/nixos
+    may eventually go away since it's a weird location for keeping large
+    source trees.)
 
 -   To use a development tree in nixos-rebuild, just use the -I flag,
     e.g. "nixos-rebuild switch -I /home/eelco/Dev".
