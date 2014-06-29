@@ -49,19 +49,19 @@ Screenshot of running the NFS test environment interactively.
 It is also possible to run the test environment interactively, allowing
 you to experiment with the VMs. For example:
 
-    $ nix-build nixos/tests/ -A nfs.vms
-    $ ./result/bin/run-vms
+    $ nix-build nixos/tests/ -A nfs.driver
+    $ ./result/bin/nixos-run-vms
 
-The script `run-vms` starts the three virtual machines defined in the
-NFS test using QEMU/KVM. The root filesystem of the VMs is created on
-the fly and kept across VM restarts in `./hostname.qcow2`.
+The script `nixos-run-vms` starts the three virtual machines defined in
+the NFS test using QEMU/KVM. The root filesystem of the VMs is created
+on the fly and kept across VM restarts in `./hostname.qcow2`.
 
 Finally, you can run the test itself interactively. This is particularly
 useful when developing or debugging a test.
 
     $ nix-build nixos/tests/ -A nfs.driver
     $ ./result/bin/nixos-test-driver
-    using multicast addresses 232.18.<vlan>.20:64141
+    starting VDE switch for network 1
     >
 
 You can now type Perl statements to execute commands to start or
@@ -75,6 +75,11 @@ manipulate the VMs:
     > $client1->shutdown;
     (this releases client1's lock)
     > $client2->succeed("flock -n -s /data/lock true");
+
+The function `testScript` executes the entire test script and drops you
+back into the test driver command line upon its completion. This allows
+you to inspect the state of the VMs after the test (e.g. to debug the
+test script).
 
 Writing tests
 -------------
