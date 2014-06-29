@@ -1,44 +1,71 @@
-Most packages can be found in the nixpkgs repository. Some people
-maintain additional repositories such as haskell-nix-overlay. But they
-are less stable and probably depend on nixpkgs in some way.
+This page's intended audience is advanced Nix users. For a
+newbie-friendly and more up-to-date page, see [Installing
+Packages](//Nix Installing Packages)
 
-Now how to find a package?
+Simple package query
+--------------------
 
--   use grep (slow)
--   get gnu idutils. See [HOWTO](//HOWTO:idutils)
--   use the nix-env command:
+The most straight-forward way to see a list of all available packages is
+to use the `nix-env` command. This method is a bit slow, as every
+package must be evaluated when generating the list. (Note: In the
+results, the first column is the package's attribute path.)
 
-<!-- -->
+      nix-env -qa [-P] [--out-path] [ -f $NIXPKGS_ALL ]
 
-      nix-env -qa \* [-P] [--out-path] [ -f $NIXPKGS_ALL ]
+Aliases
+-------
 
-to list all packages you can install. The first column is the attr path.
-However Nix has to evaluate all names so this is slow but bearable.
+The command to query available packages is relatively long, but we can
+define shortcuts or aliases. To define a shell function as an alias,
+Bash-shell users can add this to their `~/.bashrc` file.
 
-Eg put this into your \~/.bashrc
+    queryNixPkgs(){ nix-env -qa \* -P -f $NIXPKGS_ALL | grep -i "$1"; }
 
-    query(){ nix-env -qa \* -P -f $NIXPKGS_ALL | grep -i "$1"; }
+Install by attribute
+--------------------
 
-You've found a package and it doesn't show up? If a package is defined
-as sub attribute set it is only shown if the function
+A package can be defined in a few different ways. Sometimes, a package
+is implemented in a complicated way, likely to share part of its
+definition with another package. In a case like this, a package may be
+defined in an attribute set one level deeper than the usual package set
+defined in the `top-level/all-packages.nix` file.
 
-    recurseIntoAttrs
-
-has been used. I think it was introduced for performance reasons (?).
-You can either add this function if its missing or you can install by
-path using nix-env -iA attr.subattr.subattr.package or such. The
-attr.subattr is the attr path shown by the query above. In this example
-it would match something like:
+For example, the following Nix expression contains the `myPackage`
+package, defined in a deep attribute set.
 
     {
-      attr = { subattr = { subattr = { package = mkDerivation ... } } }
-      # of course you would use this notation instead:
+      attr = { subattr = { subattr = { myPackage = mkDerivation ...; } } }
+      # Or, an alternative notation:
       attr.subattr.subattr.package = mkDerivation ...;
     }
 
-You can also use ctags to find attr names fast. Install ctagsWrapped
-which tells ctags about the nix filetype by passing:
+Packages which are defined in a set deeper than normal can be added to a
+higher-level set by using the `recurseIntoAttrs` function. If they are
+included in a higher-level set, their installation should be simple. If
+not, the package can be referenced by using its full attribute path in
+an expression.
 
-    --langdef=NIX
-    --langmap=NIX:.nix
-    --regex-NIX=/([^ \t*]*)[ \t]*=/\1/f/
+For example, to install the package defined in the above Nix expression,
+pass its full attribute path to the `nix-env` program and use the `-A`
+flag.
+
+    nix-env -i -A attr.subattr.subattr.package
+
+Indexing and searching Nix files
+--------------------------------
+
+One method of quickly finding the attribute names of packages is to use
+the Ctags program, which is a tool used for code navigation. To use this
+method, install the
+[`ctagsWrapped`](https://github.com/NixOS/nixpkgs/blob/bee4c41e13a9276db4f4a582234c670d74edfa1a/pkgs/development/tools/misc/ctags/wrapped.nix%7C)
+package, then use the `ctags` command line program to index Nix files or
+directories of Nix files, such as a directory which contains the NixPkgs
+repository. This package customizes a ctags installation by adding a
+definition for the Nix syntax. To learn more about the Ctags program,
+read the [website](http://ctags.sourceforge.net/%7Cctags).
+
+Another method of indexing Nix expressions is to use the ID Utils
+program. The [HOWTO:idutils|IdUtils] wiki page has more details. To
+learn more about the ID Utils program, read the [Utils
+website](https://www.gnu.org/software/idutils/%7CID).
+
