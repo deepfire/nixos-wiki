@@ -77,15 +77,17 @@ You can try them out interactively as follows:
 
 2.  Unload the snd-hda-intel module
     rmmod snd-hda-intel
-3.  [Look up the model options for your
+3.  Find your model
+    grep Codec /proc/asound/card0/codec\*
+4.  [Look up the model options for your
     card](http://kernel.org/doc/Documentation/sound/alsa/HD-Audio-Models.txt)
-4.  Try each one
+5.  Try each one
     modprobe snd-hda-intel model=3stack-6ch
-5.  Test if this has fixed your problem (tip: aplay and arecord are alsa
+6.  Test if this has fixed your problem (tip: aplay and arecord are alsa
     based command line tools you can use to quickly check)
-6.  Repeat until you have exhausted all the options or have fixed your
+7.  Repeat until you have exhausted all the options or have fixed your
     problem
-7.  TIDY UP!
+8.  TIDY UP!
     Don't forget to re-enable pulse autospawning by changing
     "autospawn=no" to "autospawn=yes" in \~/.pulse/client.conf
 
@@ -95,6 +97,10 @@ configuration file:
       boot.extraModprobeConfig = ''
         options snd-hda-intel model=YOUR_MODEL 
       '';
+
+Much of this is taken from
+<https://help.ubuntu.com/community/HdaIntelSoundHowto> which also has
+additional tips.
 
 ### Fixing sound in KDE *(is this now obsolete? 2011/08)'*
 
