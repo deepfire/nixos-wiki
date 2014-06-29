@@ -18,7 +18,7 @@ If not, consult dmesg. One possible reason is missing firmware. Some
 firmware types should be enabled explicitly, see
 networking.enableIntel2100BGFirmware option as example.
 
-### Disable all NixOS networking, enable wicd
+### Enable wicd, disable other networking
 
 Wicd is fully-function network manager, it takes responsibility for
 connecting, launching dhcp clients, storing passwords, etc. To prevent
