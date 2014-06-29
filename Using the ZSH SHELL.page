@@ -1,0 +1,29 @@
+[[edit](/w/index.php?title=Using_the_ZSH_SHELL&action=edit&section=1 "Edit section: problem description")] problem description
+------------------------------------------------------------------------------------------------------------------------------
+
+i love to use zsh but on nixos there is a issue with the PATH variable
+so that once you changed from bash to zsh commands like: ssh mybox "ls
+-la" won't work.
+
+[[edit](/w/index.php?title=Using_the_ZSH_SHELL&action=edit&section=2 "Edit section: my solution:")] my solution:
+----------------------------------------------------------------------------------------------------------------
+
+in a bash shell do:
+
+       export | grep '^PATH='
+       PATH=/var/setuid-wrappers:/home/joachim/.nix-profile/bin:/home/joachim/.nix-profile/sbin:/home/joachim/.nix-profile/lib/kde4/libexec:/nix/var/nix/profiles/default/bin:/nix/var/nix/profiles/default/sbin:/nix/var/nix/profiles/default/lib/kde4/libexec:/var/run/current-system/sw/bin:/var/run/current-system/sw/sbin:/var/run/current-system/sw/lib/kde4/libexec
+
+then put it into your \~/.zshenv file like this:
+
+       echo "export $(export | grep '^PATH=')" > ~/.zshenv
+
+[[edit](/w/index.php?title=Using_the_ZSH_SHELL&action=edit&section=3 "Edit section: better solution")] better solution
+----------------------------------------------------------------------------------------------------------------------
+
+marc weber was working on the same issue and IIRC then he got a fix in
+his repo which might automate the above changes.
+
+**NOTE: you will face issues where changing PATH entries might cause
+failures from single programs not startable to not being able to log
+into your server when using zsh as a default shell.**
+
