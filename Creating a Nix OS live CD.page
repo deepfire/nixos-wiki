@@ -58,7 +58,7 @@ in
 add:
 
            mkdir -p /root/.ssh/
-           echo 'ssh-rsa ssh-rsa  AAAAB3NzaC1yc2EAAAADAQABAAABAQDOpeVxXXqlE3LlxBLx2AUYPBkBfCwVl7K8BdJpIaaB/hXpqClVJIK77Fhaaj3dGMpggK89dYhXHMN9pvOmA6igxDKZQJ2gNJ76q8NJkj6a0MxywlC8kcTkGTTsiM436Lz+b4HyF6hrtrhQzqcP70g35q6c8ckofW98RV35yHbvXvp2G0p9FZE4pB8qFLOKlorwWK8S8o8MN+1GkXdi2KeeOYdQl+X9ssaYSrGYx6NrD6ARnrPSvUfQjIp/+3AT/tSy2WLT1xtVsQsJxBEqoIuFzl8h1pLxug0SY4FZZb1mnFvjyZ+GLYj18Zq1nsibUeJAcCzylU6pHFFS7/SZkAzV foo@bar' > /root/.ssh/authorized_keys
+           echo 'ssh-rsa ssh-rsa  AAAAB3Nz...(cut here)...AzV foo@bar' > /root/.ssh/authorized_keys
 
 at the end of
 
