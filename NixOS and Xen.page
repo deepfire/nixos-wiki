@@ -1,15 +1,17 @@
-[Xen](http://www.xen.org/) is a virtualisation system: it allows you to
-run multiple virtual ("guest") machines concurrently on a single
-physical ("host") machine. It supports both unmodified guest operating
-systems on hosts with hardware virtualisation support, and
+The [Xen hypervisor](http://www.xen.org/) is a virtualisation system: it
+allows you to run multiple virtual ("guest") machines concurrently on a
+single physical ("host") machine. It supports both unmodified guest
+operating systems on hosts with hardware virtualisation support, and
 *paravirtualised* guest operating systems that communicate more
 efficiently with the host system.
 
-Virtual machines running on Xen are called *domains*. There always is a
-special, privileged domain called Domain 0 (Dom0), which is responsible
-for managing and accessing the host hardware (as the Xen kernel itself
-has no disk or network drivers). The other, unprivileged domains are
-called DomU. NixOS can run both in Dom0 and DomU.
+When Xen is enabled, the host system boots directly into the Xen
+hypervisor, which then starts and manages the guests. Virtual machines
+running on Xen are called *domains*. There always is a special,
+privileged domain called Domain 0 (Dom0), which is responsible for
+managing and accessing the host hardware (as the Xen kernel itself has
+no disk or network drivers). The other, unprivileged domains are called
+DomU. NixOS can run both in Dom0 and DomU.
 
 Enabling Xen
 ------------
@@ -20,9 +22,8 @@ following option in `configuration.nix`:
     virtualisation.xen.enable = true;
 
 Then run `nixos-rebuild switch` and reboot. The system should now boot
-Xen, with your NixOS system running as the privileged Domain 0 (Dom0).
-You may also want to set the option
-`virtualisation.xen.domain0MemorySize` to limit the amount of memory
-reserved for Dom0, e.g.
+Xen, with your NixOS system running as the Dom0. You may also want to
+set the option `virtualisation.xen.domain0MemorySize` to limit the
+amount of memory reserved for Dom0, e.g.
 
     virtualisation.xen.domain0MemorySize = 512;
