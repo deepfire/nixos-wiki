@@ -24,7 +24,8 @@ Installation
 ------------
 
 1\) get installation image 2) unsquashfs nix store 3) locate and edit
-init 3.a) remove upstart 4) chroot into installation medium 5) follow
-NixOS installation manual 6) edit configuratio.nix (howto incorporate
-information above) 7) perform nixos-install ...
+init 3.a) remove upstart 3.b) copy /etc/resolve.conf to installation
+medium 4) chroot into installation medium 5) follow NixOS installation
+manual 6) edit configuratio.nix (howto incorporate information above) 7)
+perform nixos-install ...
 
