@@ -1,5 +1,5 @@
-Current State
--------------
+[[edit](/w/index.php?title=Raspberry_Pi&action=edit&section=1 "Edit section: Current State")] Current State
+-----------------------------------------------------------------------------------------------------------
 
 **NixOS:** The compatibility of Raspberry Pi and the latest version of
 NixOS is unknown, but the disk image linked on this page will
@@ -17,10 +17,10 @@ To read development history, see the following pages:
 -   [Add Raspberry-Pi stdenvLinux
     support](https://github.com/NixOS/nixpkgs/issues/234) (pure nixpkgs)
 
-Installation of NixOS Image
----------------------------
+[[edit](/w/index.php?title=Raspberry_Pi&action=edit&section=2 "Edit section: Installation of NixOS Image")] Installation of NixOS Image
+---------------------------------------------------------------------------------------------------------------------------------------
 
-### Download Image
+### [[edit](/w/index.php?title=Raspberry_Pi&action=edit&section=3 "Edit section: Download Image")] Download Image
 
 To download an image file, open the following magnet link in a
 BitTorrent client, such as Transmission.
@@ -35,7 +35,10 @@ Use this image file as an alternative, as it contains an older firmware.
 
        magnet:?xt=urn:btih:3a1273137a31ef65453ddc44eafcf8e0ede24731&dn=nixos-raspberrypi-ef28e8e70e96-0236cc5d8826-sd2g.img.xz
 
-### Write Image to SD Card
+(sha1sum a9acdcb2146e9fadd47c458fd77ee7f006c5bdbc, alternative download:
+[[1]](https://pi.mawercer.de/nixos-raspberrypi-ef28e8e70e96-0236cc5d8826-sd2g.img.xz)
+
+### [[edit](/w/index.php?title=Raspberry_Pi&action=edit&section=4 "Edit section: Write Image to SD Card")] Write Image to SD Card
 
        df -l
        # Insert SD card into computer
@@ -49,7 +52,7 @@ Use this image file as an alternative, as it contains an older firmware.
        sudo dcfldd bs=1M if=/home/alex/Downloads/nixos-raspberrypi-ef28e8e70e96-0236cc5d8826-sd2g.img of=/dev/sdb
        # Wait for writing to complete.
 
-### Expand the Partition
+### [[edit](/w/index.php?title=Raspberry_Pi&action=edit&section=5 "Edit section: Expand the Partition")] Expand the Partition
 
 The size of the NixOS partition is only 2 GB, but your SD card might be
 larger. To expand this to fill the SD card and add a small swap
@@ -57,17 +60,17 @@ partition, use the `gparted` program as instructed by [this elinux.com
 wiki
 page](http://elinux.org/RPi_Resize_Flash_Partitions#Manually_resizing_the_SD_card_using_a_GUI_on_Linux).
 
-### Logging In
+### [[edit](/w/index.php?title=Raspberry_Pi&action=edit&section=6 "Edit section: Logging In")] Logging In
 
 If you have problems logging in, read the "Set a Password for Root"
 section of [this blog
 post](https://bitbucket.org/chexxor/researchnotes/src/ffc4c9622154aec847f3091d74e150a0a9d336cb/CodeArticles/InstallingNixOsOnRaspberryPi.md?at=master)
 for possible solutions.
 
-Improving Build Speed
----------------------
+[[edit](/w/index.php?title=Raspberry_Pi&action=edit&section=7 "Edit section: Improving Build Speed")] Improving Build Speed
+---------------------------------------------------------------------------------------------------------------------------
 
-### Binary Cache
+### [[edit](/w/index.php?title=Raspberry_Pi&action=edit&section=8 "Edit section: Binary Cache")] Binary Cache
 
 The Raspberry Pi compiles things **very** slowly. As Nix compiles
 everything from source, this is a problem for Nix on Raspberry Pi. This
@@ -75,7 +78,7 @@ problem can be alleviated by setting up Nix to query a shared
 binary-cache, but this currently does not exist for this specific
 platform. The community should figure out how to create a binary-cache.
 
-### Distributed Builds
+### [[edit](/w/index.php?title=Raspberry_Pi&action=edit&section=9 "Edit section: Distributed Builds")] Distributed Builds
 
 Another way to speed up builds is to share the computation with other
 machines. One tool which does this is called
@@ -84,9 +87,9 @@ machines. One tool which does this is called
 The following notes were taken when first implementing `distcc` for
 NixOS on Raspberry Pi.
 
-#### Implementing distcc
+#### [[edit](/w/index.php?title=Raspberry_Pi&action=edit&section=10 "Edit section: Implementing distcc")] Implementing distcc
 
-##### On Raspberry Pi
+##### [[edit](/w/index.php?title=Raspberry_Pi&action=edit&section=11 "Edit section: On Raspberry Pi")] On Raspberry Pi
 
 How do we inject `distcc` into the Nix build system? We can use a new
 feature of stdenv-updates stdenv, called `userHook`. Nix wants to avoid
@@ -149,7 +152,7 @@ Nix built.
 When building, rather than using `/usr/bin/gcc`, the `gcc` found in the
 `PATH` environment variable will be used.
 
-##### On Shared Machines
+##### [[edit](/w/index.php?title=Raspberry_Pi&action=edit&section=12 "Edit section: On Shared Machines")] On Shared Machines
 
 Having a copy of NixPkgs, you can build your cross-compilers for
 `distcc`. Prepare a directory for them:
@@ -209,8 +212,8 @@ cross-compiler gcc 4.6, which you can build using the same technique as
 before, but changing `gcc_realCross = gcc46_realCross` in nixpkgs'
 `all-packages.nix`.
 
-Notes
------
+[[edit](/w/index.php?title=Raspberry_Pi&action=edit&section=13 "Edit section: Notes")] Notes
+--------------------------------------------------------------------------------------------
 
 NixOS at [viric/master](https://github.com/viric/nixos/tree/master) can
 prepare a proper bootloader (vfat at `/boot`).
