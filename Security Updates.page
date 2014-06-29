@@ -5,9 +5,9 @@ the nixos channel for multiple reasons:
 1.  A base library has been updated like openssl or libc, thus requiring
     a lot of packages to be rebuilt. This may take a few days in hydra
     or even by compiling everything by yourself on you server.
-2.  Even if all the packages were updated, nixos tests may fail and thus
-    the channel will not update. In this case you may use the hydra
-    cache, but it's better to wait for tests to pass for obvious
+2.  Even if all the packages were rebuilt in hydra, nixos tests may fail
+    and thus the channel will not update. In this case you may use the
+    hydra cache, but it's better to wait for tests to pass for obvious
     reasons.
 
 To overcome this issue, NixOS provides an option for replacing runtime
