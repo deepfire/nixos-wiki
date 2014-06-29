@@ -155,7 +155,7 @@ And create a nix file (`pi.nix`) for example there with these contents:
            gcc = {
              arch = "armv6";
              fpu = "vfp";
-             float = "hard";
+             float = "softfp";
              abi = "aapcs-linux";
            };
        };
