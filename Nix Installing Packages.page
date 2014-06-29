@@ -1,5 +1,5 @@
-How to install a software package using Nix?
---------------------------------------------
+[[edit](/w/index.php?title=Nix_Installing_Packages&action=edit&section=1 "Edit section: How to install a software package using Nix?")] How to install a software package using Nix?
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 The easiest way to get Nix expressions is to use the community's NixPkgs
 repository. After setting it up, use the `nix-env` command to install
@@ -16,8 +16,8 @@ the `nix-env --install` command to install the "hello" package. The
 [`nix-env`](http://nixos.org/nix/manual/#sec-nix-env) command installs
 or removes software in our environment.
 
-How to query available software packages?
------------------------------------------
+[[edit](/w/index.php?title=Nix_Installing_Packages&action=edit&section=2 "Edit section: How to query available software packages?")] How to query available software packages?
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Besides the "hello" package, what else can we install? We can use the
 `nix-env --query --available` command on the command line, or its
@@ -52,8 +52,8 @@ file, such as the `dropbox` and `bitcoin` packages.
        $ nix-env --install dropbox bitcoin
        $ nix-env -i dropbox bitcoin
 
-How to uninstall software packages?
------------------------------------
+[[edit](/w/index.php?title=Nix_Installing_Packages&action=edit&section=3 "Edit section: How to uninstall software packages?")] How to uninstall software packages?
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 And of course, we can uninstall packages by using the
 `nix-env --uninstall` command.
@@ -61,8 +61,12 @@ And of course, we can uninstall packages by using the
        $ nix-env --uninstall firefox
        $ nix-env -e firefox
 
-Further reading
----------------
+[[edit](/w/index.php?title=Nix_Installing_Packages&action=edit&section=4 "Edit section: Further reading")] Further reading
+--------------------------------------------------------------------------------------------------------------------------
+
+For experienced users, see the [How to find a
+package](//Howto find a package in NixOS) wiki page for tips on command
+aliases and using file indexing programs.
 
 More information about how Nix works can be found from the [Nix Main
 Page](//Main Page Package Manager).
