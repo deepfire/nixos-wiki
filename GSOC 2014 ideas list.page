@@ -10,10 +10,12 @@ Freenode IRC network, and we will work with you to find a mentor and
 discuss your idea.
 
 You don't have to apply for one of these ideas! You can come up with
-your own, and as long as it fits into Nix stack, we'll be happy to work
-with you to develop it. Remember, your project needs to have
-deliverables in less than 3 months of work in most cases. Be ambitious
-but not too ambitious ;)
+your own, or pick something from the issues trackers of the various
+projects at <https://github.com/NixOS> (especially nix and nixpkgs), and
+as long as it fits into Nix stack, we'll be happy to work with you to
+develop it. Remember, your project needs to have deliverables in less
+than 3 months of work in most cases. Be ambitious but not too
+ambitious ;)
 
 Ideas
 -----
@@ -49,4 +51,44 @@ Improvements:
 -   make python software developemnt usable with nix-shell
 
 Contact: Domen Kožar (domen@dev.si)
+
+### Private files in the nix store
+
+Currently, all files in the nix store are world-readable, which means
+that NixOS configurations that need passwords or other credentials need
+to point to paths outside of the store. It would be awesome if we could
+come up with a principled way to fix this limitation. Some discussion of
+the issue can be found at <https://github.com/NixOS/nix/issues/8>.
+
+Contact: Shea Levy (shea@shealevy.com, shlevy on IRC)
+
+### Low-level improvements to nix performance
+
+There may be some low-hanging fruit for improving performance of
+evaluation of nix expressions or nix builds. Some ideas that might be
+worth exploring:
+
+-   Using lazy cons/nil lists instead of vectors for the list data type
+    (and updating general list functions in the nixpkgs lib accordingly)
+-   Replacing .drv files, a potential IO bottleneck, with a purely
+    in-memory representation of derivations
+-   Fix some instances of reading entire files into memory instead of
+    streaming
+-   For the ambitious: multithreaded evaluation and/or building.
+
+Contact: Shea Levy (shea@shealevy.com, shlevy on IRC)
+
+### Multiple outputs infrastructure in nixpkgs
+
+nix has a feature known as "multiple outputs", where a single derivation
+can produce multiple outputs which can be downloaded and
+garbage-collected independently. So for example, glibc might have one
+output containing the libraries and another containing the headers, and
+most users would only need the libraries and would only need to download
+the headers when performing a build. Judicious use of this feature could
+greatly reduce the size of closures of various packages/the system
+configuration. Coming up with a good general way for "normal-case"
+packages in nixpkgs to take advantage of this would be a great benefit.
+
+Contact: Shea Levy (shea@shealevy.com, shlevy on IRC)
 
