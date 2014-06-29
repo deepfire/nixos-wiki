@@ -1,3 +1,20 @@
+How to write a patch ?
+----------------------
+
+quick & dirty: copy paste existing code and make it fit your needs.
+
+Additionally you should read various docs:
+
+(TODO complete this list and put in proper urls to the final document
+rather than the xml sources)
+
+Source:
+
+-   NIXPKGS\_REPO/maintainers/\*
+-   NIXPKGS\_REPO/doc/\*
+
+Eg doc/coding-conventions.xml
+
 I have a patch
 --------------
 
