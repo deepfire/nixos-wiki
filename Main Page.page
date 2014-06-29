@@ -74,6 +74,7 @@ Using NixOS
 
 -   [Real World NixOS Dotfiles](//Real World NixOS Dotfiles) - (Learn by
     seeing different configurations.)
+-   [NixOS Filesystem Notes](//NixOS Filesystem Notes)
 -   [Module Syntax](//NixOS:Modules)
 -   [Extending NixOS](//NixOS:extend NixOS)
 
