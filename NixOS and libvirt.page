@@ -1,5 +1,5 @@
-Enable libvirtd
----------------
+[[edit](/w/index.php?title=NixOS_and_libvirt&action=edit&section=1 "Edit section: Enable libvirtd")] Enable libvirtd
+--------------------------------------------------------------------------------------------------------------------
 
 -   Edit your /etc/nixos/configuration.nix and add :
 
@@ -10,8 +10,8 @@ Enable libvirtd
 To use tools such as virt-manager or virsh in a standard user mode, your
 user must be in the group libvirtd.
 
-Nixos as libvirt linux container guest:
----------------------------------------
+[[edit](/w/index.php?title=NixOS_and_libvirt&action=edit&section=2 "Edit section: Nixos as libvirt linux container guest:")] Nixos as libvirt linux container guest:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 For testing proposes it's advised to use systemd.containers instead.
 Take a look at
