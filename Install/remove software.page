@@ -94,6 +94,10 @@ control system then you can use:
 
 to update any installed packages with updated nix expressions.
 
+Or you can use :
+
+     nixos-rebuild switch --upgrade
+
 how to roll back software
 -------------------------
 
