@@ -1,5 +1,5 @@
-Overview
-========
+[[edit](/w/index.php?title=Multiplatform_NixOS&action=edit&section=1 "Edit section: Overview")] Overview
+========================================================================================================
 
 The current supported platforms are:
 
@@ -8,11 +8,11 @@ The current supported platforms are:
 -   Fuloong Mini-PC (mips64, with mips n32 binaries)
 -   [Raspberry Pi](//Raspberry Pi)
 
-Fuloong Mini-PC
-===============
+[[edit](/w/index.php?title=Multiplatform_NixOS&action=edit&section=2 "Edit section: Fuloong Mini-PC")] Fuloong Mini-PC
+======================================================================================================================
 
-Installation
-------------
+[[edit](/w/index.php?title=Multiplatform_NixOS&action=edit&section=3 "Edit section: Installation")] Installation
+----------------------------------------------------------------------------------------------------------------
 
 I will describe the procedure to install NixOS through the network,
 although a bootable USB could work.
@@ -103,8 +103,8 @@ You may want to use this channel:
 
     nix-pull http://vicerveza.homeunix.net/~viric/tmp/nix/fuloongchannel/MANIFEST
 
-Configuration details
----------------------
+[[edit](/w/index.php?title=Multiplatform_NixOS&action=edit&section=4 "Edit section: Configuration details")] Configuration details
+----------------------------------------------------------------------------------------------------------------------------------
 
 In your `configuration.nix`, you have to pay attention to these basics
 to get a bootable system.
@@ -166,30 +166,30 @@ in configuration.nix:
        '';
      };
 
-MANIFEST
---------
+[[edit](/w/index.php?title=Multiplatform_NixOS&action=edit&section=5 "Edit section: MANIFEST")] MANIFEST
+--------------------------------------------------------------------------------------------------------
 
 In order to install programs, you can get some precompiled binaries
 using this MANIFEST:
 
     nix-pull http://vicerveza.homeunix.net/~viric/tmp/nix/fuloongchannel/MANIFEST
 
-Support
--------
+[[edit](/w/index.php?title=Multiplatform_NixOS&action=edit&section=6 "Edit section: Support")] Support
+------------------------------------------------------------------------------------------------------
 
 Feel free to ask in the mailing list nix-dev@cs.uu.nl or in
 irc.freenode.net\#nixos
 
-Sheevaplug
-==========
+[[edit](/w/index.php?title=Multiplatform_NixOS&action=edit&section=7 "Edit section: Sheevaplug")] Sheevaplug
+============================================================================================================
 
 You can install a NixOS with a proceeding similar to that described for
 the Fuloong. You can use this system tarball to start (it includes a
 README on how to use it):
 magnet:?xt=urn:btih:30e46b10fec185927ae2525b2f5bc0363c53beaa&dn=nixos-system-armv5tel-linux-8881d1a920aa-70dc369314.tar.xz&xl=154984440
 
-Sheevaplug example configuration
---------------------------------
+[[edit](/w/index.php?title=Multiplatform_NixOS&action=edit&section=8 "Edit section: Sheevaplug example configuration")] Sheevaplug example configuration
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 
      boot = {
        initrd = {
