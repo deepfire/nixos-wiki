@@ -11,52 +11,52 @@ If you are stumped by an error message, add it here.
   Solution
   Related Links
   -------------- -------------- -------------- -------------- --------------
-  `` error: cann `/nix/store/*- `Option 'X' de `` error: gett
-  ot auto-call a libtool-2.4.2/ fined without  ing attributes
-   function that bin/libtool: 1 option declara  of path `X': 
-   has an argume 581: /nix/stor tion.`         No such file o
-  nt without a d e/*-libtool-2. Using          r directory ``
-  efault value ( 4.2/bin/libtoo `nixos-rebuild Using
-  `stdenv') ``   l: preserve_ar `.             `nixos-rebuild
-  Trying to      gs+= --tag CC: An option was  `.
-  build an        not found`    used in        Couldn't
-  individual     Building a     `configuration convert
-  package with:  package which  .nix`          between
-  `nix-build --d depends on     which wasn't   `types.path`
-  ry-run ./defau libtool.       found in the   and
-  lt.nix`        The `--tag CC` NixOS modules. `types.string`
-  A Nix function argument is    Check syntax   .
-  was called     used when      and validity   Use the
-  without a      libtool is     of all options `toString` or
-  required       called,        in             `builtins.toPa
-  argument.      but...somethin `configuration th`
-  Use `--arg` or g.             .nix`.\        functions or
-  `--argstr` to  Ensure Bash is  If developing change an
-  specify        the shell      a module,      option's type.
-  arguments.     used. Consider ensure it is   [Nix Manual:
-  [Nix Manual:   using          added to the   Built-in
-  Common         `sudo dpkg-rec `module-list.n Functions](htt
-  Options](http: onfigure dash` ix`            p://nixos.org/
-  //nixos.org/ni to fix         file.          nix/manual/#ss
-  x/manual/#sec- `/bin/sh`,     [NixOS         ec-builtins)\
-  common-options which          Modules](//Nix  [NixOS
-  )\             "libtool"      OS:Modules)    Manual: Option
-   [Explanation  references.                   Declarations](
-  in email       Nix is heavily                http://nixos.o
-  thread](http:/ dependent on                  rg/nixos/manua
-  /lists.science Bash.                         l/#idp772352)
-  .uu.nl/piperma [NAS-Central:                 
-  il/nix-dev/200 Compiling for                 
-  9-July/002671. Dummies](http:                
-  html)          //forum.nas-ce                
-                 ntral.org/view                
-                 topic.php?f=24                
-                 9&t=7955#p3638                
-                 5):                           
-                 See the line                  
-                 before "not                   
-                 found", which                 
-                 uses /bin/sh.                 
+  `` error: cann `/nix/store/*- `Option 'X' de `` error: gett `` error: open
+  ot auto-call a libtool-2.4.2/ fined without  ing attributes ing lock file 
+   function that bin/libtool: 1 option declara  of path `X':  `/nix/var/nix/
+   has an argume 581: /nix/stor tion.`         No such file o profiles/my-pr
+  nt without a d e/*-libtool-2. Using          r directory `` ofile.lock': P
+  efault value ( 4.2/bin/libtoo `nixos-rebuild Using          ermission deni
+  `stdenv') ``   l: preserve_ar `.             `nixos-rebuild ed ``
+  Trying to      gs+= --tag CC: An option was  `.             Using
+  build an        not found`    used in        Couldn't       `nix-env --uni
+  individual     Building a     `configuration convert        nstall`
+  package with:  package which  .nix`          between        (meaning?)
+  `nix-build --d depends on     which wasn't   `types.path`   (suggested
+  ry-run ./defau libtool.       found in the   and            solution?)
+  lt.nix`        The `--tag CC` NixOS modules. `types.string` (related
+  A Nix function argument is    Check syntax   .              links?)
+  was called     used when      and validity   Use the        
+  without a      libtool is     of all options `toString` or  
+  required       called,        in             `builtins.toPa 
+  argument.      but...somethin `configuration th`            
+  Use `--arg` or g.             .nix`.\        functions or   
+  `--argstr` to  Ensure Bash is  If developing change an      
+  specify        the shell      a module,      option's type. 
+  arguments.     used. Consider ensure it is   [Nix Manual:   
+  [Nix Manual:   using          added to the   Built-in       
+  Common         `sudo dpkg-rec `module-list.n Functions](htt 
+  Options](http: onfigure dash` ix`            p://nixos.org/ 
+  //nixos.org/ni to fix         file.          nix/manual/#ss 
+  x/manual/#sec- `/bin/sh`,     [NixOS         ec-builtins)\  
+  common-options which          Modules](//Nix  [NixOS        
+  )\             "libtool"      OS:Modules)    Manual: Option 
+   [Explanation  references.                   Declarations]( 
+  in email       Nix is heavily                http://nixos.o 
+  thread](http:/ dependent on                  rg/nixos/manua 
+  /lists.science Bash.                         l/#idp772352)  
+  .uu.nl/piperma [NAS-Central:                                
+  il/nix-dev/200 Compiling for                                
+  9-July/002671. Dummies](http:                               
+  html)          //forum.nas-ce                               
+                 ntral.org/view                               
+                 topic.php?f=24                               
+                 9&t=7955#p3638                               
+                 5):                                          
+                 See the line                                 
+                 before "not                                  
+                 found", which                                
+                 uses /bin/sh.                                
   --------------------------------------------------------------------------
 
 
