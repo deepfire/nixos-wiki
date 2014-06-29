@@ -1,5 +1,8 @@
-HAL reverse dependencies
-------------------------
+This page contains information about various deprecated packages and
+their reverse-dependencies.
+
+HAL
+---
 
 Package
 
@@ -61,8 +64,8 @@ No meta.maintainer
 
 Hotplug, needs both HAL and pmount
 
-Policykit (not polkit!) reverse dependencies
---------------------------------------------
+Policykit (not polkit!)
+-----------------------
 
   --------------------------------------------------------------------------
   Package
@@ -72,6 +75,25 @@ Policykit (not polkit!) reverse dependencies
   HAL
   No meta.maintainer
   Remove (see above)
+  --------------------------------------------------------------------------
+
+Esound
+------
+
+Esound is deprecated upstream (GNOME) in favour of pulseaudio.
+
+  --------------------------------------------------------------------------
+  Package
+  Maintainer
+  Plan
+  ------------------------ ------------------------ ------------------------
+  Xmms                     cinelerra                zapping
+  No meta.maintainers      Marc Weber               No meta.maintainers; all
+  Remove, there are GTK2   Upgrade to               commits made by Eelco
+  forks                    CinerellaCV-2.2 or       Dolstra
+                           CinerellaHV-4.3, check   Remove?
+                           if esound is still       
+                           required                 
   --------------------------------------------------------------------------
 
 
