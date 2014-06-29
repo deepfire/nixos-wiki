@@ -1,3 +1,6 @@
+[[edit](/w/index.php?title=HOWTO:idutils&action=edit&section=1 "Edit section: Idutils")] Idutils
+================================================================================================
+
     # create database:
     mkid
 
@@ -21,3 +24,11 @@ grep.
 If you want to search for "foo bar" you can still use a pipe:
 
     lid -R grep -r 'foo' | grep 'foo bar'
+
+[[edit](/w/index.php?title=HOWTO:idutils&action=edit&section=2 "Edit section: Git grep")] Git grep
+==================================================================================================
+
+If you are working with nixos tree, cloned from Git repository, you may
+find git grep useful.
+
+    git grep foo
