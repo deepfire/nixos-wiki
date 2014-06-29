@@ -21,6 +21,9 @@ HOWTOs
 
 -   [Install NixOS on VirtualBox](//InstallingOnVirtualBox)
 
+-   [How to remote control a vm within a build
+    job](//Remote controlling a vm)
+
 Development
 -----------
 
