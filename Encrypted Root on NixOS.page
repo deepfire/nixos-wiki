@@ -10,19 +10,21 @@ regarding this setup, how to partition disks and such refer to
 [[1]](http://wiki.archlinux.org/index.php/System_Encryption_with_LUKS_for_dm-crypt)
 or other detailed guide.
 
-Hello people using luksRoot... I changed that a bit on nixos, I hope
-that for the better. I used it to get a ciphered swap that works for
-hibernation.
+Updating from how it was previously
+-----------------------------------
+
+Luks got changed lately (see mailinglist from 3.3.2012 titled "[Nix-dev]
+luks changes")
 
      If you had:
      boot.initrd.luksRoot = "/dev/sda2";
      
      Then now you have to write:
      boot.initrd.luks.enable = true;
-     boot.initrd.luks.devices = [ { name = "luksroot"; device = "/dev/sda2"; } ]
+     boot.initrd.luks.devices = [ { name = "luksroot"; device = "/dev/sda2"; } ];
 
-Config
-------
+the configuration of /etc/nixos/configuration.nix
+-------------------------------------------------
 
 In this example we assume that:
 
@@ -30,24 +32,29 @@ In this example we assume that:
 -   your **luks-encrypted partition** is **/dev/sda2** that contains the
     LVM volume group "vg".
 
-This is what needs to be put into /etc/nixos/configuration.nix:
-
 ### Make sure initrd finds and mounts the root partition
 
-      boot.initrd.luksRoot = "/dev/sda2";
+      boot.initrd.luks.enable = true;
+      boot.initrd.luks.devices = [ { name = "luksroot"; device = "/dev/sda2"; } ];
 
-If you need to decrypt additional devices, you can do it like this:
+Additionally you can encrypt your /home partition or any other partition
+with a different luks container, then use:
 
       boot.initrd.postDeviceCommands = "cryptsetup luksOpen /dev/sda3 lukshome";
 
-Note: NixOS currently does support additional devices but only in
-combination with using "boot.initrd.luksRoot". That means if you only
-want to have an encrypted /home you still have to assign a
-boot.initrd.luksRoot="foobar" which preferably should not exist at all.
-This also means that you will get an error every boot as this device
-does not exist for obvious reasons.
+**Note: don't forget the kernel modules listed below**
 
-### Extra modules you might need
+### no encrypted root filesystem, no encrypted swap but only encrypted /home
+
+If you **only want to have an encrypted home directory**, you need to
+set:
+
+      boot.initrd.luks.enable = true;
+      boot.initrd.postDeviceCommands = "cryptsetup luksOpen /dev/sda3 lukshome";
+
+**Note: don't forget the kernel modules listed below**
+
+### Extra kernel modules you might need
 
 Depending on the encryption algorithm you have chosen for your Luks
 volume, you will probably need to ensure kernel has the necessary crypto
@@ -105,6 +112,5 @@ Within the rescue system:
       # vgscan
       # vgchange -ay
 
-Now your logical volumes should be available. XXX: written from memory,
-please correct or remove this sentence.
+Now your logical volumes should be available.
 
