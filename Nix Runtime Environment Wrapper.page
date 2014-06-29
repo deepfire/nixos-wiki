@@ -1,21 +1,19 @@
 Some programs need information which is only available at runtime, such
 as dynamically linked libraries, files, or environment variable values.
-How are these libraries found? This problem is solved differently by
-different software projects. Because Nix is a non-standard system, When
-an application is packaged to run in a Nix system, it may not be able to
-find some things at runtime.
+How are these libraries found? Well, the solution depends on the host
+system. Because Nix is a non-standard system, when an application runs
+in a Nix system, it may not be able to find some things at runtime.
 
-Because most programs packaged by Nix require a slightly modified build
-process, Nix packages include attributes which explicitly ask for
-build-time customizations. Unlike build-time customizations, modifying
-an application's runtime environment is relatively uncommon. As a
-result, a Nix package does not explicitly prompt a package maintainer to
-describe them. Lacking native support of runtime modifications in a Nix
-package, the Nix community uses a shell script named `makeWrapper` to
-solve this problem. Documentation for this package follows.
+While Nix provides a well-defined build-time environment, an
+application's runtime environment is a relatively unconsidered problem.
+As a result, a Nix package does not explicitly prompt a package creator
+to describe a program's expected runtime environment. Lacking native
+support of runtime modifications in a Nix package, the Nix community
+created a shell script named `makeWrapper` to solve this problem.
+Documentation for this package follows.
 
-MakeWrapper Package
--------------------
+[[edit](/w/index.php?title=Nix_Runtime_Environment_Wrapper&action=edit&section=1 "Edit section: MakeWrapper Package")] MakeWrapper Package
+------------------------------------------------------------------------------------------------------------------------------------------
 
 The [`makeWrapper`
 package](https://github.com/NixOS/nixpkgs/blob/41840af6894bf718a1038ba1045adef26a687919/pkgs/build-support/setup-hooks/make-wrapper.sh)
@@ -30,8 +28,8 @@ To use the `makeWrapper` function in a package, first include the
 the "postInstall" phase. For documentation on these functions and
 examples, see below.
 
-Shell Functions
----------------
+[[edit](/w/index.php?title=Nix_Runtime_Environment_Wrapper&action=edit&section=2 "Edit section: Shell Functions")] Shell Functions
+----------------------------------------------------------------------------------------------------------------------------------
 
 **`wrapProgram(String programPath, List<String> environmentExpressions)`**
 
@@ -66,7 +64,7 @@ Append the specified suffix to each of the specified values.
 
 Remove all files from the specified file paths which do not exist.
 
-### Environment Expression Operators and Arguments:
+### [[edit](/w/index.php?title=Nix_Runtime_Environment_Wrapper&action=edit&section=3 "Edit section: Environment Expression Operators and Arguments:")] Environment Expression Operators and Arguments:
 
 Each environment expression consists of an operator and one, two, or
 three arguments, depending on the operator.
@@ -115,8 +113,8 @@ Use the specified flags when executing the original program.
 All remaining arguments are considered flags to use when executing the
 original program.
 
-Examples
---------
+[[edit](/w/index.php?title=Nix_Runtime_Environment_Wrapper&action=edit&section=4 "Edit section: Examples")] Examples
+--------------------------------------------------------------------------------------------------------------------
 
 The [KMPlayer
 package](https://github.com/NixOS/nixpkgs/blob/f305fe1c02b223463af9263a9800fc6b606527db/pkgs/applications/video/kmplayer/default.nix)
