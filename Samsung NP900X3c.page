@@ -83,9 +83,13 @@ There are some. See
 I had to disable SSD boot completely in order to boot from USB. Just
 changing boot priority didn't help.
 
+Fix: Update BIOS up to recent version
+
 ### Battery
 
 Battery charging/discharging indicator doesn't work good.
+
+Fix: Update BIOS up to recent version
 
 ### Lid
 
@@ -103,4 +107,15 @@ Acpi thinks lid is always open
 
 Related discussion on
 [jablonskis.org](http://jablonskis.org/2012/linux-and-samsung-series-laptop-9-fn-keys/)
+
+### System hangups
+
+I've expected runtime system freezes. Currently the only way I know to
+bypass it - disable i915 video driver and switch to vesa.
+
+      boot.blacklistedKernelModules = [ "i915" ];
+      services.xserver = { videoDrivers = [ "vesa" ]; };
+
+Something similar is described in [this mail
+thread](http://comments.gmane.org/gmane.linux.kernel/1425376)
 
