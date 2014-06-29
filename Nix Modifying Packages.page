@@ -1,0 +1,61 @@
+Sometimes we must modify an existing Nix expression to install the
+software we need. For example, suppose a Nix expression exists for "Ruby
+3.0.0p0", but we need the "Ruby 3.0.0p360" revision. How can we get this
+newer revision of Ruby?
+
+We have a few options to get a one-off Nix package when using Nix
+expressions.
+
+-   Fork the NixPkgs project and modify the package's Nix expression in
+    your fork, then, optionally, push this modification back to the
+    project.
+-   Create a Nix expression which modifies existing Nix packages.
+
+Fork and Modify NixPkgs
+-----------------------
+
+If we want to modify an existing package and we think the existing
+package should no longer be used, we can modify the package and push
+this update to the central NixPkgs repository. For a detailed
+walk-through, see the [Contributing to
+NixPkgs](//Contributing to nixpkgs) Wiki page, but for now, let's look
+at the overview.
+
+### Fork NixPkgs
+
+Log into your GitHub account, or create one, then click the "Fork"
+button on the central [GitHub
+repository](https://github.com/NixOS/nixpkgs%7CNixPkgs).
+
+Clone your fork of the project to your computer to modify it and test
+your changes.
+
+       $ git clone https://github.com/your_username/nixpkgs.git ~/my-fork
+
+### Using NixPkgs Fork
+
+We can use Nix commands, such as the `nix-env -i` command, with either
+the default NixPkgs installation or our fork of NixPkgs.
+
+Our NixPkgs fork is not in Nix's search path, which means Nix commands,
+like the `nix-env` command, will still use the existing NixPkgs
+installation. To tell Nix to use our fork of the NixPkgs repository, we
+add its path to the `NIX_PATH` environment variable like
+"my-nixpkgs=path/to/fork/nixpkgs", then use "`<my-nixpkgs>`" in Nix
+commands.
+
+       ### Install from default NixPkgs:
+       $ nix-env -i firefox
+       
+       ### Install from our NixPkgs fork: (yet to be tested by author)
+       $ export NIX_PATH=my-nixpkgs=~/my-fork/nixpkgs:NIX_PATH
+       $ nix-env -i <my-nixpkgs/default.nix> firefox
+       $ nix-env -i <my-nixpkgs> firefox
+
+Modify Existing Packages
+------------------------
+
+By default, the file at `~/.nixpkgs/config.nix` is used, but this can be
+overridden by specifying a file's path in the `NIXPKGS_CONFIG`
+environment variable.
+
