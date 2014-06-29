@@ -1,0 +1,8 @@
+I wanted to use my digital TV tuner in form of a USB stick. Some of the
+steps I had to go through:
+
+### Find the hardware
+
+    $ lsusb
+
+    Bus 002 Device 003: ID 2040:7060 Hauppauge Nova-T Stick 2
