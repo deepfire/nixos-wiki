@@ -1,7 +1,6 @@
 This pages describes how to install NixOS in a VirtualBox guest.
 
--   Download a NixOS ISO from <http://nixos.org> (32-bit Intel/AMD
-    i686-linux)
+-   Download a NixOS ISO from <http://nixos.org>
 -   Add a New Machine in VirtualBox with OS Type "Linux / Other Linux"
 -   Base Memory Size: 768 MB
 -   New Hard Disk of 8 GB
