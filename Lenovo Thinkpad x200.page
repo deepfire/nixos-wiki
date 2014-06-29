@@ -33,7 +33,10 @@ This notice will be removed as soon as it is.
 Then add tp\_smapi to boot.kernelModules in
 /etc/nixos/configuration.nix.
 
-    boot.kernelModules = [ ... "tp_smapi" ];
+    boot.kernelModules = [ "tp_smapi" ];
+
+See the following link[[1]](http://www.thinkwiki.org/wiki/Tp_smapi) for
+more information about tp\_smapi module.
 
 Tips & Tricks
 -------------
