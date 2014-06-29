@@ -1,70 +1,87 @@
-<http://functional-orbitz.blogspot.com/2013/05/setting-up-nixops-on-mac-os-x-with.html>
+This page was copy-pasted from [this blog
+post](http://functional-orbitz.blogspot.com/2013/05/setting-up-nixops-on-mac-os-x-with.html),
+but needs lots of clean-up. Please add clarification and organization if
+you can.
 
-5\. Setup Distributed Builds
+When deploying an instance, NixOps needs to build the environment before
+transferring it to target host. This requires an existing NixOS instance
+on which to build. If you use a NixOS machine for development, the same
+machine is normally used for this purpose. If you use a different
+machine, you must setup a Linux OS somewhere else, then configure NixOps
+to use it when deploying. One way to accomplish this is by creating a
+NixOS instance in a VM. Eventually, NixOps may do this for you, but for
+now we must do this manually. Installing NixOS on VirtualBox is pretty
+simple, so it is the recommended solution in this case. After having a
+NixOS instance ready, we must set up remote access for NixOps to use
+when using the machine for deployments. Here is a guide for setting up
+this remote access.
 
-When deploying an instance, nixops needs to build the environment
-somewhere then it will transfer it to the instance. In order to do this,
-it needs an already existing NixOS instance to build on. If you were
-running NixOS already, this would be the machine you are deploying from.
-To accomplish this, you need a a NixOS running in a VM. Eventually
-nixops will probably accomplish this for you, but for now it needs to be
-done manually. Luckily, installing NixOS on VirtualBox is pretty
-straight forward.
+### NixOps: Deploying from a Non-Linux OS
 
-Install a NixOS on VirtualBox from the directions here. This doesn't
-need any special settings, just SSH.
+-   Install a NixOS on VirtualBox. The [Installing NixOS in a VirtualBox
+    guess](//Installing NixOS in a VirtualBox guest) wiki page is a good
+    resource. This doesn't need any special settings, just SSH.
 
-Setup a port forward so you can SSH into the machine. I'll assume this
-port forward is 3223.
+-   Setup a port forward so you can SSH into the machine. I'll assume
+    this port forward is 3223.
 
-Make a user called 'nix' on the VM. This is the user that we will SSH
-through for building. The name of the user doesn't matter, but these
-directions will assume its name is 'nix'.
+-   Make a user called 'nix' on the VM. This is the user that we will
+    SSH through for building. The name of the user doesn't matter, but
+    these directions will assume its name is 'nix'. On your development
+    machine, create two pairs of passwordless SSH keys. One pair will be
+    the login for the 'nix' user. The other will be signing keys.
+    Install the login public key on the VM.
 
-On OS X, create two pairs of passwordless SSH keys. One pair will be the
-login for the nix user. The other will be signing keys.
+-   On your development machine, run this command: \`mkdir /etc/nix/\`,
+    then copy the private signing key to \`/etc/nix/signing-key.sec\`.
+    Make sure this is owned by the user you'll be running nixops as and
+    is readable only by that user.
 
-Install the login public key.
+-   Create a public signing key from your private signing key using
+    openssl. This needs to be in whatever format openssl produces which
+    is not the same as what ssh-keygen created. This output should be in
+    \`/etc/nix/signing-key.pub\`. The owner and permissions don't matter
+    as long as the user you'll run nixops as can read it.
 
-On OS X, create /etc/nix/ (mkdir /etc/nix)
-
-Copy the private signing key to /etc/nix/signing-key.sec. Make sure this
-is owned by the user you'll be running nixops as and is readable only by
-that user.
-
-Create a public signing key from your private signing key using openssl.
-This needs to be in whatever format openssl produces which is not the
-same as what ssh-keygen created. This output should be in
-/etc/nix/signing-key.pub. The owner and permissions don't matter as long
-as the user you'll run nixops as can read it.
+<!-- -->
 
      openssl rsa -in /etc/nix/signing-key.sec -pubout > /etc/nix/signing-key.pub
 
-Copy the signing keys to the build server, putting them in the same
-location. Make sure the nix user owns the private key and is the only
-one that can read it.
+-   Copy the signing keys to the build server, putting them in the same
+    location. Make sure the nix user owns the private key and is the
+    only one that can read it.
 
-Tell nix to do distributed builds:
+-   Tell nix to do distributed builds:
+
+<!-- -->
 
      export NIX_BUILD_HOOK=$HOME/.nix-profile/libexec/nix/build-remote.pl
 
-Tell the distributed builder where to store load content:
+-   Tell the distributed builder where to store load content:
+
+<!-- -->
 
      export NIX_CURRENT_LOAD=/tmp/current-load
      mkdir /tmp/current-load
 
-Go into a directory you can create files in:
+-   Go into a directory you can create files in:
+
+<!-- -->
 
      cat <<EOF > remote-systems.conf
      nix@nix-build-server x86_64-linux /Users/`whoami`/.ssh/id_rsa 1 1
      EOF
 
-Tell the remote builder where to find machine information:
+-   Tell the remote builder where to find machine information:
+
+<!-- -->
 
      export NIX_REMOTE_SYSTEMS=$PWD/remote-systems.conf
 
-Add an entry to \~/.ssh/config the fake host 'nix-build-server' turns
-into your actual VM:
+-   Add an entry to \`\~/.ssh/config\` the fake host 'nix-build-server'
+    turns into your actual VM:
+
+<!-- -->
 
      Host nix-build-server
      HostName localhost
