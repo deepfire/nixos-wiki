@@ -4,7 +4,7 @@ starts. This tutorial will start by adding this functionality to the
 `configuration.nix` file. Then, this functionality is extracted into a
 separate file, which NixOS calls a "module".
 
-Example: Start System Service
+Example: Add a System Service
 =============================
 
 Suppose you want to start an IRC client and connect to your favorite
@@ -28,8 +28,8 @@ after we log out of our shell session.
 Implementations
 ===============
 
-Simple Implementation
----------------------
+Quick Implementation
+--------------------
 
 The simplest way to implement this is to add a simple snippet of code to
 the `/etc/nixos/configuration.nix` file:
@@ -42,7 +42,7 @@ the `/etc/nixos/configuration.nix` file:
       jobs.ircSession = {
         description = "Start the irc client of username."
         startOn = "started network-interfaces";
-        exec = /var/setuid-wrappers/sudo -u username -- ${pkgs.screen}/bin/screen -m -d -S irc ${pkgs.irssi}/bin/irssi;
+        exec = ''/var/setuid-wrappers/sudo -u username -- ${pkgs.screen}/bin/screen -m -d -S irc ${pkgs.irssi}/bin/irssi'';
       };
 
       environment.systemPackages = [ pkgs.screen ];
@@ -89,7 +89,7 @@ conditional behavior. Here's the new implementation:
         ircSession = {
           description = "Start the irc client of username."
           startOn = "started network-interfaces";
-          exec = /var/setuid-wrappers/sudo -u username -- ${pkgs.screen}/bin/screen -m -d -S irc ${pkgs.irssi}/bin/irssi;
+          exec = ''/var/setuid-wrappers/sudo -u username -- ${pkgs.screen}/bin/screen -m -d -S irc ${pkgs.irssi}/bin/irssi'';
         };
       };
 
@@ -100,29 +100,33 @@ conditional behavior. Here's the new implementation:
     }
 
 This works, but if we use too many conditionals, our code will become
-difficult to read and modify. For example, what do we do when we change
-the hostname?
+difficult to read and modify. For example, what do we do when we want to
+change the hostname?
 
 Modular Configuration
 ---------------------
 
-To avoid the complexity of the previous mixing done inside his
-`configuration.nix` file, he decides to split his configuration over
-multiple files where each concern is separated into its own file. He
-keeps the configuration.nix file as his general configuration for both
-computers and moves the rest into a file named `irc-client.nix`.
+To avoid using conditional expressions in our `configuration.nix` file,
+we can separate these properties into units and blend them together
+differently for each host. Nix allows us to do this with the `imports`
+keyword (see [NixOS Manual:
+Modularity](http://nixos.org/nixos/manual/#idp522432)) to separate each
+concern into its own file. One way to organize this is to place common
+properties in the `configuration.nix` file and move the the IRC-related
+properties into an `irc-client.nix` file.
 
-The contents of his `configuration.nix` file becomes:
+If we move the IRC stuff into the `irc-client.nix` file, we change the
+`configuration.nix` file like this:
 
     {
-      require = [
+      imports = [
         ./irc-client.nix
       ];
 
       # ... usual configuration ...
     }
 
-and the contents of the `irc-client.nix` file becomes:
+The `irc-client.nix` file will, of course, look like this:
 
     {config, pkgs, ...}:
 
@@ -137,12 +141,12 @@ and the contents of the `irc-client.nix` file becomes:
       security.sudo.enable = true;
     }
 
-This way, the complexity of changing the condition is reduced. In
-addition, he can discover consistency issues within the `irc-client.nix`
-file which makes this file maintainable.
+If we organize our configuration like this, sharing it across machines
+is easier. In addition, our IRC client can be consistent across machines
+that choose to use it.
 
 Sharing Configuration
-=====================
+---------------------
 
 The user has discussed his configuration on irc and some other person
 wants to benefits form his modification. Thus he has to remove all parts
