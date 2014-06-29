@@ -1,0 +1,57 @@
+The Nix package manager installs, updates, and removes Nix-packaged apps
+and libraries. Nix is unique among package managers in that software
+installed by Nix is read-only, which ensures that a Nix package's
+dependencies will not change when upgrading or removing other packages.
+As a result of this design, the Nix package manager has several
+desirable side-effects, including atomic package upgrades/rollbacks and
+complete dependency graphs for every package. The [About
+Nix](http://nixos.org/nix/manual/#idp24368448) chapter of the Nix manual
+has more information.
+
+This page was created by the Nix community to help others understand and
+use the Nix package manager. Please help by adding pages for missing
+topics and updating information in existing pages.
+
+How to Use
+==========
+
+-   [Installing/Viewing Packages](//Install/remove software)
+-   [Searching for a package](//Howto find a package in NixOS)
+-   [How to keep multiple packages up to date at
+    once](//Howto keep multiple packages up to date at once) - (e.g.
+    pkgs.misc.collection)
+-   [How to unpack a package's
+    sourcecode](//How to unpack a package's sourcecode)
+-   [How to add large files to the
+    nix-store](//How to add large files to the nix-store)
+-   [Modifying Software](//Modify software)
+
+Platforms
+=========
+
+-   [CrossCompiling](//CrossCompiling)
+-   [Nix on Windows](//Nix on Windows)
+
+Languages
+=========
+
+-   [How to develop on NixOS](//Howto develop software on nixos) - (NOT
+    how to develop \*for\* NixOS or Nix)
+-   [Haskell](//Haskell)
+-   [Python](//Python)
+-   [Ruby](//Ruby)
+-   [Android](//Android)
+-   [Plone development](//Plone development)
+
+Issues
+======
+
+-   [Terms and Definitions in Nix
+    Project](//Terms and Definitions in Nix Project)
+-   [Error Messages](//Error Messages)
+-   [Solve GConf errors when running GNOME applications (such as
+    GnuCash)](//Solve GConf errors when running GNOME applications)
+-   [FAQ](//FAQ)
+-   [NixOS Project on GitHub](https://github.com/NixOS): Search for or
+    create issues
+
