@@ -79,9 +79,9 @@ New buildInputs
 
 In the attribute set mkDerivation expect as parameters, the usual
 buildInputs got a new meaning when building hostDrv derivations, and a
-new buildNativeInputs got introduced, making a total of:
+new nativeBuildInputs got introduced, making a total of:
 
--   buildNativeInputs: derivations built for the build system (native
+-   nativeBuildInputs: derivations built for the build system (native
     builds), needed for the actual cross-build.
 -   buildInputs: derivations built for the host-system (to be run in the
     target), needed for the actual cross-build.
@@ -89,19 +89,19 @@ new buildNativeInputs got introduced, making a total of:
     current built, this derivation built for the host-system will be an
     input for any derivation requiring the actual host derivation being
     built.
--   propagatedBuildNativeInputs: in addition to being a dependency of
+-   propagatedNativeBuildInputs: in addition to being a dependency of
     the current built, this derivation built for the build-system
     (native build) will be an input for any derivation requiring the
     actual host derivation being built.
 
 For usual derivations in the native build, buildInputs and
-buildNativeInputs get merged and built for the native system, and
-analogous for propagatedBuildInputs and propagatedBuildNativeInputs.
+nativeBuildInputs get merged and built for the native system, and
+analogous for propagatedBuildInputs and propagatedNativeBuildInputs.
 
 **TODO**: These variables should be renamed just before merging the
 branch into the mainline. Attributes ending with "\*buildInputs" should
 be renamed to "\*hostInputs" and attributes ending with
-"\*buildNativeInputs" should be renamed to "\*buildInputs". This
+"\*nativeBuildInputs" should be renamed to "\*buildInputs". This
 renaming is pending until the final merge to avoid the complexity of
 merging mainline updates into the branch.
 
@@ -193,7 +193,7 @@ builder PATH the final gcc-cross-wrapper, and the gcc-cross-wrapper
 setup-hook sets up the configure scripts properly for a cross-build.
 
 It needs some help from the user, defining for each stdenv.mkDerivation
-the attributes buildInputs and buildNativeInputs properly, as explained
+the attributes buildInputs and nativeBuildInputs properly, as explained
 above. That will determine what is cross built, what not, what gets into
 CFLAGS/LDFLAGS for the cross compiler, and what for the native compiler.
 
