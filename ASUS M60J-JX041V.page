@@ -39,10 +39,11 @@ Tests
     -   Maximal Resolution: 1366x768
     -   glxgears: 1859.8 FPS @ 1366x768
 
-Final Laptop Configuration
-==========================
+Configuration
+=============
 
-not yet.
+You can see the configuration file specific to this computer at
+[`configurations/computer/asus/m60j/jx041v.nix`](https://svn.nixos.org/repos/nix/configurations/trunk/computer/asus/m60j/jx041v.nix%7C)
 
 Problems & Solutions
 ====================
