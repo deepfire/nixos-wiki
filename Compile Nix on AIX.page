@@ -55,6 +55,7 @@ latest version of core utils so I finally picked version 8.4. But you
 may have better luck to compile latest or you may just install ready to
 go rpm
 
+    export PATH=/opt/freeware/bin:$PATH
     rm -rf /opt/qib/app/coreutils-8.4
     ./configure --prefix=/opt/qib/app/coreutils-8.4
     gmake
