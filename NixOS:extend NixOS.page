@@ -218,60 +218,74 @@ module.
      }
 
 Multiple Daemons
-================
+----------------
 
-The user now hosts multiple person on his server, and they want to have
-the same irc client running in background. One easy possibility would be
-to replace the user name by a list of user names, but this would not add
-more value in this tutorial. Another solution is to extend jobs with the
-irc client options. This will extend the options available inside
-`jobs.<name>`.
+Now, suppose your server has multiple people as users, and each wants
+the same IRC client running in background. One possibility is to replace
+the user name with a list of user names. A better solution, for this
+tutorial, is to **extend** the `jobs` option. This will allow us to add
+"IRC jobs", each of which is for a specific user. This should create
+configuration options like this:
 
-    {config, pkgs, ...}:
+    jobs.ircClient.user   = "User1";
+    jobs.ircClient.enable = true;
 
-    let
-      anyIrcClient = with pkgs.lib;
-        fold (j: v: v || j.ircClient.enable) (attrValues config.jobs);
-    in
+The following code will add more options inside the `jobs.<name>`
+option. This code is quite advanced, using many concepts from functional
+language paradigm.
 
-    with pkgs.lib;
-
-    {
-      options = {
-        jobs.options = {config, ...}: let
-          cfg = config.ircClient;
-        in {
-          options = {
-            ircClient.enable = mkOption {
-              default = false;
-              type = with types; bool;
-              description = ''
-                Start an irc client for a user.
-              '';
-            };
-
-            ircClient.user = mkOption {
-              default = "username";
-              type = with types; uniq string;
-              description = ''
-                Name of the user.
-              '';
-            };
-          };
-
-          config = mkIf cfg.enable {
-            description = "Start the irc client of ${cfg.user}."
-            startOn = "started network-interfaces";
-            exec = ''/var/setuid-wrappers/sudo -u ${cfg.user} -- ${pkgs.screen}/bin/screen -m -d -S irc ${pkgs.irssi}/bin/irssi'';
-          };
-        };
-      };
-
-      config = mkIf anyIrcClient {
-        environment.systemPackages = [ pkgs.screen ];
-        security.sudo.enable = true;
-      };
-    }
+     {config, pkgs, ...}:
+     
+     let
+       # Function which indicates whether the configuration defines any ircClient.
+       anyIrcClient = with pkgs.lib;
+         fold (j: v: v || j.ircClient.enable) (attrValues config.jobs);
+     in
+     
+     with pkgs.lib;
+     
+     {
+       options = {
+         # Add options to "jobs".
+         jobs.options = {config, ...}: let
+           cfg = config.ircClient;
+         in {
+           # The attributes in this set will merge into "jobs" set.
+           options = {
+             
+             # Add "ircClient.enable" to "jobs" set of options.
+             ircClient.enable = mkOption {
+               default = false;
+               type = with types; bool;
+               description = ''
+                 Start an irc client for a user.
+               '';
+             };
+     
+             # Add "ircClient.user" to "jobs" set of options.
+             ircClient.user = mkOption {
+               default = "username";
+               type = with types; uniq string;
+               description = ''
+                 Name of the user.
+               '';
+             };
+           };
+     
+           config = mkIf cfg.enable {
+             description = "Start the irc client of ${cfg.user}."
+             startOn = "started network-interfaces";
+             exec = ''/var/setuid-wrappers/sudo -u ${cfg.user} -- ${pkgs.screen}/bin/screen -m -d -S irc ${pkgs.irssi}/bin/irssi'';
+           };
+         };
+       };
+     
+       # Execute this code if this configuration defined any ircClient.
+       config = mkIf anyIrcClient {
+         environment.systemPackages = [ pkgs.screen ];
+         security.sudo.enable = true;
+       };
+     }
 
 Test your modules in a Virtual Machine with build-vm
 ====================================================
