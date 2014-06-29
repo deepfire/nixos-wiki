@@ -4,6 +4,8 @@ limited usefulness.
 Network
 =======
 
+Server: server, 192.168.0.1 Client: client,
+
 Server configuration.
 
      server $ cat ~/.pulse/default.pa
@@ -38,7 +40,7 @@ Client configuration.
      load-module module-native-protocol-unix
      load-module module-native-protocol-tcp
 
-     client $ echo default-server 192.168.0.183 >> ~/.pulse/client.conf
+     client $ echo default-server 192.168.0.1 >> ~/.pulse/client.conf
 
      client $ scp server:.pulse-cookie .pulse-cookie
      client $ pulseaudio
