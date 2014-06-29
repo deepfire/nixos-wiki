@@ -32,7 +32,7 @@ This is what needs to be put into /etc/nixos/configuration.nix:
         lvm vgchange -ay
       '';
 
-### Make sure grub finds the kernels
+### Make sure grub finds unencrypted kernels
 
       boot.loader.grub.copyKernels = true;
 
