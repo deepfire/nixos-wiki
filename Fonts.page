@@ -1,4 +1,4 @@
-### Installation
+### [[edit](/w/index.php?title=Fonts&action=edit&section=1 "Edit section: Installation")] Installation
 
 1.  Pick a few fonts (`nix-env -qaP|grep -i font` or look at
     <https://github.com/NixOS/nixpkgs/tree/master/pkgs/data/fonts> )
@@ -18,7 +18,7 @@
        };
      }
 
-### Debugging
+### [[edit](/w/index.php?title=Fonts&action=edit&section=2 "Edit section: Debugging")] Debugging
 
 The global Fontconfig configuration is kept in `/etc/fonts/fonts.conf`.
 This file is generated automatically, and should not be edited directly,
@@ -28,3 +28,10 @@ enable `enableFontDir`, all fonts are available under
 
 You can also use `xlsfonts` to see which fonts are available to X.
 
+[[edit](/w/index.php?title=Fonts&action=edit&section=3 "Edit section: Rebuild Font Cache")] Rebuild Font Cache
+--------------------------------------------------------------------------------------------------------------
+
+If some fonts appear distorted, e.g. characters are invisible, or not
+anti-aliased you may need to rebuild the font cache:
+
+    $ fc-cache --really-force --verbose
