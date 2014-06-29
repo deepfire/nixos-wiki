@@ -3,9 +3,9 @@ Install NixOS on Rackspace Cloud Servers
 
 This are just a few notes I took down while performing a NixOS
 installation on a freshly created Rackspace Cloud Server running Gentoo.
-
-Disclaimer
-----------
+This is not the ideal way to install NixOS, but it is a way to get
+things done since bootstrapping NixOS from within a Linux distribution
+is currently broken.
 
 Prerequisites
 -------------
