@@ -1,0 +1,41 @@
+Vimprobable
+===========
+
+Vimprobable is a web browser that behaves like the [Vimperator
+plugin](http://www.vimperator.org/) available for Mozilla Firefox. It is
+based on the WebKit engine (using GTK bindings). The goal of Vimprobable
+is to build a completely keyboard-driven, efficient and pleasurable
+browsing-experience. Its featureset might be considered "minimalistic",
+but not as minimalistic as being completely featureless.
+
+Vimprobable is available in two versions, that is vimprobable and
+vimprobable2. In case you don't already know what you want you should
+follow the instructions below and install vimprobable2. For more
+information see the [official
+homepage](http://sourceforge.net/apps/trac/vimprobable/).
+
+**Note:** This article covers the installation of vimprobable2
+exclusively. However, unless otherwise noted you can apply the same
+procedure to installing vimprobable by just replacing the occurences of
+vimprobable2 accordingly.
+
+Installation
+------------
+
+    nix-env -i vimprobable2
+
+Usage
+-----
+
+### tabbed
+
+Neither vimprobable nor vimprobable2 offer tab support. However, you can
+use [tabbed](http://tools.suckless.org/tabbed) for that. Install tabbed
+and create an alias to vimprobable2 as following.
+
+    nix-env -i 
+
+    alias vimprobable2="vimprobable2 -e \"\$(tabbed -d)\""
+
+You can switch tabs by pressing \`gt' or \`gT'.
+
