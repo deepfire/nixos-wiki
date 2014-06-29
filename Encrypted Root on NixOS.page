@@ -32,10 +32,9 @@ This is what needs to be put into /etc/nixos/configuration.nix:
         lvm vgchange -ay
       '';
 
-Question: do we also need to set boot.loader.grub.copyKernels = true;?
+### Make sure grub finds the kernels
 
-Question: do we also need to set boot.extraModulePackages = [
-pkgs.cryptsetup ];?
+      boot.loader.grub.copyKernels = true;
 
 ### Extra modules you might need
 
