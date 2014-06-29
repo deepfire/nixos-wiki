@@ -48,12 +48,8 @@ Notes:
 -   If it doesn't see wireless networks, open preferences and check
     wireless interface name. Enter correct value (like "wlan0") if
     needed.
--   Currently, wicd better works with dhclient. Better enable it in
-    preferences
-
-<!-- -->
-
-     instead of dhcpcd.
+-   Currently, wicd works better with dhclient backend rather than with
+    dhcpcd. dhclient can be enabled in the 'External programs' tab.
 
 That's it. Now use gui to find your network, enter passwords and connect
 to it.
