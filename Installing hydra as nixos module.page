@@ -1,0 +1,44 @@
+In order to install the Hydra buildserver in Nixos as a nixos module
+alongside for instance sshd and other system daemons you need to:
+
+-   Get the hydra sources from github: <https://github.com/NixOS/hydra>
+    . Put them in a suitable place, for example '/root/hydra'.
+-   Include the hydra module in the nixos system composition
+    /etc/nixos/configuration.nix
+
+/etc/nixos/configuration.nix
+----------------------------
+
+{ config, pkgs, ... }:
+
+{
+
+require = [
+
+/root/hydra/hydra-module.nix
+
+];
+
+\# Hydra:
+
+services.hydra = {
+
+enable = true;
+
+hydra = (import /root/hydra/release.nix {}).build.x86\_64-linux; \# or
+i686-linux if appropriate.
+
+hydraURL = "<http://212.71.253.80:3000>";
+
+notificationSender = "hydra@my-buildserver.net";
+
+};
+
+\# Hydra requires postgresql to run
+
+services.postgresql.enable = true;
+
+services.postgresql.package = pkgs.postgresql;
+
+}
+
