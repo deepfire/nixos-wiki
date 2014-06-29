@@ -9,8 +9,8 @@ wish to test automatically, you can use the NixOS VM testing framework.
 Note that NixOS is *not* required on the host system - any Linux system
 (such as Ubuntu) with KVM support should work.
 
-Running a test
---------------
+[[edit](/w/index.php?title=NixOS_VM_tests&action=edit&section=1 "Edit section: Running a test")] Running a test
+---------------------------------------------------------------------------------------------------------------
 
 If you don't have NixOS as your host OS, you should first [install the
 Nix package manager](http://nixos.org/nix/download.html) and obtain the
@@ -24,7 +24,7 @@ To speed up builds by using pre-built binaries, you should do:
 
 Now you can run a test as follows:
 
-    $ nix-build nixos/tests/ -A nfs.test
+    $ nix-build nixpkgs/tests/nfs.nix
 
 This performs an automated test of the NFS client and server
 functionality in the Linux kernel, including file locking semantics
@@ -39,7 +39,7 @@ so on). In particular, a pretty-printed log of the test is written to
 
     $ firefox ./result/log.html
 
-### Interactive testing
+### [[edit](/w/index.php?title=NixOS_VM_tests&action=edit&section=2 "Edit section: Interactive testing")] Interactive testing
 
 [![Interactive
 VMs](/w/images/thumb/e/e9/Nixos-interactive-vms.png/180px-Nixos-interactive-vms.png)](//File:Nixos-interactive-vms.png)
@@ -83,8 +83,8 @@ back into the test driver command line upon its completion. This allows
 you to inspect the state of the VMs after the test (e.g. to debug the
 test script).
 
-Writing tests
--------------
+[[edit](/w/index.php?title=NixOS_VM_tests&action=edit&section=3 "Edit section: Writing tests")] Writing tests
+-------------------------------------------------------------------------------------------------------------
 
 TODO
 
