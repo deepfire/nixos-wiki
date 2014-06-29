@@ -47,7 +47,7 @@ remove the entry in environment.systemPackages = [ ];
 ### normal user installation
 
     nix-env -e links2 # removes the installation form the per-user account but leaves it in the store.
-    nix-env --delete-generations old # After this it is not possible to is the --rollback switch to reverse the uninstall.
+    nix-env --delete-generations old # After this it is not possible to use the --rollback switch to reverse the uninstall.
     nix-collect-garbage # Now that links to the installations form the current and former generations have been deleted the garbage collector can delete them from the store.
 
 additionally it makes sense to run:
