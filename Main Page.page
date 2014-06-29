@@ -8,6 +8,8 @@ HOWTOs
 
 -   [How to set up MediaWiki in NixOS](//Setting up MediaWiki)
 
+-   [How to write a NixOS module](//NixOS:Modules)
+
 Development
 -----------
 
