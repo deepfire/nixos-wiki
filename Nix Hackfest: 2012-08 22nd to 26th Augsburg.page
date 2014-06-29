@@ -12,13 +12,11 @@ out.
 :   Improve python support, PTS
  garbas 
 :   Improve python support
- qknight
-:   +python, +git
  yournick 
 :   your topic(s) of interest
 
-Improve python support
-----------------------
+[[edit](/w/index.php?title=Nix_Hackfest:_2012-08_22nd_to_26th_Augsburg&action=edit&section=1 "Edit section: Improve python support")] Improve python support
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Work on solving some of the following issues
 
@@ -35,8 +33,8 @@ Work on solving some of the following issues
 -   <https://github.com/chaoflow/nixpkgs> (python branch)
 -   <https://gitorious.org/nixpkgs-python-overlay>
 
-Package Tracking System
------------------------
+[[edit](/w/index.php?title=Nix_Hackfest:_2012-08_22nd_to_26th_Augsburg&action=edit&section=2 "Edit section: Package Tracking System")] Package Tracking System
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 If I understand correctly the idea is to create some utilities to test
 the kwalitee of Nix package expressions, perhaps tied in with additional
