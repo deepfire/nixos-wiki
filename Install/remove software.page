@@ -94,9 +94,25 @@ to update any installed packages with updated nix expressions.
 how to roll back software
 -------------------------
 
+To undo the last
+
+     nixos-rebuild switch
+
+you can
+
+     nixos-rebuild --rollback
+
+Note this does not revert configuration files like
+/etc/nixos/configuration.nix to their previous states so if you do not
+change them by hand the nest nixos-rebuild --switch will install them
+again.
+
+For per-user packages.
+
      nix-env --rollback
 
-Also see nix-env --list-generations.
+Also see nix-env --list-generations, which will list out the number of
+previous generations and the time stamp of their creation.
 
 nix-channels
 ------------
