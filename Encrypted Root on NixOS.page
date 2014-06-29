@@ -32,6 +32,8 @@ This is what needs to be put into /etc/nixos/configuration.nix:
         lvm vgchange -ay
       '';
 
+Question: do we also need to set boot.loader.grub.copyKernels = true;?
+
 ### Extra modules you might need
 
 Depending on the encryption algorithm you have chosen for your Luks
