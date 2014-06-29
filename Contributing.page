@@ -25,6 +25,27 @@ happens. The best thing to do is to fix your patch. Try to check first
 if it will cause a lot of rebuilds and add a note to your pull request
 if you have already tested everything.
 
+### what meta attributes are important
+
+-   \*meta.platforms\* will tell hydra to build binaries for specific
+    platform targets. By default hydra doesn't build anything.
+
+-   \*meta.maintainers\* will tell hydra what emails to send when a
+    build fails
+
+-   \*meta.license\* will tell hydra how to handle package based on
+    license type
+
+Example:
+
+    meta = with stdenv.lib; {
+      description = "Munin is a networked resource monitoring tool that can help analyze resource trends";
+      homepage = http://munin-monitoring.org/;
+      license = licenses.gpl2;
+      maintainers = [ maintainers.iElectric ];
+      platforms = platforms.linux;
+    };
+
 How to verify that you didn't break a dependency or the evaluation by accident ?
 --------------------------------------------------------------------------------
 
