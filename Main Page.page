@@ -13,6 +13,21 @@ HOWTOs
 Development
 -----------
 
+Welcome to the Nix wiki!
+
+HOWTOs
+------
+
+-   [How to contribute to the nix wiki](//Contributing to the Nix wiki)
+    (keep top)
+
+-   [How to set up MediaWiki in NixOS](//Setting up MediaWiki)
+
+-   [How to write a NixOS module](//NixOS:Modules)
+
+Development
+-----------
+
 ### stdenv-updates branch
 
 -   [CrossCompiling](//CrossCompiling)
