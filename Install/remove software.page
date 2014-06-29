@@ -59,6 +59,3 @@ to your /etc/nixos/configuration.nix
 or check for more recent entries by:
 
      nix-env -qa '*' | grep linux-2.6.
-
-then use this version information
-
