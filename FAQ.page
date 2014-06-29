@@ -17,3 +17,12 @@ kicking in
 Subtituted files are padded by zero bytes, which makes them unusable.
 Upgrading Btrfs to 2.6.37+ kernel resolves the issue.
 
+-   Using nix to install new software requires to download the source
+    from upstream and sometimes that source has moved and therefore the
+    download won't work but after some google search with:
+    'myfile-0.1.2.tar.gz "index of"' one usually can find the file an
+    download it manually.
+
+to move that file into the sore one can use: nix-prefetch-url
+file://myfile-0.1.2.tar.gz if the file is in the current directory
+
