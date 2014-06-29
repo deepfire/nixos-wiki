@@ -1,17 +1,25 @@
--   create disk images (partitions) for NixOS to be installed on to via
+-   1\) create disk images (partitions) for NixOS to be installed on to via
     the linode dashboard
-    [[1]](https://www.linode.com/members/linode/dashboard.cfm) "Create a
-    new Disk Image" option.
--   create a configuration profile starting their Finnix rescue system
+    [[1]](https://www.linode.com/members/linode/dashboard.cfm) "Create a new
+    Disk Image" option.
+
+-   2\) create a configuration profile starting their Finnix rescue system
     [[2]](http://www.linode.com/wiki/index.php/Finnix_LiveCD_Recovery_Distribution#Setting_it_up)
-    -   select Finnix Kernel, iso image as /dev/xvda, Finnix initrd,
-        your disk image as /dev/xvdb
--   create a configuration profile assigning your disk image to
-    /dev/xvda (/sbin/init will be started), choose a kernel.
--   boot into Finnix, connect to linshell, mount xvdb
--   install following the archive installation README. Force creating a
-    init script and get networking options from the configuration
-    profile editing page:
+    -   2.1) select Finnix Kernel, iso image as /dev/xvda, Finnix
+        initrd, your disk image as /dev/xvdb
+
+-   3\) create a configuration profile assigning your disk image to /dev/xvda
+    (/sbin/init will be started), choose a kernel.
+
+-   4\) boot into Finnix, connect to linshell, mount xvdb
+
+-   5\) The x86\_64 bootstrap archive can be downloaded from\
+
+    <http://hydra.nixos.org/job/nixos/trunk/minimal_install_archive/latest-for/x86_64-linux/download/1/nixos-install-archive.tar.bz2>
+
+-   6\) install following the archive installation README,
+    "README-BOOTSTRAP-NIXOS". Force creating a init script and get
+    networking options from the configuration profile editing page:
 
 <!-- -->
 
@@ -24,9 +32,5 @@
        defaultGateway = "YYY.YYY.YYY.YYY";
      };
 
--   Reboot. Have fun.
-
-The bootstrap archive can be downloaded from
-<http://hydra.nixos.org/job/nixos/trunk/minimal_install_archive/latest-for/x86_64-linux/download/1/nixos-install-archive.tar.bz2>
-(x86\_64).
+-   7\) Reboot. Have fun.
 
