@@ -1,29 +1,29 @@
 Python is a nice programming language. How can we use Python and Nix
 together? Here are a few ways:
 
-1\) Install Python, the interpreter, from NixPkgs.
+1.  Install Python, the interpreter, from NixPkgs.
+2.  Install Python packages, such as pyramid, from NixPkgs.
+3.  Use multiple versions of Python on one machine.
 
-2\) Install Python packages, such as pyramid, from NixPkgs.
+Also, see the [Python Discussion](//Python discussion) page.
 
-3\) Use multiple versions of Python on one machine.
-
-Installing Python interpreters
-==============================
+[[edit](/w/index.php?title=Python&action=edit&section=1 "Edit section: Installing Python interpreters")] Installing Python interpreters
+=======================================================================================================================================
 
      nix-env -i python (installs default python, currently 2.7)
      nix-env -i python3
      nix-env -i python3-3.2.5
      nix-env -i pypy
 
-Installing Packages
-===================
+[[edit](/w/index.php?title=Python&action=edit&section=2 "Edit section: Installing Packages")] Installing Packages
+=================================================================================================================
 
      nix-env -i python2.7-pyramid (installs pyramid with python 2.7 interpreter)
      nix-env -i python3.3-pyramid (installs pyramid with python 3.3 interpreter)
      nix-env -i pypy2.1-requests (installs requests with pypy 2.1 interpreter)
 
-Rationale of not polluting global site packages
-===============================================
+[[edit](/w/index.php?title=Python&action=edit&section=3 "Edit section: Rationale of not polluting global site packages")] Rationale of not polluting global site packages
+=========================================================================================================================================================================
 
 Nix does not pollute the \*site-packages\* directory when you install
 new python software. It only provides the binary executables to run.
@@ -34,11 +34,11 @@ packages inside
 
 or create another nix profile, see the next section.
 
-Packaging python software
-=========================
+[[edit](/w/index.php?title=Python&action=edit&section=4 "Edit section: Packaging python software")] Packaging python software
+=============================================================================================================================
 
-tests
------
+[[edit](/w/index.php?title=Python&action=edit&section=5 "Edit section: tests")] tests
+-------------------------------------------------------------------------------------
 
 It is required to run tests, as it gives instant feedback if whole
 environment works:
@@ -56,22 +56,22 @@ or
       # tests failing, see http://...
       doCheck = false;
 
-with setup.py
--------------
+[[edit](/w/index.php?title=Python&action=edit&section=6 "Edit section: with setup.py")] with setup.py
+-----------------------------------------------------------------------------------------------------
 
 Nix provides function \*\*buildPythonPackage\*\* with tons of examples
 in \*\*nixpkgs/pkgs/top-level/python-packages.nix\*\*.
 
-package providing python modules
---------------------------------
+[[edit](/w/index.php?title=Python&action=edit&section=7 "Edit section: package providing python modules")] package providing python modules
+-------------------------------------------------------------------------------------------------------------------------------------------
 
 If you want to provide python modules for reverse dependencies to pick
 it up, add postInstall phase:
 
       cp -v src/swig/python/mlt.py $out/lib/${python.libPrefix}/site-packages/
 
-Creating environments with packages
-===================================
+[[edit](/w/index.php?title=Python&action=edit&section=8 "Edit section: Creating environments with packages")] Creating environments with packages
+=================================================================================================================================================
 
 For a general overview of creating development environments, see
 [Howto\_develop\_software\_on\_nixos](//Howto develop software on nixos).
