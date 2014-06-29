@@ -15,8 +15,9 @@ Hardware
 Configuration
 =============
 
-Full configurations is in my
-[nixrc](https://github.com/grwlf/nixdev/blob/master/cfg/samsung-np900x3c-v2.nix).
+Full configurations is in my [nixpkgs
+branch](https://raw.github.com/grwlf/nixpkgs/local/machines/samsung-np900x3c-v2.nix).
+Note, it requires several local packages.
 
 ### Touchpad
 
