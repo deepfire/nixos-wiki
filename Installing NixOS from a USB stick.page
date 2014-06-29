@@ -1,5 +1,5 @@
-Using Unetbootin
-----------------
+[[edit](/w/index.php?title=Installing_NixOS_from_a_USB_stick&action=edit&section=1 "Edit section: Using Unetbootin")] Using Unetbootin
+--------------------------------------------------------------------------------------------------------------------------------------
 
 It is possible to install NixOS from a USB stick, rather than from a CD.
 This is useful if you want to install NixOS on a machine that doesn't
@@ -24,19 +24,10 @@ waste a blank CD. Here is how to do it:
 5.  You should now be able to boot NixOS from the USB stick, and perform
     the installation as usual.
 
-Using syslinux
---------------
+[[edit](/w/index.php?title=Installing_NixOS_from_a_USB_stick&action=edit&section=2 "Edit section: Using syslinux")] Using syslinux
+----------------------------------------------------------------------------------------------------------------------------------
 
-### Create a hybrid iso and use dd
-
-It should be possible to convert the iso to a hybrid iso and then use dd
-to copy the image onto a usb stick:
-
-<http://www.syslinux.org/wiki/index.php/Doc/isolinux#HYBRID_CD-ROM.2FHARD_DISK_MODE>
-
-Please update this entry if you have tested this and found it to work.
-
-### Using syslinux.cfg
+### [[edit](/w/index.php?title=Installing_NixOS_from_a_USB_stick&action=edit&section=3 "Edit section: Using syslinux.cfg")] Using syslinux.cfg
 
 If you have trouble booting from a USB drive or sdcard with Unetbootin
 (I just got a blinking cursor instead of a bootloader on an Asus eee
@@ -72,8 +63,8 @@ or device path)
       KERNEL /boot/bzImage
       APPEND init=/nix/store/r7xhnzymi1ll49r4glf1dwr5y1alx0bl-system/init root=UUID=509C-63E2 ro initrd=/boot/initrd splash=verbose
 
-Alternate method
-----------------
+[[edit](/w/index.php?title=Installing_NixOS_from_a_USB_stick&action=edit&section=4 "Edit section: Alternate method")] Alternate method
+--------------------------------------------------------------------------------------------------------------------------------------
 
 1.  Download the ISO image from <http://nixos.org/nixos/download.html>.
 2.  Prepare your USB stick. If it isn't yet partitioned to your liking,
