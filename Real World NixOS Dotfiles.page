@@ -7,7 +7,6 @@ Dotfiles
 
 ### Sergey
 
-Wicd, Almost all X11 libs, No window manager, xmonad is to be installed
-using nix-env -i xmonad.
+Lenovo s10-3t netbook, Wicd, XMonad, few custom packages.
 [[2]](https://github.com/ierton/nixosfiles-ierton/tree/master/nixos)
 
