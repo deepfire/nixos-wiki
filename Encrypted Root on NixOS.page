@@ -97,12 +97,10 @@ dmcrypt device opened.
 ### no encrypted root filesystem, no encrypted swap but only encrypted /home
 
 If you **only want to have an encrypted home directory**, you need to
-set:
+set something like this, for example:
 
       boot.initrd.luks.enable = true;
-      boot.initrd.postDeviceCommands = "cryptsetup luksOpen /dev/sda3 lukshome";
-
-**Note: don't forget the kernel modules listed below**
+      boot.initrd.device = [ { device = "/dev/sda3"; name = "lukshome"; };
 
 ### Extra kernel modules you might need
 
