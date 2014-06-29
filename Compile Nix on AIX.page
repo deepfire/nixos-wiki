@@ -101,6 +101,6 @@ correct user-envs.sh and remote-store.sh failure
      --with-system=powerpc-aix \
      --with-coreutils-bin=/opt/qib/app/coreutils-8.4/bin \
     && perl -p -i -e 's/#define HAVE_POSIX_FALLOCATE 1/\/\*#define HAVE_POSIX_FALLOCATE 1\*\//g' config.h \
-    && gmake \
-    && gmake check \
-    && gmake install
+    && make \
+    && make check \
+    && make install
