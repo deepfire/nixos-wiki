@@ -2,22 +2,10 @@ if you have a working nix os system but you feel the urge to use
 virtualbox to have several guests like .... other nix os machines for
 example, then this will help you.
 
-what needs to be in /etc/nixos/configuration.nix
+What needs to be in /etc/nixos/configuration.nix
 ------------------------------------------------
 
-     boot.kernelModules = [
-       "cpufreq_powersave" "fuse"
-       # at least add this 3 modules there and don't delete the other entries!
-       "vboxdrv" "vboxnetadp" "vboxnetflt"
-     ];
-
-     boot.extraModulePackages = [
-       pkgs.linuxPackages.virtualbox
-     ];
-
-     environment.systemPackages = [
-       pkgs.linuxPackages.virtualbox
-     ];
+    require = [ <nixos/modules/programs/virtualbox.nix> ];
 
 after editing your configuration.nix do
 ---------------------------------------
