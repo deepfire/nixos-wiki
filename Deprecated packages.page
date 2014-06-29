@@ -105,7 +105,7 @@ Qt3/KDE3
 
 Qt 3.x and KDE 3.x are not supported by Nokia and KDE team. Most
 packages migrated to KDE 4.x. If we cannot avoid using qt-3.x and/or
-kde-3.x, look at trinity project.
+kde-3.x, look at [trinity project](http://www.trinitydesktop.org/).
 
 The list of Qt3 reverse dependencies
 
