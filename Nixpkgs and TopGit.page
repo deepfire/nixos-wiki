@@ -102,8 +102,7 @@ Now our topic tree looks like this: ` `
        `- tg/adding-new-bulider
         ` - tg/adding-package-depending-on-new-builder
 
-Of course you'd use tgs summary --graphviz feature to create this graph:
-` `
+You'd use tgs summary --graphviz feature to create this graph: ` `
 
      dotty <( tg summary --graphviz)
 
