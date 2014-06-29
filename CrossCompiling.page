@@ -10,17 +10,36 @@ cross-build:
 This *crossSystem* should be an attribute set with enough information
 about the target. Therefore it cannot be passed through "--argstr
 crossSystem mytarget", and it should be written in a nix file apart. For
-example, we can use this 'arm.nix':
+example, we can use this 'comtrend.nix':
 
     import ./default.nix   # The root nixpkgs default.nix
     {
-        crossSystem = {
-            config = "armv5tel-unknown-linux-gnueabi";  
-            bigEndian = false;
-            arch = "arm";
-            float = "soft";
+      crossSystem = {
+        config = "mips-unknown-linux";
+        bigEndian = true;
+        arch = "mips";
+        float = "soft";
+        withTLS = true;
+        libc = "uclibc";
+        platform = {
+          name = "comtrend";
+          kernelMajor = "2.6";
+          kernelBaseConfig = "bcm63xx_defconfig";
+          kernelHeadersBaseConfig = "bcm63xx_defconfig";
+          uboot = null;
+          kernelArch = "mips";
+          kernelAutoModules = false;
+          kernelTarget = "vmlinux.bin";
         };
+        openssl.system = "linux-generic32";
+        gcc = {
+          arch = "mips32";
+        };
+      };
     }
+
+For more options available, you can check the relevant nix expressions
+involved in the build you want.
 
 New stdenv.mkDerivation
 =======================
@@ -101,8 +120,9 @@ GNU Configurations
 ------------------
 
 -   armv5tel-unknown-linux-gnueabi
--   armv5tel-unknown-linux-uclibceabi (still not working well due to a
-    util-linux-ng bug)
+-   armv5tel-unknown-linux-uclibceabi
+-   armv5tel-unknown-linux-uclibceabi
+-   mips-unknown-linux
 
 Actual problems to be solved
 ============================
@@ -114,10 +134,6 @@ Actual problems to be solved
     -   For uclibc, gcc 4.3.4 needed a patch on libmudflap running a the
         host CPP instead of the target, on "configure". [SOLVED in
         nixpkgs]
-    -   util-linux-ng fails detecting the lack of TLS support in uclibc.
-        [Bug
-        reported](http://marc.info/?l=util-linux-ng&m=125983442420782&w=2)
-        [Fixed in their git master]
 
 History
 =======
