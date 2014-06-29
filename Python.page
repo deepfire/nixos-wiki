@@ -2,9 +2,8 @@ Installing Python interpreters
 ==============================
 
      nix-env -i python (installs default python, currently 2.7)
-     nix-env -i python33
-     nix-env -i python32
-     nix-env -i python26
+     nix-env -i python3
+     nix-env -i python3-3.2.5
      nix-env -i pypy
 
 Installing Packages
