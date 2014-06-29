@@ -9,8 +9,8 @@ What problem do we want to solve?
 -   I can't successfully build a package. How can I step through the
     build phases Nix uses?
 
-Build Without Installing
-------------------------
+[[edit](/w/index.php?title=Debugging_a_Nix_Package&action=edit&section=1 "Edit section: Build Without Installing")] Build Without Installing
+--------------------------------------------------------------------------------------------------------------------------------------------
 
 Suppose we want to use some software from NixPkgs, but we don't want to
 install it. How can we install the software without installing it into
@@ -66,8 +66,8 @@ use the built software.
 This is a very useful tool, indeed. We can explore the package's
 resulting build without installing the software into our environment.
 
-Step Through Build Phases
--------------------------
+[[edit](/w/index.php?title=Debugging_a_Nix_Package&action=edit&section=2 "Edit section: Step Through Build Phases")] Step Through Build Phases
+----------------------------------------------------------------------------------------------------------------------------------------------
 
 Suppose the resulting build of a Nix package does not work as we expect,
 and we suspect a file is installed to the wrong path. How can we inspect
@@ -82,10 +82,14 @@ phases are `unpackPhase`, `configurePhase`, `buildPhase`, and
 `installPhase`. First, let's enter the build environment using
 `nix-shell`.
 
-You can call nix-shell exactly like you do `nix-build`, but you can also
-add the `--pure` flag to make your environment as pure as possible and
-`-p less vim ...` to add (in this case) less and vim to the build
-environment.
+In almost the same way we use the `nix-build` command, we can use the
+`nix-shell` command, which puts us in the same environment the Nix
+builder uses. By default, however, it doesn't clear the environment,
+which means our user environment's environment variables and packages
+are available. To more perfectly simulate the Nix builder's environment
+by clearing the environment, we can use the `--pure` flag. To add custom
+packages to this pure environment, we can use the `-p` flag and specify
+package names, like this: `-p less vim ...`.
 
        nix-shell /my-sources/pkgs/top-level/all-packages.nix -A hello
        these derivations will be built:
@@ -110,8 +114,8 @@ command to inspect the build directory. Note that to write to the Nix
 store, which occurs in the `installPhase`, the running user must be root
 or the owner of the `/nix/store` directory.
 
-Related Reading
----------------
+[[edit](/w/index.php?title=Debugging_a_Nix_Package&action=edit&section=3 "Edit section: Related Reading")] Related Reading
+--------------------------------------------------------------------------------------------------------------------------
 
 -   [Create and Debug Nix Packages](//Create and debug nix packages)
 
