@@ -62,7 +62,10 @@ Running NixOS instances
         $ ssh -i id_rsa-gsg-keypair root@ec2-79-125-97-89.eu-west-1.compute.amazonaws.com
 
     To get the IP address / hostname of the instance, use
-    `ec2-describe-instances`.
+    `ec2-describe-instances`. You may need to allow traffic to port 22
+    (ssh):
+
+        $ ec2-authorize default -p 22 -s 0.0.0.0/0
 
 4.  To start working with the instance, you may want to do the following
     to obtain the Nixpkgs and NixOS sources:
