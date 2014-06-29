@@ -1,5 +1,7 @@
-mplayer
+MPlayer
 =======
+
+Enable Pulse Audio support in MPlayer.
 
      $ cat <<EOF
      let
@@ -8,4 +10,12 @@ mplayer
        pkgs.MPlayer.override { pulseSupport = true; }
      EOF > ~/.nix-defexpr/mplayer.nix
 
+Install MPlayer with Pulse Audio support.
+
      $ nix-env -iA mplayer
+
+Make Pulse Audio the default output device.
+
+     $ cat <<EOF
+     ao=pulse
+     >> ~/.mplayer/config
