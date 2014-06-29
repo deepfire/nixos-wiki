@@ -1,6 +1,6 @@
 You can configure chromium with NixOS the standard way:
 
-\`\`\` nixpkgs.config = {
+ nixpkgs.config = {
 
        firefox = {
         jre = false;
@@ -15,8 +15,6 @@ You can configure chromium with NixOS the standard way:
        };
 
      };
-
-\`\`\`
 
 and then install \*chromiumWrapper\*
 
