@@ -1,0 +1,14 @@
+PulseAudio
+==========
+
+mplayer
+-------
+
+     $ cat <<EOF
+     let
+       pkgs = <nixpkgs> {};
+     in
+       pkgs.MPlayer.override { pulseaudioSupport = true; }
+     EOF > ~/.nix-defexpr/mplayer.nix
+
+     $ nix-env -iA mplayer
