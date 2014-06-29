@@ -5,8 +5,11 @@ the [Nix Users
 Manual](http://hydra.nixos.org/job/nix/trunk/tarball/latest/download-by-type/doc/manual%7C).
 Please refer to *5.2. The Nix expression language* for further details.
 
-The Nix Expression Language
----------------------------
+-   UPDATE\*: There is the package \`nix-repl\` now for interactively
+    working with Nix.
+
+[[edit](/w/index.php?title=Tips_for_learning_the_Nix_expression_language_and_debugging_nix_expressions&action=edit&section=1 "Edit section: The Nix Expression Language")] The Nix Expression Language
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 There isn't an interactive interpreter for Nix, but \`nix-instantiate
 --eval-only -\` can be used to quickly test an expression:
