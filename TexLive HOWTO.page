@@ -15,7 +15,7 @@ There is a "core" texlive component and some additional components:
 
 <!-- -->
 
-     nicpkgs_sys.texLive
+     nixpkgs_sys.texLive
 
 is the "core" component, other components add fonts/styles and extra
 functionalities.
