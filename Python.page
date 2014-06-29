@@ -1,0 +1,52 @@
+Installing Python interpreters
+==============================
+
+nix-env -i python (installs default python, currently 2.7) nix-env -i
+python33 nix-env -i python32 nix-env -i python26 nix-env -i pypy
+
+Installing Packages
+===================
+
+nix-env -i pythonPackages.pyramid (installs pyramid with default python,
+currently 2.7) nix-env -i python33Packages.pyramid (install pyramid with
+python 3.3)
+
+Rationale of not polluting global site packages
+===============================================
+
+Nix does not pollute \*site-packages\* directory when you install new
+python software. It only provides the binary executables to run.
+
+If you want to use collection of python packages available to python
+interpreter, you either use \*virtualenv\* to install the packages
+inside or create another nix profile, see the next section.
+
+Creating environments with packages
+===================================
+
+For general idea of creating environments, see
+[Howto\_develop\_software\_on\_nixos](//Howto develop software on nixos).
+
+Start by defining your environment:
+
+    $ cat configuration.nix
+    {
+      packageOverrides = pkgs: with pkgs; {
+        myPythonEnv = pkgs.myEnvFun {
+            name = "mypython";
+            buildInputs = [
+              python33
+              python33Packages.pyramid
+              python33Packages.jinja2
+            ];
+        };
+      };
+    }
+
+Install it:
+
+     $ nix-env -i env-mypython
+
+Load environment and start hacking:
+
+     # load-env-mypython
