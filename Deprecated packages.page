@@ -65,7 +65,7 @@ Esound is deprecated upstream (GNOME) in favour of pulseaudio.
   Marc Weber               No meta.maintainers; all
   Upgrade to               commits made by Eelco
   CinerellaCV-2.2 or       Dolstra
-  CinerellaHV-4.3, check   Remove?
+  CinerellaHV-4.3, check   Remove 16 March 2012
   if esound is still       
   required                 
   --------------------------------------------------------------------------
