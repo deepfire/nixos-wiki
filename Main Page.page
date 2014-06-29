@@ -1,10 +1,16 @@
 Welcome to the Nix wiki!
 
-Wiki meta
----------
+Getting started
+---------------
 
--   [How to contribute to the nix wiki](//Contributing to the Nix wiki)
-    (keep top)
+-   [Nix
+    manual](http://hydra.nixos.org/job/nix/trunk/tarball/latest/download-by-type/doc/manual)
+-   [NixOS
+    manual](http://hydra.nixos.org/job/nix/trunk/tarball/latest/download-by-type/doc/manual)
+-   [Nixpkgs
+    manual](http://hydra.nixos.org/job/nixpkgs/trunk/tarball/latest/download-by-type/doc/manual)
+-   [Nixops
+    manual](http://hydra.nixos.org/job/nixops/master/tarball/latest/download-by-type/doc/manual)
 
 TROUBLE?
 --------
