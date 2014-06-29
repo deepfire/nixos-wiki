@@ -53,9 +53,9 @@ How to keep build-time dependencies around / be able to rebuild while being offl
 configuration.nix:
 
      nix.extraOptions = ''
-       gc-keep-outputs = true
-       gc-keep-derivations = true
-     '';
+        gc-keep-outputs = true
+        gc-keep-derivations = true
+      '';
 
 Check 'man configuration.nix' for these options. Rebuild for these
 options to take effect:
