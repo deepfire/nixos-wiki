@@ -41,6 +41,13 @@ example, we can use this 'comtrend.nix':
 For more options available, you can check the relevant nix expressions
 involved in the build you want.
 
+Some 'platforms' are defined in nixpkgs already (check the
+all-packages.nix and platform.nix files there). [Hydra cross-builds some
+packages](http://hydra.nixos.org/jobset/nixpkgs/cross-trunk), to test
+the cross-building expressions. And you can look at some crossSystem
+expressions in [my configurations
+directory](https://svn.nixos.org/websvn/nix/configurations/trunk/misc/viric/cross/).
+
 New stdenv.mkDerivation
 =======================
 
