@@ -11,37 +11,42 @@ mounted partition we actually want it installed on.
     3.  And of course, the swap disk this will be /dev/xvdb
 
 2.  Boot into Rescue Mode and use LISH to connect to your machine
-3.  mount /dev/xvdc /mnt
-4.  mkdir /mnt/boot
-5.  mount /dev/xvda /mnt/boot
-6.  mkdir -p /mnt/nix/store
-7.  mkdir -p /nix/store
-8.  mount --bind /mnt/nix/store /nix/store
-9.  cd /
-10. wget -O -
+3.  What will become /boot needs to be ext2, I make my main partition
+    ext4
+    1.  mkfs.ext2 /dev/xvda
+    2.  mkfs.ext4 /dev/xvdc
+
+4.  mount /dev/xvdc /mnt
+5.  mkdir /mnt/boot
+6.  mount /dev/xvda /mnt/boot
+7.  mkdir -p /mnt/nix/store
+8.  mkdir -p /nix/store
+9.  mount --bind /mnt/nix/store /nix/store
+10. cd /
+11. wget -O -
     <http://hydra.nixos.org/job/nix/trunk/binaryTarball.x86_64-linux/latest/download>
     | tar xvj
-11. /usr/bin/nix-finish-install
-12. source /etc/profile.d/nix.sh
-13. nix-channel --update
-14. nix-env -i git
-15. cd
-16. git clone <git://github.com/NixOS/nixos.git>
-17. git clone <git://github.com/NixOS/nixpkgs.git>
-18. nix-env -i vim
-19. cat \<\<EOF \> configuration.nix
+12. /usr/bin/nix-finish-install
+13. source /etc/profile.d/nix.sh
+14. nix-channel --update
+15. nix-env -i git
+16. cd
+17. git clone <git://github.com/NixOS/nixos.git>
+18. git clone <git://github.com/NixOS/nixpkgs.git>
+19. nix-env -i vim
+20. cat \<\<EOF \> configuration.nix
     {
     fileSystems."/" = {};
     boot.loader.grub.enable = false;
     }
     EOF
-20. export
+21. export
     NIX\_PATH=nixos=/root/nixos:nixpkgs=/root/nixpkgs:nixos-config=/root/configuration.nix
-21. nix-env -i -A config.system.build.nixosInstall -A
+22. nix-env -i -A config.system.build.nixosInstall -A
     config.system.build.nixosOption -A
     config.system.build.nixosHardwareScan -f "\<nixos\>"
-22. e2label /dev/xvdc nixos
-23. Edit your configuration.nix, below are the minimal number of changes
+23. e2label /dev/xvdc nixos
+24. Edit your configuration.nix, below are the minimal number of changes
     you'll have to make, you probably also want to turn sshd on, and
     perhaps create a user.
     vi /mnt/etc/nixos/configuration.nix
@@ -61,13 +66,13 @@ mounted partition we actually want it installed on.
     swapDevices =
     [ { device = "/dev/xvdb"; }
     ];
-24. nixos-install
-25. mkdir -p /mnt/boot/boot/grub
-26. Because of how Linode will try to load grub on the /boot partition,
+25. nixos-install
+26. mkdir -p /mnt/boot/boot/grub
+27. Because of how Linode will try to load grub on the /boot partition,
     we need to make this symlink so it can find it:
     ln -sv ../../grub/menu.lst /mnt/boot/boot/grub
-27. You can now reboot, and you should boot into your NixOS install
-28. nix-channel --update
+28. You can now reboot, and you should boot into your NixOS install
+29. nix-channel --update
 
 You now should have a fully functional NixOS install on Linode, enjoy!
 
