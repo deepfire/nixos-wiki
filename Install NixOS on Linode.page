@@ -33,74 +33,53 @@ sure to adapt it to your needs.
 
     e2label /dev/xvdc nixos
 
-### Mount the Partitions and bind /mnt/nix/store to /nix/store
+### Mount the Partitions
 
     mount /dev/xvdc /mnt
     mkdir /mnt/boot
     mount /dev/xvda /mnt/boot
-    mkdir -p /mnt/nix/store
-    mkdir -p /nix/store
-    mount --bind /mnt/nix/store /nix/store
 
 Install Prerequisites
 ---------------------
 
 ### Install Nix in the Rescue System
 
-    cd /
-    wget -O - http://hydra.nixos.org/job/nix/trunk/binaryTarball.x86_64-linux/latest/download | tar xvj
-    /usr/bin/nix-finish-install
-    source /etc/profile.d/nix.sh
-    nix-channel --remove nixpkgs
-    nix-channel --add http://nixos.org/channels/nixos-13.10 nixos
-    nix-channel --update
+    # bash <(curl https://nixos.org/nix/install)
+    # source /etc/profile.d/nix.sh
+    # nix-channel --remove nixpkgs
+    # nix-channel --add http://nixos.org/channels/nixos-14.04 nixos
+    # nix-channel --update
 
-This does not seem to be working any more (probably because things moved
-around in newer versions of nix). I have an awkward workaround, but it
-would be great if someone who understands this better than me could fix
-this:
+### Install vim for editing
 
-    cd /
-    wget http://hydra.nixos.org/build/10845785/download/1/nix-1.8pre3598_aa9b1cf-x86_64-linux.tar.bz2
-    tar xjvf nix-1.8pre3598_aa9b1cf-x86_64-linux.tar.bz2
-    groupadd nixbld
-    useradd bld1
-    usermod -G nixbld bld1
-    ./nix-1.8pre3598_aa9b1cf-x86_64-linux/install
-    source /root/.nix-profile/etc/profile.d/nix.sh
-    nix-channel --remove nixpkgs
-    nix-channel --add http://nixos.org/channels/nixos-14.04 nixos
-    nix-channel --update
-
-### Checkout Nixpkgs from Git
-
-    cd ~
-    nix-env -i vim
+    # nix-env -i vim
 
 ### Install *nixos-install*, *nixos-option*, and *nixos-hardware-schan*
 
-    cat <<EOF > configuration.nix
+    # cat <<EOF > configuration.nix
     { fileSystems."/" = {};
       boot.loader.grub.enable = false;
     } 
     EOF
 
-    export NIX_PATH=/root/.nix-defexpr/channels/nixos:nixos=/root/.nix-defexpr/channels/nixos/nixos
-    export NIXOS_CONFIG=/root/configuration.nix
-    nix-env -i -A config.system.build.nixos-install -A config.system.build.nixos-option -A config.system.build.nixos-generate-config -f "<nixos>"
+    # export NIX_PATH=/root/.nix-defexpr/channels/nixos:nixos=/root/.nix-defexpr/channels/nixos/nixos
+    # export NIXOS_CONFIG=/root/configuration.nix
+    # nix-env -i -A config.system.build.nixos-install -A config.system.build.nixos-option -A config.system.build.nixos-generate-config -f "<nixos>"
 
 Configure your system
 ---------------------
 
 ### Generate configuration.nix template in /mnt/etc/nixos/
 
-    nixos-generate-config --root /mnt
+    # nixos-generate-config --root /mnt
 
 Edit your */mnt/etc/nixos/configuration.nix*
 --------------------------------------------
 
 These are the minimal changes you'll have to make, you probably also
-want to turn sshd on, and perhaps create a user.
+want to turn sshd on, and perhaps create a user. That disk and swap
+settings in *hardware-configuration.nix* should be correct but you
+should check to confirm.
 
      # Use the GRUB 1 boot loader.
      boot.loader.grub = {
@@ -109,33 +88,21 @@ want to turn sshd on, and perhaps create a user.
        extraPerEntryConfig = "root (hd0)";
        device = "nodev";
      };
-     
-     fileSystems."/boot" = {
-       fsType = "ext2";
-       device = "/dev/xvda";
-     };
-     fileSystems."/" = {
-       label = "nixos";
-       fsType = "ext4";
-     };
-     
-     # List swap partitions activated at boot time.
-     swapDevices = [ { device = "/dev/xvdb"; } ];
 
 Install NixOS!
 --------------
 
-    unset NIXOS_CONFIG
-    nixos-install
+    # unset NIXOS_CONFIG
+    # nixos-install
 
 ### Fix Grub
 
 Because of how Linode will try to load grub on the /boot partition, we
 need to make this symlink so it can find it:
 
-    mkdir -p /mnt/boot/boot/grub
-    cd /mnt/boot/boot/grub
-    ln -sv ../../grub/menu.lst /mnt/boot/boot/grub
+    # mkdir -p /mnt/boot/boot/grub
+    # cd /mnt/boot/boot/grub
+    # ln -sv ../../grub/menu.lst /mnt/boot/boot/grub
 
 Reboot to NixOS
 ---------------
@@ -153,7 +120,7 @@ is creating a configuration profile in the Linode Manager:
 
 Change other configuration options to your preference.
 
-Not hit *boot* in the Linode Manager and wait for NixOS to boot. You can
+Now hit *boot* in the Linode Manager and wait for NixOS to boot. You can
 check progress in the Remote Access Console.
 
 Update Channels to finish installation
@@ -162,23 +129,4 @@ Update Channels to finish installation
     nix-channel --update
 
 You now should have a fully functional NixOS install on Linode, enjoy!
-
-Problems
---------
-
-### Installation Fails
-
-I had some problems where **nixos-rebuild** failed with strange error
-messages like:
-
-    Died at /nix/store/5hahlcqvj6zblnyiphwvy83ykawbcbp5-paths-from-graph.pl line 8.
-
-My 'solution' was checking out some older git revision of nixos and
-nixpkgs.
-
-Concretely, the changesets below (referencing the status of about
-September 01. 2013) have been reported to work.
-
-nixos: e0dcfac2e2bf0ffb07f445654ff8bb1387ed96e9 nixpkgs:
-9dcca4e3f504f76dede1947ac2548650cfbfc9ef
 
