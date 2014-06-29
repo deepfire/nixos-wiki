@@ -1,5 +1,5 @@
-Find elisp modules in standard profiles (outdated for NixOS)
-------------------------------------------------------------
+[[edit](/w/index.php?title=Emacs_configuration&action=edit&section=1 "Edit section: Find elisp modules in standard profiles (outdated for NixOS)")] Find elisp modules in standard profiles (outdated for NixOS)
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
      (setq load-path (append (list "~/.nix-profile/share/emacs/site-lisp" "/run/current-system/sw/share/emacs/site-lisp") load-path))
 
@@ -10,8 +10,8 @@ extending the load-path.
 However, when using an emacs not from nixpkgs, you may still need a
 similar expression.
 
-Tramp
------
+[[edit](/w/index.php?title=Emacs_configuration&action=edit&section=2 "Edit section: Tramp")] Tramp
+--------------------------------------------------------------------------------------------------
 
 Tramp needs to call \`ls\` and \`id\` but it will not find them on a
 NixOS machine without additional configuration because they are not in
@@ -29,11 +29,11 @@ To login to a remote NixOS machine which uses port 1234 for ssh:
 
     C-x C-f /ssh:username@hostname#1234:/
 
-Enable Nix mode
----------------
+[[edit](/w/index.php?title=Emacs_configuration&action=edit&section=3 "Edit section: Enable Nix mode")] Enable Nix mode
+----------------------------------------------------------------------------------------------------------------------
 
 The library is in the file
-`/run/current-system/sw/share/emacs/site-list/nix-mode.el`.
+`/run/current-system/sw/share/emacs/site-lisp/nix-mode.el`.
 
 Load the library with `M-x load-library<ENTER>nix-mode<ENTER>`, and then
 enable the mode for the current buffer with `M-x nix-mode`.
