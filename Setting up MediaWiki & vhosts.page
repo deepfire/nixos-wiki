@@ -32,6 +32,55 @@ command line. For instance:
 See also:
 /etc/nixos/nixos/modules/services/web-servers/apache-httpd/mediawiki.nix
 
+### mediawiki and vhosts
+
+this example features two vhost entries:
+
+-   a normal webpage with an index.html
+-   a mediawiki presence (which is found at wiki.example.com or
+    wiki.example.com/mywiki
+
+<!-- -->
+
+      services.postgresql.enable = true;
+
+      services.httpd = {
+        enable = true;
+        logPerVirtualHost = true;
+        adminAddr="example@example.com";
+        hostName = "example.com";
+
+        virtualHosts =
+        [ 
+          {
+            hostName = "www.example.com";
+            serverAliases = ["www.example.com"];
+            documentRoot = "/www";
+          }
+         { 
+            # Note: do not forget to add a DNS entry for wiki.example.com in the DNS settings
+            hostName = "wiki.example.com";
+            extraConfig = ''
+                RedirectMatch ^/$ /mywiki
+              '';
+            extraSubservices =
+            [
+              {
+                serviceType = "mediawiki";
+                siteName = "My Wiki";
+                articleUrlPrefix = "/mywiki";
+                #logo = "http://www.example.org/wiki-logo.png"; # should be 135x135px
+                extraConfig =
+                  ''
+                    # See http://www.mediawiki.org/wiki/Manual:Configuration_settings
+                    $wgEmailConfirmToEdit = true;
+                  '';
+              }
+            ];
+          }
+        ];
+      };
+
 For virtual hosts:
 <https://svn.nixos.org/repos/nix/configurations/trunk/tud/cartman.nix>
 
