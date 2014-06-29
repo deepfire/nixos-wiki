@@ -1,9 +1,3 @@
-How to install a Nix package?
-=============================
-
-If we want to install software using Nix, we need a Nix expression for
-it.
-
 What is a Nix expression?
 -------------------------
 
@@ -33,4 +27,58 @@ people have shared their expressions by adding them to a central list,
 named NixPkgs, available on the [NixPkgs GitHub
 repository](https://github.com/NixOS/nixpkgs/). If you installed Nix,
 you can register the NixPkgs repository by using the `nix-channel`
+command.
 
+How to install a software package using Nix?
+--------------------------------------------
+
+The easiest way to get Nix expressions is to use the community's NixPkgs
+repository. After setting it up, use the `nix-env` command to evaluate
+the Nix expressions it contains.
+
+       $ nix-channel --add http://nixos.org/channels/nixpkgs-unstable
+       $ nix-channel --update
+       $ nix-env --install hello
+
+The [`nix-channel`](http://nixos.org/nix/manual/#sec-nix-channel)
+command registers URL which has a Nix expression. Then, we use
+`nix-channel --update` to download this Nix expression. Finally, we use
+the `nix-env --install` command to install the "hello" package. The
+[`nix-env`](http://nixos.org/nix/manual/#sec-nix-env) command installs
+or removes software in our environment.
+
+Besides the "hello" package, what else can we install? For more options,
+see the other attributes in the
+[`all-packages.nix`](https://github.com/NixOS/nixpkgs/blob/master/pkgs/top-level/all-packages.nix#L8107)
+file. Each of these attributes is a "Nix package". The definition of the
+package which we call the package's "Nix expression", is stored
+elsewhere, to keep the list clean.
+
+Let's install some other packages we found in the `all-packages.nix`
+file.
+
+       $ nix-env --install firefox
+       $ nix-env --install dropbox bitcoin
+       $ nix-env -i dropbox bitcoin
+
+Rather than looking at the `all-packages.nix` file to find packages, we
+can also use the `nix-env --query --available` command on the command
+line.
+
+       $ nix-env --query --available firefox
+       $ nix-env --query --available
+       $ nix-env --query --available | grep firefox
+       $ nix-env -q -a | grep firefox
+       $ nix-env -qa | grep firefox
+
+We can also see which packages we currently have installed by using the
+`nix-env --query --installed` command.
+
+       $ nix-env --query --installed
+       $ nix-env -q
+
+And of course, we can uninstall packages by using the
+`nix-env --uninstall` command.
+
+       $ nix-env --uninstall firefox
+       $ nix-env -e firefox
