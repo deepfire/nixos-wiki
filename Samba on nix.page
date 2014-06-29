@@ -6,25 +6,23 @@ this guide will help you on how to use samba on nixos.
 excerpt of /etc/nixos/configuration.nix
 ---------------------------------------
 
-     ...
-     services.samba.enable = true;
-     services.samba.securityType = "share";
-     services.samba.extraConfig = 
-       workgroup = WORKGROUP
-       server string = smbnix
-       netbios name = smbnix
-       security = share 
-       #use sendfile = yes
-       #max protocol = smb2
-     
-       [rw-files]
-         comment = Temporary rw files 
-         path = /storage
-         read only = no
-         writable = yes
-         public = yes
-     ;
-     ...
+      services.samba.enable = true;
+      services.samba.securityType = "share";
+      services.samba.extraConfig = ''
+        workgroup = WORKGROUP
+        server string = smbnix
+        netbios name = smbnix
+        security = share 
+        #use sendfile = yes
+        #max protocol = smb2
+      
+        [rw-files]
+          comment = Temporary rw files 
+          path = /storage
+          read only = no
+          writable = yes
+          public = yes
+      '';
 
 afterwards apply the changes made to configuration.nix
 ------------------------------------------------------
