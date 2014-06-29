@@ -63,7 +63,7 @@ Ok, now for the fun part. This is the procedure that should allow you to
 play:
 
 1.  Checkout <https://github.com/cpages/nixpkgs/tree/steam>
-2.  Install steam (nix-env -iA steam -f path/to/repo). Might take some
+2.  Install steam (nix-env -i steam -f path/to/repo). Might take some
     time
 3.  Launch steam: the first run will install stuff to your home, and end
     up failing with wrong interpreter bla bla bla...
