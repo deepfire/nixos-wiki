@@ -44,7 +44,12 @@ a child shell.
 
      nix-shell [--command /bin/sh] nvi
 
- Additional info:
+To work on a package within nixpkg's: pass the path to nixpkgs to
+nix-shell, specify the package by attribute.
+
+     nix-shell nixpkgs -A systemd
+
+Additional info:
 <https://github.com/NixOS/nix/commit/7f38087f35e6f74a73bfdb28da8acd8930565d51>
 
 ### Obtaining an Environment from a Custom Definition
