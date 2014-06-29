@@ -16,5 +16,6 @@ To use **nm-applet**, you have to install **networkmanagerapplet**.
 
 ### KDE applet
 
-Not packaged yet :( <http://userbase.kde.org/KNetworkManager>
+The Network Manager applet for KDE is in nixpkgs as
+**networkmanagement**.
 
