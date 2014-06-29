@@ -11,22 +11,22 @@ Installing Packages
 ===================
 
      nix-env -i pythonPackages.pyramid (installs pyramid with default python, currently 2.7)
-     nix-env -i python33Packages.pyramid (install pyramid with python 3.3)
+     nix-env -i python33Packages.pyramid (installs pyramid with python 3.3)
 
 Rationale of not polluting global site packages
 ===============================================
 
-Nix does not pollute \*site-packages\* directory when you install new
-python software. It only provides the binary executables to run.
+Nix does not pollute the \*site-packages\* directory when you install
+new python software. It only provides the binary executables to run.
 
-If you want to use collection of python packages available to python
-interpreter, you either use \*virtualenv\* to install the packages
-inside or create another nix profile, see the next section.
+If you want to make a collection of python packages available to the
+python interpreter, you can either use \*virtualenv\* to install the
+packages inside or create another nix profile, see the next section.
 
 Creating environments with packages
 ===================================
 
-For general idea of creating environments, see
+For a general overview of creating development environments, see
 [Howto\_develop\_software\_on\_nixos](//Howto develop software on nixos).
 
 Start by defining your environment:
@@ -49,6 +49,6 @@ Install it:
 
      $ nix-env -i env-mypython
 
-Load environment and start hacking:
+Load the environment and start hacking:
 
      # load-env-mypython
