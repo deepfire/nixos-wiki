@@ -1,45 +1,35 @@
-    {pkgs, ...}:{
+The standard way to keep a set of packages up-to-date in Nix is to
+install them into a profile -- typically the default profile -- and to
+run "`nix-env -u \*`", possibly even "`nix-env -u \* --always"`.
 
-      packageOverrides = {
-        myHaskellCollection = pkgs.misc.collection {
-           name = "my-haskell-collection";
-           list = let p = pkgs.haskellPackages_select_a_version;
-                  in list [ p.ghc p.filepath p.XXX p.YYY ];
+Sometimes, however, it is desirable to refer to packages by their
+nixpkgs attribute rather their name, or maybe one would like to group a
+set of packages into a single attribute so that they can be installed
+together with a single command. Nix offers a mechanism for that purpose,
+too, namely the `buildEnv` function, which can be used as follows:
+
+    # ~/.nixpkgs/config.nix
+
+    {
+      packageOverrides = pkgs:
+      {
+        haskellEnv = pkgs.buildEnv {
+          name = "haskell-packages";
+          paths = with pkgs.haskellPackages; [ghc QuickCheck cmdlib];
         };
-
-        all = pkgs.misc.collection {
-           name = "all";
-           list = [ pkgs.myHaskellCollection pkgs.mutt pkgs.firefox35Wrapper /* ... */ ];
-        }
-
       };
-
     }
 
-Now you can update ghc and its libraries using
+That code snippet creates a "collection package", which consists of the
+union of several others, and it can be installed by running either of
+the following commands:
 
-    nix-env -iA myHaskellCollection
+    nix-env -iA haskellEnv
+    nix-env -i haskell-packages
 
-or
-
-    nix-env -i my-haskell-collection
-
-The all attribute name illustrates that you can reuse your new
-collection in yet another collection. Keeping such a big collection
-containing all important packages which you use everyday makes it easy
-to upgrade or move your setup to another pc.
-
-**Question**: This approach does not detect file collisions. When I
-install the expression
-
-        haskellStuff = pkgs.misc.collection {
-           name = "my-haskell-packages";
-           list = (with pkgs.haskellPackages_ghc704; [ghc]) ++
-                  (with pkgs.haskellPackages_ghc721; [ghc]) ;
-        };
-       
-
-then I end up have both packages in one profile even though they collide
-in several binaries, i.e. "ghc", "runhaskell", etc. This seems to be a
-bit of a problem?
+If the name `name` attribute of a collection does not include a version
+number (and it typically won't), then "`nix-env -u \*`" is typically not
+going to update that package even if its components have changed. In
+that case, it is necessary to pass the `--always` flag to the update
+operation, to evaluate everything from the ground up.
 
