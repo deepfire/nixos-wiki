@@ -1,2 +1,7 @@
 Welcome to the Nix wiki!
 
+HOWTOs
+------
+
+-   [How to set up MediaWiki in NixOS](//Setting up MediaWiki)
+
