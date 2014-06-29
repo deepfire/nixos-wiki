@@ -32,7 +32,7 @@ Using syslinux
 It should be possible to convert the iso to a hybrid iso and then use dd
 to copy the image onto a usb stick:
 
-<http://www.syslinux.org/wiki/index.php/Doc/isolinux>
+<http://www.syslinux.org/wiki/index.php/Doc/isolinux#HYBRID_CD-ROM.2FHARD_DISK_MODE>
 
 Please update this entry if you have tested this and found it to work.
 
