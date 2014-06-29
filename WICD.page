@@ -20,7 +20,7 @@ networking.enableIntel2100BGFirmware option as example.
 
 ### Enable wicd, disable other networking
 
-Wicd is fully-function network manager, it takes responsibility for
+Wicd is fully-functional network manager, it takes responsibility for
 connecting, launching dhcp clients, storing passwords, etc. To prevent
 conflicts, disable other network agents
 
