@@ -1,3 +1,6 @@
+Terms and Definitions
+---------------------
+
 If you come across a term or word you don't know, add it here.
 
   ---------------------------------------------------------------------------
@@ -6,22 +9,21 @@ If you come across a term or word you don't know, add it here.
   Meaning
   Related Links
   ------------------ ------------------ ------------------ ------------------
-  `rec { }`
-  In Nix
-  expressions.
-  The `{ }` block
-  contains "mutually
-  recursive"
-  attributes, which
-  means they can
-  refer to each
-  other.
-  [Composing the
-  Hello
-  Package](http://ni
-  xos.org/nix/manual
-  /#ex-hello-composi
-  tion)
+  `rec { }`          `expression evalua
+  Nix expressions.   tor`
+  The `{ }` block    Nix Manual
+  contains "mutually The part of the
+  recursive"         Nix program which
+  attributes, which  reads and
+  means they can     evaluates a Nix
+  refer to each      expression.
+  other.             [Nix Manual:
+  [Composing the     Common
+  Hello              Options](http://ni
+  Package](http://ni xos.org/nix/manual
+  xos.org/nix/manual /#sec-common-optio
+  /#ex-hello-composi ns)
+  tion)              --arg
   ---------------------------------------------------------------------------
 
 
