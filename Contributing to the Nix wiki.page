@@ -1,0 +1,54 @@
+WISH LIST
+---------
+
+What is missing on the wiki? even if you don't have time let others know
+who may have time what you think is missing. Should we group this by
+author? Should we add kind of rating?
+
+This is a list containing random notes right now. Add items yourself
+here.
+
+-   haskell on Nix howto. (Marc Weber is going to write this?)
+-   vim and .nix files. (Marc Weber is going to write this?)
+-   contributor guide and workflows?
+-   python on Nix (Marc Weber is going to contribute writing down how it
+    is and which problems are there)
+-   ruby on Nix (Marc Weber is going to write about what he has done)
+-   buildfarm stuff
+
+<!-- -->
+
+     how to make packages being build
+     how to abort a build of packages (throw vs assert)
+
+-   trouble building a package? things which you can try
+
+<!-- -->
+
+     Link list to other distros
+     where to get patches / source from.
+     special hints about special make systems such as cmake whatsoever
+
+    * Howto X?
+     Which package managers are supported and which features of them ? eg kde, gnome etc
+
+     * Nix and encryption
+
+     * Howto add completion to bash and zsh?
+     * Howto work with nix - common practises
+       this should answer:
+       how to find the package I'm looking for (Marc Weber is going to contribute)
+
+     * howto use git to track nix ?
+       I'm a fan of git :)
+       
+     * ...
+
+random notes
+------------
+
+What policies do we have ? Eg "Nix" and "NixOS" is the spelling which
+should be used everywhere. What about links? Should they all start with
+an upper case letter? Anyway. Keep this short because everyone is
+supposed to read it!
+
