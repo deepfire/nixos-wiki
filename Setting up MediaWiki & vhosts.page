@@ -4,6 +4,7 @@ instance:
 ### mediawiki but NO vhosts yet
 
     services.postgresql.enable = true;
+    services.postgresql.package = pkg.postgresql92;
     services.httpd.enable = true;
     services.httpd.adminAddr = "admin@example.org";
     services.httpd.extraSubservices =
