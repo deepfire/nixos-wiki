@@ -1,14 +1,20 @@
-Firefox uses the correct java plugin when you add
+To use plugins in firefox you need to install the "firefox-with-plugins"
+package. The plugins are picked on installation according to your
+`~/.nixpkgs/config.nix`. Example:
 
     {
       firefox = {
         jre = true;
+        enableAdobeFlash = true;
+        enablegoogletalkplugin = true;
       };
     }
 
-to your \~/.nixpkgs/config.nix.
+ In case of JRE you need to perform some manual download to comply with
+its license (Oracle JRE is used, currently). These steps are described
+in the output when you try to install Firefox.
 
-To comply with the license you will need to perform some manual steps to
-download and install the JRE. These steps are described in the output
-when you try to install Firefox.
+For a more complete and up-to-date list of plugins see the "wrapFirefox"
+function in
+<https://github.com/NixOS/nixpkgs/blob/master/pkgs/top-level/all-packages.nix>
 
