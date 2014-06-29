@@ -63,16 +63,16 @@ attributes:
     native build).
 
 Thus, these calls equivalently build the native derivation for 'bison'
-(mentioning the 'arm.nix' above):
+(mentioning the 'comtrend.nix' above):
 
     nix-build -A bison default.nix
-    nix-build -A bison arm.nix
-    nix-build -A bison.buildDrv arm.nix
+    nix-build -A bison comtrend.nix
+    nix-build -A bison.buildDrv comtrend.nix
 
 If we want to cross-build bison for the arm target described above, we
 can run:
 
-    nix-build -A bison.hostDrv arm.nix
+    nix-build -A bison.hostDrv comtrend.nix
 
 New buildInputs
 ---------------
