@@ -60,7 +60,7 @@ You can try them out interactively as follows:
 1.  Close any applications using the sound card
     1.  See if any applications are using the sound card
         \$ lsof /dev/snd/\*
-        COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME\</pre\>
+        COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME
         pulseaudi 14080 goibhniu 30u CHR 116,7 0t0 5169
         /dev/snd/controlC0
         pulseaudi 14080 goibhniu 37u CHR 116,7 0t0 5169
@@ -124,40 +124,14 @@ Multimedia
 
 Test the audio and enjoy the relaxing KDE's arpeggio.
 
-### Making PulseAudio work for most of apps *OBSOLETE*
+### Enabling PulseAudio
 
-The instructions described below can now be achieved with a
-configuration option:
+In your config file:
 
     hardware.pulseaudio.enable = true
 
-***The rest of this section will be removed shortly***
-
-This routes default ALSA sound streams via PulseAudio
-
--   Install alsa-plugins(pkgs.alsaPlugins)
--   Put this into \~/.asoundrc:
-
-<!-- -->
-
-     pcm.pulse {                                                                                              
-       type pulse                                                                                               
-       }                                                                                                        
-                                                                                                                
-       ctl.pulse {                                                                                              
-       type pulse                                                                                               
-       }                                                                                                        
-                                                                                                                
-       pcm.!default {                                                                                           
-       type pulse                                                                                               
-       }                                                                                                        
-                                                                                                                
-       ctl.!default {                                                                                           
-       type pulse                                                                                               
-       }            
-
 You can check if everything works by using pavucontrol to see the audio
-streams and make sure PulseAudio detects your audio hardware.
+streams and to make sure that PulseAudio detects your audio hardware.
 
 You may need to add your users to the audio group:
 
@@ -165,6 +139,17 @@ You may need to add your users to the audio group:
 
 If a user is not a member the audio group only a dummy device will
 appear in pavucontrol.
+
+The following command should only show that pulseaudio (and nothing
+else) is using the sound devices, if you see something like
+"plugin-container" in the COMMAND column then something is definitely
+not right, perhaps you have a local \~/.asoundrc which overrides the
+global alsa settings?.
+
+      $ lsof /dev/snd/*
+      COMMAND     PID     USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+      pulseaudi 14080 goibhniu   30u   CHR  116,7      0t0 5169 /dev/snd/controlC0
+      pulseaudi 14080 goibhniu   37u   CHR  116,7      0t0 5169 /dev/snd/controlC0
 
 ### Using JACK with pulseaudio
 
