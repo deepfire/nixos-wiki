@@ -246,7 +246,8 @@ them to different profiles and switch between the profiles.
 
 #### System-wide use via NixOS config
 
-[To be written.]
+The instructions for the user-specific approach are valid for the
+system-wide approach as well.
 
 Contributing Haskell packages to Nixpkgs
 ----------------------------------------
