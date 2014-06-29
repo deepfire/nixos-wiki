@@ -1,14 +1,92 @@
-This can be done using a Nix OS installation: nix-build -A iso\_minimal
-/etc/nixos/nixos/release.nix
+motivation
+----------
 
-Software on the CDROM image can be extended or changed according to the
-rules for a normal Nix OS installation, see [install/remove
-software](//Install/remove software)
+creating a modified NIXOS live CD out of a working nixos installation
+gives you the benefits:
+
+-   verify what is included
+-   no need to download it
+-   it is easy to add your own programs to the image
+
+how to build such an image
+--------------------------
+
+just run this command:
+
+    nix-build -A iso_minimal /etc/nixos/nixos/release.nix
+
+once the building process is over, there will be a path like this:
+
+-   /nix/store/2y4bivmrzg4d2dgby2b7prvfj7445088-nixos-iso-0.1pre1234/
+
+use this command:
+
+    cat /nix/store/2y4bivmrzg4d2dgby2b7prvfj7445088-nixos-iso-0.1pre1234/nix-support/hydra-build-products 
+    file iso /nix/store/94rrfklbk2hcqhkr4627vsrlprlyva50-iso9660-image/iso/nixos-minimal-0.1pre1234-i686-linux-test.iso
+
+and copy the new image from there.
+
+adding additional software to the image
+---------------------------------------
+
+the basic script **/etc/nixos/nixos/release.nix** contains several entry
+points for custom images. as we are using **-A iso\_minimal** have a
+look at: iso\_minimal which will redirect us to:
+
+-   ./modules/installer/cd-dvd/installation-cd-minimal.nix -\>
+    /etc/nixos/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix
+
+<!-- -->
+
+    # This module defines a small NixOS installation CD.  It does not
+    # contain any graphical stuff.
+    {config, pkgs, ...}:
+    {
+      require = [
+        ./installation-cd-base.nix
+        ../../profiles/minimal.nix
+      ];
+    }
+
+### step 1/2: starting ssh automatically in the image and adding a ssh key to it
+
+this is a hack, however it surely gives you an idea how to modify the
+stuff there:
+
+in
+**/etc/nixos/nixos/modules/installer/cd-dvd/installation-cd-base.nix**
+add:
+
+           mkdir -p /root/.ssh/
+           echo 'ssh-rsa ssh-rsa  AAAAB3NzaC1yc2EAAAADAQABAAABAQDOpeVxXXqlE3LlxBLx2AUYPBkBfCwVl7K8BdJpIaaB/hXpqClVJIK77Fhaaj3dGMpggK89dYhXHMN9pvOmA6igxDKZQJ2gNJ76q8NJkj6a0MxywlC8kcTkGTTsiM436Lz+b4HyF6hrtrhQzqcP70g35q6c8ckofW98RV35yHbvXvp2G0p9FZE4pB8qFLOKlorwWK8S8o8MN+1GkXdi2KeeOYdQl+X9ssaYSrGYx6NrD6ARnrPSvUfQjIp/+3AT/tSy2WLT1xtVsQsJxBEqoIuFzl8h1pLxug0SY4FZZb1mnFvjyZ+GLYj18Zq1nsibUeJAcCzylU6pHFFS7/SZkAzV foo@bar' > /root/.ssh/authorized_keys
+
+at the end of
+
+-   boot.postBootCommands =
+
+### step 2/2: starting ssh automatically in the image and adding a ssh key to it
+
+    vi /etc/nixos/nixos/modules/installer/cd-dvd/system-tarball.nix
+
+add:
+
+    jobs.openssh.startOn = pkgs.lib.mkOverrideTemplate 50 {} "";
+
+software installation inside the 'once' deployed and booted image
+-----------------------------------------------------------------
+
+in case you have booted from your image you can add software as
+described here:
+
+-   [install/remove software](//Install/remove software)
 
 Without NixOS you need to supply the
 [source](https://svn.nixos.org/repos/nix/nixos/trunk/) instead of
 /etc/nixos/nixos.
 
-See also section "Building your own NixOS CD" of the [NixOS
-manual](http://hydra.nixos.org/job/nixos/trunk/manual/latest/download).
+references
+----------
+
+-   See also section "Building your own NixOS CD" of the [NixOS
+    manual](http://hydra.nixos.org/job/nixos/trunk/manual/latest/download).
 
