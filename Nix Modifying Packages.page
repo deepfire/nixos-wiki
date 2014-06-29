@@ -66,13 +66,74 @@ when using Nix commands.
        $ nix-env -i <my-nixpkgs/default.nix> firefox
        $ nix-env -i <my-nixpkgs> firefox
 
-If you have problems, see the [Debugging a Nix
-Package](//Debugging a Nix Package) wiki page.
+If we have problems, we can individually execute each phase of the Nix
+build process by using the `nix-shell` command.
+
+       $ nix-shell ~/my-fork/nixpkgs/pkgs/top-level/all-packages.nix -A firefox
+       $ nix-shell <my-nixpkgs> -A firefox # (yet to be tested by author)
+       [nix-shell]$ unpackPhase
+       [nix-shell]$ patchPhase
+       [nix-shell]$ configurePhase
+       [nix-shell]$ buildPhase
+       ...
+
+For more information about debugging a Nix package, see the [Debugging a
+Nix Package](//Debugging a Nix Package) and [Create and Debug Nix
+Packages](//Create and debug nix packages) wiki pages.
+
+After debugging the package, we can test the results of the build by
+using the `nix-build` command or directly install it using the
+`nix-env -i` command.
 
 Overriding Existing Packages
 ----------------------------
 
-By default, the file at `~/.nixpkgs/config.nix` is used, but this can be
-overridden by specifying a file's path in the `NIXPKGS_CONFIG`
-environment variable.
+If we don't want to create a fork of NixPkgs or we believe our
+modifications will not be useful to other people, we can instead "patch"
+our default NixPkgs installation.
+
+When Nix evaluates the NixPkgs Nix expression, it will also evaluate the
+file located at the `~/.nixpkgs/config.nix` path and combine it with the
+default NixPkgs expression. If we want to use a different file, specify
+a file path in the `NIXPKGS_CONFIG` environment variable and Nix will
+instead use that one.
+
+### Creating a `config.nix` File
+
+What does Nix expect the `config.nix` file to look like? To modify
+existing packages, it must accept `pkgs` as a parameter and have an
+attribute named `packageOverrides`.
+
+Here are some examples (yet to be tested by author).
+
+       pkgs : {
+         packageOverrides = pkgs : rec {
+          myHaskellPackages =
+            let callPackage = pkgs.lib.callPackageWith myHaskellPackages; in
+              pkgs.recurseIntoAttrs (pkgs.haskellPackages.override {
+                extraPrefs = self : {
+                  boomerang = callPackage ./haskell/boomerang.nix {};
+                };
+              });
+         };
+       }
+
+Or
+
+       {
+         packageOverrides = pkgs : with pkgs; {
+           sdlEnv = pkgs.myEnvFun {
+             name = "someEnvName";
+             buildInputs = [ stdenv pkgconfig toolOne toolTwo toolThree ];
+           };
+         };
+       }
+
+For a closer look on exactly how Nix loads this config file, look at the
+[`all-packages.nix: Line 54`](https://github.com/NixOS/nixpkgs/blob/master/pkgs/top-level/all-packages.nix#L54)
+to see how it is retrieved and saved to the `config` attribute. To see
+how this file is used to "patch" the existing packages, see
+[`all-packages.nix: Line 108`](https://github.com/NixOS/nixpkgs/blob/master/pkgs/top-level/all-packages.nix#L108),
+which uses its `packageOverrides` attribute to create the `pkgs`
+attribute, which is used for the rest of the NixPkgs.
 
