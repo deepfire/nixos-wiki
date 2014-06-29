@@ -30,12 +30,30 @@ Using syslinux
 If you have trouble booting from a USB drive or sdcard with Unetbootin
 (I just got a blinking cursor instead of a bootloader on an Asus eee
 1000) the procedure described on
-<http://www.knoppix.net/wiki/Bootable_USB_Key> may work.
+<http://www.knoppix.net/wiki/Bootable_USB_Key> should work. All the
+content from the NixOS iso can be copied across to the sdcard:
+
+    $ mount -o loop ~/Downloads/nixos-graphical-0.1pre27337-i686-linux.iso /media/iso
+    $ rsync -av --progress /media/iso/ /media/sd-card/
 
 The syslinux.cfg needs to be created manually, but the details can be
 derived from the grub.cfg on the NixOS install cd.
 
 The root device can be specified by UUID, to get the UUID:
 
-blkid /dev/mmcblk0p1
+    blkid /dev/mmcblk0p1
 
+The relevant section form the live cd: /media/sd-card/boot/grub/grub.cfg
+
+    menuentry "NixOS Installer / Rescue" {
+      linux /boot/bzImage init=/nix/store/r7xhnzymi1ll49r4glf1dwr5y1alx0bl-system/init root=LABEL=NIXOS_INSTALL_CD_0.1pre27337 splash=verbose vga=0x317
+      initrd /boot/initrd
+    }
+
+can be used in the syslinux config file: /media/sd-card/syslinux.cfg
+
+    DEFAULT linux
+    LABEL linux
+      SAY Now booting the kernel from SYSLINUX...
+      KERNEL /boot/bzImage
+      APPEND init=/nix/store/r7xhnzymi1ll49r4glf1dwr5y1alx0bl-system/init root=UUID=509C-63E2 ro initrd=/boot/initrd splash=verbose
