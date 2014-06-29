@@ -1,22 +1,20 @@
-Installing NixOS On VirtualBox
-------------------------------
+This pages describes how to install NixOS in a VirtualBox guest.
 
-Using NixOS with VirtualBox on OS X.
-
--   Download the NixOs iso for 32 bit from <http://nixos.org>
--   Add a New Machine in VirtualBox with OS Type "Ubuntu"
--   Base Memory Size: 768 MB or first \`export
-    GC\_INITIAL\_HEAP\_SIZE=1\` before installing
+-   Download a NixOS ISO from <http://nixos.org>
+-   Add a New Machine in VirtualBox with OS Type "Linux / Other Linux"
+-   Base Memory Size: 768 MB
 -   New Hard Disk of 8 GB
--   Mount the CD-Rom with the NixOs iso (by clicking on CD/DVD-ROM)
+-   Mount the CD-ROM with the NixOS ISO (by clicking on CD/DVD-ROM)
 -   Click on Settings / Advanced (or possibly System / Processor) and
     enable PAE/NX
 -   Networking: select "Attached to: NAT". Change host-interface to
     "en1: Airport".
--   Now you can install nix using the nixos manual:
+-   Now you can install NixOS:
+
+<!-- -->
 
      $ fdisk /dev/sda (create a full partition, don't skip this step, example commands for quick setup: n,p,1,w)
-     $ mke2fs -j -L nixos /dev/sda1 (idem)
+     $ mkfs.ext4 -j -L nixos /dev/sda1 (idem)
      $ mount LABEL=nixos /mnt
      $ mkdir -p /mnt/etc/nixos
      $ nixos-hardware-scan > /mnt/etc/nixos/configuration.nix (for quick setup overwrite configuration.nix completely with example below)
@@ -24,27 +22,17 @@ Using NixOS with VirtualBox on OS X.
 
 (add the fileSystems. this is what my final config looks like:)
 
-     {pkgs, config, ...}:
+     { config, pkgs, ...} :
      {
-       boot = {
-         loader.grub.device = "/dev/sda";
-         initrd.kernelModules = [  "ata_piix" ];
-      };
+       boot.loader.grub.device = "/dev/sda";
 
-      fileSystems = [
+       services.openssh.enable =true;
+       services.virtualbox.enable = true;
+       
+       fileSystems = [
          { mountPoint = "/";
            label = "nixos";
          }
-       ];
-       nix.maxJobs = 1;
-       services = {
-         openssh.enable =true;
-         virtualbox.enable = true;
-         xserver.videoDriver = "virtualbox";
-       };
-       # If you disable kde4, set environment.systemPackages instead.
-       environment.kdePackages = [
-         config.boot.kernelPackages.virtualboxGuestAdditions
        ];
      }
 
@@ -52,12 +40,6 @@ Now we're ready to install!
 
      $ nixos-install
      $ reboot
-
-In order to access the host's clipboard and automatically resize the
-screen add this line to a script which runs once after login (I use
-xmonad/xterm and .bash\_login seems early enough):
-
-     VBoxClient-all
 
 Now you got a working nixos system. However, you can't conveniently log
 in to ssh this way, so you'll need to set up port-forwarding. Doing that
