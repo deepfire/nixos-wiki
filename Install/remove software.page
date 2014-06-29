@@ -63,10 +63,6 @@ that works for each 'shell' of a single user:
 
      nix-env -q '*'
 
-the other command i don't know what it's good for:
-
-     nix-env -q '*' --system
-
 ### software in the environment.systemPackages
 
 there is no command to list that at this time (8jun2011)
