@@ -1,0 +1,51 @@
+[[edit](/w/index.php?title=Keymap&action=edit&section=1 "Edit section: Changing your X keymap")] Changing your X keymap
+-----------------------------------------------------------------------------------------------------------------------
+
+In your *configuration.nix* set the layout and the variant you want to
+use. If you want to use Programmer's Dvorak then you would use the
+**us** layout with **dvp** variety:
+
+    services.xserver.layout = "us";
+    services.xserver.xkbVariant = "dvp";
+
+This follows the regular **setxkbmap** syntax. Rebuild and restart X.
+You can use setxkbmap for temporary solution.
+
+If you're using a desktop environment such as KDE, you can probably use
+that to set your keymap but you'll have problems if you ever stop using
+that particular desktop environment.
+
+### [[edit](/w/index.php?title=Keymap&action=edit&section=2 "Edit section: Compose key")] Compose key
+
+Use '**xkbOptions'**:
+
+    services.xserver.xkbOptions = "compose:caps";
+
+The above would override the Caps-Lock key with Compose key behaviour.
+
+As usual, remember that you can use **nixos-option services.xserver** to
+check available options as well as **man configuration.nix**.
+
+[[edit](/w/index.php?title=Keymap&action=edit&section=3 "Edit section: Changing your virtual console keymap")] Changing your virtual console keymap
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+If you don't boot straight into a graphical session, the chances are
+you'll want to change your keymap and possibly locale. You can do this
+with **i18n** block in your *configuration.nix*. The **kbd** package
+provides many keymaps for you to use
+
+    i18n = {
+      consoleKeyMap = "dvorak;
+      defaultLocale = "en_US.UTF-8";
+    };
+
+Notably, **consoleKeyMap** can point to a file but you have to make sure
+it's available early on in the boot process (so don't put it on a
+network share you mount later). I point mine to a keymap in my home
+directory as it is not provided by **kbd** package.
+
+    consoleKeyMap = "/home/shana/keymaps/dvp-1_2_1.map.gz";
+
+The syntax is the same as the one accepted by **loadkeys** command (from
+**kbd** package)
+
