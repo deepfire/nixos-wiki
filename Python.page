@@ -28,6 +28,25 @@ or create another nix profile, see the next section.
 Packaging python software
 =========================
 
+tests
+-----
+
+It is required to run tests, as it gives instant feedback if whole
+environment works:
+
+      doCheck = true;
+
+In case tests fail in any way, you can leave them our (or patch them),
+but leave a comment note why:
+
+      # no tests 
+      doCheck = false;
+
+or
+
+      # tests failing, see http://...
+      doCheck = false;
+
 with setup.py
 -------------
 
