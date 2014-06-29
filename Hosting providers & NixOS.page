@@ -8,7 +8,13 @@ some libraries to make them work with older kernels.
 Hosting providers known to run NixOS
 ------------------------------------
 
--   Rob Vermaas is running NixOS on www.linode.com
+www.linode.com:
+
+-   Rob Vermaas and Marc Weber are running NixOS on linode.com.
+
+<!-- -->
+
+     See Howto
 
 NixOs experiences about other providers
 ---------------------------------------
@@ -21,6 +27,7 @@ I tried:
 
      But Upstart is causing trouble. It dosn't recognize when jobs have finished or started.
      Thus you don't pass the start script. So you don't even start sshd.
+     Thu Dec 17 2009: upstart-0.6.3 doesn't work either.
      
 
 -   vc-server.de:
