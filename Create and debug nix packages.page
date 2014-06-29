@@ -4,7 +4,7 @@ list all available software from the **local overlay \~/code/nixpkgs**
 
 install python-urlgrabber from the local overlay
 
-     $NIX_PATH="nixos=$HOME/code/nixpkgs" nix-env -f '<nixos>' -i python-urlgrabber
+     $ NIX_PATH="nixos=$HOME/code/nixpkgs" nix-env -f '<nixos>' -i python-urlgrabber
 
 update the system based on your local **\~/code/nixos** and
 **\~/code/nixpkgs**
