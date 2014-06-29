@@ -61,6 +61,10 @@ the other command i don't know what it's good for:
 
 there is no command to list that at this time (8jun2011)
 
+but there is this workaround (tnx to niksnut!):
+
+     nix-store -q --references /var/run/current-system/sw
+
 how to change the used kernel version
 -------------------------------------
 
