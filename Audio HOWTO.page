@@ -1,0 +1,32 @@
+Getting ALSA to work
+--------------------
+
+-   on a console fire up alsamixer
+
+<!-- -->
+
+     alsamixer
+
+-   you see plenty of vertical bars?
+    -   you should be okay
+
+-   you see very few vertical bars and the sound card (top-left) is
+    something like "PC Speaker"?
+    -   hit the 'S' key, you should be able to switch to the "real"
+        audio card (if not your audio card is likely to not being
+        supported yet).
+    -   when the real audio card is selected you should be viewing the
+        "plenty vertical bars" thing.
+        -   first thing to do is to disable pc speaker (kernel module
+            "snd-pcsp", see below.
+
+### Disable PC Speaker "audio card"
+
+edit /etc/nixos/configuration.nix and "snd\_pcsp" to
+boot.blacklistedKernelModules option:
+
+     boot.blacklistedKernelModules = [ "snd_pcsp" ];
+
+Now reboot and retry from the beginning (i.e. check that your real card
+is shown by alsamixer without using the 'S' key).
+
