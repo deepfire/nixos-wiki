@@ -287,44 +287,48 @@ language paradigm.
        };
      }
 
-Test your modules in a Virtual Machine with build-vm
-====================================================
+Testing Configuration Changes in a VM
+=====================================
 
-To test your new service in a VM create a file e.g. my-new-service.nix:
+Creating or modifying a NixOS configuration can be trial-and-error.
+Rather than change our working system on each configuration change, we
+can build it completely inside a VM, which is much safer.
 
-    {config, pkgs, ...}:
-    {
-      # You need to configure a root filesytem
-      fileSystems."/".label = "vmdisk";
+To see how this works, create a file like this:
 
-      # The test vm name is based on the hostname, so it's nice to set one
-      networking.hostName = "vmhost"; 
+     {config, pkgs, ...}:
+     {
+       # You need to configure a root filesytem
+       fileSystems."/".label = "vmdisk";
+     
+       # The test vm name is based on the hostname, so it's nice to set one
+       networking.hostName = "vmhost"; 
+     
+       # Add a test user who can sudo to the root account for debugging
+       users.extraUsers.vm = {
+         password = "vm";
+         shell = "${pkgs.bash}/bin/bash";
+         group = "wheel";
+       };
+       security.sudo = {
+         enable = true;
+         wheelNeedsPassword = false;
+       };
+     
+       # Enable your new service!
+       services =  {
+         myNewService = {
+           enable = true;
+         };
+       };
+     }
 
-      # Add a test user who can sudo to the root account for debugging
-      users.extraUsers.vm = {
-        password = "vm";
-        shell = "${pkgs.bash}/bin/bash";
-        group = "wheel";
-      };
-      security.sudo = {
-        enable = true;
-        wheelNeedsPassword = false;
-      };
+Then, we build the new configuration inside a VM. If we named the above
+file `my-new-service.nix`, we can use these commands:
 
-      # Enable your new service!
-      services =  {
-        myNewService = {
-          enable = true;
-        };
-      };
-    }
-
-Then you can build a vm for testing:
-
+    ## Create a VM from the new configuration.
     $ NIXOS_CONFIG=`pwd`/vmtest.nix nixos-rebuild  -I nixos=/path/to/nixos/ build-vm
-
-... and run it:
-
+    ## Then start it.
     $ ./result/bin/run-vmhost-vm
 
 ... work in progress ...
