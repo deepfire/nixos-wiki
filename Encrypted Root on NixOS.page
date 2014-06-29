@@ -100,7 +100,7 @@ If you **only want to have an encrypted home directory**, you need to
 set something like this, for example:
 
       boot.initrd.luks.enable = true;
-      boot.initrd.device = [ { device = "/dev/sda3"; name = "lukshome"; };
+      boot.initrd.luks.devices = [ { device = "/dev/sda3"; name = "lukshome"; };
 
 ### Extra kernel modules you might need
 
