@@ -14,26 +14,33 @@ Requirements
 ============
 
 My box had very minimal configuration. So I discovered that need to
-install some additional software to compile nix. All packages above you
+install some additional software to compile nix. All packages below you
 can find on <http://www.perzl.org/aix/>
 
-    #!/bin/sh -x
-    #
-    # Prereq:
-    # src/
-    # |- curl-7.9.3-2.aix4.3.ppc.rpm
-    # |- make-3.80-1.aix5.1.ppc.rpm
-    # |- gcc-4.2.4-2.aix5.2.ppc.rpm
-    # |- gcc-c++-4.2.4-2.aix5.2.ppc.rpm
-    # |- gcc-cpp-4.2.4-2.aix5.2.ppc.rpm
-    # |- libgcc-4.2.4-2.aix5.2.ppc.rpm
-    # |- libstdc++-4.2.4-2.aix5.2.ppc.rpm
-    # |- libstdc++-devel-4.2.4-2.aix5.2.ppc.rpm
-    # |  `- info-4.6-1.aix5.1.ppc.rpm
-    # | tools below were compiled from sources just because they could destabilize the box if replaced 
-    # |- sed-4.2
-    # `- coreutils-8.4
-    #    `- libm.a - I had to copy it from another box
+    curl-7.9.3-2.aix4.3.ppc.rpm
+    make-3.80-1.aix5.1.ppc.rpm
+    gcc-4.2.4-2.aix5.2.ppc.rpm
+    gcc-c++-4.2.4-2.aix5.2.ppc.rpm
+    gcc-cpp-4.2.4-2.aix5.2.ppc.rpm
+    libgcc-4.2.4-2.aix5.2.ppc.rpm
+    libstdc++-4.2.4-2.aix5.2.ppc.rpm
+    libstdc++-devel-4.2.4-2.aix5.2.ppc.rpm
+    `- info-4.6-1.aix5.1.ppc.rpm
+
+To install I had to login as root and used command in the folder with
+all downloaded rpms
+
+    rpm -i *.rpm
+
+Next tools were compiled and installed separately, just because I did
+not want to destabilize box
+
+    sed-4.2
+    coreutils-8.4 #I had to copy libm.a manually
+
+compilation of nix
+==================
+
     #
     #
     # --enable-static - otherwise nix-env coredumps
