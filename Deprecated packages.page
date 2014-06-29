@@ -131,6 +131,10 @@ kde3.kphone
 
 qcad
 
+librecad
+
+(viric) I've it half packaged.
+
 djvulibre (djview)
 
 djview4
@@ -139,11 +143,18 @@ Remove useQt3 (done in stdenv-updates)
 
 taskjuggler
 
+(viric) The gui can be disabled in the build.
+
 valknut
 
 twinkle
 
+(viric) I want it. That's the SIP program that worked best for me.
+
 qucs
+
+(viric) They released on 12/2011, and look like keeping with qt3. I
+don't use it but I prefer it to stay.
 
 mythtv
 
