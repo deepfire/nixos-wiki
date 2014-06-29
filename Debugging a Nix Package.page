@@ -69,11 +69,44 @@ resulting build without installing the software into our environment.
 Step Through Build Phases
 -------------------------
 
-We can use the `nix-shell` command. To do: Show how to use it.
+Suppose the resulting build of a Nix package does not work as we expect,
+and we suspect a file is installed to the wrong path. How can we inspect
+the Nix's build process to see how the build result is created?
 
-Notes
------
+When Nix builds a package, it organizes the build steps into several
+"phases", documented in the [NixPkgs Manual: Phases
+section](http://nixos.org/nixpkgs/manual/#ssec-stdenv-phases). Nix
+provides the `nix-shell` command which enables us to manually execute
+each of these phases and see its effects. Examples of some important
+phases are `unpackPhase`, `configurePhase`, `buildPhase`, and
+`installPhase`. First, let's enter the build environment using
+`nix-shell`.
 
-For more information, see the [Create and Debug Nix
-Packages](//Create and debug nix packages) wiki page.
+       nix-shell /my-sources/pkgs/top-level/all-packages.nix -A hello
+       these derivations will be built:
+         /nix/store/kzr1q8i10a4lpxgyjg4zpf76rh2mzjr8-hello-2.8.tar.gz.drv
+       (...building dependencies...)
+       [nix-shell:~]$ 
+
+Now, let's try to step through a build by manually executing its phases.
+
+       [nix-shell]$ unpackPhase
+       [nix-shell]$ cd hello-2.8/
+       [nix-shell]$ ls
+       [nix-shell]$ configurePhase
+       (...configure info...)
+       [nix-shell]$ buildPhase
+       (...build info...)
+       [nix-shell]$ installPhase
+       (...install info...)
+
+After each of these phases, we can see the effect by using the `ls`
+command to inspect the build directory. Note that to write to the Nix
+store, which occurs in the `installPhase`, the running user must be root
+or the owner of the `/nix/store` directory.
+
+Related Reading
+---------------
+
+-   [Create and Debug Nix Packages](//Create and debug nix packages)
 
