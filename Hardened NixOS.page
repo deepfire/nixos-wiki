@@ -44,33 +44,34 @@ for kernel 3.2 and a test patch for kernel 3.11.
 This is an example excerpt of configuration.nix which enables the stable
 grsecurity patch:
 
-      nixpkgs.config = {
-        grsecurity = true;
-      
-        packageOverrides = pkgs: {
-          linuxPackages = pkgs.linuxPackages_3_2_grsecurity;
-      
-          linux_3_2 = pkgs.linux_3_2.override (args: {
-            extraConfig = 
-              ${optionalString (args ? extraConfig) args.extraConfig}
-              XEN n
-              HIBERNATION n
-              DEVKMEM? n
-              GRKERNSEC y
-              GRKERNSEC_CONFIG_AUTO y
-              GRKERNSEC_CONFIG_DESKTOP y
-              GRKERNSEC_CONFIG_VIRT_HOST y
-              GRKERNSEC_CONFIG_VIRT_EPT y
-              GRKERNSEC_CONFIG_VIRT_KVM y
-              GRKERNSEC_CONFIG_PRIORITY_SECURITY y
-              GRKERNSEC_PROC_USER y
-              GRKERNSEC_PROC_GID 0
-              GRKERNSEC_CHROOT_CHMOD n
-              GRKERNSEC_SYSCTL n
-            ;
-          });
-        };
-      };
+       nixpkgs.config = {
+         grsecurity = true;
+       
+         packageOverrides = pkgs: {
+           linuxPackages = pkgs.linuxPackages_3_2_grsecurity;
+       
+           stdenv = pkgs.stdenv // {
+             platform = pkgs.stdenv.platform // {
+               kernelExtraConfig = ''
+                 XEN n
+                 HIBERNATION n
+                 DEVKMEM? n
+                 GRKERNSEC y
+                 GRKERNSEC_CONFIG_AUTO y
+                 GRKERNSEC_CONFIG_DESKTOP y
+                 GRKERNSEC_CONFIG_VIRT_HOST y
+                 GRKERNSEC_CONFIG_VIRT_EPT y
+                 GRKERNSEC_CONFIG_VIRT_KVM y
+                 GRKERNSEC_CONFIG_PRIORITY_SECURITY y
+                 GRKERNSEC_PROC_USER y
+                 GRKERNSEC_PROC_GID 0
+                 GRKERNSEC_CHROOT_CHMOD n
+                 GRKERNSEC_SYSCTL n
+               '';
+             };
+           };
+         };
+       };
 
 Please read grsecurity's documentation at
 [[3]](https://en.wikibooks.org/wiki/Grsecurity/Appendix/Grsecurity_and_PaX_Configuration_Options)
