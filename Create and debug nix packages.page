@@ -95,6 +95,11 @@ you need this script:
 
      https://github.com/chaoflow/skel/blob/master/bin/create_tags_from_nixos_channel.sh
 
+verify that the nix-channel is called nixos, looks like this:
+
+     # nix-channel --list
+     nixos http://nixos.org/releases/nixos/channels/nixos-unstable
+
  I use it:
 
      % sudo -H nix-channel --update
