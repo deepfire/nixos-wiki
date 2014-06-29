@@ -80,7 +80,16 @@ how to update installed software
 
 ### software in the environment.systemPackages
 
+If you have updated your channel with
+
+     nix-channel --update
+
+or updated them manually, by hand, or pulling updates from a source
+control system then you can use:
+
      nixos-rebuild switch
+
+to update any installed packages with updated nix expressions.
 
 how to roll back software
 -------------------------
