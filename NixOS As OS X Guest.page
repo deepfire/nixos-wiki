@@ -10,15 +10,15 @@ focus of this article.
 I am on a 64-bit MacBook Pro, so on 32-bit systems modifications may be
 neccesary.
 
-TODO Setup VM
--------------
+[[edit](/w/index.php?title=NixOS_As_OS_X_Guest&action=edit&section=1 "Edit section: STARTED Setup VM")] STARTED Setup VM
+------------------------------------------------------------------------------------------------------------------------
 
-### Install VirtualBox
+### [[edit](/w/index.php?title=NixOS_As_OS_X_Guest&action=edit&section=2 "Edit section: Install VirtualBox")] Install VirtualBox
 
 VirtualBox is available from <http://www.virtualbox.org/>. Installing it
 should be more or less straightforward.
 
-### STARTED Create VM
+### [[edit](/w/index.php?title=NixOS_As_OS_X_Guest&action=edit&section=3 "Edit section: STARTED Create VM")] STARTED Create VM
 
 Open the VirtualBox application and create a new VM, which will bring up
 the "New Virtual Machine Wizard".
@@ -28,18 +28,18 @@ the "New Virtual Machine Wizard".
  OS Type 
 :   Linux 2.6 (64bit)
 
-TODO Install NixOS
-------------------
+[[edit](/w/index.php?title=NixOS_As_OS_X_Guest&action=edit&section=4 "Edit section: TODO Install NixOS")] TODO Install NixOS
+----------------------------------------------------------------------------------------------------------------------------
 
-### TODO Partition drive
+### [[edit](/w/index.php?title=NixOS_As_OS_X_Guest&action=edit&section=5 "Edit section: TODO Partition drive")] TODO Partition drive
 
-### TODO Create system description file
+### [[edit](/w/index.php?title=NixOS_As_OS_X_Guest&action=edit&section=6 "Edit section: TODO Create system description file")] TODO Create system description file
 
-### TODO Build system
+### [[edit](/w/index.php?title=NixOS_As_OS_X_Guest&action=edit&section=7 "Edit section: TODO Build system")] TODO Build system
 
-TODO Setup NixOS
-----------------
+[[edit](/w/index.php?title=NixOS_As_OS_X_Guest&action=edit&section=8 "Edit section: TODO Setup NixOS")] TODO Setup NixOS
+------------------------------------------------------------------------------------------------------------------------
 
-### TODO Setup users
+### [[edit](/w/index.php?title=NixOS_As_OS_X_Guest&action=edit&section=9 "Edit section: TODO Setup users")] TODO Setup users
 
-### TODO Other Stuff To Be Determined
+### [[edit](/w/index.php?title=NixOS_As_OS_X_Guest&action=edit&section=10 "Edit section: TODO Other Stuff To Be Determined")] TODO Other Stuff To Be Determined
