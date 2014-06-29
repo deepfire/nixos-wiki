@@ -1,5 +1,5 @@
-How to write a patch ?
-----------------------
+Getting started
+---------------
 
 See the official documentation which describes how the Nix expression
 language works so that you can update existing packages and add new
