@@ -61,3 +61,17 @@ No meta.maintainer
 
 Hotplug, needs both HAL and pmount
 
+Policykit (not polkit!) reverse dependencies
+--------------------------------------------
+
+  --------------------------------------------------------------------------
+  Package
+  Maintainer
+  Plan
+  ------------------------ ------------------------ ------------------------
+  HAL                      gnome-2/GConf
+  No meta.maintainer       No meta.maintainer
+  Remove (see above)       Upgrade
+  --------------------------------------------------------------------------
+
+
