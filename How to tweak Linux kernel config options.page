@@ -1,5 +1,5 @@
-Adding options to the mainstream kernel
----------------------------------------
+[[edit](/w/index.php?title=How_to_tweak_Linux_kernel_config_options&action=edit&section=1 "Edit section: Adding options to the mainstream kernel")] Adding options to the mainstream kernel
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Following config snippet asks Nix to add "CONFIG\_PPP\_FILTER y" option
 to the set of kernel options for current kernel. Of course, that would
@@ -15,8 +15,8 @@ require Nix to rebuild the kernel locally.
        };
      };
 
-Building the kernel with your own .config
------------------------------------------
+[[edit](/w/index.php?title=How_to_tweak_Linux_kernel_config_options&action=edit&section=2 "Edit section: Building the kernel with your own .config")] Building the kernel with your own .config
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 **Note: this section describes non-trivial operations.**
 
@@ -64,4 +64,9 @@ Change the src according to your needs.
 
 -   Change the boot.kernelPackages option in your NixOS configuration
     file. Point it to pkgs.my\_linuxPackages.
+
+Note, that at the moment, .config has to have support for modules. See
+[this
+thread](http://lists.science.uu.nl/pipermail/nix-dev/2014-March/012663.html)
+for details
 
