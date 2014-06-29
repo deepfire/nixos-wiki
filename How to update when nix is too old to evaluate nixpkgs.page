@@ -1,37 +1,49 @@
-### How to update when nix is too old to evaluate nixpkgs
+The latest version of NixPkgs may use features which are not available
+in our version of Nix. The result of this is being unable to install or
+reference packages from NixPkgs. For example, the current NixPkgs uses
+features of Nix 1.6, but we may only have Nix 1.5. To resolve this
+situation, we must acquire a newer version of Nix.
 
-This situation can happen if you don't update nix for longer time, so
-new features of nix are already used in nixpkgs, preventing you to
-evaluate it. Currently it's typical for 1.5.x -\> 1.6.x transition, I
-think.
+### Upgrading Nix
 
-You only need to acquire a newer version of nix to continue. The easiest
-way is (probably) to just fetch the binaries from Hydra, which can be
-done *without* evaluation of nixpkgs.
+To upgrade Nix, we must obtain the newer version's binaries. There are
+two easy ways to do this, both of which fetch the binaries directly from
+the Nix project's build server. This method doesn't require evaluating
+NixPkgs, so it works great for upgrading the Nix program, itself.
 
-Just go to
-<http://hydra.nixos.org/job/nixos/trunk-combined/nixpkgs.nix.x86_64-linux/latest-finished>
-and perform a one-click install (substitute your platform name if it's
-different). Description of that is directly on the Hydra page. *Note:*
-this requires you to have configured nix-install-package as the handler
-for the application/nix-package MIME type.
+#### Installing via Browser
 
-Alternatively, you can use nix-install-package directly. The man page
-has more information, but the counterpart to clicking above would be:
+If we have a browser installed on the target platform, we can open the
+[Nix -
+Latest](http://hydra.nixos.org/job/nixos/trunk-combined/nixpkgs.nix.x86_64-linux/latest-finished)
+page, hosted by the Nix project's build server, and click the "One-click
+Install" link. This links to a file having a `.nixpkg` file extension,
+which should be set up to be handled by the `nix-install-package`
+program. Note: Substitute the platform name if your platform is not
+x86\_64.
+
+#### Installing via Command Line
+
+If the platform doesn't have a browser installed, which is a common case
+for servers, we can directly use the `nix-install-package` program. Use
+the following command to install the latest version of the Nix program
+directly from the Nix project's build server.
 
      $ nix-install-package --non-interactive --url http://hydra.nixos.org/job/nixos/trunk-combined/nixpkgs.nix.x86_64-linux/latest-finished
 
-When nix-install-package is run, it will use the nix.conf file
-(/etc/nix/nix.conf) to verify that the base hydra URL above is in the
-trusted\_binary\_caches (running nix-install-package as root is not
-constrained in this manner, but it will only install nix-env for the
-root user). If you are running NixOS, that file is generated as part of
-your system, and that specific configuration parameter is
-nix.trustedBinaryCaches. If you were unlucky enough to leave this as the
-default (blank) then you are left with two options:
+##### Trusted Binary Caches
 
-1.  edit /etc/nixos/configuration.nix to update nix.trustedBinaryCaches
-    and then nixos-rebuild switch
-2.  edit the generated nix.conf file directly in your store (not
-    recommended!)
+The recommended method for upgrading Nix is by using the
+`nix-install-package` program. This program uses the "nix.conf" file to
+verify that the URL is included in the "trusted\_binary\_caches".
+Running `nix-install-package` as root is not constrained in this manner,
+but it will only install the specified package for the root user, rather
+than for our normal user account.
+
+Therefore, if our installation is rejected due to being hosted by an
+untrusted host, we must add the hostname to the "nix.conf" file. For
+NixOS useres, add the hostname to the `nix.trustedBinaryCaches`
+configuration option and rebuild the machine. For users of other OSs,
+manually edit the "nix.conf" file, usually found in the `/etc/nix/`
+directory.
 
