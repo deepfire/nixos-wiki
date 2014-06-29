@@ -154,7 +154,7 @@ files.
              in
                pkgs.recurseIntoAttrs (pkgs.haskellPackages.override {
                  extension = self : super : {
-                   boomerang = callPackage ./haskell/boomerang.nix {};
+                   boomerang = self.callPackage ./haskell/boomerang.nix {};
                  };
                });
          };
