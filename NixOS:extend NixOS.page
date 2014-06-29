@@ -108,9 +108,9 @@ Sharing Configuration
 =====================
 
 The user has discuss a bit of his configuration on irc and some other
-person wants to benefits for his modification. Thus he has to remove all
-parts which are dependent on his system and make it more general. So he
-decides to replace the condition and the username by options.
+person wants to benefits form his modification. Thus he has to remove
+all parts which are dependent on his system and make it more general. So
+he decides to replace the condition and the username by options.
 
     {config, pkgs, ...}:
 
