@@ -4,8 +4,8 @@ starts. This tutorial will start by adding this functionality to the
 `configuration.nix` file. Then, this functionality is extracted into a
 separate file, which NixOS calls a "module".
 
-Example: Add a System Service
-=============================
+[[edit](/w/index.php?title=NixOS:extend_NixOS&action=edit&section=1 "Edit section: Example: Add a System Service")] Example: Add a System Service
+=================================================================================================================================================
 
 Suppose you want to start an IRC client and connect to your favorite
 channel every time your NixOS starts. To do this, we will start the IRC
@@ -25,11 +25,11 @@ Lets start the IRC session using `irssi` as the IRC client. We'll run it
 inside a `screen` daemon, which enables the IRC session to continue even
 after we log out of our shell session.
 
-Implementations
-===============
+[[edit](/w/index.php?title=NixOS:extend_NixOS&action=edit&section=2 "Edit section: Implementations")] Implementations
+=====================================================================================================================
 
-Quick Implementation
---------------------
+[[edit](/w/index.php?title=NixOS:extend_NixOS&action=edit&section=3 "Edit section: Quick Implementation")] Quick Implementation
+-------------------------------------------------------------------------------------------------------------------------------
 
 The simplest way to implement this is to add a simple snippet of code to
 the `/etc/nixos/configuration.nix` file:
@@ -69,8 +69,8 @@ choose the IRC window. Here's the command:
 
     ssh username@my-server -t screen -d -R irc
 
-Conditional Implementation
---------------------------
+[[edit](/w/index.php?title=NixOS:extend_NixOS&action=edit&section=4 "Edit section: Conditional Implementation")] Conditional Implementation
+-------------------------------------------------------------------------------------------------------------------------------------------
 
 Suppose we want to share this functionality with your second computer,
 which is a similar NixOS system. The computers are very similar, so we
@@ -103,8 +103,8 @@ This works, but if we use too many conditionals, our code will become
 difficult to read and modify. For example, what do we do when we want to
 change the hostname?
 
-Modular Configuration
----------------------
+[[edit](/w/index.php?title=NixOS:extend_NixOS&action=edit&section=5 "Edit section: Modular Configuration")] Modular Configuration
+---------------------------------------------------------------------------------------------------------------------------------
 
 To avoid using conditional expressions in our `configuration.nix` file,
 we can separate these properties into units and blend them together
@@ -145,8 +145,8 @@ If we organize our configuration like this, sharing it across machines
 is easier. In addition, our IRC client can be consistent across machines
 that choose to use it.
 
-Generic Module Configuration
-----------------------------
+[[edit](/w/index.php?title=NixOS:extend_NixOS&action=edit&section=6 "Edit section: Generic Module Configuration")] Generic Module Configuration
+-----------------------------------------------------------------------------------------------------------------------------------------------
 
 Our IRC module is pretty useful, so we tell our friends on IRC about it.
 Now, they want to use our module. We still have our hostname hard-coded
@@ -217,8 +217,8 @@ module.
        # ... usual configuration ...
      }
 
-Multiple Daemons
-----------------
+[[edit](/w/index.php?title=NixOS:extend_NixOS&action=edit&section=7 "Edit section: Multiple Daemons")] Multiple Daemons
+-----------------------------------------------------------------------------------------------------------------------
 
 Now, suppose your server has multiple people as users, and each wants
 the same IRC client running in background. One possibility is to replace
@@ -287,8 +287,8 @@ language paradigm.
        };
      }
 
-Testing Configuration Changes in a VM
-=====================================
+[[edit](/w/index.php?title=NixOS:extend_NixOS&action=edit&section=8 "Edit section: Testing Configuration Changes in a VM")] Testing Configuration Changes in a VM
+=================================================================================================================================================================
 
 Creating or modifying a NixOS configuration can be trial-and-error.
 Rather than change our working system on each configuration change, we
@@ -331,5 +331,14 @@ file `my-new-service.nix`, we can use these commands:
     ## Then start it.
     $ ./result/bin/run-vmhost-vm
 
-... work in progress ...
+[[edit](/w/index.php?title=NixOS:extend_NixOS&action=edit&section=9 "Edit section: What Next?")] What Next?
+===========================================================================================================
+
+This tutorial follows the evolution of NixOS configuration modification,
+which ends in creating distributable modules.
+
+If you have another tutorial about extending NixOS, add a link below.
+
+-   [System Services on NixOS:
+    larrythecow.org](http://larrythecow.org/archives/2011-10-11.html)
 
