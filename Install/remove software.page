@@ -65,6 +65,15 @@ but there is this workaround (tnx to niksnut!):
 
      nix-store -q --references /var/run/current-system/sw
 
+how to roll back software
+-------------------------
+
+### software per user
+
+    nix-env --rollback
+
+Also see nix-env --list-generations.
+
 how to change the used kernel version
 -------------------------------------
 
