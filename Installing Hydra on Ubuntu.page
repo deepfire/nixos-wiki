@@ -12,3 +12,10 @@
      $ nix-channel --add http://hydra.nixos.org/jobset/hydra/trunk/channel/latest
      $ nix-channel --update
      $ nix-env -i hydra
+
+     $ mkdir $HOME/hydra
+
+Add to the .profile of the user running hydra:
+
+     export HYDRA_DBI="dbi:Pg:dbname=hydra;host=localhost;user=hydra;"
+     export HYDRA_DATA=$HOME/hydra
