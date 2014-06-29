@@ -78,6 +78,9 @@ how to update installed software
 
      nix-env -u '*'
 
+If you want to update even SW that haven't changed version but something
+did change (deps. etc.), you need to add --leq.
+
 ### software in the environment.systemPackages
 
 If you have updated your channel with
