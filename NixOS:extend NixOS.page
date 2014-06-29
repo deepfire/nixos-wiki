@@ -231,5 +231,45 @@ irc client options. This will extend the options available inside
       };
     }
 
+Test your modules in a Virtual Machine with build-vm
+====================================================
+
+To test your new service in a VM create a file e.g. my-new-service.nix:
+
+    {config, pkgs, ...}:
+    {
+      # You need to configure a root filesytem
+      fileSystems."/".label = "vmdisk";
+
+      # The test vm name is based on the hostname, so it's nice to set one
+      networking.hostName = "vmhost"; 
+
+      # Add a test user who can sudo to the root account for debugging
+      users.extraUsers.vm = {
+        password = "vm";
+        shell = "${pkgs.bash}/bin/bash";
+        group = "wheel";
+      };
+      security.sudo = {
+        enable = true;
+        wheelNeedsPassword = false;
+      };
+
+      # Enable your new service!
+      services =  {
+        myNewService = {
+          enable = true;
+        };
+      };
+    }
+
+Then you can build a vm for testing:
+
+    $ NIXOS_CONFIG=`pwd`/vmtest.nix nixos-rebuild  -I nixos=/path/to/nixos/ build-vm
+
+... and run it:
+
+    $ ./result/bin/run-vmhost-vm
+
 ... work in progress ...
 
