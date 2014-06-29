@@ -60,3 +60,12 @@ TODO: explain what is done exactly
 and work](//Nix(OS) related repositories and work) tries to implement
 this for your convinience
 
+merging git pull requests
+-------------------------
+
+hitting the "merge" button on github is fine, however doing
+
+       curl 'patch url' | git am; git push
+
+is finer, because history will be cleaner.
+
