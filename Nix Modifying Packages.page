@@ -62,9 +62,11 @@ in Nix commands, place it inside angle brackets, like "`<my-nixpkgs>`",
 when using Nix commands.
 
        ### Install from our NixPkgs fork: (yet to be tested by author)
-       $ export NIX_PATH=my-nixpkgs=/home/user-name/my-fork/nixpkgs:$NIX_PATH
-       $ nix-env -i <my-nixpkgs/default.nix> firefox
-       $ nix-env -i <my-nixpkgs> firefox
+       $ export NIX_PATH=my-nixpkgs=/home/user-name/my-fork:$NIX_PATH
+       $ nix-env -i firefox -f <my-nixpkgs/default.nix>
+       $ nix-env -i firefox -f <my-nixpkgs>
+       # OR, if angle brackets aren't working...
+       $ nix-env -i firefox -f ~/my-fork/default.nix
 
 If we have problems, we can individually execute each phase of the Nix
 build process by using the `nix-shell` command.
