@@ -1,5 +1,5 @@
 Following config snippet asks Nix to add "CONFIG\_PPP\_FILTER y" option
-to the set of kernel options for current kernel. Of cause, that would
+to the set of kernel options for current kernel. Of course, that would
 require Nix to rebuild the kernel locally.
 
      nixpkgs.config = {
