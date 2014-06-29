@@ -59,7 +59,63 @@ module.
           {};
     }
 
-The previous module cause an infinite loop.
+The previous module cause an infinite recursion:
 
-... explanation coming soon ...
+-   The `config` attribute is evaluated. This evaluation needs the
+    result of the `if` statement.
+-   The `if` statement is evaluated. This evaluation needs the result of
+    the condition.
+-   The condition (`config.foo`) is evaluated. This evaluation needs the
+    result of the `config` argument.
+-   The `config` argument is evaluated. This evaluation needs the result
+    of merging of all modules.
+-   The merge function of the modules is evaluated. This evaluation
+    needs the evaluation of each module `config` attribute.
 
+To avoid such infinite recursion, [properties](//NixOS:Properties) have
+been introduced, thus the previous code should be rewritten in:
+
+    {config, pkgs, ...}:
+
+    {
+      options = {
+        foo = pkgs.lib.mkOption {
+          default = false;
+          type = with pkgs.lib.types; bool;
+          description = "enable foo";
+        };
+      };
+
+      config = pkgs.lib.mkIf config.foo {
+        bar = 42;
+      };
+    }
+
+Common Pattern
+--------------
+
+Often, the module declare options embedded inside an attribute set. To
+access these options, we add an attribute `cfg` as a shortcut notation.
+
+    {config, pkgs, ...}:
+
+    let
+      cfg = config.foo.bar.baz;
+
+      # ...
+    in
+
+    with pkgs.lib; {
+      options = {
+        foo.bar.baz = {
+          enable = mkOption { /* ... */ };
+          option1 = mkOption { /* ... */ };
+          option2 = mkOption { /* ... */ };
+          option3 = mkOption { /* ... */ }; 
+        };
+      };
+
+      config = mkIf cfg.enable {
+        # ...
+      };
+    }
