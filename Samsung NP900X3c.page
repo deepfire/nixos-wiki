@@ -102,6 +102,7 @@ Related discussion on
 
 I expected runtime system freezes on Linux kernels prior to 3.9.
 Probably, that was because of bugs in intel video drivers. In 3.9 they
-are gone so add following lines to the config:
+are gone so add following lines to the config if current kernel version
+is below 3.9:
 
        boot.kernelPackages = pkgs.linuxPackages_3_9;
