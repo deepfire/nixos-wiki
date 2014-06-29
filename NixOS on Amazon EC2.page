@@ -15,8 +15,8 @@ Below we assume that the following environment variables are set:
 -   `$EC2_URL` should be set to the desired region, e.g.
     `https://ec2.eu-west-1.amazonaws.com/`.
 
-Public NixOS AMIs
------------------
+[[edit](/w/index.php?title=NixOS_on_Amazon_EC2&action=edit&section=1 "Edit section: Public NixOS AMIs")] Public NixOS AMIs
+--------------------------------------------------------------------------------------------------------------------------
 
 Currently the following public NixOS AMIs are available:
 
@@ -32,8 +32,8 @@ Currently the following public NixOS AMIs are available:
   r22609 (obsolete)  r30346             r30346             r30346
   ---------------------------------------------------------------------------
 
-Running NixOS instances
------------------------
+[[edit](/w/index.php?title=NixOS_on_Amazon_EC2&action=edit&section=2 "Edit section: Running NixOS instances")] Running NixOS instances
+--------------------------------------------------------------------------------------------------------------------------------------
 
 1.  To create instances from the command line, you need to install the
     EC2 API tools:
@@ -82,8 +82,8 @@ Running NixOS instances
         $ nano /etc/nixos/configuration.nix
         $ nixos-rebuild switch
 
-Creating a NixOS AMI
---------------------
+[[edit](/w/index.php?title=NixOS_on_Amazon_EC2&action=edit&section=3 "Edit section: Creating a NixOS AMI")] Creating a NixOS AMI
+--------------------------------------------------------------------------------------------------------------------------------
 
 The following steps show how to build your own NixOS Amazon Image (AMI),
 upload it to S3, and start an instance.
