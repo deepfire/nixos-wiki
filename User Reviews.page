@@ -18,6 +18,9 @@ Articles & Blogs & Comments
 -   2009-06-17: NixOS: purely functional system configuration management
     -   2009-06-17: <http://lwn.net/Articles/337677/>
 
+-   2009-05-01: Exploring the Limits of Package Management with Nix
+    -   2009-05-01: <http://ldn.linuxfoundation.org/node/13277>
+
 -   2009-03-03: <http://jimpick.com/nix-nixos-and-ruby-gems>
 
 -   2009-01-30: NixOS: A Distro Focused on Next-Generation Package
@@ -32,8 +35,15 @@ Articles & Blogs & Comments
 -   2008-06-26:
     <http://ddvlad.wordpress.com/2008/06/26/a-coward-thats-what-i-am/>
 
+-   2008-12-28: Install NixOS (Japanese)
+    -   2008-12-28: <http://ambiesoft.ddo.jp/blog/archives/1266>
+
 -   2007-10-23:
     <http://lists.gobolinux.org/pipermail/gobolinux-users/2007-October/006611.html>
+
+-   2007-04-06: NixOS: una distribuzione completamente funzionale
+    -   2007-04-06:
+        <http://www.ossblog.it/post/2285/nix-nixos-purely-functional-distro-package-manager>
 
 -   2007-04-01: NixOS: a Purely Functional Linux Distribution
     -   2007-04-01: <http://www.osnews.com/comments/17601>
