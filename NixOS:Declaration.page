@@ -55,11 +55,66 @@ they are not defined.
 Types
 =====
 
+Types are used to ensure the correctness of definitions and to provide a
+way to merge the definitions. All common types are available in
+[`pkgs/lib/types.nix`](https://svn.nixos.org/repos/nix/nixpkgs/trunk/pkgs/lib/types.nix%7C).
+To declare a type you have to write something like:
+
+    services.fooBar.option = pkgs.lib.mkOption {
+      type = with pkgs.lib.types; uniq string;
+      description = "
+        ...
+      ";
+    };
+
+The `check` function provided by the type can be a source of strictness,
+but this is rare because most of the time checked option definitions are
+fully used by the merge function.
+
 Simple Types
 ------------
+
+-   `inferred`: Useful when it is used under a meta-type.
+-   `bool`: A Boolean useful for enable flags. The merge function is a
+    logical OR between all definitions.
+-   `int`: An Integer.
+-   `string`: A string where all definitions are concatenated.
+-   `envVar`: A string where all definitions are concatenated with a
+    colon between all definitions.
+-   `attrs`: An attribute set. (similar to `attrsOf inferred`)
+-   `package`: A derivation.
 
 Meta Types
 ----------
 
+Data meta-types:
+
+-   `listOf t`: A list of elements with the type `t`.
+-   `attrsOf t`: An attribute set of elements with the type `t`. The
+    merge function zip all attribute sets into one. Attribute values of
+    the resulting attribute set are merged with the merge function of
+    the type `t`.
+
+Definition meta-types:
+
+-   `uniq t`: This type define raise an error if more than one
+    definitions exists. All other properties are inherited from the type
+    `t`. This is useful to avoid ambiguous definitions.
+-   `none t`: This type define raise an error if at least one
+    definitions exists. All other properties are inherited from the type
+    `t`. This is useful to provide a computation result to other
+    modules. See also the `apply` function of option declarations.
+
 Module Type
 -----------
+
+-   `optionSet`: This type is used to benefit from the modular system
+    used by NixOS inside an option. When this type is enabled, it merge
+    the `options` attribute of option declarations with each definition.
+    The result is the fixed configuration of each module. This option is
+    often see in conjunction with `attrsOf` or `listOf`. Modules
+    declared in option declaration appear in the generated manual with a
+    prefix representing the container type, respectively "`.<name>`" and
+    "`.*`". Reference to definition files do not appears in the
+    generated manual because the system cannot track them.
+
