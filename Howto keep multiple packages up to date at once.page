@@ -1,5 +1,5 @@
-The standard way
-----------------
+[[edit](/w/index.php?title=Howto_keep_multiple_packages_up_to_date_at_once&action=edit&section=1 "Edit section: The standard way")] The standard way
+----------------------------------------------------------------------------------------------------------------------------------------------------
 
 to keep a set of packages up-to-date in Nix is to install them into a
 profile -- typically the default profile -- and to run
@@ -33,16 +33,10 @@ env. Then you install a newer gimp and wonder why the older plugin does
 no longer match the newer gimp, why it does no longer work. You'll spend
 time on debugging it. Don't take me verbatim. This is an example about
 which kind of issues may happen if you don't use collections for some
-purposes. [Aksesoris mobil](http://kiosauto.com), [Sewa mobil
-jakarta](http://www.awanirentcar.com), [Sewa mobil jakarta
-selatan](http://www.awanirentcar.com/about-us), [Toko bunga online
-jakarta](http://www.tokobungasabana.com), [Railing
-tangga](http://trimasjaya.com/products/railing_tangga/index.html),
-[Pintu dan
-jendela](http://www.trimasjaya.com/pintu-dan-jendela/index.html)
+purposes.
 
-The collection way
-------------------
+[[edit](/w/index.php?title=Howto_keep_multiple_packages_up_to_date_at_once&action=edit&section=2 "Edit section: The collection way")] The collection way
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 
 The alternative is using package collections referring to packages by
 name. Nix offers a mechanism for that purpose, too, namely the
