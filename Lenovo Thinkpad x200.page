@@ -12,8 +12,10 @@ Overview
   Intel Mobile 4                       Intel 5100 AGN
   -------------------------------------------------------------------------
 
-System Management Application Program Interface
------------------------------------------------
+Manual configuration
+--------------------
+
+### System Management Application Program Interface
 
 On the ThinkPad X200 some system information is made available through
 the System Management Application Program Interface (SMAPI) instead of
@@ -32,3 +34,12 @@ Then add tp\_smapi to boot.kernelModules in
 /etc/nixos/configuration.nix.
 
     boot.kernelModules = [ ... "tp_smapi" ];
+
+Tips & Tricks
+-------------
+
+### Disable speaker
+
+Add this to your /etc/nixos/configuration.nix.
+
+    boot.blacklistedKernelModules = [ "pcspkr" ];
