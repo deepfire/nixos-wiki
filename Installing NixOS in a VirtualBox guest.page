@@ -18,8 +18,7 @@ This pages describes how to install NixOS in a VirtualBox guest.
      $ fdisk /dev/sda (create a full partition, don't skip this step, example commands for quick setup: n,p,1,w)
      $ mkfs.ext4 -j -L nixos /dev/sda1 (idem)
      $ mount LABEL=nixos /mnt
-     $ mkdir -p /mnt/etc/nixos
-     $ nixos-hardware-scan > /mnt/etc/nixos/configuration.nix (for quick setup overwrite configuration.nix completely with example below)
+     $ nixos-generate-config --root /mnt (for quick setup overwrite configuration.nix completely with example below)
      $ nano /mnt/etc/nixos/configuration.nix
 
 (add the fileSystems. this is what my final config looks like:)
