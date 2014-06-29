@@ -15,6 +15,9 @@ Hardware
 Configuration
 =============
 
+Full configurations is in my
+[dotfiles](https://github.com/ierton/dotfiles/blob/greyblade/nixos/samsung-np900x3c.nix).
+
 ### Graphics
 
 i915 / xf86-video-intel-2.17.0 are able to handle the graphics.
@@ -60,15 +63,31 @@ handles it well. Corresponding config lines:
 
 ### Wireless
 
-System requires iwlwifi-6000g2b-6.ucode in order to work. File can be
-found in debian or redhat package. I've placed it into /root/firmware
-and specified
+System requires iwlwifi-6000g2b-6.ucode in order to work. I've extracted
+the file from some debian package and placed it into /root/firmware.
+Corresponding config settings:
 
       hardware.firmware = [ "/root/firmware" ];
 
-Configuration
-=============
+Problems
+========
 
-Full configuration can be found in my
-[dotfiles](https://github.com/ierton/dotfiles/blob/greyblade/nixos/samsung-np900x3c.nix).
+### Battery
+
+Battery charging/discharging indicator doesn't work good.
+
+### Lid
+
+Acpi thinks lid is always open
+
+    [ierton@greyblade:~]$ cat /proc/acpi/button/lid/LID0/state 
+    state:      open
+
+### Multimedia keys
+
+rfkill/fanless don't work volume up/down don't work brightness up/down
+work, but release is broken touchpad disable works
+
+Related discussion on
+[jablonskis.org](http://jablonskis.org/2012/linux-and-samsung-series-laptop-9-fn-keys/)
 
