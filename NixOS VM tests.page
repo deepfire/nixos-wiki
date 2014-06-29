@@ -37,6 +37,13 @@ symlink `./result` in the current directory pointing at the location in
 the Nix store of the test results (e.g., screenshots, test reports, and
 so on).
 
+[![Interactive
+VMs](/w/images/thumb/e/e9/Nixos-interactive-vms.png/180px-Nixos-interactive-vms.png)](//File:Nixos-interactive-vms.png)
+
+[![](/w/skins/common/images/magnify-clip.png)](//File:Nixos-interactive-vms.png)
+
+Screenshot of running the NFS test environment interactively.
+
 It is also possible to run the test environment interactively, allowing
 you to experiment with the VMs. For example:
 
