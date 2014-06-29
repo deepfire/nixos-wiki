@@ -192,6 +192,13 @@ You should now be able to start an instance as normal:
 
     ./bin/instance fg
 
+You may need to
+
+    unset http_proxy
+
+to be able to download packages from the internet (you'll see errors
+about nodtd.invalid).
+
 NOTE: buildout-nix is a patched version of buildout 2.2.0, which
 symlinks to required eggs in the nix store instead of copying them to
 ./eggs. Eggs which aren't found in the environment will be downloaded
