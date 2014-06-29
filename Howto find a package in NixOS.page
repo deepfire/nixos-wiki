@@ -62,10 +62,10 @@ package, then use the `ctags` command line program to index Nix files or
 directories of Nix files, such as a directory which contains the NixPkgs
 repository. This package customizes a ctags installation by adding a
 definition for the Nix syntax. To learn more about the Ctags program,
-read the [website](http://ctags.sourceforge.net/%7Cctags).
+read the [ctags website](http://ctags.sourceforge.net/).
 
 Another method of indexing Nix expressions is to use the ID Utils
 program. The [HOWTO:idutils|IdUtils] wiki page has more details. To
-learn more about the ID Utils program, read the [Utils
-website](https://www.gnu.org/software/idutils/%7CID).
+learn more about the ID Utils program, read the [ID Utils
+website](https://www.gnu.org/software/idutils/).
 
