@@ -12,8 +12,7 @@ networkmanager configuration.
 
 ### GTK applet
 
-To use **nm-applet**, you have to install **networkmanagerapplet**
-package and some desktop keyring application such as **gnome\_keyring**.
+To use **nm-applet**, you have to install **networkmanagerapplet**.
 
 ### KDE applet
 
