@@ -3,6 +3,8 @@ You can configure chromium with NixOS the standard way:
 
     nixpkgs.config = {
 
+        allowUnfree = true;
+
         firefox = {
          jre = false;
          enableGoogleTalkPlugin = true;
@@ -17,7 +19,7 @@ You can configure chromium with NixOS the standard way:
 
       };
 
-and then install `chromiumWrapper`.
+and then install `chromiumWrapper` or `firefoxWrapper`.
 
 Pepper Plugins
 --------------
