@@ -20,6 +20,20 @@ Getting ALSA to work
         -   first thing to do is to disable pc speaker (kernel module
             "snd-pcsp", see below.
 
+### Make your audio card the default ALSA card
+
+Sometimes the pc-speaker because the default audio card for ALSA. You
+can make your real sound card default instead. For example, if your
+sound card is "hda-intel" then add
+
+     boot.extraModprobeConfig = 
+       options snd slots=snd-hda-intel
+     ;
+
+to your /etc/nixos/configuration.nix.
+
+Alternatively you can ...
+
 ### Disable PC Speaker "audio card"
 
 edit /etc/nixos/configuration.nix and "snd\_pcsp" to
