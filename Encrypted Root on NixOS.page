@@ -2,16 +2,16 @@ There are many possible encrypted root setups. This guide is for setting
 up LVM over Luks, which is an easy and safe setup that will satisfy most
 users. Other setups should still be sufficiently similar.
 
-Important
----------
+[[edit](/w/index.php?title=Encrypted_Root_on_NixOS&action=edit&section=1 "Edit section: Important")] Important
+--------------------------------------------------------------------------------------------------------------
 
 Here you will find \*only\* NixOS-specific bits. For general information
 regarding this setup, how to partition disks and such refer to
 [[1]](http://wiki.archlinux.org/index.php/System_Encryption_with_LUKS_for_dm-crypt)
 or other detailed guide.
 
-Updating from how it was previously
------------------------------------
+[[edit](/w/index.php?title=Encrypted_Root_on_NixOS&action=edit&section=2 "Edit section: Updating from how it was previously")] Updating from how it was previously
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Luks got changed lately (see mailinglist from 3.3.2012 titled "[Nix-dev]
 luks changes")
@@ -24,8 +24,8 @@ Then now you have to write:
 
      boot.initrd.luks.devices = [ { name = "luksroot"; device = "/dev/sda2"; } ];
 
-the configuration of /etc/nixos/configuration.nix
--------------------------------------------------
+[[edit](/w/index.php?title=Encrypted_Root_on_NixOS&action=edit&section=3 "Edit section: the configuration of /etc/nixos/configuration.nix")] the configuration of /etc/nixos/configuration.nix
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 In this example we assume that:
 
@@ -33,7 +33,7 @@ In this example we assume that:
 -   your **luks-encrypted partition** is **/dev/sda2** that contains the
     LVM volume group "vg".
 
-### Make sure initrd finds and mounts the root partition
+### [[edit](/w/index.php?title=Encrypted_Root_on_NixOS&action=edit&section=4 "Edit section: Make sure initrd finds and mounts the root partition")] Make sure initrd finds and mounts the root partition
 
 The current implementation always opens the luks devices in the stage1
 (before mounting the rootfs).
@@ -63,7 +63,7 @@ In case you had luks \*over\* LVM, you want to luksOpen the device
         { name = "luksroot"; device = "/dev/sda2"; preLVM = true; }
       ];
 
-### creating encrypted swap
+### [[edit](/w/index.php?title=Encrypted_Root_on_NixOS&action=edit&section=5 "Edit section: creating encrypted swap")] creating encrypted swap
 
 If you don't use LVM then you have a problem with creating and using an
 encrypted swap. One approach would be to unlock the swap partition with
@@ -94,14 +94,14 @@ dmcrypt device opened.
         { device = "/dev/mapper/swap"; }
       ];
 
-### no encrypted root filesystem, no encrypted swap but only encrypted /home
+### [[edit](/w/index.php?title=Encrypted_Root_on_NixOS&action=edit&section=6 "Edit section: no encrypted root filesystem, no encrypted swap but only encrypted /home")] no encrypted root filesystem, no encrypted swap but only encrypted /home
 
 If you **only want to have an encrypted home directory**, you need to
 set something like this, for example:
 
       boot.initrd.luks.devices = [ { device = "/dev/sda3"; name = "lukshome"; };
 
-### Extra kernel modules you might need
+### [[edit](/w/index.php?title=Encrypted_Root_on_NixOS&action=edit&section=7 "Edit section: Extra kernel modules you might need")] Extra kernel modules you might need
 
 Most of crypto modules are loaded by default so there's nothing to do.
 However, if decryption fails or if you want to make sure everything is
@@ -129,7 +129,7 @@ must be available in the init ramdisk to enter the pass phrase. Recent
 models of the Microsoft Internet keyboard, for example, need the module
 `hid_microsoft` in order to be recognized as an input device.
 
-### Defending against DMA Attacks
+### [[edit](/w/index.php?title=Encrypted_Root_on_NixOS&action=edit&section=8 "Edit section: Defending against DMA Attacks")] Defending against DMA Attacks
 
 If you enable LUKS root, DMA attack mitigation is also
 enabled(boot.initrd.luks.mitigateDMAAttacks ). It consists of
@@ -140,7 +140,7 @@ firewire port), your encryption key can be obtained in a couple of
 minutes by an unsophisticated attacker with physical access to the
 computer.
 
-### Root Filesystem
+### [[edit](/w/index.php?title=Encrypted_Root_on_NixOS&action=edit&section=9 "Edit section: Root Filesystem")] Root Filesystem
 
       fileSystems = [ {
         mountPoint = "/";
@@ -153,8 +153,8 @@ computer.
       #other filesystems go here 
       ]
 
-Mounting from a rescue system
------------------------------
+[[edit](/w/index.php?title=Encrypted_Root_on_NixOS&action=edit&section=10 "Edit section: Mounting from a rescue system")] Mounting from a rescue system
+-------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Within the rescue system:
 
