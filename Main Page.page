@@ -64,8 +64,7 @@ HOWTOs
 -   [How to remote control a VM within a build
     job](//Remote controlling a vm)
 
--   [Writing NixOS VM
-    tests](/w/index.php?title=Writing_NixOS_VM_tests&action=edit&redlink=1 "Writing NixOS VM tests (page does not exist)")
+-   [Writing and running NixOS VM tests](//NixOS VM tests)
 
 Development
 -----------
