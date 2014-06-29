@@ -22,7 +22,7 @@ Using NixOS with VirtualBox on OS X.
 
 (add the fileSystems. this is what my final config looks like:)
 
-     {pkgs, ...}:
+     {pkgs, config, ...}:
      {
        boot.initrd.extraKernelModules = [  "ata_piix" ];
        boot.kernelModules = [  ];
@@ -37,8 +37,9 @@ Using NixOS with VirtualBox on OS X.
          sshd = { enable = true; };
          xserver.videoDriver = "virtualbox";
        };
+       # If you disable kde4, set environment.systemPackages instead.
        environment.kdePackages = [
-         pkgs.kernelPackages.virtualboxGuestAdditions
+         config.boot.kernelPackages.virtualboxGuestAdditions
        ];
      }
 
