@@ -17,10 +17,7 @@ Sheevaplug configuration
          kernelModules = [ ];
          lvm = false;
        };
-       kernelParams = [
-           "selinux=0"
-           "console=tty1"
-         ];
+       kernelParams = [];  # These are hardcoded in uboot ! So not handled by nixos.
        kernelModules = [ "fuse" ];
        kernelPackages = pkgs.kernelPackages_2_6_32;
        loader = {
