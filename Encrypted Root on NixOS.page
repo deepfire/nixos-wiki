@@ -69,3 +69,16 @@ models of the Microsoft Internet keyboard, for example, need the module
       }
       #other filesystems go here 
       ]
+
+Mounting from a rescue system
+-----------------------------
+
+Within the rescue system:
+
+      # cryptsetup luksOpen /dev/sda2 crypt
+      # vgscan
+      # vgchange -ay
+
+Now your logical volumes should be available. XXX: written from memory,
+please correct or remove this sentence.
+
