@@ -651,7 +651,6 @@ Pushing the local changes to GitHub
     Total 19 (delta 14), reused 14 (delta 12)
     To https://github.com/your_username/nixpkgs.git
        1c86db4..4c7daed  example -> example
-    Branch example set up to track remote branch example from origin.
 
 Sending a pull request to the official nixpkgs repository
 ---------------------------------------------------------
