@@ -1,10 +1,5 @@
-how to get an account
----------------------
-
-due to spam reasons you have to ask on the mailinglist
-
-O(1)
-----
+[[edit](/w/index.php?title=Contributing_to_the_Nix_wiki&action=edit&section=1 "Edit section: O(1)")] O(1)
+---------------------------------------------------------------------------------------------------------
 
 On the haskell mailinglist there was some discussion about their
 [wiki](http://haskell.org). If you visit it it looks very crowded.
@@ -12,8 +7,8 @@ However there is a good reason for it. You can access all content by
 O(1) access no matter whether you're an advanced user or a new user. I'd
 vote for O(1) access on the main wiki page as well - Marc Weber
 
-WISH LIST
----------
+[[edit](/w/index.php?title=Contributing_to_the_Nix_wiki&action=edit&section=2 "Edit section: WISH LIST")] WISH LIST
+-------------------------------------------------------------------------------------------------------------------
 
 What is missing on the wiki? even if you don't have time let others know
 who may have time what you think is missing. Should we group this by
@@ -24,14 +19,14 @@ here.
 
 -   haskell on Nix howto. (Marc Weber is going to write this?)
 
-### vim and .nix files. (Marc Weber is going to write this?)
+### [[edit](/w/index.php?title=Contributing_to_the_Nix_wiki&action=edit&section=3 "Edit section: vim and .nix files. (Marc Weber is going to write this?)")] vim and .nix files. (Marc Weber is going to write this?)
 
-#### use what is coming with nix (nix os)
+#### [[edit](/w/index.php?title=Contributing_to_the_Nix_wiki&action=edit&section=4 "Edit section: use what is coming with nix (nix os)")] use what is coming with nix (nix os)
 
     # add .nix filetype detection and minimal syntax highlighting support
     ftNixSupport     = getConfig [ "vim" "ftNix" ] true;
 
-#### use the lisp syntax or what kosmikus provided
+#### [[edit](/w/index.php?title=Contributing_to_the_Nix_wiki&action=edit&section=5 "Edit section: use the lisp syntax or what kosmikus provided")] use the lisp syntax or what kosmikus provided
 
     mkdir -p ~/.vim/ftdetect/
     NEW NEW NEW
@@ -107,8 +102,8 @@ Test your new setup:
 
 -   list of advanced buliders
 
-random notes
-------------
+[[edit](/w/index.php?title=Contributing_to_the_Nix_wiki&action=edit&section=6 "Edit section: random notes")] random notes
+-------------------------------------------------------------------------------------------------------------------------
 
 What policies do we have ? Eg "Nix" and "NixOS" is the spelling which
 should be used everywhere. What about links? Should they all start with
