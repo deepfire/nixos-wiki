@@ -32,6 +32,13 @@ card is "hda-intel" then add
 
 to your /etc/nixos/configuration.nix.
 
+Sometimes, we may want to disable one of intel cards. Here is how to
+disable first card, but enable the second one.
+
+      boot.extraModprobeConfig = ''
+        options snd_hda_intel enable=0,1
+      '';
+
 Alternatively you can ...
 
 ### Disable PC Speaker "audio card"
