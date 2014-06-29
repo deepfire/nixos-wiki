@@ -1,8 +1,8 @@
 *Note:* This page is work in progress. Until finished it is only of
 limited usefulness.
 
-Network
-=======
+[[edit](/w/index.php?title=PulseAudio&action=edit&section=1 "Edit section: Network")] Network
+=============================================================================================
 
 Server: server, 192.168.0.1 Client: client,
 
@@ -45,11 +45,11 @@ Client configuration.
      client $ scp server:.pulse-cookie .pulse-cookie
      client $ pulseaudio
 
-Applications
-============
+[[edit](/w/index.php?title=PulseAudio&action=edit&section=2 "Edit section: Applications")] Applications
+=======================================================================================================
 
-MPlayer
--------
+[[edit](/w/index.php?title=PulseAudio&action=edit&section=3 "Edit section: MPlayer")] MPlayer
+---------------------------------------------------------------------------------------------
 
 Enable Pulse Audio support in MPlayer.
 
@@ -66,6 +66,4 @@ Install MPlayer with Pulse Audio support.
 
 Make Pulse Audio the default output device.
 
-     $ cat <<EOF
-     ao=pulse
-     >> ~/.mplayer/config
+     $ echo ao=pulse >> ~/.mplayer/config
