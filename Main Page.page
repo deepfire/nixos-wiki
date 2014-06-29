@@ -51,6 +51,9 @@ HOWTOs
 -   [How to unpack a package's
     sourcecode](//How to unpack a package's sourcecode)
 -   [How to setup UPS/NUT](//How to setup UPS/NUT)
+-   [How to get a chroot close enough to LSB for impure binary packages
+    to
+    work](//How to get a chroot close enough to LSB for impure binary packages to work)
 
 ### Virtualisation
 
