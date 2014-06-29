@@ -1,12 +1,17 @@
 This page [needs editing](//Category:Edit Needed). It may contain errors
 and/or outdated information.
 
-This page is intended to describe the current state of Steam under Nixos
-and to discuss what the problems are in packaging it and how we can
-approach solving them.
+The current best approach is documented here:
+<http://sandervanderburg.blogspot.nl/2013/09/composing-fhs-compatible-chroot.html>
 
-Description of the package
---------------------------
+* * * * *
+
+ This page is intended to describe the current state of Steam under
+Nixos and to discuss what the problems are in packaging it and how we
+can approach solving them.
+
+[[edit](/w/index.php?title=Steam&action=edit&section=1 "Edit section: Description of the package")] Description of the package
+------------------------------------------------------------------------------------------------------------------------------
 
 Steam is distributed as a .deb file, for now only as an i686 package
 (the amd64 package only has documentation). When unpacked, it has a
@@ -15,8 +20,8 @@ script called steam that in ubuntu (their target distro) would go to
 the user's home, which include another script that is the ultimate
 responsible for launching the steam binary, which is also in \$HOME.
 
-Nix problems and constraints
-----------------------------
+[[edit](/w/index.php?title=Steam&action=edit&section=2 "Edit section: Nix problems and constraints")] Nix problems and constraints
+----------------------------------------------------------------------------------------------------------------------------------
 
 -   We don't have /bin/bash and many scripts point there. Similarly for
     /usr/bin/python, for some functionality.
@@ -25,15 +30,15 @@ Nix problems and constraints
     it is checked and rewritten by steam
 -   The steam binary cannot be patched, it's also checked
 
-Approaches
-----------
+[[edit](/w/index.php?title=Steam&action=edit&section=3 "Edit section: Approaches")] Approaches
+----------------------------------------------------------------------------------------------
 
-### Link bash to /bin and glibc/lib to /lib and be happy
+### [[edit](/w/index.php?title=Steam&action=edit&section=4 "Edit section: Link bash to /bin and glibc/lib to /lib and be happy")] Link bash to /bin and glibc/lib to /lib and be happy
 
 -   Pros: easy, works
 -   Cons: not very nix-compliant
 
-### Workaround the scripts and launch steam directly
+### [[edit](/w/index.php?title=Steam&action=edit&section=5 "Edit section: Workaround the scripts and launch steam directly")] Workaround the scripts and launch steam directly
 
 -   Pros: not so hard
 -   Cons: this only solves the part concerned with running steam. What
@@ -43,7 +48,7 @@ Approaches
 This is the approach that I (page) took in my github branch:
 <https://github.com/cpages/nixpkgs/tree/steam>
 
-### Intercept Steam's calls with LD\_PRELOAD or the like
+### [[edit](/w/index.php?title=Steam&action=edit&section=6 "Edit section: Intercept Steam's calls with LD PRELOAD or the like")] Intercept Steam's calls with LD\_PRELOAD or the like
 
 -   Pros: more robust
 -   Cons: difficult to achieve and may be broken by changes in the
@@ -52,7 +57,7 @@ This is the approach that I (page) took in my github branch:
 aszlig started working in this in his branch:
 <https://github.com/aszlig/nixpkgs/tree/steam>
 
-### chroot
+### [[edit](/w/index.php?title=Steam&action=edit&section=7 "Edit section: chroot")] chroot
 
 -   Pros:
     -   it would allow us to have binaries in the expected paths without
@@ -63,8 +68,8 @@ aszlig started working in this in his branch:
 
 shlevy/aristid proposed this approach. Noone has tried :)
 
-I want to play
---------------
+[[edit](/w/index.php?title=Steam&action=edit&section=8 "Edit section: I want to play")] I want to play
+------------------------------------------------------------------------------------------------------
 
 Ok, now for the fun part. This is the procedure that should allow you to
 play:
@@ -77,7 +82,7 @@ play:
 4.  Launch steam once more: this should present you with the login
     screen, and from here to a working steam
 
-### But what about the games?
+### [[edit](/w/index.php?title=Steam&action=edit&section=9 "Edit section: But what about the games?")] But what about the games?
 
 You can install any of the games normally, but they will fail to start.
 From this step on, you're in the unsupported realm. Some games can be
@@ -88,16 +93,16 @@ patchelfed:
 You might also need patching some scripts. That all depends on each one.
 You can then press play from steam and if you're lucky that'll be it!
 
-Troubleshooting
----------------
+[[edit](/w/index.php?title=Steam&action=edit&section=10 "Edit section: Troubleshooting")] Troubleshooting
+---------------------------------------------------------------------------------------------------------
 
 I was sure you would reach this part.
 
-### Steam fails to start. What do I do?
+### [[edit](/w/index.php?title=Steam&action=edit&section=11 "Edit section: Steam fails to start. What do I do?")] Steam fails to start. What do I do?
 
 strace is your friend.
 
-### Game X fails to start
+### [[edit](/w/index.php?title=Steam&action=edit&section=12 "Edit section: Game X fails to start")] Game X fails to start
 
 Games may fail to start because they lack dependencies (this should be
 added to the script, for now), or because they cannot be patched. The
