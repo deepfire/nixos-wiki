@@ -54,21 +54,9 @@ Policykit (not polkit!)
 Esound
 ------
 
-Esound is deprecated upstream (GNOME) in favour of pulseaudio.
-
-  --------------------------------------------------------------------------
-  Package
-  Maintainer
-  Plan
-  ------------------------ ------------------------ ------------------------
-  cinelerra                zapping
-  Marc Weber               No meta.maintainers; all
-  Upgrade to               commits made by Eelco
-  CinerellaCV-2.2 or       Dolstra
-  CinerellaHV-4.3, check   Remove 16 March 2012
-  if esound is still       
-  required                 
-  --------------------------------------------------------------------------
+Esound is deprecated upstream (GNOME) in favour of pulseaudio. Cinelerra
+is the only package that depends on esound. Should be upgraded or
+removed.
 
 Qt3/KDE3
 --------
