@@ -28,10 +28,15 @@ Help to do each method:
     (or firefox-3.6.8-with-plugins if you are using nix-env) instead of
     firefox and set nixpkgs.config.firefox.jre = true in your
     /etc/nixos/configuration.nix.
-2.  This is an easy way but you should do the same for all users:
+2.  This is an easy way but you should do the same for all users: if you
+    only have jre installed but not jdk: ***mkdir -p
+    \~/.mozilla/plugins; ls -l \`which java\` | sed 's/.\*-\>
+    \\(.\*\\)\\/bin\\/java/ln -s \\1\\/lib\\/i386\\/libnpjp2.so
+    \~\\/.mozilla\\/plugins/' | bash*** If you have jdk installed:
     ***mkdir -p \~/.mozilla/plugins; ls -l \`which java\` | sed
     's/.\*-\> \\(.\*\\)\\/bin\\/java/ln -s
-    \\1\\/lib\\/i386\\/libnpjp2.so \~\\/.mozilla\\/plugins/' | bash***
+    \\1\\/jre\\/lib\\/i386\\/libnpjp2.so \~\\/.mozilla\\/plugins/' |
+    bash***
 3.  The best would be to implement this centrally in
     /etc/nixos/nixpkgs/pkgs/top-level/all-packages.nix and reach all the
     firefox plugins this way.
