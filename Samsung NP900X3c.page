@@ -65,3 +65,10 @@ found in debian or redhat package. I've placed it into /root/firmware
 and specified
 
       hardware.firmware = [ "/root/firmware" ];
+
+Configuration
+=============
+
+Whole configuration can be found in my
+[dotfiles](https://github.com/ierton/dotfiles/blob/greyblade/nixos/samsung-np900x3c.nix).
+
