@@ -54,7 +54,7 @@ also any physical buttons on your computer (I have twice overlooked the
 mute button on laptops!).
 
 You should be able to look up the available options for *model* in
-[HD-Audio-Models.txt](http://www.kernel.org/doc/Documentation/sound/alsa/HD-Audio-Models.txt).
+[HD-Audio-Models.txt](http://kernel.org/doc/Documentation/sound/alsa/HD-Audio-Models.txt).
 You can try them out interactively as follows:
 
 1.  Close any applications using the sound card
@@ -78,7 +78,7 @@ You can try them out interactively as follows:
 2.  Unload the snd-hda-intel module
     rmmod snd-hda-intel
 3.  [Look up the model options for your
-    card](http://www.kernel.org/doc/Documentation/sound/alsa/HD-Audio-Models.txt)
+    card](http://kernel.org/doc/Documentation/sound/alsa/HD-Audio-Models.txt)
 4.  Try each one
     modprobe snd-hda-intel model=3stack-6ch
 5.  Test if this has fixed your problem (tip: aplay and arecord are alsa
