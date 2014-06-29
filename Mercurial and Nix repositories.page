@@ -43,7 +43,7 @@ VCS? Then this page might be what you're looking for!
      Subversion: 1.6.12
      bindings: Subvertpy 0.7.4
 
-### Cloning the nixpkgs vn repository
+### Cloning the nixpkgs svn repository
 
 This \*WILL\* take a \*LONG\* time (about 10-20 minutes)
 
