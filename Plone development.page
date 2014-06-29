@@ -13,11 +13,16 @@ system.
 Quickstart
 ----------
 
-1\. Download gist from link above 2. (optional) In case you don't have
-Nix install you can use "install\_nix.sh" to install it. 3. Run "make"
-in folder you extracted Gist files 4. Depending on your connection
-(\~5min fast, \~20min slow) Plone 4.3rc1 (at the time of writing this
-HowTo) will be installed. Start Plone with "bin/instance fg".
+1\. Download gist from link above
+
+2\. (optional) In case you don't have Nix install you can use
+"install\_nix.sh" to install it.
+
+3\. Run "make" in folder you extracted Gist files
+
+4\. Depending on your connection (\~5min fast, \~20min slow) Plone 4.3rc1
+(at the time of writing this HowTo) will be installed. Start Plone with
+"bin/instance fg".
 
 What actually happened above?
 -----------------------------
