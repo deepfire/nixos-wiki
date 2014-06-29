@@ -35,7 +35,7 @@ To find out which packages are effected by your change:
     $ nix-env -f . -qaP \* --drv-path | sort > l2
     $ changed=$(diff l1 l2 | awk '{print $2}' | sort | uniq)
 
-    # This list can be used to create a release.nix for testing you can build all the relevant packages
+    # This list can be used to create a release.nix for testing, or you can build all the relevant packages:
     $ nix-build $(for i in $changed; do echo -A $i; done)
 
     #!/bin/sh
