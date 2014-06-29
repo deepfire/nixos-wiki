@@ -7,8 +7,8 @@ described on a separate page:
 [nixpkgs-haskell-overlay](//Nixpkgs-haskell-overlay), also known as
 "Hack-nix".
 
-Getting started
----------------
+[[edit](/w/index.php?title=Haskell&action=edit&section=1 "Edit section: Getting started")] Getting started
+----------------------------------------------------------------------------------------------------------
 
 If you just want to get a running Haskell environment on NixOS quickly,
 a good way to get started is to install the current Haskell Platform:
@@ -26,8 +26,8 @@ following options into your `/etc/nixos/configuration.nix`:
 In both cases, though, it is recommended to read on in order to learn
 more about how Haskell packages are organized in Nixpkgs.
 
-Using Haskell packages
-----------------------
+[[edit](/w/index.php?title=Haskell&action=edit&section=2 "Edit section: Using Haskell packages")] Using Haskell packages
+------------------------------------------------------------------------------------------------------------------------
 
 You get the best Haskell experience in Nix if you use pre-packaged
 Haskell packages that are available in the Nixpkgs collection. Nixpkgs
@@ -61,7 +61,7 @@ Nixpkgs on your Nix system:
 
 Both options are described below in the more detail.
 
-### Obtaining a list of Haskell packages
+### [[edit](/w/index.php?title=Haskell&action=edit&section=3 "Edit section: Obtaining a list of Haskell packages")] Obtaining a list of Haskell packages
 
 The best way to get an overview of Haskell packages is to issue the
 following command:
@@ -120,7 +120,7 @@ If you want to see the sources that define all these attributes, have a
 look at the file `pkgs/top-level/haskell-packages.nix` in the Nixpkgs
 hierarchy.
 
-### Profiling
+### [[edit](/w/index.php?title=Haskell&action=edit&section=4 "Edit section: Profiling")] Profiling
 
 If you use Haskell for development, you might be interested in having
 profiling versions available for all libraries. This is easy to achieve
@@ -134,7 +134,7 @@ content in the file:
 If the file already exists, then drop the first and last line and just
 add the option to the list of other options you already declare.
 
-### Direct installation
+### [[edit](/w/index.php?title=Haskell&action=edit&section=5 "Edit section: Direct installation")] Direct installation
 
 As explained above, if you install a wrapped version of GHC, then it
 will be able to automatically pick up additional libraries you install
@@ -171,7 +171,7 @@ use libraries. If you accidentally installed this version, remove it
 from your profile using `nix-env -e ghc` and start again as explained
 above.
 
-#### Using several versions of GHC at once
+#### [[edit](/w/index.php?title=Haskell&action=edit&section=6 "Edit section: Using several versions of GHC at once")] Using several versions of GHC at once
 
 It is not possible to install multiple versions of GHC into the same
 profile. However, you can create a separate profile for each version of
@@ -192,7 +192,7 @@ Obviously, libraries are GHC-version-specific, so you might have to
 install the libraries you want to use in each of these versions several
 times.
 
-#### Using **cabal** in the direct installation scenario
+#### [[edit](/w/index.php?title=Haskell&action=edit&section=7 "Edit section: Using cabal in the direct installation scenario")] Using **cabal** in the direct installation scenario
 
 [To be written.]
 
@@ -217,11 +217,11 @@ found in the standard environment and there are few methods to get
     through the standard environment and load it with
     **load-env-\$(env-name)**.
 
-#### Keeping Haskell packages up-to-date
+#### [[edit](/w/index.php?title=Haskell&action=edit&section=8 "Edit section: Keeping Haskell packages up-to-date")] Keeping Haskell packages up-to-date
 
 [To be written.]
 
-### Customized GHC environment
+### [[edit](/w/index.php?title=Haskell&action=edit&section=9 "Edit section: Customized GHC environment")] Customized GHC environment
 
 As indicated above, using a wrapped GHC can be somewhat uncomfortable at
 times, because it behaves a bit differently from the original program.
@@ -234,7 +234,7 @@ set of packages in its global package database. The easiest way to use
 this function is via `~/.nixpkgs/config.nix` or
 `/etc/nixos/configuration.nix`.
 
-#### Local use via myEnvFun
+#### [[edit](/w/index.php?title=Haskell&action=edit&section=10 "Edit section: Local use via myEnvFun")] Local use via myEnvFun
 
 I find it handy to use `pkgs.myEnvFun` described in [Howto develop
 software on
@@ -277,7 +277,7 @@ Use by issuing:
      $ nix-build my-dev-env.nix
      $ ./result/bin/load-env-my-haskell-project
 
-#### Local use via Nixpkgs config
+#### [[edit](/w/index.php?title=Haskell&action=edit&section=11 "Edit section: Local use via Nixpkgs config")] Local use via Nixpkgs config
 
 Here is a simple yet complete example of how to use `ghcWithPackages` in
 `~/.nixpkgs/config.nix`:
@@ -312,7 +312,7 @@ Note that you can easily declare several Haskell environments in your
 configuration file, and switch between them, or even better, install
 them to different profiles and switch between the profiles.
 
-#### System-wide use via NixOS config
+#### [[edit](/w/index.php?title=Haskell&action=edit&section=12 "Edit section: System-wide use via NixOS config")] System-wide use via NixOS config
 
 The instructions for the user-specific approach are valid for the
 system-wide approach as well. You simply add the `ghcWithPackages` call
@@ -333,12 +333,12 @@ to the `environment.systemPackages` attribute in your
         ];
       }
 
-#### Overriding package preferences
+#### [[edit](/w/index.php?title=Haskell&action=edit&section=13 "Edit section: Overriding package preferences")] Overriding package preferences
 
 [This whole part still has to be filled with (more) content.]
 
-Generating new Haskell packages and contributing them to Nixpkgs
-----------------------------------------------------------------
+[[edit](/w/index.php?title=Haskell&action=edit&section=14 "Edit section: Generating new Haskell packages and contributing them to Nixpkgs")] Generating new Haskell packages and contributing them to Nixpkgs
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Expressions for individual packages are all auto-generated using the
 `cabal2nix` and `hackage4nix` tools that are explained below. Additional
@@ -346,9 +346,9 @@ documentation about the structure of partially generated files is
 provided below, but keep in mind that changes will usually be made in
 combination with these tools.
 
-### Individual packages
+### [[edit](/w/index.php?title=Haskell&action=edit&section=15 "Edit section: Individual packages")] Individual packages
 
-#### Package expressions
+#### [[edit](/w/index.php?title=Haskell&action=edit&section=16 "Edit section: Package expressions")] Package expressions
 
 Most Haskell package expressions are located at
 `development/libraries/haskell`, but a few live elsewhere. There are
@@ -420,7 +420,7 @@ arguments to `cabal.mkDerivation`:
 The last two flags described above can sometimes be used if the
 auto-generated package description won't immediately work.
 
-#### The Cabal builder
+#### [[edit](/w/index.php?title=Haskell&action=edit&section=17 "Edit section: The Cabal builder")] The Cabal builder
 
 The builder lives in `build-support/cabal/default.nix` and handles
 building of nearly all Cabal-based Haskell packages in nixpkgs. It is
@@ -433,7 +433,7 @@ If changes to the Cabal builder are necessary, they should be made very
 careful, because they will usually trigger rebuilds of all Haskell
 packages.
 
-#### cabal2nix
+#### [[edit](/w/index.php?title=Haskell&action=edit&section=18 "Edit section: cabal2nix")] cabal2nix
 
 The `cabal2nix` tool can be used to generate Nix expressions (such as
 the one for `unordered-containers` shown above automatically. The
@@ -455,16 +455,16 @@ and makes sure to preserve them upon regeneration. However, if a package
 requires more severe changes to the `cabal2nix` output, then the tool
 itself should be adapted.
 
-### GHC
+### [[edit](/w/index.php?title=Haskell&action=edit&section=19 "Edit section: GHC")] GHC
 
 [To be written.]
 
-### Composing Haskell packages
+### [[edit](/w/index.php?title=Haskell&action=edit&section=20 "Edit section: Composing Haskell packages")] Composing Haskell packages
 
 [To be written.] (This is about the contents of `haskell-defaults.nix`
 and `haskell-packages.nix`.)
 
-### Maintaining your own set of additional Haskell packages
+### [[edit](/w/index.php?title=Haskell&action=edit&section=21 "Edit section: Maintaining your own set of additional Haskell packages")] Maintaining your own set of additional Haskell packages
 
 [To be extended.]
 
@@ -473,18 +473,20 @@ you can either add them to the nixpkgs collection immediately, or place
 them separately. If you want to do the latter, then `~/.nixpkgs/haskell`
 or a similar location is suitable. In order to make such expressions
 available in your personal nixpkgs collection, you can use the nixpkgs
-configuration file, which should then have approximately the following
-structure:
+configuration file `~/.nixpkgs/config.nix`, which should then have
+approximately the following structure:
 
-     {
-       packageOverrides = pkgs : {
-         myHaskellPackages = pkgs.recurseIntoAttrs (pkgs.haskellPackages.override {
-           extension = self : super : {
-             haskellpackage = self.callPackage ./haskell/haskellpackage.nix {};
-           };
-         });
-       };
-     }
+    pkgs: {
+      packageOverrides = pkgs : rec {
+        myHaskellPackages =
+          let callPackage = pkgs.lib.callPackageWith myHaskellPackages; in
+          pkgs.recurseIntoAttrs (pkgs.haskellPackages.override {
+            extraPrefs = self : {
+              haskellPackage = callPackage ./haskell/haskellpackage.nix {};
+            };
+          });
+      };
+    }
 
 Here, `haskellPackage` refers to a local Haskell package. More packages
 could be added, of course.
@@ -494,11 +496,11 @@ of `haskellPackages` from `all-packages.nix`, for the GHC version of
 preference. The `pkgs.recurseIntoAttrs` call is optional, but it ensures
 that you can view your own new Haskell packages in `nix-env -q` calls.
 
-### Haskell defaults and package collections
+### [[edit](/w/index.php?title=Haskell&action=edit&section=22 "Edit section: Haskell defaults and package collections")] Haskell defaults and package collections
 
 [To be written.]
 
-### What is the wrapper about?
+### [[edit](/w/index.php?title=Haskell&action=edit&section=23 "Edit section: What is the wrapper about?")] What is the wrapper about?
 
 ghc has to know about its core and additional libraries. While the
 unwrapped haskellPackages.ghc.ghc ghc only knows about the core packages
