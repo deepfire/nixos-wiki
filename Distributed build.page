@@ -6,16 +6,16 @@ follow this little HOWTO to make it happen.
 Manual](http://hydra.nixos.org/job/nixos/trunk/manual/latest/download)
 ---
 
-Prerequisites
--------------
+[[edit](/w/index.php?title=Distributed_build&action=edit&section=1 "Edit section: Prerequisites")] Prerequisites
+----------------------------------------------------------------------------------------------------------------
 
 You'll need to setup public key based login from the slower machine to
 root account on the one that'll do the actual building, and this article
 won't cover setting this up (there are many that do, so you shouldn't
 have any problem googling this).
 
-Preparing
----------
+[[edit](/w/index.php?title=Distributed_build&action=edit&section=2 "Edit section: Preparing")] Preparing
+--------------------------------------------------------------------------------------------------------
 
 First you have to prepare the remote-systems.conf file on the slower
 machine, for example in /etc/nixos/remote-systems.conf, with contents
@@ -51,8 +51,8 @@ As a convenience, we'll make a little script. Put this into
     export NIX_REMOTE_SYSTEMS="/etc/nixos/remote-systems.conf"
     export NIX_CURRENT_LOAD="/tmp/build-remote-load"
 
-Running the build
------------------
+[[edit](/w/index.php?title=Distributed_build&action=edit&section=3 "Edit section: Running the build")] Running the build
+------------------------------------------------------------------------------------------------------------------------
 
 This is the part that you'll have to do every time you want to build
 something remotely. First, as root:
@@ -67,4 +67,10 @@ Then, as a user you want to do the build as:
 
 after that you can run nix-env normally, and the work should be
 distributed among machines in your remote-systems.conf
+
+[[edit](/w/index.php?title=Distributed_build&action=edit&section=4 "Edit section: using remote builds on NixOS")] using remote builds on NixOS
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+See configuration options nix.distributedBuilds, nix.manualNixMachines,
+etc to set this up in your /etc/configuration.nix file
 
