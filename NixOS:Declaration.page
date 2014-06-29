@@ -4,8 +4,8 @@ possibilities or to hide the complexity of configuration. Option
 declarations are used to provide an interface over the inherent
 complexity of configuring the system.
 
-Option attributes
-=================
+[[edit](/w/index.php?title=NixOS:Declaration&action=edit&section=1 "Edit section: Option attributes")] Option attributes
+========================================================================================================================
 
 Options are declared with the `mkOption` function which is provided by
 the Nix package collection library (`pkgs.lib` attribute set). An option
@@ -34,8 +34,8 @@ An option can be declared in multiple modules, with one condition which
 is that no attribute collisions exists between the declarations except
 for the `options` attribute.
 
-Evaluation
-----------
+[[edit](/w/index.php?title=NixOS:Declaration&action=edit&section=2 "Edit section: Evaluation")] Evaluation
+----------------------------------------------------------------------------------------------------------
 
 The evaluation is done with the following piece of code where `opt` is
 the option declaration. You can find this piece of code inside
@@ -52,8 +52,8 @@ The `apply` function is replaced by the identity function and the
 `merge` function is replaced by the `mergeDefaultOption` function if
 they are not defined.
 
-Types
-=====
+[[edit](/w/index.php?title=NixOS:Declaration&action=edit&section=3 "Edit section: Types")] Types
+================================================================================================
 
 Types are used to ensure the correctness of definitions and to provide a
 way to merge the definitions. All common types are available in
@@ -71,8 +71,8 @@ The `check` function provided by the type can be a source of strictness,
 but this is rare because most of the time checked option definitions are
 fully used by the merge function.
 
-Simple Types
-------------
+[[edit](/w/index.php?title=NixOS:Declaration&action=edit&section=4 "Edit section: Simple Types")] Simple Types
+--------------------------------------------------------------------------------------------------------------
 
 -   `inferred`: Useful when it is used under a meta-type.
 -   `bool`: A Boolean useful for enable flags. The merge function is a
@@ -81,11 +81,11 @@ Simple Types
 -   `string`: A string where all definitions are concatenated.
 -   `envVar`: A string where all definitions are concatenated with a
     colon between all definitions.
--   `attrs`: An attribute set. (similar to `attrsOf inferred`)
+-   `attrs`: An attribute set. (you should prefer `attrsOf inferred`)
 -   `package`: A derivation.
 
-Meta Types
-----------
+[[edit](/w/index.php?title=NixOS:Declaration&action=edit&section=5 "Edit section: Meta Types")] Meta Types
+----------------------------------------------------------------------------------------------------------
 
 Data meta-types:
 
@@ -105,8 +105,8 @@ Definition meta-types:
     `t`. This is useful to provide a computation result to other
     modules. See also the `apply` function of option declarations.
 
-Module Type
------------
+[[edit](/w/index.php?title=NixOS:Declaration&action=edit&section=6 "Edit section: Module Type")] Module Type
+------------------------------------------------------------------------------------------------------------
 
 -   `optionSet`: This type is used to benefit from the modular system
     used by NixOS inside an option. When this type is enabled, it merge
