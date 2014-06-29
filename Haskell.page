@@ -233,6 +233,49 @@ set of packages in its global package database. The easiest way to use
 this function is via `~/.nixpkgs/config.nix` or
 `/etc/nixos/configuration.nix`.
 
+#### Local use via myEnvFun
+
+I find it handy to use `pkgs.myEnvFun` described in [Howto develop
+software on
+nixos](//Howto develop software on nixos#Obtaining an Environment from a Custom Definition)
+to describe my development environment in its entirety, using a separate
+environment for each project.
+
+an example `my-dev-env.nix`:
+
+     let
+       pkgs = import <nixpkgs> {};
+       hsEnv = pkgs.haskellPackages.ghcWithPackages (hsPkgs : ([
+         hsPkgs.HaRe
+         hsPkgs.hlint
+         hsPkgs.hdevtools
+         hsPkgs.hasktags] ++
+         # Include the deps of our project to make them available for tools:
+         (hsPkgs.callPackage ./my-haskell-project.nix {}).propagatedNativeBuildInputs;
+     in
+       pkgs.myEnvFun {
+         name = "my-haskell-project";
+         buildInputs = with pkgs; [
+           # development tools as fits your needs
+           binutils
+           coreutils
+           hsEnv
+           ];
+         extraCmds = 
+           $(grep export ${hsEnv.outPath}/bin/ghc)
+         ;
+         }
+
+Since tools (such as `hdevtools`) that rely on the ghc-api to do haskell
+language manipulation are sensitive to nix-wrapping of ghc, we need the
+`extraCmds` line to ensure the proper ghc-wrapping environment variables
+are set inside the dev-environment shell.
+
+Use by issuing:
+
+     $ nix-build my-dev-env.nix
+     $ ./result/bin/load-env-my-haskell-project
+
 #### Local use via Nixpkgs config
 
 Here is a simple yet complete example of how to use `ghcWithPackages` in
