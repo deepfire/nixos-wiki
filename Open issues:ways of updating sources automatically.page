@@ -112,6 +112,8 @@ from the XML:
     process as well as the .nix file name to update)
 -   src/url[s] (in case we want to update the URL)
 -   src/hash value and type (to replace the hash later)
+-   url\_mangler (version 3): Used to e.g. change the url from uscan to
+    nixos mirror:// syntax. This is optional.
 
 There is no extra update information is needed inside the nix
 expressions. It seems to work reasonably well with the files I treid to
