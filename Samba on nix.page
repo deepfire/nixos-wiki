@@ -1,10 +1,10 @@
-motivation
-----------
+[[edit](/w/index.php?title=Samba_on_nix&action=edit&section=1 "Edit section: motivation")] motivation
+-----------------------------------------------------------------------------------------------------
 
 this guide will help you on how to use samba on nixos.
 
-excerpt of /etc/nixos/configuration.nix
----------------------------------------
+[[edit](/w/index.php?title=Samba_on_nix&action=edit&section=2 "Edit section: excerpt of /etc/nixos/configuration.nix")] excerpt of /etc/nixos/configuration.nix
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
       services.samba.enable = true;
       services.samba.securityType = "share";
@@ -24,22 +24,29 @@ excerpt of /etc/nixos/configuration.nix
           public = yes
       '';
 
-afterwards apply the changes made to configuration.nix
-------------------------------------------------------
+If your firewall is enabled, or if you want to consider enabling it:
+
+      networking.firewall.enable = true;
+      networking.firewall.allowPing = true;
+      networking.firewall.allowedTCPPorts = [ 445 139 ];
+      networking.firewall.allowedUDPPorts = [ 137 138 ];
+
+[[edit](/w/index.php?title=Samba_on_nix&action=edit&section=3 "Edit section: afterwards apply the changes made to configuration.nix")] afterwards apply the changes made to configuration.nix
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
      nixos-rebuild switch
 
 samba should startup afterwards
 
-stopping/restarting the services
---------------------------------
+[[edit](/w/index.php?title=Samba_on_nix&action=edit&section=4 "Edit section: stopping/restarting the services")] stopping/restarting the services
+-------------------------------------------------------------------------------------------------------------------------------------------------
 
      stop samba
      start samba
      restart samba
 
-links
------
+[[edit](/w/index.php?title=Samba_on_nix&action=edit&section=5 "Edit section: links")] links
+-------------------------------------------------------------------------------------------
 
 -   <http://hydra.nixos.org/build/1457802/download/1/nixos/manual.html>
 
