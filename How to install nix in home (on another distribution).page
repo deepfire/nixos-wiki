@@ -72,14 +72,19 @@ package to old
 SQLITE3\_CFLAGS="-I /home/brodul/.nix\_test/sqlite-amalgamation-3080200"
 SQLITE3\_LIBS="-L /home/brodul/.nix\_test/sqlite-amalgamation-3080200"
 
- checking for openssl... /usr/bin/openssl checking for pkg-config...
-/usr/bin/pkg-config checking pkg-config is at least version 0.9.0... yes
-checking for OPENSSL... yes checking for BZ2\_bzWriteOpen in -lbz2...
-yes checking bzlib.h usability... yes checking bzlib.h presence... yes
-checking for bzlib.h... yes checking for SQLITE3... yes checking whether
-DBD::SQLite works... no configure: error: in
-\`/home/brodul/.nix\_test/nix-1.6.1': configure: error: The Perl modules
-DBI and/or DBD::SQLite are missing. See \`config.log' for more details
+     checking for openssl... /usr/bin/openssl
+     checking for pkg-config... /usr/bin/pkg-config
+     checking pkg-config is at least version 0.9.0... yes
+     checking for OPENSSL... yes
+     checking for BZ2_bzWriteOpen in -lbz2... yes
+     checking bzlib.h usability... yes
+     checking bzlib.h presence... yes
+     checking for bzlib.h... yes
+     checking for SQLITE3... yes
+     checking whether DBD::SQLite works... no
+     configure: error: in `/home/brodul/.nix_test/nix-1.6.1':
+     configure: error: The Perl modules DBI and/or DBD::SQLite are missing.
+     See `config.log' for more details
 
 sudo apt-get install libdbi-perl
 
