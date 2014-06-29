@@ -9,7 +9,7 @@ theme engine. If the path is wrong/unset you will see errors like this:
 
     Gtk-WARNING **: Unable to locate theme engine in module_path
 
-\~/.kde/env/set-gtk-theme.sh
+To set Xfce-curve as the gtk theme: \~/.kde/env/set-gtk-theme.sh
 
     #!/bin/sh
 
