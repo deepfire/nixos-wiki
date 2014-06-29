@@ -20,7 +20,6 @@ luks changes")
      boot.initrd.luksRoot = "/dev/sda2";
      
      Then now you have to write:
-     boot.initrd.luks.enable = true;
      boot.initrd.luks.devices = [ { name = "luksroot"; device = "/dev/sda2"; } ];
 
 the configuration of /etc/nixos/configuration.nix
@@ -41,7 +40,6 @@ This part of configuration.nix will make cryptsetup luksOpen to be
 called after the LVM initialisation for /dev/sda2 to the name
 'luksroot':
 
-      boot.initrd.luks.enable = true;
       boot.initrd.luks.devices = [ { name = "luksroot"; device = "/dev/sda2"; } ];
 
 You can extend the list, if you have for example a ciphered swap
@@ -99,16 +97,13 @@ dmcrypt device opened.
 If you **only want to have an encrypted home directory**, you need to
 set something like this, for example:
 
-      boot.initrd.luks.enable = true;
       boot.initrd.luks.devices = [ { device = "/dev/sda3"; name = "lukshome"; };
 
 ### Extra kernel modules you might need
 
-Depending on the encryption algorithm you have chosen for your Luks
-volume, you will probably need to ensure kernel has the necessary crypto
-modules.
-
-If you are unsure which ones, run
+Most of crypto modules are loaded by default so there's nothing to do.
+However, if decryption fails or if you want to make sure everything is
+going to work, run
 
     cryptsetup luksDump /dev/sda2
 
@@ -121,22 +116,27 @@ What you are looking for is this:
     Cipher mode:    cbc-essiv:sha256
     Hash spec:      sha1
 
-In this example you need SHA1, SHA256, AES, and CBC.
+In this example you need SHA1, SHA256, AES, and CBC. All of these are
+loaded by default, but if they were not, you could put the required
+crypto modules into initrd like this:
 
-You can put the required crypto modules into initrd along with dm\_crypt
-module needed by Luks like this:
+    boot.initrd.luks.cryptoModules = ["aes" "sha256" "sha1" "cbc"];
 
-    boot.initrd.kernelModules = ["dm_crypt" "aes-i586" "sha256" "sha1" "cbc"];
-
-On my 64bit system (2.6.32) I needed this modules instead the listed
-above:
-
-    boot.initrd.kernelModules = ["dm_crypt" "sha256_generic" "sha1_generic" "cbc" "aes_x86_64" "aes_generic" "xts" ];
-
- Note that some USB keyboards also need special kernel support, which
+Note that some USB keyboards also need special kernel support, which
 must be available in the init ramdisk to enter the pass phrase. Recent
 models of the Microsoft Internet keyboard, for example, need the module
 `hid_microsoft` in order to be recognized as an input device.
+
+### Defending against DMA Attacks
+
+If you enable LUKS root, DMA attack mitigation is also
+enabled(boot.initrd.luks.mitigateDMAAttacks ). It consists of
+blacklisting firewire drivers. If you still need to use a firewire
+device, you can manually modprobe the required drivers but don't forget
+to unload them. With firewire drivers loaded(even if you don't have a
+firewire port), your encryption key can be obtained in a couple of
+minutes by an unsophisticated attacker with physical access to the
+computer.
 
 ### Root Filesystem
 
