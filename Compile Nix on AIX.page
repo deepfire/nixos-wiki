@@ -16,6 +16,13 @@ Requirements
 My box had very minimal configuration. So I discovered that need to
 install some additional software to compile nix.
 
+AIX packages
+------------
+
+<http://www-03.ibm.com/systems/power/software/aix/linux/toolbox/alpha.html>
+
+    gettext-0.10.40-8.aix5.2.ppc.rpm
+
 ready to go rpm
 ---------------
 
