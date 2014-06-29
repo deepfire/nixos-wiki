@@ -89,7 +89,7 @@ To find out which packages are effected by your change:
     # nix-instantiate --readonly-mode $NIXPKGS_ALL/pkgs/top-level/release.nix --show-trace
 
     # build a release tarball which contains the most important packages (?)
-    nix-build -A tarball $NIXPKGS_ALL/pkgs/top-leve/release.nix --show-trace
+    nix-build -A tarball $NIXPKGS_ALL/pkgs/top-level/release.nix --show-trace
 
 TODO: explain what is done exactly
 
