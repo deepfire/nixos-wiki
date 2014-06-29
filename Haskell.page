@@ -397,6 +397,38 @@ itself should be adapted.
 [To be written.] (This is about the contents of `haskell-defaults.nix`
 and `haskell-packages.nix`.)
 
+### Maintaining your own set of additional Haskell packages
+
+[To be extended.]
+
+If you use `cabal2nix` to generate expressions for new Haskell packages,
+you can either add them to the nixpkgs collection immediately, or place
+them separately. If you want to do the latter, then `~/.nixpkgs/haskell`
+or a similar location is suitable. In order to make such expressions
+available in your personal nixpkgs collection, you can use the nixpkgs
+configuration file, which should then have approximately the following
+strucutre:
+
+     pkgs : {
+       packageOverrides = pkgs : rec {
+         myHaskellPackages =
+           let callPackage = pkgs.lib.callPackageWith myHaskellPackages; in
+             pkgs.recurseIntoAttrs (pkgs.haskellPackages.override {
+               extraPrefs = self : {
+                 haskellpackage = callPackage ./haskell/haskellpackage.nix {};
+               };
+             });
+       };
+     }
+
+Here, `haskellPackage` refers to a local Haskell package. More packages
+could be added, of course.
+
+Instead of `pkgs.haskellPackages.override`, you can select another set
+of `haskellPackages` from `all-packages.nix`, for the GHC version of
+preference. The `pkgs.recurseIntoAttrs` call is optional, but it ensures
+that you can view your own new Haskell packages in `nix-env -q` calls.
+
 ### Haskell defaults and package collections
 
 [To be written.]
