@@ -1,5 +1,5 @@
-viric's findings
-----------------
+[[edit](/w/index.php?title=Nix_on_Windows&action=edit&section=1 "Edit section: viric's findings")] viric's findings
+-------------------------------------------------------------------------------------------------------------------
 
 (viric) I think Side-by-side components are the way to go, so DLL are
 not taken as \*strictly shared\* by Windows only based on the filename.
@@ -8,8 +8,8 @@ not taken as \*strictly shared\* by Windows only based on the filename.
 this behaviour of sxs will only happen if the files are placed in the
 named directory, or otherwise they will be taken as shared.
 
-invalidmagic's findings
------------------------
+[[edit](/w/index.php?title=Nix_on_Windows&action=edit&section=2 "Edit section: invalidmagic's findings")] invalidmagic's findings
+---------------------------------------------------------------------------------------------------------------------------------
 
 i've been experimenting with nix on windows and mingw as a new
 toolchain:
