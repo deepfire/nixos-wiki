@@ -1,0 +1,12 @@
+     nix-env -i firefox -K
+
+if it builds goto the derivation and add a postBuild="fail" or such.
+
+Then cd /tmp/nix-build-...
+
+start a subshell, then source env-vars
+
+Or find out how to do the same with the --shell-command for nix-env
+
+nix-build --run-env --command /bin/sh -A slim \$NIXPKGS\_ALL
+
