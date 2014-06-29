@@ -4,15 +4,67 @@ package?
 
 What problem do we want to solve?
 
--   I think a Nix package looks good. How can I build and use it without
-    installing it?
+-   I think a Nix package looks good. How can I test the packaged
+    software without installing it?
 -   I can't successfully build a package. How can I step through the
     build phases Nix uses?
 
 Build Without Installing
 ------------------------
 
-We can use the `nix-build` command. To do: Show how to use it.
+Suppose we want to use some software from NixPkgs, but we don't want to
+install it. How can we install the software without installing it into
+our user environment?
+
+Why do we want to prevent a normal installation? If we are debugging a
+Nix expression, we want to repeatedly modify it and test the results.
+Each time we modify the Nix expression, the package's hash changes,
+which will create a new entry in the Nix store, which is unavoidable.
+However, a normal package installation also creates a second entry in
+the Nix store, which can be prevented - a new user environment.
+
+When we normally install software from a Nix package, we use the
+`nix-env -i` command, which creates a new user environment to include
+the new software. If we are debugging a package's Nix expression, we may
+use this command dozens of times, which will create dozens of user
+environments in the Nix store. Even if we don't mind this waste, the
+practice of installing unstable software into our normal user
+environment is questionable. We should avoid this practice if possible.
+
+Nix provides the `nix-build` command to build and install a Nix package
+without modifying a user's environment. Because it doesn't place this
+software into the user environment, we can not access it using
+command-line shortcuts. That is, instead of using the `chromium`
+command, we must specify its full path,
+`/nix/store/7xn0yg2n8g1jfqmyk6mh71p0bnya8nng-chromium-30.0.1599.114-with-plugins/bin/chromium`.
+To solve this problem, the `nix-build` command will create a link to it
+named `result`.
+
+Here's an example of using `nix-build`.
+
+       $ nix-build /my-sources/pkgs/top-level/all-packages.nix -A hello
+       these paths will be fetched (0.04 MiB download, 0.20 MiB unpacked):
+         /nix/store/d4ccnxjm73yiqg85nyyyqhybrhrqykn3-hello-2.8
+       (...building...)
+       /nix/store/d4ccnxjm73yiqg85nyyyqhybrhrqykn3-hello-2.8
+
+Now, we have the `hello` software built and installed. How do we use it?
+If we look in the current directory, we can see a `result` link was
+created. We can use this to easily explore the results of the build and
+use the built software.
+
+       $ ls -l result
+       lrwxrwxrwx 1 username username 53 Nov 27 10:35 result -> /nix/store/d4ccnxjm73yiqg85nyyyqhybrhrqykn3-hello-2.8
+       
+       $ hello
+       The program ‘hello’ is currently not installed. You can install it by typing:
+         nix-env -i hello
+       
+       $ result/bin/hello 
+       Hello, world!
+
+This is a very useful tool, indeed. We can explore the package's
+resulting build without installing the software into our environment.
 
 Step Through Build Phases
 -------------------------
