@@ -1,0 +1,17 @@
+What can theoretically cause different build results?
+
+-   current date
+-   cpu
+-   RAM available
+-   fileystem
+-   kernel running the builds [1]
+-   is a virtualization system being used ?
+-   sensors (such as temperature)
+-   timing behaviour of any component in use (fs, ..) (causing timeouts
+    and such)
+
+[1] quoting Lluis Batlle:
+
+We have the kernelHeaders. Programs should respect kernelHeaders for the
+kernel API, and not talk to the running kernel.
+
