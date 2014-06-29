@@ -1,0 +1,178 @@
+The goal of this page is to explain how to use Haskell packages in a
+Nix/NixOS-based system, and how to contribute Haskell packages to the
+Nixpkgs collection.
+
+Getting started
+---------------
+
+If you just want to get a running Haskell environment on NixOS quickly,
+a good way to get started is to install the current Haskell Platform:
+
+     $ nix-env -iA nixos.pkgs.haskellPlatform
+
+If all you want is to use the xmonad window manager, then put the
+following options into your `/etc/nixos/configuration.nix`:
+
+     services.xserver.windowManager.xmonad.enable = true;     # installs xmonad and makes it available
+     services.xserver.windowManager.default       = "xmonad"; # sets it as default
+     services.xserver.desktopManager.default      = "none";   # the plain xmonad experience
+
+In both cases, though, it is recommended to read on in order to learn
+more about how Haskell packages are organized in Nixpkgs.
+
+Using Haskell packages
+----------------------
+
+You get the best Haskell experience in Nix if you use prepackages
+Haskell packages that are available in the Nixpkgs collection. Nixpkgs
+provides many packages, and each for several versions of GHC. You can
+select whether you want profiling-enabled versions of these packages or
+not.
+
+There are two main options how you can install Haskell packages from
+Nixpkgs on your Nix system:
+
+-   You can **directly install** Haskell packages into one of your
+    profiles. The GHC binaries are then wrappers that are trained to
+    detect libraries that you have installed in this way automatically.
+    This is the simplest way. There are two disadvantages to this
+    solution:
+    1.  using `cabal` to install packages that aren't in Nixpkgs is
+        slightly tricky in this setting (because it's harder to train
+        `cabal` to automatically pick up Nixpkgs-installed libraries
+        than it is to train GHC);
+    2.  if you have *really many* packages installed, then the automatic
+        detection is somewhat slow, and as it happens on each invocation
+        of `ghc` or `ghci`, it can be somewhat slow.
+
+-   You can add a **customized GHC environment** to your
+    `~/.nixpkgs/config.nix`. In this scenario, the installed GHC does
+    *not* automatically pick up Haskell libraries to your profile, but
+    *only* the packages listed in your configuration. On the other hand,
+    `cabal` can be used normally and there is no slowdown. Furthermore,
+    it is easy to build several different GHC configurations in this way
+    that use a very specific set of available packages.
+
+Both options are described below in the more detail.
+
+### Obtaining a list of Haskell packages
+
+The best way to get an overview of Haskell packages is to issue the
+following command:
+
+     $ nix-env -qaP \* | grep haskellPackages | less
+
+This will yield a long list of packages that looks somewhat as follows:
+
+     nixos.pkgs.haskellPackages_ghc6104.httpConduit                               haskell-http-conduit-ghc6.10.4-1.4.1.3
+     nixos.pkgs.haskellPackages_ghc6123.httpConduit                               haskell-http-conduit-ghc6.12.3-1.4.1.3
+     nixos.pkgs.haskellPackages_ghc704_no_profiling.httpConduit                   haskell-http-conduit-ghc7.0.4-1.4.1.3
+     nixos.pkgs.haskellPackages_ghc704_profiling.httpConduit                      haskell-http-conduit-ghc7.0.4-1.4.1.3-profiling
+     nixos.pkgs.haskellPackages_ghc741.httpConduit                                haskell-http-conduit-ghc7.4.1-1.4.1.3
+     nixos.pkgs.haskellPackages_ghc742.httpConduit                                haskell-http-conduit-ghc7.4.1.20120508-1.4.1.3
+     nixos.pkgs.haskellPackages_ghc6104.httpDate                                  haskell-http-date-ghc6.10.4-0.0.2
+     nixos.pkgs.haskellPackages_ghc6123.httpDate                                  haskell-http-date-ghc6.12.3-0.0.2
+     nixos.pkgs.haskellPackages_ghc704_no_profiling.httpDate                      haskell-http-date-ghc7.0.4-0.0.2
+     nixos.pkgs.haskellPackages_ghc704_profiling.httpDate                         haskell-http-date-ghc7.0.4-0.0.2-profiling
+     nixos.pkgs.haskellPackages_ghc741.httpDate                                   haskell-http-date-ghc7.4.1-0.0.2
+     nixos.pkgs.haskellPackages_ghc742.httpDate                                   haskell-http-date-ghc7.4.1.20120508-0.0.2
+
+Each of these lines lists first an **attribute path** describing the
+path to the Nix expression defining that particular package, followed by
+the **name** of the particular derivation. As you can see, each package
+is available in several versions, for different compiler versions. The
+name additionally contains the version of the package. For most Haskell
+libraries, only a single version is available in Nixpkgs, but for some
+packages, there are several.
+
+Both the attribute paths and the names can be used to install packages
+from this list, using `nix-env -i` or `nix-env -iA`, respectively. Note
+that when you install packages, you have to explicitly select the
+compiler version you want to use. If you use the attribute path, you can
+use `haskellPackages` (without `_ghc` suffix) as a synonym for what is
+considered to be the *current* version of GHC in Nixpkgs (usually the
+GHC version of the latest Haskell Platform release).
+
+There is a **naming convention** for Haskell packages. The final
+component of the attribute path is usually a CamelCase variant of the
+Hackage package name. The name of the derivation starts with the Hackage
+package name prefixed with `haskell-`, except for packages that only
+provide an application where the `haskell-` prefix is dropped. So if you
+understand the naming convention, you can try to install a package
+without first looking at the list.
+
+Packages available in Nixpkgs are also listed on Hackage itself, in the
+Distributions field of the package page.
+
+If you want to see the sources that define all these attributes, have a
+look at the file `pkgs/top-level/haskell-packages.nix` in the Nixpkgs
+hierarchy.
+
+### Profiling
+
+If you use Haskell for development, you might be interested in having
+profiling versions available for all libraries. This is easy to achieve
+by editing or creating `~/.nixpkgs/config.nix` and placing the following
+content in the file:
+
+     pkgs : {
+       cabal.libraryProfiling = true;
+     }
+
+If the file already exists, then drop the first and last line and just
+add the option to the list of other options you already declare.
+
+### Direct installation
+
+As explained above, if you install a wrapped version of GHC, then it
+will be able to automatically pick up additional libraries you install
+from Nixpkgs. The easiest way to obtain such a wrapped GHC is by
+installing the Haskell Platform, by saying:
+
+     $ nix-env -iA nixos.pkgs.haskellPlatform
+
+for the default version of the platform (and GHC), or
+
+     $ nix-env -iA nixos.pkgs.haskellPackages_ghc6123.haskellPlatform
+
+for a specific version of GHC and the corresponding platform.
+
+If you either do not want to install the platform or want to use a
+recent version of GHC for which no platform has been released yet, then
+install the wrapped GHC itself, by saying:
+
+     $ nix-env -iA nixos.pkgs.haskellPackages.ghc
+
+or
+
+     $ nix-env -iA nixos.pkgs.haskellPackages_ghc742.ghc
+
+for a specific version of GHC. This will install a derivation with a
+name ending in `-wrapper`.
+
+Subsequently installed libraries of the matching GHC version will be
+detected automatically.
+
+**Do not** install the GHC with attribute path `ghcPlain` (with a name
+not having the `-wrapper` part), because then you will not be able to
+use libraries. If you accidentally installed this version, remove it
+from your profile using `nix-env -e ghc` and start again as explained
+above.
+
+#### Using several versions of GHC at once
+
+[To be written.]
+
+#### Using **cabal** in the direct installation scenario
+
+[To be written.]
+
+### Customized GHC environment
+
+[To be written.]
+
+Contributing Haskell packages to Nixpkgs
+----------------------------------------
+
+[To be written.]
+
