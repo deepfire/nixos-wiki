@@ -47,3 +47,6 @@ If you break things ask on the mailinglist and or contact the author of
 the code you break before comitting. Eg you can use svn annotate to get
 to know who comitted a line.
 
+Sander: Suggestion: maybe someone should verify what the impact is of a
+change by checking the build job status on [[1]](http://hydra.nixos.org)
+
