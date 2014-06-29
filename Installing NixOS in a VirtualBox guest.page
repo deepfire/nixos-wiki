@@ -26,7 +26,7 @@ This pages describes how to install NixOS in a VirtualBox guest.
      {
        boot.loader.grub.device = "/dev/sda";
 
-       services.openssh.enable =true;
+       services.openssh.enable = true;
        services.virtualbox.enable = true;
        
        fileSystems = [
@@ -41,10 +41,15 @@ Now we're ready to install!
      $ nixos-install
      $ reboot
 
-Now you got a working nixos system. However, you can't conveniently log
-in to ssh this way, so you'll need to set up port-forwarding. Doing that
-is explained on this site, all you have to do is create a script named
-"vbox-tunnel" that contains the following lines:
+Now you got a working nixos system.
+
+SSH-ing into the box
+--------------------
+
+However, you can't conveniently log in to ssh this way, so you'll need
+to set up port-forwarding. Doing that is explained on this site, all you
+have to do is create a script named "vbox-tunnel" that contains the
+following lines:
 
      #!/bin/bash
      cd /Applications/VirtualBox.app/Contents/MacOS/
