@@ -99,9 +99,18 @@ nixos/nixpkgs) if you type **nix-env -i firefox**
 
 #### how does this work
 
-you need this script, edit for your own paths and branches:
+you need to run nixos-version
 
-     https://raw.github.com/chaoflow/skel/master/bin/update-nixos-channel-branches.sh
+      0.2pre-769b74c-f430032
+
+note: the first number (769b74) is nixos revision, the second nummber is
+the nixpkgs (f430032) revision
+
+in your nixpkgs directory do:
+
+     git log | grep f430032
+     commit f43003237a497a56c8e74d51e138d009475ea0be
+     ...
 
 verify that the nix-channel is called nixos, looks like this:
 
