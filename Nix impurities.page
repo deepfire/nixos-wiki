@@ -16,6 +16,8 @@ We have the kernelHeaders. Programs should respect kernelHeaders for the
 kernel API, and not talk to the running kernel.
 
 -   gconf runs in daemon mode
--   qt - "Cannot mix incompatible Qt library (version 0x40800) with this
-    library (version 0x40801)"
+-   qt -running qgit
 
+<!-- -->
+
+     "Cannot mix incompatible Qt library (version 0x40800) with this library (version 0x40801)"
