@@ -1,10 +1,7 @@
-I wanted to use my digital TV tuner in form of a USB stick. Some of the
-steps I had to go through:
-
 I wanted to use my digital TV tuner in form of a USB stick on my NixOS
-system. Below are some of the steps I had to go through:
+system. Some of the steps I had to go through:
 
-### Find the hardware
+### [[edit](/w/index.php?title=How_to_watch_digital_TV_(DVB-T)&action=edit&section=1 "Edit section: Find the hardware")] Find the hardware
 
     $ lsusb
     [..]
@@ -24,7 +21,7 @@ However, dmesg says:
     [54625.562868] dvb-usb: did not find the firmware file. (dvb-usb-dib0700-1.20.fw) Please see linux/Documentation/dvb/ for more details on firmware-problems. (-2)
                                                              ^^^^^^^^^^^^^^^^^^^^^^^
 
-### Install the firmware driver
+### [[edit](/w/index.php?title=How_to_watch_digital_TV_(DVB-T)&action=edit&section=2 "Edit section: Install the firmware driver")] Install the firmware driver
 
 Find your firmware driver, mentioned in the dmeg output above, here:
 <http://www.linuxtv.org/downloads/firmware/>
@@ -56,7 +53,7 @@ then replug the USB stick and:
 
 good :-)
 
-### Find the channels
+### [[edit](/w/index.php?title=How_to_watch_digital_TV_(DVB-T)&action=edit&section=3 "Edit section: Find the channels")] Find the channels
 
 Install the dvb-apps:
 
@@ -85,7 +82,7 @@ and use the scan tool, from the dvb-apps package, like this:
 Note: there are other scan locations to pick from to be found under your
 /nix/store/..-dvb-apps-version/share/dvb/dvb-t/..
 
-### Finally watch
+### [[edit](/w/index.php?title=How_to_watch_digital_TV_(DVB-T)&action=edit&section=4 "Edit section: Finally watch")] Finally watch
 
     $ nix-env -i vlc
     $ vlc ~/my_channels.conf
