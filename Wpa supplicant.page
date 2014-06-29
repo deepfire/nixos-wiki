@@ -22,7 +22,7 @@ It might also be a good idea to enable a firewall by setting
 Prerequisites
 -------------
 
-Before proceeding make sure to check wheather your wireless network card
+Before proceeding make sure to check whether your wireless network card
 has properly been recognized. You can check this by issuing `iwconfig`
 and you should see a wireless extension being reported for `wlan0`.
 
