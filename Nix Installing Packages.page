@@ -1,40 +1,9 @@
-What is a Nix expression?
--------------------------
-
-A Nix expression has all information required to build a piece of
-software. Generally, this means a link to the software's source code, a
-list of other software required to build and/or run it, and a scripts of
-shell commands required to compile its source code and install its
-binaries.
-
-When a Nix expression is evaluated, Nix will use the software's SHA hash
-to find its pre-compiled binaries by searching for it in all binary
-caches registered with the Nix installation. If it isn't found, Nix will
-create the software's binaries by building them from source code, then
-installing them into the appropriate directory structure. Once complete,
-Nix will copy this resulting structure into the read-only Nix Store,
-which ensures it can be used as a reliable dependency for other software
-packages. This entry in the Nix Store created by a Nix expression is
-called a "derivation". Finally, Nix will add a link to this derivation
-to our environment, which makes it visible on the command line for us to
-use.
-
-Where can I get Nix expressions?
---------------------------------
-
-Writing a Nix expression can be quite a challenge. Luckily, many other
-people have shared their expressions by adding them to a central list,
-named NixPkgs, available on the [NixPkgs GitHub
-repository](https://github.com/NixOS/nixpkgs/). If you installed Nix,
-you can register the NixPkgs repository by using the `nix-channel`
-command.
-
 How to install a software package using Nix?
 --------------------------------------------
 
 The easiest way to get Nix expressions is to use the community's NixPkgs
-repository. After setting it up, use the `nix-env` command to evaluate
-the Nix expressions it contains.
+repository. After setting it up, use the `nix-env` command to install
+the packages defined there.
 
        $ nix-channel --add http://nixos.org/channels/nixpkgs-unstable
        $ nix-channel --update
@@ -63,6 +32,9 @@ file.
        $ nix-env --install dropbox bitcoin
        $ nix-env -i dropbox bitcoin
 
+How to query available software packages?
+-----------------------------------------
+
 Rather than looking at the `all-packages.nix` file to find packages, we
 can also use the `nix-env --query --available` command on the command
 line.
@@ -79,8 +51,18 @@ We can also see which packages we currently have installed by using the
        $ nix-env --query --installed
        $ nix-env -q
 
+How to uninstall software packages?
+-----------------------------------
+
 And of course, we can uninstall packages by using the
 `nix-env --uninstall` command.
 
        $ nix-env --uninstall firefox
        $ nix-env -e firefox
+
+Further reading
+---------------
+
+More information about how Nix works can be found from the [Nix Main
+Page](//Main Page Package Manager).
+
