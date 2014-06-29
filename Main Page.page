@@ -36,6 +36,9 @@ HOWTOs
 
 -   [How to install NixOS on Amazon EC2](//NixOS on Amazon EC2)
 
+-   [How to install NixOS from a USB
+    stick](//Installing NixOS from a USB stick)
+
 -   [How to install NixOS as OpenVZ
     guest](//Install NixOS as OpenVZ guest)
 
