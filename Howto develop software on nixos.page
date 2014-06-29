@@ -2,33 +2,48 @@ what is this?
 -------------
 
 say you develop a program using the kdevelop IDE. the software you are
-developing uses cmake and qt. in that case you need also need in your
-environment:
+developing uses cmake, qt and is managed using git. in that case you
+need need a toolchain in your environment composed of this components:
 
 -   cmake
--   qt-library
+-   qt4
 -   make
 -   compiler
--   doxygen
 
-unlike other linux or unix systems, on nixos, a normal environment does
-not have such tools included. that means if you type `make` in a normal
-shell you will get an error that there is no program called make.
+unlike other linux or unix systems, on nixos, a normal environment used
+by any user on the system does not contain such tools at all. that means
+if you type `make` in a normal shell you will get an error that there is
+no program called make.
 
-however on nixos you can install several different versions of a single
-library on the same system. and say you have to programs you are
-developing and both require the same library but with a different
-version you won't end up by maintaining your own librarys, say in
-'/home/user/qt-3.4.5' and '/home/user/qt-4.4.2' as the package
-management handles this for you.
+however keep in mind that on nixos you can install several different
+versions of a single library on the same system.
 
-how to setup such an environment
---------------------------------
+**this guide describes how to build an environment for development which
+contains all the tools needed!**
 
-in `/etc/nixos/nixpkgs/pkgs/misc/my-env` there is a default.nix
-expression which can be used, by a normal user, to setup such an
-environment. just open the mentioned 'default.nix' file with and text
-editor and follow the instructions.
+there are two ways archiving this:
+
+-   AAA with support of the package manager
+-   BBB where things have to be put together manually
+
+AAA changing into an environment using the package manager
+----------------------------------------------------------
+
+at the time of writing this article this nix-env feature was not yet
+available, see:
+
+     https://github.com/NixOS/nix/commit/7f38087f35e6f74a73bfdb28da8acd8930565d51
+
+but when this feature is available it will be a very mighty tool, just
+see comments and examples in the link above.
+
+BBB manual cloning of an environment not using the package manager
+------------------------------------------------------------------
+
+the nix expression, `/etc/nixos/nixpkgs/pkgs/misc/my-env/default.nix`,
+is intended to be used by a normal user. just open the mentioned file
+with the text editor of choice and look at the comments (which should
+basically the same described here in this wiki page), so read on.
 
 ### a simple example \~/.nixpkgs/config.nix
 
@@ -59,8 +74,11 @@ using this new environment:
 
      $ load-sdl-env
 
-now pkgconfig should be in your environment ... but here it does not
-work, so what is going wrong?
+to verify that the new environment got all tools needed, type:
+
+     $ make
+
+and verify that the tool is there.
 
 ### how to use that environment
 
