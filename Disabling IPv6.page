@@ -1,0 +1,17 @@
+There is one attribute on `configuration.nix` which is expected to
+system-wide disable IPv6:
+
+    networking.enableIPv6 = false;
+
+This alone does not prevent my network interfaces from acquiring a
+default IPv6 address at boot time. Then there is this other way to
+request the kernel to avoid loading IPv6 support:
+
+    boot.extraKernelParams = [ "ipv6.disable=1" ];
+
+The additional parameter will get added to the kernel line in the grub
+configuration file.
+
+**Note**: Please have a look at the [discussion
+page](//Talk:Disabling IPv6) before applying this method.
+
