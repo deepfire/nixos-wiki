@@ -31,8 +31,11 @@ New derivations
 
 The attribute set resulting from a stdenv.mkDerivation call returns the
 usual result comming from a usual native build, with two additional
-attributes: - hostDrv - the derivation cross-built - buildDrv - the
-derivation built in for the build system (a usual native build).
+attributes:
+
+-   hostDrv - the derivation cross-built
+-   buildDrv - the derivation built in for the build system (a usual
+    native build).
 
 Thus, these calls equivalently build the native derivation for 'bison'
 (mentioning the 'arm.nix' above):
