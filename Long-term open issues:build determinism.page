@@ -27,6 +27,7 @@ bit-for-bit identical
 Example: package generating a andom seed during build. It is a problem
 from many points of view.
 
-==Allegedely fixed (at least in Nix on NixOS)
+Allegedely fixed (at least in Nix on NixOS)
+-------------------------------------------
 
 ### Builder PIDs
