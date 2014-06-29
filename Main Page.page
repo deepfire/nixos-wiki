@@ -68,6 +68,8 @@ HOWTOs
     work](//How to get a chroot close enough to LSB for impure binary packages to work)
 -   [How to enable subpixel rendering in
     freetype](//How to enable subpixel rendering in freetype)
+-   [How to add large files to the
+    nix-store](//How to add large files to the nix-store)
 -   [Using the ZSH SHELL](//Using the ZSH SHELL)
 -   [Android](//Android)
 -   [Plone development](//Plone development)
