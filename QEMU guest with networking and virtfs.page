@@ -133,5 +133,7 @@ References
 
 -   [Building a Virtual
     Army](http://blog.falconindy.com/articles/build-a-virtual-army.html)
+    (Dave Reisner's post provided almost all of the details here. He
+    also has additional explanations and useful scripts.)
 -   [VirtFS](http://wiki.qemu.org/Documentation/9psetup)
 
