@@ -3,13 +3,15 @@
     Distribution "Debian 5.0 64bit" (the smallest disk requirement),
     Deployment Disk Size 384MB, Swap Disk the size you want for your final
     NixOS swap space (this volume can be shared as only one OS will be
-    booted at a time). This Debian 5.0 image be used to bootstrap NixOS, and
-    also as a rescue medium in the future. Note that you can not use
-    "Finnix" if you want to use NixOS x86\_64, as linode does't support
-    finnix64, so you can't chroot and run 64-bit NixOS binaries from Finnix.
-    And we can't think of any reason you'd want to use NixOS i686 on a VPS.
+    booted at a time).\
+    \
+    This Debian 5.0 image be used to bootstrap NixOS, and also as a rescue
+    medium in the future. Note that you can not use "Finnix" if you want to
+    use NixOS x86\_64, as linode does't support finnix64, so you can't run
+    64-bit NixOS binaries from Finnix. And we can't think of any reason
+    you'd want to use NixOS i686 on a VPS.
 
--   2\) Create a disk image (partitions) for NixOS to be installed on to via
+-   2\) Create a disk image (partition) for NixOS to be installed on to via
     the linode dashboard
     [[2]](https://www.linode.com/members/linode/dashboard.cfm) "Create a new
     Disk Image" option.
@@ -24,7 +26,7 @@
 
     <http://hydra.nixos.org/job/nixos/trunk/minimal_install_archive/latest-for/x86_64-linux/download/1/nixos-install-archive.tar.bz2>
 
--   6\) install following the archive installation README,
+-   6\) install following the archive installation README, which is named
     "README-BOOTSTRAP-NIXOS". Force creating a init script and get
     networking options from the configuration profile editing page:
 
@@ -40,7 +42,7 @@
      };
 
 -   7\) Create a configuration profile assigning your NixOS disk image to
-    /dev/xvda (/sbin/init will be started), choose a kernel. Also assign
+    /dev/xvda (/sbin/init will be started). Choose a kernel, and also assign
     swapspace as xvdb.
 
 -   8\) Reboot. Have fun.
