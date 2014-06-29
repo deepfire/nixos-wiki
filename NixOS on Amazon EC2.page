@@ -93,7 +93,8 @@ upload it to S3, and start an instance.
 3.  Bundle the image:
 
         $ ec2-bundle-image -i ./result/nixos.img --user $AWS_ACCOUNT --arch i386 \
-            -c $EC2_CERT -k $EC2_PRIVATE_KEY
+            -c $EC2_CERT -k $EC2_PRIVATE_KEY \
+            --kernel aki-c34d67b7
         Bundling image file...
         Splitting /tmp/nixos.img.tar.gz.enc...
         Created nixos.img.part.00
@@ -105,7 +106,9 @@ upload it to S3, and start an instance.
         ec2-bundle-image complete.
 
     The resulting bundle is stored in `/tmp/nixos.img.manifest.xml` and
-    `/tmp/nixos.img.part.*`. Use `--arch x86_64` for 64-bit images.
+    `/tmp/nixos.img.part.*`. Use `--arch x86_64` for 64-bit images. Note
+    that `aki-c34d67b7` is an Ubuntu Linux 2.6.32 kernel known to work
+    with NixOS. For 64-bit images, use `aki-cb4d67bf`.
 
 4.  Upload the bundle:
 
@@ -125,10 +128,7 @@ upload it to S3, and start an instance.
 
 5.  Register the image as a private AMI:
 
-        $ ec2-register nixos-img/nixos.img.manifest.xml -n nixos-img --kernel aki-c34d67b7
+        $ ec2-register nixos-img/nixos.img.manifest.xml -n nixos-img
         IMAGE   ami-efffd59b
-
-    Note that `aki-c34d67b7` is an Ubuntu Linux 2.6.32 kernel known to
-    work with NixOS. For 64-bit images, use `aki-cb4d67bf`.
 
 
