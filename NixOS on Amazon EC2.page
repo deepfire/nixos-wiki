@@ -4,8 +4,8 @@ progress.
 
 Below we assume that the following environment variables are set:
 
--   `$AWS_CERT`: path to your AWS X.509 certificate (PEM file).
--   `$AWS_PRIVATE_KEY`: path to the corresponding private key (PEM
+-   `$EC2_CERT`: path to your AWS X.509 certificate (PEM file).
+-   `$EC2_PRIVATE_KEY`: path to the corresponding private key (PEM
     file).
 -   `$AWS_ACCOUNT`: AWS account number (e.g. `1234-5678-9012`).
 -   `$AWS_ACCESS_KEY_ID`: AWS access key ID (e.g. `AKIAJM...`).
@@ -34,7 +34,7 @@ start an instance running NixOS.
 3.  Bundle the image:
 
         $ ec2-bundle-image -i ./result/nixos.img --user $AWS_ACCOUNT --arch i386 \
-            -c $AWS_CERT -k $AWS_PRIVATE_KEY
+            -c $EC2_CERT -k $EC2_PRIVATE_KEY
         Bundling image file...
         Splitting /tmp/nixos.img.tar.gz.enc...
         Created nixos.img.part.00
