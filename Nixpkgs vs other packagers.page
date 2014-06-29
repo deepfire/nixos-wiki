@@ -77,7 +77,8 @@ your program from source, instead of doing that on your own in your
 interactive shell through profiles. Nix will provide a common build
 system, with whatever stated dependencies available at build time, and
 will also provide a target installation directory. This requires knowing
-how to write a [stdenv
-derivations](http://hydra.nixos.org/job/nix/trunk/tarball/latest/download-by-type/doc/manual/#id460419simple),
-and knowing where to write them (TBD).
+how to write [simple stdenv
+derivations](http://hydra.nixos.org/job/nix/trunk/tarball/latest/download-by-type/doc/manual/#id460419),
+and knowing [where to write
+them](http://hydra.nixos.org/job/nixpkgs/trunk/tarball/latest/download-by-type/doc/manual#chap-quick-start).
 
