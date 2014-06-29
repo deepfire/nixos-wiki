@@ -42,10 +42,8 @@ As of November 2013, grsecurity has 2 available versions: a stable patch
 for kernel 3.2 and a test patch for kernel 3.11.
 
 This is an example excerpt of configuration.nix which enables the stable
-grsecurity patch, as well as AppArmor for process confinement:
+grsecurity patch:
 
-      security.apparmor.enable = true; 
-      
       nixpkgs.config = {
         grsecurity = true;
       
@@ -55,8 +53,6 @@ grsecurity patch, as well as AppArmor for process confinement:
           linux_3_2 = pkgs.linux_3_2.override (args: {
             extraConfig = 
               ${optionalString (args ? extraConfig) args.extraConfig}
-              SECURITY_APPARMOR y
-              DEFAULT_SECURITY_APPARMOR y
               XEN n
               HIBERNATION n
               DEVKMEM? n
