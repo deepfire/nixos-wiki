@@ -91,7 +91,9 @@ notice the added new attributes:
 -   id="wiki1"
 -   dbName="mediawiki\_wiki1"
 
-<!-- -->
+the second attribute set (remember? { ... } \<- this way looks an
+attribute set) is just a copy of the first with some modifications as
+the id and dbname must be different, as well as some other values.
 
       services.postgresql.enable = true;
 
