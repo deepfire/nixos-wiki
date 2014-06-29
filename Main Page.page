@@ -36,6 +36,9 @@ HOWTOs
 
 -   [How to install NixOS on Amazon EC2](//NixOS on Amazon EC2)
 
+-   [How to install NixOS as OpenVZ
+    guest](//Install NixOS as OpenVZ guest)
+
 -   [How to escape from dependency hell when compiling recent
     packages](//Escape from dependency hell)
 
