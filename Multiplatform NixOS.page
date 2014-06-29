@@ -83,6 +83,47 @@ method, that simply puts the necessary files to load into known paths.
 You will have to configure your usual PMON /boot/boot.cfg pointing to
 the proper config.
 
+I will type the attributes involved in the shortest form. If I write
+boot.loader, it does not mean 'loader' should be the only attribute of
+boot. It's up to your configuration.
+
+Switch on the generationsDir bootloader.
+
+    boot.loader = {
+      grub.enable = false;
+      generationsDir = {
+        enable = true;
+        copyKernels = true;  # if you don't want store path references, but references to files in /boot
+      };
+    };
+
+Use a recent kernel:
+
+    boot.kernelPackages = pkgs.linuxPackages_2_6_35;
+
+At the time of writing this, the kernel provides /dev/hd\* devices for
+the hard disk, while we don't have udev rules to create them. So, I you
+will need to create the devices at initrd time:
+
+    boot.initrd.postDeviceCommands = 
+      mknod /dev/hda1 b 3 1
+      mknod /dev/hda2 b 3 2
+    ;
+
+You have to tell nixpkgs that you have a fuloong mini-pc system. So you
+need:
+
+    nixpkgs.config.platform = pkgs.platforms.fuloong2f_n32;
+
+You will also need that nixpkgs config option in your user nixpkgs
+configuration, like \~/.nixpkgs/config.nix, to get nix-env and such
+commands working fine:
+
+    pkgs:
+    {
+      platform = pkgs.platforms.fuloong2f_n32;
+    }
+
 Sheevaplug
 ==========
 
