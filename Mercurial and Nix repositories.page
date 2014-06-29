@@ -78,6 +78,8 @@ This \*WILL\* take a \*LONG\* time (about 10-20 minutes)
      -rwxr-xr-x 1 imc users 9,4K 13 ott 21:54 mkdir
      -rwxr-xr-x 1 imc users  62K 13 ott 21:54 sh
 
+(owner and group are not important)
+
 ### Staying up to date
 
      $ hg pull
