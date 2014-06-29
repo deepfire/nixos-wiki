@@ -41,6 +41,7 @@ Retrieving a working copy of your repository
     mkdir ~/devel/
     cd ~/devel/
     git clone https://github.com/your_username/nixpkgs.git
+    cd nixpkgs/
     git remote add upstream https://github.com/NixOS/nixpkgs.git
 
 -   When the clone is not recent or you suspect there have been changes
@@ -48,6 +49,7 @@ Retrieving a working copy of your repository
 
 <!-- -->
 
+    cd ~/devel/nixpkgs/
     git fetch upstream
     git merge upstream/master
 
