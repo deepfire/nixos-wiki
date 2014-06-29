@@ -4,7 +4,8 @@ Nixpkgs collection.
 
 There's a different approach to dealing with Haskell packages that's
 described on a separate page:
-[nixpkgs-haskell-overlay](//Nixpkgs-haskell-overlay).
+[nixpkgs-haskell-overlay](//Nixpkgs-haskell-overlay), also known as
+"Hack-nix".
 
 Getting started
 ---------------
