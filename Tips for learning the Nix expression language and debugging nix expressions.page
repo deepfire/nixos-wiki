@@ -1,6 +1,6 @@
-The intention of this article is to provide a walk through tutorial of
-the Nix expression language and helpful tips and advice for writing and
-debugging Nix expressions. The canonical resources for documentation is
+The intention of this article is to provide a walk through tutorial for
+the Nix expression language in addition to practical tips and advice for
+writing and debugging Nix expressions. The canonical documentation is
 the [Nix Users
 Manual](http://hydra.nixos.org/job/nix/trunk/tarball/latest/download-by-type/doc/manual%7C).
 
