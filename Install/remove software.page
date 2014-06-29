@@ -36,25 +36,19 @@ how to remove installed software
 
 also depending on where the software was installed:
 
-**WARNIG: when you call 'nix-collect-garbage' or 'nix-store --gc' you
-might get problems with software which is installed 'per user' as the
-garbage collector will check all roots and remove software which is not
-enlisted in that roots. but i guess that the 'per user' software is not
-included as a root.**
-
 ### system environment installation
 
 remove the entry in environment.systemPackages = [ ];
 
     nixos-rebuild switch
-    nix-env --delete-generations old
+    nix-env --delete-generations old # After this it is not possible to is the --rollback switch to reverse the uninstall.
     nix-collect-garbage
 
 ### normal user installation
 
-    nix-env -e links2
-    nix-env --delete-generations old
-    nix-collect-garbage
+    nix-env -e links2 # removes the installation form the per-user account but leaves it in the store.
+    nix-env --delete-generations old # After this it is not possible to is the --rollback switch to reverse the uninstall.
+    nix-collect-garbage # Now that links to the installations form the current and former generations have been deleted the garbage collector can delete them from the store.
 
 additionally it makes sense to run:
 
