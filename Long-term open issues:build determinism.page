@@ -1,36 +1,36 @@
 What are the builder-accessible pieces of information that can lead to
 repeated build producing bit-for-bit different outputs?
 
-Not addressed completely
-------------------------
+[[edit](/w/index.php?title=Long-term_open_issues:build_determinism&action=edit&section=1 "Edit section: Not addressed completely")] Not addressed completely
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### System time
+### [[edit](/w/index.php?title=Long-term_open_issues:build_determinism&action=edit&section=2 "Edit section: System time")] System time
 
 Additional problem: ctime on files, if build creates any archives
 
-#### Ways to fix the problem
+#### [[edit](/w/index.php?title=Long-term_open_issues:build_determinism&action=edit&section=3 "Edit section: Ways to fix the problem")] Ways to fix the problem
 
-##### LD\_PRELOAD
+##### [[edit](/w/index.php?title=Long-term_open_issues:build_determinism&action=edit&section=4 "Edit section: LD PRELOAD")] LD\_PRELOAD
 
 Works only for dynamically-linked programs
 
-##### ptrace
+##### [[edit](/w/index.php?title=Long-term_open_issues:build_determinism&action=edit&section=5 "Edit section: ptrace")] ptrace
 
 Slower?
 
-### System CPU model/features
+### [[edit](/w/index.php?title=Long-term_open_issues:build_determinism&action=edit&section=6 "Edit section: System CPU model/features")] System CPU model/features
 
-### Order of directory entries
+### [[edit](/w/index.php?title=Long-term_open_issues:build_determinism&action=edit&section=7 "Edit section: Order of directory entries")] Order of directory entries
 
 ls -u giving different order may lead to things like jars being not
 bit-for-bit identical
 
-### Deliberate randomness
+### [[edit](/w/index.php?title=Long-term_open_issues:build_determinism&action=edit&section=8 "Edit section: Deliberate randomness")] Deliberate randomness
 
 Example: package generating a andom seed during build. It is a problem
 from many points of view.
 
-Allegedely fixed (at least in Nix on NixOS)
--------------------------------------------
+[[edit](/w/index.php?title=Long-term_open_issues:build_determinism&action=edit&section=9 "Edit section: Allegedely fixed (at least in Nix on NixOS)")] Allegedely fixed (at least in Nix on NixOS)
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### Builder PIDs
+### [[edit](/w/index.php?title=Long-term_open_issues:build_determinism&action=edit&section=10 "Edit section: Builder PIDs")] Builder PIDs
