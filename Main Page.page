@@ -66,6 +66,9 @@ HOWTOs
 -   [How to install Nix OS on a hetzner rootserver](//NixOS on Hetzner)
 -   [QEMU guest with networking and
     virtfs](//QEMU guest with networking and virtfs)
+-   [Soft-RAID mdadm (/dev/md0), LVM
+    (PVs,VGs,LVs)](//Soft-RAID mdadm (/dev/md0), LVM (PVs,VGs,LVs)) and
+    booting from LVM on top of a mdadm volume
 
 Development
 -----------
