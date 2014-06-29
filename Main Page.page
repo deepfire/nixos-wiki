@@ -14,11 +14,7 @@ Getting started
 
 -   [Getting Help](//Getting Help)
 -   [FAQ](//FAQ)
-
-Contributing
-------------
-
--   [Contributing to NixOS or Nix related projects](//Contributing)
+-   [Contributing](//Contributing)
 
 HOWTOs
 ------
@@ -87,8 +83,7 @@ HOWTOs
     (PVs,VGs,LVs)](//Soft-RAID mdadm (/dev/md0), LVM (PVs,VGs,LVs)) and
     booting from LVM on top of a mdadm volume
 
-Networking setup
-----------------
+### Networking setup
 
 -   [Network Manager](//Network Manager) (recommended)
 -   [wpa\_supplicant](//Wpa supplicant)
