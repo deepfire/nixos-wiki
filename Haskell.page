@@ -329,3 +329,7 @@ Just have a look at the wrapper to understand how it works. Are there
 alternatives? - using GHC\_PACKAGE\_PATH - using a local package file -
 ...
 
+how to get the derivations of either one?
+
+     nix-build -A haskellPackages[version].ghc # the wrapper
+     nix-build -A haskellPackages[version].ghc.ghc # the wrapped ghc
