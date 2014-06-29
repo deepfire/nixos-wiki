@@ -12,8 +12,8 @@ Now how to find a package?
 
       nix-env -qa \* [-P] [--out-path] [ -f $NIXPKGS_ALL ]
 
-to list all packages you can install. However Nix has to evaluate all
-names so this is quite slow.
+to list all packages you can install. The first column is the attr path.
+However Nix has to evaluate all names so this is slow but bearable.
 
 Eg put this into your \~/.bashrc
 
@@ -26,8 +26,9 @@ as sub attribute set it is only shown if the function
 
 has been used. I think it was introduced for performance reasons (?).
 You can either add this function if its missing or you can install by
-path using nix-env -iA attr.subattr.subattr.package or such. this
-corresponds to
+path using nix-env -iA attr.subattr.subattr.package or such. The
+attr.subattr is the attr path shown by the query above. In this example
+it would match something like:
 
     {
       attr = { subattr = { subattr = { package = mkDerivation ... } } }
