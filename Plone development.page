@@ -160,6 +160,7 @@ build tools.
          # Other python command line utilies could also be used, e.g. IPython
          extraCmds = ''
            export PYTHONHOME=${pythonPlone}
+           unset http_proxy # otherwise downloads will fail ("nodtd.invalid")
          '';
         };
 
@@ -212,13 +213,6 @@ build tools.
 You should now be able to start an instance as normal:
 
     ./bin/instance fg
-
-You may need to
-
-    unset http_proxy
-
-to be able to download packages from the internet (you'll see errors
-about nodtd.invalid).
 
 NOTE: buildout-nix is a patched version of buildout 2.2.0, which
 symlinks to required eggs in the nix store instead of copying them to
