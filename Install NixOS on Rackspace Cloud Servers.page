@@ -1,0 +1,30 @@
+Install NixOS on Rackspace Cloud Servers
+========================================
+
+This are just a few notes I took down while performing a NixOS
+installation on a freshly created Rackspace Cloud Server running Gentoo.
+This document will be updated once I got everything running.
+
+Disclaimer
+----------
+
+Prerequisites
+-------------
+
+    cat /etc/resolve.conf
+    ...
+
+    cat /etc/conf.d/net
+    ...
+
+    cat /etc/fstab
+    ...
+
+Installation
+------------
+
+1\) get installation image 2) unsquashfs nix store 3) locate and edit
+init 3.a) remove upstart 4) chroot into installation medium 5) follow
+NixOS installation manual 6) edit configuratio.nix (howto incorporate
+information above) 7) perform nixos-install ...
+
