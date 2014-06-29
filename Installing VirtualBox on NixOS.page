@@ -3,7 +3,13 @@ This page describes how to run VirtualBox on NixOS.
 Enabling VirtualBox
 -------------------
 
-Add the following to your `configuration.nix`:
++--------------------------------------------------------------------------+
+| **WARNING: VirtualBox is currently built with the "--disable-hardening"  |
+| flag. This is a security risk and we need to fix it. See                 |
+| <https://www.virtualbox.org/wiki/Linux%20build%20instructions>**         |
++--------------------------------------------------------------------------+
+
+ Add the following to your `configuration.nix`:
 
     require = [ <nixos/modules/programs/virtualbox.nix> ];
 
