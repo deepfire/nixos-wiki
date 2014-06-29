@@ -64,23 +64,42 @@ nix-shell)**
 
      $ nix-build $NIXREPOS/nixpkgs --run-env -A irssi --add-root
 
-Preparing to open a pull request
---------------------------------
+Tracking upstream changes and avoiding extra rebuilding
+-------------------------------------------------------
 
-You have cloned the relevant nix repository, but you will want to track
+You have forked the relevant nix repository, but you will want to track
 changes in the upstream nix repo too. You can add a remote, and a
 corresponding branch for this.
 
      git remote add upstream https://github.com/NixOS/nixpkgs.git
 
-After making some changes you can commit them into your local repo:
+You can create a branch to track the upstream master branch:
+
+     git checkout -b upstream-master upstream/master
+     git pull
+
+This will put you into a branch with all the latest changes. Hydra, the
+build farm, regularly creates binaries, but, since people are constantly
+contributing to the nix repositories, it is usually the case that there
+are changes in the master branch which have not yet made it into the
+binary channel. To take advantage of available binaries you can switch
+to the revision which produced the binaries in your current system and
+apply your changes there. You can use \`nixos-version\` to see the
+relevant short revision hash:
+
+     $ nixos-version 
+     13.07pre4871_18de9f6-3c35dae (Aardvark)
+
+This string shows the Nixos release number (13.07pre4871) followed by
+the nixos revision used to produce your current system (18de9f6)
+followed by the nixpkgs revision (3c35dae).
+
+ After making some changes you can commit them into your local repo:
 
      git add foo
      git commit
 
-You can create a branch to track the upstream master branch:
-
-     git checkout -b upstream-master upstream/master
+ And then you can merge the upstream changes into your branch
 
 If some time has passed since you have created your fork, you will want
 to merge your changes with upstream and test that it still works.
