@@ -72,6 +72,43 @@ filesystems for NixOS to mount during boot, e.g.:
         };
     (...)
 
+How to use the auto-snapshotting service
+----------------------------------------
+
+To auto-snapshot a ZFS filesystem or a ZVol, set its
+`com.sun:auto-snapshot` property to `true`, like this:
+
+    $ zfs set com.sun:auto-snapshot=true <pool>/<fs>
+
+(Note that by default this property will be inherited by all descendent
+datasets, but you can set their properties to false if you want to.)
+
+Then, to enable the auto-snapshot service, add this to your
+`configuration.nix`:
+
+    services.zfs.autoSnapshot.enable = true;
+
+And finally, run `nixos-rebuild switch` to activate the new
+configuration!
+
+By default, the auto-snapshot service will keep the latest four
+15-minute, 24 hourly, 7 daily, 4 weekly and 12 monthly snapshots. You
+can globally override this configuration by setting the desired number
+of snapshots in your `configuration.nix`, like this:
+
+    services.zfs.autoSnapshot = {
+      enable = true;
+      frequent = 8; # keep the latest eight 15-minute snapshots (instead of four)
+      monthly = 1;  # keep only one monthly snapshot (instead of twelve)
+    };
+
+You can also disable a given type of snapshots on a per-dataset basis by
+setting a ZFS property, like this:
+
+    $ zfs set com.sun:auto-snapshot:weekly=false <pool>/<fs>
+
+This would disable only weekly snapshots on the given filesystem.
+
 How to install NixOS on a ZFS root filesystem
 ---------------------------------------------
 
