@@ -31,7 +31,7 @@ Then add it to the Nix store:
 
  Override the VirtualBox package to enable the extension pack:
 
-    kernelPackages = pkgs.linuxPackages // {
+    boot.kernelPackages = pkgs.linuxPackages // {
       virtualbox = pkgs.linuxPackages.virtualbox.override {
         enableExtensionPack = true;
       };
