@@ -13,11 +13,9 @@ a good way to get started is to install the current Haskell Platform:
 If all you want is to use the xmonad window manager, then put the
 following options into your `/etc/nixos/configuration.nix`:
 
-``` {style="width:0"}
-  services.xserver.windowManager.xmonad.enable = true;     # installs xmonad and makes it available
-  services.xserver.windowManager.default       = "xmonad"; # sets it as default
-  services.xserver.desktopManager.default      = "none";   # the plain xmonad experience
-```
+      services.xserver.windowManager.xmonad.enable = true;     # installs xmonad and makes it available
+      services.xserver.windowManager.default       = "xmonad"; # sets it as default
+      services.xserver.desktopManager.default      = "none";   # the plain xmonad experience
 
 In both cases, though, it is recommended to read on in order to learn
 more about how Haskell packages are organized in Nixpkgs.
