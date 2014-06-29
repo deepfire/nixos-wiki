@@ -96,7 +96,7 @@ configuration file:
         options snd-hda-intel model=YOUR_MODEL 
       '';
 
-### Fixing sound in KDE
+### Fixing sound in KDE *(is this now obsolete? 2011/08)'*
 
 (alsamixer shows my audio card by default, but i get no sound in KDE)
 
