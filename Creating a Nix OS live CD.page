@@ -70,7 +70,7 @@ at the end of
 
 comment this line with a leading '\#':
 
-    jobs.openssh.startOn = pkgs.lib.mkOverrideTemplate 50 {} "";
+    jobs.openssh.startOn = "network interfaces started";
 
 software installation inside the 'once' deployed and booted image
 -----------------------------------------------------------------
