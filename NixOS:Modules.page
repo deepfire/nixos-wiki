@@ -5,7 +5,9 @@ to a device or a service configuration. Such separation permits the
 creation of services which can be tested for a while before being merged
 in the main line of NixOS.
 
-This page describes how you can create a module.
+This page describes how you can create a module. If you want a pratical
+view, you should have a look into this small
+[tutorial](//NixOS:extend NixOS).
 
 Vocabulary
 ----------
