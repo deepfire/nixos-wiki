@@ -29,5 +29,16 @@ Work on solving some of the following issues
 -   Look at generating nix expressions from pypi (see MarcWeber's work
     on this)
 
-PTS (aszlig)
-------------
+Package Tracking System
+-----------------------
+
+If I understand correctly the idea is to create some utilities to test
+the kwalitee of Nix package expressions, perhaps tied in with additional
+metadata. Aszlig mentioned it on IRC:
+<http://nixos.org/irc/logs/log.20120622>
+
+<http://packages.qa.debian.org>
+
+[Goibhniu](/w/index.php?title=User:Goibhniu&action=edit&redlink=1 "User:Goibhniu (page does not exist)")
+22:42, 28 June 2012 (UTC)
+
