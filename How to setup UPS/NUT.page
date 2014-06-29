@@ -37,6 +37,10 @@ example setup
        ATTRS{idVendor}=="0665", ATTRS{idProduct}=="5161", MODE="666", SYMLINK+="hidraw_protecthome"
      ;
 
+note: afterwards run **nixos-rebuild switch** and check that both:
+**upsd** and **upsmon** is running, **upsdrv** seems to be started
+automatically.
+
 ### upsd.conf
 
      LISTEN 127.0.0.1 3493
