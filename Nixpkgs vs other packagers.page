@@ -3,7 +3,7 @@ I want a package installed in the system
 
 In most distributions, asking for a package to be installed, means
 having all its files available in the root filesystem
-(/{,usr}/{bin,etc,lib,sbin}).
+(/{,usr}/{bin,etc,lib,sbin,...}).
 
 In nixpkgs, the installed files of a package go into a *profile* (as if
 it was a rootfs), and you can have as many profiles as you want. There
@@ -22,7 +22,7 @@ one, and updating the symlink \`\~/.nix-profile\`, so
 firefox. Then a user can type \`firefox\` and have it running.
 
 If other kind of files are to be found by programs looking at the usual
-\`/{,usr}/{bin,etc,lib,sbin}\` locations, other variables may be of
+\`/{,usr}/{bin,etc,lib,sbin,...}\` locations, other variables may be of
 help. For example, gcc would welcome CPATH and LIBRARY\_PATH. And the
 dynamic loader will welcome LD\_LIBRARY\_PATH.
 
