@@ -51,6 +51,9 @@ if you get this error message (like this), something went wrong:
 solution:
 
      rmmod kvm-intel
+     rmmod kvm-amd
+
+then start the 'virtual machine' again and it should work
 
 
 <https://svn.nixos.org/repos/nix/configurations/trunk/misc/nicolas.b.pierron/vinon.nix>
