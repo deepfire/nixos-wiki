@@ -39,3 +39,9 @@ For long living topic branches you may want to read
 [Nixpkgs\_and\_TopGit](//Nixpkgs and TopGit) which allows to squash many
 changes so that patches will always be easy to review.
 
+Also See
+--------
+
+[Contributing\_to\_nixpkgs](//Contributing to nixpkgs) which contains a
+full guide about how to add and contribute a package
+
