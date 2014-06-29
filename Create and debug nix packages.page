@@ -93,7 +93,7 @@ nixos/nixpkgs) if you type **nix-env -i firefox**
 
 you need this script:
 
-     https://github.com/chaoflow/skel/blob/master/bin/update-nixos-channel-branches.sh
+     https://raw.github.com/chaoflow/skel/master/bin/update-nixos-channel-branches.sh
 
 verify that the nix-channel is called nixos, looks like this:
 
