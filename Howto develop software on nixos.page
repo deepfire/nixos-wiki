@@ -114,12 +114,19 @@ other related topics
 
 ### how to use libraries which don't have a sdl-config or don't use pkgconfig
 
-#### include path
+when you load `load-sdl-env` there will be some additional environment
+variables set:
 
-#### linker flags
+-   CMAKE\_PREFIX\_PATH
+-   NIX\_CFLAGS\_COMPILE
+-   NIX\_LDFLAGS
 
--   nix-store -q --tree etc
--   nix-env --out-path
+all these variables contain include paths and ldflags used by the
+compiler.
+
+**note: this means that once these paths are set correctly (caused by
+the load-sdl-env command) you don't need tools like sdl-config or
+pkgconfig at all.**
 
 ### code completion in kdevelop
 
