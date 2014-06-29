@@ -1,12 +1,12 @@
 This page is a work in progress.
 
-Overview
-========
+[[edit](/w/index.php?title=ASUS_M60J-JX041V&action=edit&section=1 "Edit section: Overview")] Overview
+=====================================================================================================
 
 Most of the features seem to be working with Linux 2.6.32.
 
-Hardware
---------
+[[edit](/w/index.php?title=ASUS_M60J-JX041V&action=edit&section=2 "Edit section: Hardware")] Hardware
+-----------------------------------------------------------------------------------------------------
 
 -   Ethernet: Attansic Technology Corp. Device 1063 (rev c0)
 -   Wireless: Intel Corporation Wifi Link 100 Series
@@ -19,8 +19,8 @@ Hardware
 -   HDD: 2\* 320 GB, 5200 rpm.
 -   Fingerprint Sensor.
 
-Support
--------
+[[edit](/w/index.php?title=ASUS_M60J-JX041V&action=edit&section=3 "Edit section: Support")] Support
+---------------------------------------------------------------------------------------------------
 
 -   Ethernet: Yes.
 -   Wireless: Yes.
@@ -32,24 +32,24 @@ Support
     correctly.
 -   Fingerprint Sensor: Not tested. (listed by lshal)
 
-Tests
------
+[[edit](/w/index.php?title=ASUS_M60J-JX041V&action=edit&section=4 "Edit section: Tests")] Tests
+-----------------------------------------------------------------------------------------------
 
 -   Video:
     -   Maximal Resolution: 1366x768
     -   glxgears: 1859.8 FPS @ 1366x768
 
-Configuration
-=============
+[[edit](/w/index.php?title=ASUS_M60J-JX041V&action=edit&section=5 "Edit section: Configuration")] Configuration
+===============================================================================================================
 
 You can see the configuration file specific to this computer at
 [`configurations/computer/asus/m60j/jx041v.nix`](https://svn.nixos.org/repos/nix/configurations/trunk/computer/asus/m60j/jx041v.nix)
 
-Problems & Solutions
-====================
+[[edit](/w/index.php?title=ASUS_M60J-JX041V&action=edit&section=6 "Edit section: Problems & Solutions")] Problems & Solutions
+=============================================================================================================================
 
-No Ethernet
------------
+[[edit](/w/index.php?title=ASUS_M60J-JX041V&action=edit&section=7 "Edit section: No Ethernet")] No Ethernet
+-----------------------------------------------------------------------------------------------------------
 
 This problem appear if you are using an old kernel.
 
@@ -102,8 +102,8 @@ Sources:
 
 -   <http://platonic.techfiz.info/2009/10/25/ethernet-controller-attansic-technology-corp-device-1063-on-ubuntu/>
 
-Grub
-----
+[[edit](/w/index.php?title=ASUS_M60J-JX041V&action=edit&section=8 "Edit section: Grub")] Grub
+---------------------------------------------------------------------------------------------
 
 -   Changing the boot sequence in the BIOS is changing the apparent
     mapping of hard-drives. Thus `hd0` and `hd1` are inverted in GRUB 2.
