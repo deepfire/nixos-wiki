@@ -1,12 +1,11 @@
 News in allpackages.nix
 =======================
 
-The main nix package now has a parameter setting the information for the
-cross-compilation target. When set, this will allow us to cross-build:
+The main nix packages expression has a parameter setting the information
+for the cross-compilation target. When set, this will allow us to
+cross-build:
 
-    ...
-    , crossSystem ? null
-    ...
+    ... , crossSystem ? null, ...
 
 This *crossSystem* should be an attribute set with enough information
 about the target. Therefore it cannot be passed through "--argstr
