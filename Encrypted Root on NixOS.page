@@ -29,6 +29,37 @@ If you need to decrypt additional devices, you can do it like this:
 
       boot.initrd.postDeviceCommands = "cryptsetup luksOpen /dev/sda3 lukshome";
 
+Note: NixOS currently does support additional devices but only in
+combination with using "boot.initrd.luksRoot". That means if you only
+want to have an encrypted /home you still have to assign a
+boot.initrd.luksRoot="foobar" which preferably should not exist at all.
+This also means that you will get an error every boot as this device
+does not exist for obvious reasons.
+
+A possible fix would be to change
+/etc/nixos/nixos/modules/system/boot/luksroot.nix like this:
+
+       boot.initrd.preLVMCommands = 
+         # Wait for luksRoot to appear, e.g. if on a usb drive.
+         # XXX: copied and adapted from stage-1-init.sh - should be
+         # available as a function.
+         if [ ${luksRoot} != "postBootOnly" ]; then
+              if ! test -e ${luksRoot}; then
+                  echo -n "waiting for device ${luksRoot} to appear..."
+                  for ((try = 0; try < 10; try++)); do
+                      sleep 1
+                      if test -e ${luksRoot}; then break; fi
+                      echo -n "."
+                  done
+                  echo "ok"
+              fi
+              # open luksRoot and scan for logical volumes
+              cryptsetup luksOpen ${luksRoot} luksroot
+         fi
+       ;
+
+While using boot.initrd.luksRoot="postBootOnly".
+
 ### Extra modules you might need
 
 Depending on the encryption algorithm you have chosen for your Luks
