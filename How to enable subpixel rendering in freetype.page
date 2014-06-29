@@ -1,0 +1,97 @@
+Why
+===
+
+Nixos doesn't enable subpixel rendering by default because it is covered
+by patents. From the FreeType source code:
+
+    Note that this feature is covered by several Microsoft
+    patents and should not be activated in any default
+    build of the library.
+
+Still, activating this option is possible and is not so hard.
+
+How to enable
+=============
+
+Let's see the definition of freetype in top-level.nix:
+
+      freetype = callpackage ../development/libraries/freetype {
+         useEncumberedCode = getconfig [ "freetype" "useencumberedcode" ] false;
+      };
+
+definition shows that it has useEncumberedCode option set to false by
+default. Enabling it in config does the job, but leads to mass local
+rebuilding of packages which are depend on freetype. Probably, it is not
+what user expects so we need a trick.
+
+### Configuration.nix
+
+Define new instance of freetype expression (with another and uniq name)
+and include it in the config. Here are parts of configuration.nix:
+
+      nixpkgs.config = {
+        packageOverrides = pkgs: {
+          ...
+
+          freetype_subpixel = pkgs.freetype.override {
+            useEncumberedCode = true;
+          };
+
+          ...
+        }
+      }
+
+Next, we should add it to the list of system packages to force building
+and linking into /run/current-system/sw/:
+
+      environment.systemPackages = with pkgs ; [
+        ...
+        freetype_subpixel
+      ];
+
+### LD\_LIBRARY\_PATH
+
+So, freetype\_subpixel is our new version of freetype, with subpixel
+rendering enabled. Now we should tell others to link with it instead of
+system default.
+
+Basically, user has to insert following lines into right place:
+
+    FREETYPE=$(dirname $(readlink /run/current-system/sw/lib/libfreetype.so))
+    export LD_LIBRARY_PATH="$FREETYPE:$LD_LIBRARY_PATH"
+
+Some DEs, like KDE, read special .files to make trics like that
+possible. AFAIK, there is no such option for xfce, so I've patched the
+session startup:
+
+    -------------- modules/services/x11/display-managers/default.nix --------------
+    index cdfd271..4805eb5 100644
+    @@ -91,6 +91,10 @@ let
+               fi
+           fi
+     
+    +      if test -f ~/.xprofile; then
+    +          . ~/.xprofile
+    +      fi
+    +
+           # The session type is "<desktop-manager> + <window-manager>", so
+           # extract those.
+           windowManager="''${sessionType##* + }"
+
+Now my nixos sources .xprofile each time before logging in. So I put the
+snippet there.
+
+### That's it
+
+Rebuild the system and reboot. Our env should look like this:
+
+    $ env | grep LD_LIBR
+    LD_LIBRARY_PATH=/nix/store/jxss54j52paqwns8zvm6mwr7f89ck7ya-freetype-2.4.4/lib:/run/opengl-driver/lib:/run/opengl-driver-32/lib
+
+Here is useful link which helps to choose between RGB and BGR types of
+rendering:
+
+[[1]](http://www.lagom.nl/lcd-test/subpixel.php)
+
+Thanks Eelco for the idea.
+
