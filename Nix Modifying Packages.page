@@ -11,8 +11,8 @@ expressions.
     project.
 -   Create a Nix expression which overrides existing Nix packages.
 
-Fork and Modify NixPkgs
------------------------
+[[edit](/w/index.php?title=Nix_Modifying_Packages&action=edit&section=1 "Edit section: Fork and Modify NixPkgs")] Fork and Modify NixPkgs
+-----------------------------------------------------------------------------------------------------------------------------------------
 
 If we want to modify an existing package and we think the existing
 package should no longer be used, we can modify the package and push
@@ -21,7 +21,7 @@ walk-through, see the [Contributing to
 NixPkgs](//Contributing to nixpkgs) Wiki page, but for now, let's look
 at the overview.
 
-### Fork NixPkgs
+### [[edit](/w/index.php?title=Nix_Modifying_Packages&action=edit&section=2 "Edit section: Fork NixPkgs")] Fork NixPkgs
 
 Log into your GitHub account, or create one, then click the "Fork"
 button on the central [GitHub
@@ -32,7 +32,7 @@ your changes.
 
        $ git clone https://github.com/your_username/nixpkgs.git ~/my-fork
 
-### Modifying a Forked Package
+### [[edit](/w/index.php?title=Nix_Modifying_Packages&action=edit&section=3 "Edit section: Modifying a Forked Package")] Modifying a Forked Package
 
 Now you can modify a package. Open the
 `~/my-fork/nixpkgs/pkgs/top-level/all-packages.nix` file and find the
@@ -43,7 +43,7 @@ To modify the Filezilla package, modify the
 `../applications/networking/ftp/filezilla/default.nix` file, as
 `default.nix` is the default file name used by Nix if not specified.
 
-### Using Your Fork of NixPkgs
+### [[edit](/w/index.php?title=Nix_Modifying_Packages&action=edit&section=4 "Edit section: Using Your Fork of NixPkgs")] Using Your Fork of NixPkgs
 
 After modifying a package's Nix expression, we need to test it. When we
 normally use Nix commands, such as the `nix-env -i` command, the default
@@ -62,7 +62,7 @@ in Nix commands, place it inside angle brackets, like "`<my-nixpkgs>`",
 when using Nix commands.
 
        ### Install from our NixPkgs fork: (yet to be tested by author)
-       $ export NIX_PATH=my-nixpkgs=/home/user-name/my-fork:$NIX_PATH
+       $ export NIX_PATH=my-nixpkgs=/home/$USER/my-fork:$NIX_PATH
        $ nix-env -i firefox -f <my-nixpkgs/default.nix>
        $ nix-env -i firefox -f <my-nixpkgs>
        # OR, if angle brackets aren't working...
@@ -87,8 +87,8 @@ After debugging the package, we can test the results of the build by
 using the `nix-build` command or directly install it using the
 `nix-env -i` command.
 
-Overriding Existing Packages
-----------------------------
+[[edit](/w/index.php?title=Nix_Modifying_Packages&action=edit&section=5 "Edit section: Overriding Existing Packages")] Overriding Existing Packages
+---------------------------------------------------------------------------------------------------------------------------------------------------
 
 If we don't want to create a fork of NixPkgs or we believe our
 modifications will not be useful to other people, we can instead "patch"
@@ -100,7 +100,7 @@ default NixPkgs expression. If we want to use a different file, specify
 a file path in the `NIXPKGS_CONFIG` environment variable and Nix will
 instead use that one.
 
-### Creating a `config.nix` File
+### [[edit](/w/index.php?title=Nix_Modifying_Packages&action=edit&section=6 "Edit section: Creating a config.nix File")] Creating a `config.nix` File
 
 What does Nix expect the `config.nix` file to look like? To modify
 existing packages, this file must contain an attribute named
