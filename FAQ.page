@@ -43,6 +43,8 @@ or
 
      initctl restart sshd
 
+A list of services can be found in "/etc/init".
+
 How to keep build-time dependencies around / be able to rebuild while being offline
 -----------------------------------------------------------------------------------
 
