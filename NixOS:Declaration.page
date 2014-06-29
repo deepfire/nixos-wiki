@@ -39,7 +39,7 @@ Evaluation
 
 The evaluation is done with the following piece of code where `opt` is
 the option declaration. You can find this piece of code inside
-[[`pkgs/lib/modules.nix`](https://svn.nixos.org/repos/nix/nixpkgs/trunk/pkgs/lib/modules.nix%7C)].
+[`pkgs/lib/modules.nix`](https://svn.nixos.org/repos/nix/nixpkgs/trunk/pkgs/lib/modules.nix%7C).
 
       opt.apply (
         if isNotDefined then
