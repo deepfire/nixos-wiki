@@ -3,9 +3,8 @@ Welcome to the Nix wiki!
 Getting started
 ---------------
 
--   Nix
-    [manual](http://hydra.nixos.org/job/nix/trunk/tarball/latest/download-by-type/doc/manual)
-    [source code](https://github.com/NixOS/nix)
+-   Nix [manual](http://nixos.org/nix/manual/) [source
+    code](https://github.com/NixOS/nix)
 -   NixOS [manual](http://nixos.org/nixos/manual/) [source
     code](https://github.com/NixOS/nixos)
 -   Nixpkgs
