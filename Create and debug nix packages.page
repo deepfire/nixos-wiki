@@ -70,11 +70,12 @@ now after some modifications ...
 
 ### keeping in sync with hydra builds
 
-problem: if you use **upstream master** to develop software with, you
-might end up in compiling a lot when doing: **nixos-rebuild switch**.
-this happens for example when there is a fundamental change which
-requires a lot of packages to be rebuild. it is even likely that you hit
-bugs/issues which are caused by someone else.
+problem: if you use a local git checkout of nixos/nixpkgs's **upstream
+master** to develop software with, you might end up in compiling a lot
+when doing: **nixos-rebuild switch**. this happens for example when
+there is a fundamental change which requires a lot of packages to be
+rebuild. it is even likely that you hit bugs/issues which are caused by
+someone else.
 
 ideally **you want to change the state of your current system** which
 means that **you will not work on upstream/master** but **on the state
@@ -88,9 +89,7 @@ nixos/nixpkgs) if you type **nix-env -i firefox**
     * you might get an older binary substitute if the hydra build of the new expression hasn't finished yet
     * you might get an older binary substitute if the hydra build of a newer version failed
 
-    + you are up2date
-    + lots of recent packages might not have a binary substitute by hydra
-    -
+#### how does this work
 
 nix channels
 ------------
