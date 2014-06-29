@@ -14,11 +14,17 @@ Package Manager
 
 Android Dev, Cross-compilation
 
-NixOS Desktop
+NixOS
 
-[NixOS Desktop](//Main Page NixOS Desktop)
+[NixOS - Main Page](//NixOS Main Page)
 
-Audio & KDE & Xorg
+[Modules Overview](//NixOS:Modules)
+
+[Creating Modules](//NixOS:extend NixOS)
+
+[Modifying Existing Modules](//NixOS Modifying Modules)
+
+[Containers](/w/index.php?title=NixOS:Containers&action=edit&redlink=1 "NixOS:Containers (page does not exist)")
 
 Infrastructure & Deployment
 
@@ -36,17 +42,11 @@ Manual
 
 [Wiki](//Nix Wiki)
 
-NixOS Modules
+NixOS Desktop
 
-[NixOS - Main Page](//NixOS Main Page)
+[NixOS Desktop](//Main Page NixOS Desktop)
 
-[Modules Overview](//NixOS:Modules)
-
-[Creating Modules](//NixOS:extend NixOS)
-
-[Modifying Existing Modules](//NixOS Modifying Modules)
-
-Syntax & Tutorial & Usage & Examples
+Audio & KDE & Xorg
 
 Community
 
