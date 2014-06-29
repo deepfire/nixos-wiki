@@ -127,8 +127,6 @@ kde3.kphone
 
 qcad
 
-kde3.kuickshow
-
 djvulibre (djview)
 
 djview4
@@ -141,15 +139,13 @@ valknut
 
 twinkle
 
-applications/science/electronics/qucs/default.nix
+qucs
 
-applications/video/mythtv/default.nix
+mythtv
 
-development/libraries/avahi/default.nix
+xxdiff/3.2.nix
 
-development/tools/misc/xxdiff/3.2.nix
+games/six
 
-games/six/default.nix
-
-tools/misc/qdu/default.nix
+qdu
 
