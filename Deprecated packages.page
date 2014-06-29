@@ -1,0 +1,63 @@
+HAL reverse dependencies
+------------------------
+
+Package
+
+Maintainer
+
+Why package needs HAL
+
+Plan
+
+nut
+
+Pierron
+
+vlc
+
+No meta.maintainer
+
+virtualbox
+
+Sander
+
+USB hotplug
+
+Use udisks (search for existing patch)
+
+pmount
+
+No meta.maintainer
+
+Use --mount
+
+Xfce-4.6
+
+No meta.maintainer
+
+Switch to 4.8 and remove 4.6
+
+gnome-control-center
+
+No meta.maintainer
+
+Upgrade
+
+gvfs
+
+No meta.maintainer
+
+Upgrade
+
+gnome-vfs
+
+No meta.maintaner
+
+Upgrade or discard
+
+pam\_usb
+
+No meta.maintainer
+
+Hotplug, needs both HAL and pmount
+
