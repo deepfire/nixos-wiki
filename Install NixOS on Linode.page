@@ -67,7 +67,8 @@ Install Prerequisites
     } 
     EOF
 
-    export NIX_PATH=nixos=/root/nixpkgs/nixos:nixpkgs=/root/nixpkgs:nixos-config=/root/configuration.nix
+    export NIX_PATH=nixos=/root/nixpkgs/nixos:nixpkgs=/root/nixpkgs
+    export NIXOS_CONFIG=/root/configuration.nix
     nix-env -i -A config.system.build.nixos-install -A config.system.build.nixos-option -A config.system.build.nixos-generate-config -f "<nixos>"
 
 Configure your system
