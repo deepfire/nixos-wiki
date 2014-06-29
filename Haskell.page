@@ -265,7 +265,7 @@ to the `environment.systemPackages` attribute in your
        ];
      }
 
-#### Overriding package preferences =
+#### Overriding package preferences
 
 [This whole part still has to be filled with (more) content.]
 
