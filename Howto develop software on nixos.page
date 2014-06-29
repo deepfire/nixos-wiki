@@ -71,7 +71,7 @@ following command.
 
        $ nix-shell clang.nix -A clangEnv
 
-#### Example 3: Using myEnvFun to Create a Persistent Development Environment
+#### Example 2: Using myEnvFun to Create a Persistent Development Environment
 
 The main difference between `myEnvFun` and `nix-shell` is the separation
 between building a development environment and activating it. If we use
