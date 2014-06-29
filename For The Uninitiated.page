@@ -8,9 +8,10 @@ nix-expressions and NixOS.
 but is merely present so that it can be shared and edited by the
 community.
 
-**This page is a part of the UDX initiative** which focuses on easily
-understood, simple and clear explanations and documentation to ensure
-the least amount of communication faults between User & Developer
+**This page is a part of the [UDX Initiative](//UDX Initiative)** which
+focuses on easily understood, simple and clear explanations and
+documentation to ensure the least amount of communication faults between
+User & Developer
 
 ### The Basics
 
