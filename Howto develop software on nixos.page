@@ -162,6 +162,21 @@ To have full code completion in kdevelop you need this procedure:
 What might not work is that you can open several projects in this
 kdevelop session. But that should be a minor issue i guess.
 
+sample development environments
+-------------------------------
+
+### Python development environment
+
+       pythonEnv = pkgs.myEnvFun {
+          name = "python";
+          buildInputs = with pkgs; [
+                pythonFull # provides python standard library, readline etc.
+                python27Packages.virtualenv # handy to install modules not in nixpkgs
+                stdenv # provides gcc for building python c extensions
+                libxml2 # additional libraries required for compliling c extensions
+          ]; 
+       };
+
 summary
 -------
 
