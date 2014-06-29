@@ -5,17 +5,18 @@ this wiki page describes **how to work with nixos/nixpkgs/...**:
 basics
 ------
 
-say of are running nixos using nixpkgs. if you want to change parts of
-your system you need to use git:
+say you are running nixos using nixpkgs and you want to make a change,
+update a package, add a new package etc. First you need to clone the
+NixOS repositories:
 
      $ cd $HOME/code/
      $ mkdir code; cd code
      $ git clone https://github.com/NixOS/nixpkgs
      $ git clone https://github.com/NixOS/nixos
 
-now you have two local repositories: nixpkgs and nixos
+Now you have two local repositories: nixpkgs and nixos
 
-our workflow is similar to the diaspora documented one, so have a
+Our workflow is similar to the diaspora documented one, so have a
 glimpse there as well:
 
      https://github.com/diaspora/diaspora/wiki/Git-Workflow
@@ -47,11 +48,11 @@ on your local repositories:
 
 **example:** get an environment which is used to build irssi
 
-     $ nix-build --run-env -A irssi
+     $ nix-build ~/code/nixpkgs --run-env -A irssi
 
 **example:** get an persistent environment which is used to build irssi
 
-     $ nix-build --run-env -A irssi --add-root
+     $ nix-build ~/code/nixpkgs --run-env -A irssi --add-root
 
 git
 ---
@@ -74,15 +75,14 @@ problem: if you use a local git checkout of nixos/nixpkgs's **upstream
 master** to develop software with, you might end up in compiling a lot
 when doing: **nixos-rebuild switch**. this happens for example when
 there is a fundamental change which requires a lot of packages to be
-rebuild. it is even likely that you hit bugs/issues which are caused by
+rebuilt. It is even likely that you hit bugs/issues which are caused by
 someone else.
 
-ideally **you want to change the state of your current system** which
+Ideally **you want to change the state of your current system** which
 means that **you will not work on upstream/master** but **on the state
-of the channel** which is basically is an intermediate nixpkgs/nixos
-state.
+of the channel** which is known to be pretty stable.
 
-a channel is only updated if a hydra build job succeeded, that means
+A channel is only updated if a hydra build job succeeded, that means
 (compared to using a local upstream/master git checkout of
 nixos/nixpkgs) if you type **nix-env -i firefox**
 
@@ -103,7 +103,7 @@ verify that the nix-channel is called nixos, looks like this:
  how to use the script:
 
      $ nix-channel --update
-     $ cd ~code
+     $ cd ~/code
      $ (cd nixos && git pull --rebase)
      $ (cd nixpkgs && git pull --rebase)
      $ create_tags_from_nixos_channel.sh
@@ -115,9 +115,9 @@ verify that the nix-channel is called nixos, looks like this:
        nixos: git tag nixos-channel-2012-07-21-19-09 b609ff4
        nixpkgs: git tag nixos-channel-2012-07-21-19-09 a780984
 
- dev/nixos contains nixos and nixpkgs as subdirs
+ \~/code contains nixos and nixpkgs as subdirs
 
-     $ ls -l dev/nixos
+     $ ls -l ~/code
      total 8K
      drwxr-xr-x 9 cfl cfl 4096 Jul 15 07:02 nixos/
      drwxr-xr-x 6 cfl cfl 4096 Jul 15 04:01 nixpkgs/
