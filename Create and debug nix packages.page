@@ -9,8 +9,9 @@ say you are running nixos using nixpkgs and you want to make a change,
 update a package, add a new package etc. First you need to clone the
 NixOS repositories:
 
-     $ cd $HOME/code/
+     $ cd $HOME
      $ mkdir -p code
+     $ cd code
      $ git clone https://github.com/NixOS/nixpkgs
      $ git clone https://github.com/NixOS/nixos
 
