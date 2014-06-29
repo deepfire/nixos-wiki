@@ -14,8 +14,12 @@ Requirements
 ============
 
 My box had very minimal configuration. So I discovered that need to
-install some additional software to compile nix. All packages below you
-can find on <http://www.perzl.org/aix/>
+install some additional software to compile nix.
+
+= ready to go rpm
+=================
+
+All packages below you can find on <http://www.perzl.org/aix/>
 
     curl-7.9.3-2.aix4.3.ppc.rpm
     make-3.80-1.aix5.1.ppc.rpm
