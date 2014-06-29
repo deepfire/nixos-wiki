@@ -16,7 +16,7 @@ NixOS instance ready, we must set up remote access for NixOps to use
 when using the machine for deployments. Here is a guide for setting up
 this remote access.
 
-### NixOps: Deploying from a Non-Linux OS
+### [[edit](/w/index.php?title=NixOps:Deploying_From_Non-Linux_OS&action=edit&section=1 "Edit section: NixOps: Deploying from a Non-Linux OS")] NixOps: Deploying from a Non-Linux OS
 
 -   Install a NixOS on VirtualBox. The [Installing NixOS in a VirtualBox
     guess](//Installing NixOS in a VirtualBox guest) wiki page is a good
