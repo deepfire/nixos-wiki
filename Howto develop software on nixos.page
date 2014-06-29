@@ -114,6 +114,13 @@ other related topics
 
 ### how to use libraries which don't have a sdl-config or don't use pkgconfig
 
+#### include path
+
+#### linker flags
+
+-   nix-store -q --tree etc
+-   nix-env --out-path
+
 ### code completion in kdevelop
 
 kdevelop has code completion but it requires the source of the used
