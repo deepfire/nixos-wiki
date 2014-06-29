@@ -27,7 +27,7 @@ vimprobable looks for configuration files in
     $ mkdir -p $HOME/.config/vimprobable
     $ touch $HOME/.config/vimprobable/vimprobablerc
 
-See \`man vimprobablerc' for configuration options.
+See `man vimprobablerc` for configuration options.
 
 ### Search engines
 
