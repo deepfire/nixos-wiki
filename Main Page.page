@@ -10,20 +10,70 @@ Installation
 -   [How to install NixOS from Linux](//How to install NixOS from Linux)
 -   [How to install NixOS on VirtualBox](//InstallingOnVirtualBox)
 
-Using
------
+Using Nix
+---------
+
+### Nix
+
+-   [install/remove software](//Install/remove software) - also list
+    installed software
+-   [modify software](//Modify software)
+-   [How to find the package you're looking for in
+    Nix](//Howto find a package in NixOS)
+-   [How to keep multiple packages up to date at once (example for
+    pkgs.misc.collection)](//Howto keep multiple packages up to date at once)
+
+### NixOS
+
+-   [Real World NixOS Dotfiles](//Real World NixOS Dotfiles)
+
+### Platforms
+
+-   [CrossCompiling](//CrossCompiling)
+-   [Multiplatform NixOS](//Multiplatform NixOS) - PC, qemu arm
+    versatile, sheevaplug, fuloong 2f minipc, raspberry pi
+-   [Nix on Windows](//Nix on Windows)
+-   [Creating a Nix OS live CD](//Creating a Nix OS live CD) iso live
+    cdrom, (usb boot stick)
+
+### Languages
+
+-   [Haskell](//Haskell)
+-   [Python](//Python)
+-   [python discussion](//Python discussion)
+-   [Howto develop software on nixos](//Howto develop software on nixos)
+    (NOT how to develop for nixos or nix)
+
+### Issues
 
 -   [Error Messages](//Error Messages)
 -   [FAQ](//FAQ)
+-   [NixOS Projects on GitHub](https://github.com/NixOS) to search for
+    issues
 
 Developing Nix Projects
 -----------------------
 
+### Before You Start
+
 -   [Contributing](//Contributing)
 -   [Getting Help](//Getting Help)
 
+### Development Topics
+
+-   [How to write a NixOS module](//NixOS:Modules)
+
+### Debugging
+
+-   [Create and debug nix packages](//Create and debug nix packages)
+
 Documentation
 -------------
+
+### Design and Architecture
+
+-   [Anatomy of Nix Package
+    Management](//Anatomy of Nix Package Management)
 
 ### Manuals
 
@@ -43,22 +93,17 @@ Documentation
 -   [Nixpkgs on GitHub](https://github.com/NixOS/nixpkgs)
 -   [NixOps on GitHub](https://github.com/NixOS/nixops)
 
+### Third-Party Talk
+
+-   [User Reviews](//User Reviews)
+-   [Nix(OS) on the media](//Nix(OS) on the media)
+
 HOWTOs
 ------
 
--   [install/remove software](//Install/remove software) - also list
-    installed software
--   [modify software](//Modify software)
--   [How to find the package you're looking for in
-    Nix](//Howto find a package in NixOS)
--   [How to keep multiple packages up to date at once (example for
-    pkgs.misc.collection)](//Howto keep multiple packages up to date at once)
 -   [How to find any text in code fast (gnu idutils)](//HOWTO:idutils)
--   [Howto develop software on nixos](//Howto develop software on nixos)
-    (NOT how to develop for nixos or nix)
 -   [How to set up MediaWiki in NixOS with
     vhosts](//Setting up MediaWiki & vhosts)
--   [How to write a NixOS module](//NixOS:Modules)
 -   [How to write patches using TopGit in a collaborative
     manner](//Nixpkgs and TopGit)
 -   [How to install Firefox with Java plugin](//Firefox)
@@ -119,21 +164,12 @@ HOWTOs
 Development
 -----------
 
--   [CrossCompiling](//CrossCompiling)
--   [Multiplatform NixOS](//Multiplatform NixOS) - PC, qemu arm
-    versatile, sheevaplug, fuloong 2f minipc, raspberry pi
 -   [open issues:derivation styles](//Open issues:derivation styles)
 -   [open issues:ways of updating sources
     automatically](//Open issues:ways of updating sources automatically)
--   [Nix on Windows](//Nix on Windows)
--   [Haskell](//Haskell)
--   [Python](//Python)
--   [Creating a Nix OS live CD](//Creating a Nix OS live CD) iso live
-    cdrom, (usb boot stick)
 -   [The Many Cooks Method](//The Many Cooks Method)
 -   [long-term open issues:build
     determinism](//Long-term open issues:build determinism)
--   [Create and debug nix packages](//Create and debug nix packages)
 
 ### Licenses
 
@@ -144,18 +180,12 @@ Development
 Misc
 ----
 
--   [Anatomy of Nix Package
-    Management](//Anatomy of Nix Package Management)
--   [Real World NixOS Dotfiles](//Real World NixOS Dotfiles)
 -   [Samba on nix](//Samba on nix)
 -   [Hosting providers & NixOS](//Hosting providers & NixOS)
 -   [Nix(OS) related repositories and
     work](//Nix(OS) related repositories and work)
--   [User Reviews](//User Reviews)
--   [Nix(OS) on the media](//Nix(OS) on the media)
 -   [Nix impurities](//Nix impurities)
 -   [Compile Nix on AIX](//Compile Nix on AIX)
--   [python discussion](//Python discussion)
 -   [TODO - What is missing in the nix
     community?](//TODO - What is missing in the nix community)
 -   [TODO - Cleaning up wiki
