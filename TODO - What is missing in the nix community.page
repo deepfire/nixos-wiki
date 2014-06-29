@@ -1,0 +1,21 @@
+On the nix-dev mailinglist free-nix was announced [1] - a fork of Nix.
+Now the community is about finding out what exactly needs to be done and
+why a fork would be required.
+
+-   social contracts such as this
+    <http://www.debian.org/social_contract#guidelines>
+-   option to enable "free" packages only (eg not flash). "free" usually
+    means open source as defined by open source software foundation or
+    the like
+
+Let's keep in mind that nixos is young - and that there may be slightly
+different use cases (mobile phones) in the future. Thus policies may
+become outdated, too. For that reason we should only as much time on
+policies as necessary. There are many open question - and different
+styles - maybe its too early to settle on too many policies - but who
+knows? I feel its important that we can still "turn around" and change
+the direction - Marc Weber
+
+[1]: Mail with subject "Announcing free-nix: the free Linux distribution
+based on the Nix package manager"
+
