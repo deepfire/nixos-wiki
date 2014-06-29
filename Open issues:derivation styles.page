@@ -1,0 +1,167 @@
+### derivation styles
+
+Telling you about the different styles which can be used to pass
+dependency to a derivation.
+
+There has been lots of discussion about which style is best. It also
+tries to list advantages and disadvantages. (TODO: add your comments)
+
+General items to be considered:
+
+\(I) code duplication (never write something twice)
+
+\(II) static checking. If you syntax check all-packgages.nix
+
+     many missing or illtyped names are caught.
+
+Note: I gave them names so that we can talk about them more easily.
+
+verbose style
+-------------
+
+pro: faster to evaluate. con: you have to wirite the name of dependency
+once more.
+
+all-packages.nix:
+
+      [...]
+      package = import path {
+        inherit fetchurl stdenv depA depB;
+      }
+      [...]
+
+path/default.nix:
+
+
+      { stdenv, fetchurl
+      , depA, depB}: # << superfluous duplication
+
+      stdenv.mkDerivation {
+
+        buildInputs = [depA depB];
+
+        [...]
+      }
+
+with style
+----------
+
+pro: no duplication of dependencies
+
+con: its sayed to make evaluation slower
+
+Marc Weber likes it because its fast to write and easy to maintain for
+simple packages.
+
+all-packages.nix:
+
+      same as "verbose style"
+
+path/default.nix:
+
+
+      args: with args;
+
+      stdenv.mkDerivation {
+
+        buildInputs = [depA depB];
+
+        [...]
+      }
+
+rescuing with style
+-------------------
+
+How can the with style be rescued? Does this make evaluation faster
+again? Now a. is duplicated. But that's trivial.
+
+all-packages.nix:
+
+       same as "verbose style" or "with style"
+
+path/default.nix:
+
+
+      a@{...}:
+
+      stdenv.mkDerivation {
+
+        buildInputs = [a.depA a.depB];
+
+        [...]
+      }
+
+get-args-in-file 1
+------------------
+
+This was introduced by Yury G. Kudryashov
+
+    Subject: [Nix-dev] another style proposal
+    Date: Sat, 03 Apr 2010 13:01:49 +0400
+
+pro/con: no duplication in all-packgaes.nix (see (II) )
+
+all-packages.nix:
+
+      mypkg = makeOverridable (import ../path/to/mypkg) ( pkgs // { cg =
+      getPkgConfig "mypkg"; } );
+
+path/default.nix:
+
+
+      a:
+      let
+        inherit (a) stdenv fetchurl other things cg; # << duplication as in "verbose style"
+        inherit (a.gtkLibs) gtk glib;
+      in
+
+      stdenv.mkDerivation {
+        buildInputs = if cg "gtk" false then [ gtk glib ] else [];
+      }
+
+get-args-in-file 2
+------------------
+
+This was proposed by Eelco Dolstra in Nix commit -r 17160
+
+pro/con: no duplication in all-packgaes.nix (see (II) )
+
+all-packages.nix:
+
+      foo = callPackage (import ./foo.nix) { };
+
+path/default.nix:
+
+
+      args: with args;
+
+      or
+
+      {arg1, arg2, ...}:
+
+comments taken from commit -r :17160
+
+     - Use "args: with args;" in the package's function definition.
+       This however obscures the actual expected arguments of a
+       function, which is very bad.
+
+     - Use "{ arg1, arg2, ... }:" in the package's function definition
+       (i.e. use the ellipis "..." to allow arbitrary additional
+       arguments), and then call the function with all of "pkgs" as an
+       argument.  But this inhibits error detection if you call it with
+       an misspelled (or obsolete) argument.
+
+string-with-deps-style
+----------------------
+
+I'm not sure this style can even be compared against the others. It's
+defining a customizable builder. There are many examples. Watch out for
+builderDefsPackage in all-packages.nix to find those examples.
+
+composableDerivation
+--------------------
+
+This is similar. It tries to make the default derivation customaziable
+adding a way to define build options. It automatically passes
+dependencies or adds configuration options..
+
