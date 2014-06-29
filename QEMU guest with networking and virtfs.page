@@ -1,5 +1,5 @@
-Introduction
-------------
+[[edit](/w/index.php?title=QEMU_guest_with_networking_and_virtfs&action=edit&section=1 "Edit section: Introduction")] Introduction
+----------------------------------------------------------------------------------------------------------------------------------
 
 This article describes how to run a QEMU guest with full networking and
 VirtFS support. VirtFS (Plan 9 folder sharing over Virtio - I/O
@@ -7,8 +7,8 @@ virtualization framework) allows you to mount folders from the host
 system on the guest system, this is significantly faster than folder
 sharing over the network e.g. NFS.
 
-Enable kernel modules
----------------------
+[[edit](/w/index.php?title=QEMU_guest_with_networking_and_virtfs&action=edit&section=2 "Edit section: Enable kernel modules")] Enable kernel modules
+----------------------------------------------------------------------------------------------------------------------------------------------------
 
 The NixOS install process will typically enable the relevant kvm modules
 for your system (kvm-amd or kvm-intel) in hardware-configuration.nix ().
@@ -20,8 +20,8 @@ setup described below.
 You can check for the existence of /dev/kvm after rebooting. You may
 also need to enable hardware virtualization in your BIOS or similar.
 
-Prepare a guest image
----------------------
+[[edit](/w/index.php?title=QEMU_guest_with_networking_and_virtfs&action=edit&section=3 "Edit section: Prepare a guest image")] Prepare a guest image
+----------------------------------------------------------------------------------------------------------------------------------------------------
 
     qemu-img create -f qcow2 /mnt/OSImages/mint.qcow2 5G
     qemu-kvm -m 1024 -drive file=/mnt/OSImages/mint.qcow2  -cdrom /mnt/OSImages/mint-livecd.iso -boot d
@@ -36,8 +36,8 @@ e.g. Debian: <http://people.debian.org/~aurel32/qemu/>
 
     qemu-kvm -m 1024 -drive file=/mnt/OSImages/debian_squeeze_amd64_standard.qcow2
 
-Prepare host network
---------------------
+[[edit](/w/index.php?title=QEMU_guest_with_networking_and_virtfs&action=edit&section=4 "Edit section: Prepare host network")] Prepare host network
+--------------------------------------------------------------------------------------------------------------------------------------------------
 
 There are a number of options to enable access to the guest OS from the
 host, using [VDE](http://vde.sourceforge.net/) (Virtual Distributed
@@ -84,8 +84,8 @@ commands in the networking.localCommands section:
         '';
     };
 
-Guest network config
---------------------
+[[edit](/w/index.php?title=QEMU_guest_with_networking_and_virtfs&action=edit&section=5 "Edit section: Guest network config")] Guest network config
+--------------------------------------------------------------------------------------------------------------------------------------------------
 
 You can now start the VM as a normal user by adding the following
 options \`-net nic,model=virtio -net vde\`:
@@ -101,8 +101,8 @@ Within the VM you can setup the network:
 
 You can now access this VM on 10.0.2.100
 
-VirtFS
-------
+[[edit](/w/index.php?title=QEMU_guest_with_networking_and_virtfs&action=edit&section=6 "Edit section: VirtFS")] VirtFS
+----------------------------------------------------------------------------------------------------------------------
 
 VirtFS enables folders to be shared between the host and guest very
 efficiently. Some extra qemu options are required:
@@ -124,14 +124,14 @@ There appears to be a problem with using VirtFS where fsync fails
     e.g. when running `git clone` 
     fatal: fsync error on '/some/path/.git/objects/pack/tmp_idx_h8upsf': Invalid argument
 
-Tips
-----
+[[edit](/w/index.php?title=QEMU_guest_with_networking_and_virtfs&action=edit&section=7 "Edit section: Tips")] Tips
+------------------------------------------------------------------------------------------------------------------
 
-### Shortcuts
+### [[edit](/w/index.php?title=QEMU_guest_with_networking_and_virtfs&action=edit&section=8 "Edit section: Shortcuts")] Shortcuts
 
 Reset the size of the QEMU window: ctrl-alt-u
 
-### Snapshots
+### [[edit](/w/index.php?title=QEMU_guest_with_networking_and_virtfs&action=edit&section=9 "Edit section: Snapshots")] Snapshots
 
 You can save the current state of the VM (including the CPU state) and
 then load it later.
@@ -139,7 +139,7 @@ then load it later.
 1.  Enter the QEMU monitor with ctrl-alt-2
 2.  savevm snap1
 3.  Return to the QEMU VM with ctrl-alt-1
-4.  Do something noticable: \`ls /\`
+4.  Do something noticable: \`touch /tmp/foo\`
 5.  Return to the QEMU monitor and \`savevm snap2\`
 6.  Load snap1 \`loadvm snap1\`
 
@@ -147,8 +147,8 @@ You can also load the snapshot directly from the command line:
 
     qemu-kvm -m 1024 -net nic,model=virtio -net vde -drive file=/mnt/OSImages/debian_squeeze_amd64_standard.qcow2,if=virtio -virtfs local,path=/home/username/shared/,security_model=passthrough,mount_tag=host_share -loadvm snap1
 
-References
-----------
+[[edit](/w/index.php?title=QEMU_guest_with_networking_and_virtfs&action=edit&section=10 "Edit section: References")] References
+-------------------------------------------------------------------------------------------------------------------------------
 
 -   [Building a Virtual
     Army](http://blog.falconindy.com/articles/build-a-virtual-army.html)
