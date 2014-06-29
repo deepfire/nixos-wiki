@@ -1,0 +1,65 @@
+NixOS module has declarations to provide an interface for other modules.
+Option declarations are used to make NixOS aware of configuration
+possibilities or to hide the complexity of configuration. Option
+declarations are used to provide an interface over the inherent
+complexity of configuring the system.
+
+Option attributes
+=================
+
+Options are declared with the `mkOption` function which is provided by
+the Nix package collection library (`pkgs.lib` attribute set). An option
+declaration may contain the following attributes:
+
+-   `name` `(string)`: This attribute is by default set to the location
+    of the option. The name is used in error messages and in the
+    generated manual.
+-   `default` `('t)`: The value used when no definitions are provided.
+-   `example` `('t)`: The value used as example to show a possible
+    configuration.
+-   `description` `(string)`: A multi-line text which describe in a few
+    sentences what is achieved by the option.
+-   `type` `(/'t/)`: The expected type of the default value and the
+    option definitions. The type may provide default code for `merge`
+    and `check` attribute.
+-   `merge` `('t list -> 't)`: A function used to merge all definitions
+    into one result which has the same type.
+-   `apply` `('t -> any)`: A function used to provide an abstraction
+    over the merged result. This function is mostly used when an usual
+    transformation is made of the result.
+-   `options` `(module list)`: This attribute contains a list of modules
+    when the type allow to have embedded modules.
+
+An option can be declared in multiple modules, with one condition which
+is that no attribute collisions exists between the declarations except
+for the `options` attribute.
+
+Evaluation
+----------
+
+The evaluation is done with the following piece of code where `opt` is
+the option declaration. You can find this piece of code inside
+[[`pkgs/lib/modules.nix`](https://svn.nixos.org/repos/nix/nixpkgs/trunk/pkgs/lib/modules.nix%7C)].
+
+      opt.apply (
+        if isNotDefined then
+          if opt ? default then opt.default
+          else throw "Not defined."
+        else opt.merge definitions
+      )
+
+The `apply` function is replaced by the identity function and the
+`merge` function is replaced by the `mergeDefaultOption` function if
+they are not defined.
+
+Types
+=====
+
+Simple Types
+------------
+
+Meta Types
+----------
+
+Module Type
+-----------
