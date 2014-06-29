@@ -18,32 +18,12 @@ I have a patch
 --------------
 
 Thanks. Send it to the mailinglist so that we can discuss and apply it,
-or open a pull request on github.
+or open a [pull request](//Pull request) on github.
 
 If your change breaks things don't scream if someone reverts it. It
 happens. The best thing to do is to fix your patch. Try to check first
 if it will cause a lot of rebuilds and add a note to your pull request
 if you have already tested everything.
-
-How to send a git pull request
-------------------------------
-
-       # git commit your change
-       # add your github clone as remote location:
-       YOUR_GITHUB_NAME=fill-in
-       git remote add $YOUR_GITHUB_NAME "git@github.com:$YOUR_GITHUB_NAME/nixpkgs.git"
-     
-       # create a topic branch, so that this change can be submitted independently from other things:
-       git checkout -tb submit/your-topic-name
-       git push $YOUR_GITHUB_NAME submit/your-topic-name
-       # goto gituhb.com/your_name -> create pull request
-
-Why create your own branch? You can follow upstream (master) by running
-"git merge master". You can "git commit --amend" fixes and "git push -f"
-your branch.
-
-For long living topic branches you may want to read
-[Nixpkgs\_and\_TopGit](//Nixpkgs and TopGit)
 
 How to verify that you didn't break a dependency or the evaluation by accident ?
 --------------------------------------------------------------------------------
