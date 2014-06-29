@@ -1,9 +1,9 @@
-how to install software
------------------------
+[[edit](/w/index.php?title=Install/remove_software&action=edit&section=1 "Edit section: how to install software")] how to install software
+------------------------------------------------------------------------------------------------------------------------------------------
 
 there are multiple possibilities, as there is:
 
-### system environment installation
+### [[edit](/w/index.php?title=Install/remove_software&action=edit&section=2 "Edit section: system environment installation")] system environment installation
 
 -   software which is installed in the core system:
 
@@ -23,7 +23,7 @@ there are multiple possibilities, as there is:
 
      nixos-rebuild switch
 
-### normal user installation
+### [[edit](/w/index.php?title=Install/remove_software&action=edit&section=3 "Edit section: normal user installation")] normal user installation
 
 -   software which is installed per user:
 
@@ -31,12 +31,12 @@ there are multiple possibilities, as there is:
 
     nix-env -i links2
 
-how to remove installed software
---------------------------------
+[[edit](/w/index.php?title=Install/remove_software&action=edit&section=4 "Edit section: how to remove installed software")] how to remove installed software
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 also depending on where the software was installed:
 
-### system environment installation
+### [[edit](/w/index.php?title=Install/remove_software&action=edit&section=5 "Edit section: system environment installation")] system environment installation
 
 remove the entry in environment.systemPackages = [ ];
 
@@ -44,7 +44,7 @@ remove the entry in environment.systemPackages = [ ];
     nix-env --delete-generations old # After this it is not possible to is the --rollback switch to reverse the uninstall.
     nix-collect-garbage
 
-### normal user installation
+### [[edit](/w/index.php?title=Install/remove_software&action=edit&section=6 "Edit section: normal user installation")] normal user installation
 
     nix-env -e links2 # removes the installation form the per-user account but leaves it in the store.
     nix-env --delete-generations old # After this it is not possible to use the --rollback switch to reverse the uninstall.
@@ -54,16 +54,16 @@ additionally it makes sense to run:
 
     nix-collect-garbage -d (as root)
 
-how to list installed software
-------------------------------
+[[edit](/w/index.php?title=Install/remove_software&action=edit&section=7 "Edit section: how to list installed software")] how to list installed software
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### software per user
+### [[edit](/w/index.php?title=Install/remove_software&action=edit&section=8 "Edit section: software per user")] software per user
 
 that works for each 'shell' of a single user:
 
      nix-env -q '*'
 
-### software in the environment.systemPackages
+### [[edit](/w/index.php?title=Install/remove_software&action=edit&section=9 "Edit section: software in the environment.systemPackages")] software in the environment.systemPackages
 
 there is no command to list that at this time (8jun2011)
 
@@ -75,17 +75,17 @@ Run this to see package names only:
 
      nix-store -q --references /var/run/current-system/sw | cut -d'-' -f2-
 
-how to update installed software
---------------------------------
+[[edit](/w/index.php?title=Install/remove_software&action=edit&section=10 "Edit section: how to update installed software")] how to update installed software
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### software per user
+### [[edit](/w/index.php?title=Install/remove_software&action=edit&section=11 "Edit section: software per user")] software per user
 
      nix-env -u '*'
 
 If you want to update even SW that haven't changed version but something
 did change (deps. etc.), you need to add --leq.
 
-### software in the environment.systemPackages
+### [[edit](/w/index.php?title=Install/remove_software&action=edit&section=12 "Edit section: software in the environment.systemPackages")] software in the environment.systemPackages
 
 If you have updated your channel with
 
@@ -102,8 +102,8 @@ Or you can use :
 
      nixos-rebuild switch --upgrade
 
-how to roll back software
--------------------------
+[[edit](/w/index.php?title=Install/remove_software&action=edit&section=13 "Edit section: how to roll back software")] how to roll back software
+-----------------------------------------------------------------------------------------------------------------------------------------------
 
 To undo the last
 
@@ -135,8 +135,8 @@ For per-user packages.
 Also see nix-env --list-generations, which will list out the number of
 previous generations and the time stamp of their creation.
 
-manage nix-build/nix-shell
---------------------------
+[[edit](/w/index.php?title=Install/remove_software&action=edit&section=14 "Edit section: manage nix-build/nix-shell")] manage nix-build/nix-shell
+-------------------------------------------------------------------------------------------------------------------------------------------------
 
 in /nix/var/nix/gcroots/auto there are links like these:
 
@@ -156,8 +156,8 @@ afterwards run:
 
        nix-store --gc
 
-repair your installation
-------------------------
+[[edit](/w/index.php?title=Install/remove_software&action=edit&section=15 "Edit section: repair your installation")] repair your installation
+---------------------------------------------------------------------------------------------------------------------------------------------
 
 Fix corrupted or missing store paths by redownloading or rebuilding
 them. Note that this is slow because it requires computing a
@@ -169,8 +169,16 @@ build.
 
 Note: both commands need to be run as root
 
-nix-channels
-------------
+If these command didn't help, it may be that
+
+     $ nix-store --delete $(nix-store --verify --check-contents)
+
+will help. It lists every corrupted path and removes it together with
+all reverse dependencies. This can fail if some of corrupted files are
+still used by some GC roots.
+
+[[edit](/w/index.php?title=Install/remove_software&action=edit&section=16 "Edit section: nix-channels")] nix-channels
+---------------------------------------------------------------------------------------------------------------------
 
 NixOS channels are now the default mechanism for keeping NixOS up to
 date. (A channel is a Nix mechanism for distributing a consistent set of
@@ -248,14 +256,14 @@ Some things to note:
     currently running, e.g. "14.02pre-1dd0e05 (Baboon)". The version
     string include the NixOS and Nixpkgs revisions, respectively.
 
-nix-channels vs nixos-checkout
-------------------------------
+[[edit](/w/index.php?title=Install/remove_software&action=edit&section=17 "Edit section: nix-channels vs nixos-checkout")] nix-channels vs nixos-checkout
+---------------------------------------------------------------------------------------------------------------------------------------------------------
 
 using nix-channels and nixos-checkout in parallel can lead to duplicated
 entries using nix-\* tools.
 
-how to change the used kernel version
--------------------------------------
+[[edit](/w/index.php?title=Install/remove_software&action=edit&section=18 "Edit section: how to change the used kernel version")] how to change the used kernel version
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 boot.kernelPackages \# see
 <http://hydra.nixos.org/job/nixos/trunk/manual/latest/download>
@@ -270,10 +278,10 @@ or check for more recent entries by:
 
      nix-env -qa '*' | grep linux-2.6.
 
-how to use a different version of a package
--------------------------------------------
+[[edit](/w/index.php?title=Install/remove_software&action=edit&section=19 "Edit section: how to use a different version of a package")] how to use a different version of a package
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### kde
+### [[edit](/w/index.php?title=Install/remove_software&action=edit&section=20 "Edit section: kde")] kde
 
 1\. look into pkgs/top-level/all-packages.nix (when you have checked out
 nixpkgs using git) and try to find something like this:
@@ -327,7 +335,7 @@ nixpkgs using git) and try to find something like this:
 
      nixos-rebuild switch
 
-### grub
+### [[edit](/w/index.php?title=Install/remove_software&action=edit&section=21 "Edit section: grub")] grub
 
 1\. similar to the kde example search the all-packages.nix for available
 grub versions
