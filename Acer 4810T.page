@@ -13,6 +13,11 @@ BIOS versions
 -   1.31 - big slowdown in X windows from time to time, GL games with
     annoying slowdowns regularly
 
+The most recent BIOS updates (1.20 onwards) come with a DOS flasher;
+older come only with a windows flasher. I used a [freedos
+image](http://www.pcengines.ch/freedos.htm) stored in a USB flash memory
+to boot freedos and flash the BIOS.
+
 Drivers
 =======
 
