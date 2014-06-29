@@ -141,14 +141,14 @@ build tools.
 1\. Add these sections to \~/.nixpkgs/config.nix:
 
     {
-
-      # Define a version of python which has access to all the Plone modules
-      pythonPlone = pkgs.pythonFull.override {
-         extraLibs = with pkgs.python27Packages; [ Plone ];
-      };
-
       # Define a myEnvFun environment, which makes use of pythonPlone
       packageOverrides = pkgs: {
+
+        # Define a version of python which has access to all the Plone modules
+        pythonPlone = pkgs.pythonFull.override {
+          extraLibs = with pkgs.python27Packages; [ Plone ];
+        };
+
         plone = pkgs.myEnvFun {
           name = "plone";
           buildInputs = with pkgs; [
