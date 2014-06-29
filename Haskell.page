@@ -262,7 +262,7 @@ to the `environment.systemPackages` attribute in your
           pkgs.haskellPackages.ghcWithPackages (self : [
             self.haskellPlatform
             # add more Haskell packages here
-          ]);
+          ])
         ];
       }
 
