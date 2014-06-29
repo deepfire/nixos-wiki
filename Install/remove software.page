@@ -13,7 +13,9 @@ there are multiple possibilities, as there is:
 
 <!-- -->
 
-     environment.systemPackages = [ pkgs.links2 ]; # need to find a better use-case for this
+     environment.systemPackages = with pkgs; [
+       zsh wget
+     ];
 
 -   afterwards do: nixos-rebuild switch
 
