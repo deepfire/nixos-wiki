@@ -89,7 +89,8 @@ Rebuild the system and reboot. Our env should look like this:
 Here is useful link which helps to choose between RGB and BGR types of
 rendering:
 
-[[1]](http://www.lagom.nl/lcd-test/subpixel.php)
+[Subpixel layout](http://www.lagom.nl/lcd-test/subpixel.php) [Font
+testing page](http://www.infinality.net/files/font.html)
 
 Thanks Eelco for the idea.
 
