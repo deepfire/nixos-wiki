@@ -12,5 +12,26 @@ done *without* evaluation of nixpkgs.
 Just go to
 <http://hydra.nixos.org/job/nixos/trunk-combined/nixpkgs.nix.x86_64-linux/latest-finished>
 and perform a one-click install (substitute your platform name if it's
-different). Description of that is directly on the Hydra page.
+different). Description of that is directly on the Hydra page. *Note:*
+this requires you to have configured nix-install-package as the handler
+for the application/nix-package MIME type.
+
+Alternatively, you can use nix-install-package directly. The man page
+has more information, but the counterpart to clicking above would be:
+
+     $ nix-install-package --non-interactive --url http://hydra.nixos.org/job/nixos/trunk-combined/nixpkgs.nix.x86_64-linux/latest-finished
+
+When nix-install-package is run, it will use the nix.conf file
+(/etc/nix/nix.conf) to verify that the base hydra URL above is in the
+trusted\_binary\_caches (running nix-install-package as root is not
+constrained in this manner, but it will only install nix-env for the
+root user). If you are running NixOS, that file is generated as part of
+your system, and that specific configuration parameter is
+nix.trustedBinaryCaches. If you were unlucky enough to leave this as the
+default (blank) then you are left with two options:
+
+1.  edit /etc/nixos/configuration.nix to update nix.trustedBinaryCaches
+    and then nixos-rebuild switch
+2.  edit the generated nix.conf file directly in your store (not
+    recommended!)
 
