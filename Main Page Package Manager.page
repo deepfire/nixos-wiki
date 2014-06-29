@@ -15,8 +15,18 @@ topics and updating information in existing pages.
 How to Use
 ==========
 
--   [Installing/Viewing Packages](//Install/remove software)
--   [Searching for a package](//Howto find a package in NixOS)
+Basics
+------
+
+-   [Installing Packages](//Nix Installing Packages)
+-   [Creating Packages](//Nix Creating Packages)
+-   [Modifying Packages](//Nix Modifying Packages)
+
+Advanced
+--------
+
+-   [Advanced Package Management](//Install/remove software)
+-   [Advanced Package Searching](//Howto find a package in NixOS)
 -   [How to keep multiple packages up to date at
     once](//Howto keep multiple packages up to date at once) - (e.g.
     pkgs.misc.collection)
