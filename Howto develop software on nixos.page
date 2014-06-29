@@ -2,8 +2,8 @@ What is a Development Environment?
 ----------------------------------
 
 Many software developers use an IDE to edit source code, such as
-[KDevelop IDE](http://www.kdevelop.org) or [Eclipse
-<http://www.eclipse.org>].
+[KDevelop IDE](http://www.kdevelop.org) or
+[Eclipse](http://www.eclipse.org).
 
 In this tutorial, we will discuss using tools such as these to develop
 an application, which we will call MyApp. MyApp is built with a standard
