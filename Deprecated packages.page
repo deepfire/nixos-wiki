@@ -74,4 +74,10 @@ Policykit (not polkit!) reverse dependencies
   Remove (see above)       Upgrade
   --------------------------------------------------------------------------
 
+gtk-2.16.x
+----------
+
+The only package that depends on gtkLibs216 is xara. Plan: remove both
+on January 21. If someone needs XaraLX, fix compile errors against
+wxGTK28.
 
