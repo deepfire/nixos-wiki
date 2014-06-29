@@ -23,9 +23,9 @@ This is what needs to be put into /etc/nixos/configuration.nix:
 
       boot.initrd.luksRoot = "/dev/sda2";
 
-If you need to decrypt additional devices:
+If you need to decrypt additional devices, you can do it like this:
 
-      cryptsetup luksOpen /dev/sda3 lukshome
+      boot.initrd.postDeviceCommands = "cryptsetup luksOpen /dev/sda3 lukshome";
 
 ### Extra modules you might need
 
