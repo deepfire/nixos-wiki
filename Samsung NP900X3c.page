@@ -1,0 +1,67 @@
+Overview
+========
+
+Most of the features seem to be working with Linux 3.2.24
+
+Hardware
+--------
+
+-   CPU Intel(R) Core(TM) i5-3317U CPU @ 1.70GHz
+-   RAM 4 GB
+-   HDD 128GB SSD
+-   Screen 13.3-Inch Screen
+-   Graphics Intel HD Graphics 4000, Ivy bridge
+
+Configuration
+=============
+
+### Graphics
+
+i915 / xf86-video-intel-2.17.0 are able to handle the graphics.
+Currently, Nixos uses 2.15.0 as default, which is too old. One can
+overcome this using overrides. configuration snippet:
+
+      nixpkgs.config = {
+        packageOverrides = pkgs: {
+          xorg = pkgs.xorg // {
+            xf86videointel = pkgs.xorg.xf86videointel_2_17_0;
+          };
+      };
+
+### Touchpad
+
+Touchpad is detected as 'ETPS/2 Elantech Touchpad'. xf86-input-synaptics
+handles it well. Corresponding config lines:
+
+      services.xserver = {
+        synaptics = {
+          enable = true;
+          accelFactor = "0.05";
+          maxSpeed = "10";
+          twoFingerScroll = true;
+          additionalOptions =
+            ''
+            MatchProduct "ETPS"
+            Option "FingerLow"                 "3"
+            Option "FingerHigh"                "5"
+            Option "FingerPress"               "30"
+            Option "MaxTapTime"                "100"
+            Option "MaxDoubleTapTime"          "150"
+            Option "FastTaps"                  "1"
+            Option "VertTwoFingerScroll"       "1"
+            Option "HorizTwoFingerScroll"      "1"
+            Option "TrackstickSpeed"           "0"
+            Option "LTCornerButton"            "3"
+            Option "LBCornerButton"            "2"
+            Option "CoastingFriction"          "20"
+            '';
+          };
+      };
+
+### Wireless
+
+System requires iwlwifi-6000g2b-6.ucode in order to work. File can be
+found on intellwireless.com I placed this file into /root/firmware and
+specified
+
+      hardware.firmware = [ "/root/firmware" ];
