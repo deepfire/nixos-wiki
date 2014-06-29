@@ -28,7 +28,8 @@
 
 The bootstrap archives can be downloaded by visiting
 <http://hydra.nixos.org/jobset/nixos/trunk/minimal_install_archive> and
-then clicking on an okay build number, which will take you to a URL like
+then clicking on an okay build number (check mark next to it) with
+"Release Name" of "tarball", which will take you to a URL like
 <http://hydra.nixos.org/build/475780> - then click on "File
 nixos-install-archive.tar.bz2 of type tarball", which will start
 download of a file with a URL like
