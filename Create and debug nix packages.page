@@ -81,12 +81,16 @@ means that **you will not work on upstream/master** but **on the state
 of the channel** which is basically is an intermediate nixpkgs/nixos
 state.
 
-    * if hydra built all the nix expressions found in upstream/master then the channel is in sync with upsteam/master
-    * if hydra has a lot of jobs in the queue then it might lagg behind and then the channel is not in sync with upstream/master
+a channel is only updated if a hydra build job succeeded, that means
+(compared to using a local upstream/master git checkout of
+nixos/nixpkgs) if you type **nix-env -i firefox**
+
+    * you might get an older binary substitute if the hydra build of the new expression hasn't finished yet
+    * you might get an older binary substitute if the hydra build of a newer version failed
 
     + you are up2date
     + lots of recent packages might not have a binary substitute by hydra
-    - 
+    -
 
 nix channels
 ------------
