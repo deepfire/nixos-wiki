@@ -23,7 +23,7 @@ more about how Haskell packages are organized in Nixpkgs.
 Using Haskell packages
 ----------------------
 
-You get the best Haskell experience in Nix if you use prepackages
+You get the best Haskell experience in Nix if you use pre-packaged
 Haskell packages that are available in the Nixpkgs collection. Nixpkgs
 provides many packages, and each for several versions of GHC. You can
 select whether you want profiling-enabled versions of these packages or
