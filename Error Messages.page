@@ -33,22 +33,26 @@ If you are stumped by an error message, add it here.
   Use `--arg` or g.
   `--argstr` to  Ensure Bash is
   specify        the shell
-  arguments.     used. The
-  [Nix Manual:   "libtool"
-  Common         package
-  Options](http: references
-  //nixos.org/ni `/bin/sh`,
-  x/manual/#sec- which is
-  common-options expected to be
-  )\             Bash.
-   [Explanation  [NAS-Central:
-  in email       Compiling for
-  thread](http:/ Dummies](http:
-  /lists.science //forum.nas-ce
-  .uu.nl/piperma ntral.org/view
-  il/nix-dev/200 topic.php?f=24
-  9-July/002671. 9&t=7955#p3638
-  html)          5):
+  arguments.     used. Consider
+  [Nix Manual:   using
+  Common         `sudo dpkg-rec
+  Options](http: onfigure dash`
+  //nixos.org/ni to fix
+  x/manual/#sec- `/bin/sh`,
+  common-options which
+  )\             "libtool"
+   [Explanation  references.
+  in email       Nix is heavily
+  thread](http:/ dependent on
+  /lists.science Bash.
+  .uu.nl/piperma [NAS-Central:
+  il/nix-dev/200 Compiling for
+  9-July/002671. Dummies](http:
+  html)          //forum.nas-ce
+                 ntral.org/view
+                 topic.php?f=24
+                 9&t=7955#p3638
+                 5):
                  See the line
                  before "not
                  found", which
