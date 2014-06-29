@@ -88,6 +88,27 @@ throughout the whole system once they have been installed. note that on
 other shells you won't have these tools, so you also have to change the
 environment if you want them to have the tools as well.
 
+loading the environment
+
+     [joachim@eliteBook-8530w:~/Desktop/projects]$ load-sdl-env 
+     env-sdl loaded
+
+using sdl-config to get the cflags
+
+     sdl:[joachim@eliteBook-8530w:~/Desktop/projects]$ sdl-config --cflags
+     -I/nix/store/652x8hnhja32z3ja4hip04ygn8mh9cwi-SDL-1.2.14/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT
+
+using sdl-config to get the library postition
+
+     sdl:[joachim@eliteBook-8530w:~/Desktop/projects]$ sdl-config --libs
+     -L/nix/store/652x8hnhja32z3ja4hip04ygn8mh9cwi-SDL-1.2.14/lib -Wl,-rpath,/nix/store/652x8hnhja32z3ja4hip04ygn8mh9cwi-SDL-1.2.14/lib -lSDL -lpthread
+
+in the `Makefile` of your sdl using project you usually call sdl-config
+to get these values and paths.
+
+**note: the exact path might differ from mine as you might have a
+different hash**
+
 ### code completion in kdevelop
 
 kdevelop has code completion but it requires the source of the used
