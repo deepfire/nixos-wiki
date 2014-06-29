@@ -89,6 +89,7 @@ correct user-envs.sh and remote-store.sh failure
     #fallocate function does not work correctly on AIX
     #
     export PATH=/opt/freeware/bin:$PATH
+    export PATH=/opt/qib/app/coreutils-8.4/bin/:$PATH
     INSTALL_DIR=/opt/qib/app/nix-0.16 \
     && rm -rf ${INSTALL_DIR} \
     && ./configure \
