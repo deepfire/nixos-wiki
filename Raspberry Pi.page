@@ -14,8 +14,7 @@ Please follow updates, and help testing, in:
 State of nixpkgs
 ----------------
 
-The [stdenv-updates
-branch](https://github.com/NixOS/nixpkgs/tree/stdenv-updates) at
+The [master branch](https://github.com/NixOS/nixpkgs/tree/master) at
 [0236cc5d8826](https://github.com/NixOS/nixpkgs/commit/0236cc5d8826) can
 bootstrap properly an armhf nixpkgs for the raspberrypi.
 
