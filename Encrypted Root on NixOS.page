@@ -84,7 +84,10 @@ add it to the swap partition
       chmod 0400 /root/keyfile
       cryptsetup luksAddKey /dev/sdXY /root/keyfile
 
-Then enhance your configuration.nix with the following
+Then, in this case, you can't benefit from the current boot.initrd.luks,
+because it does not support keyfile. As in the stage1 the rootfs gets
+mounted to /mnt-root, you can use this postMountCommands to get the swap
+dmcrypt device opened.
 
       boot.initrd.postMountCommands = "cryptsetup luksOpen --key-file /mnt-root/root/keyfile /dev/sdaXY swap";
       swapDevices = [
