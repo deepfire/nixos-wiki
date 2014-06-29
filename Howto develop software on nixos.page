@@ -154,3 +154,17 @@ then add them to kdevelop manually
 
 -   patch kdevelop to make it search these paths automatically
 
+summary
+-------
+
+it is easy to add several different environments to
+`~/.nixpkgs/config.nix` and these can then be used, one at a time, for
+development. one can exit from such an environment using `CTRL+D` or
+simply by typing `exit` as it is realized as a sub-shell (similar to
+typing bash inside a shell).
+
+the main benefit is that you do not pollute your main profile with
+development tools and that you can use several different versions of a
+library on the same system (main nix advantage) but accessible from
+within different environments.
+
