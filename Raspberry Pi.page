@@ -1,3 +1,13 @@
+Ongoing development
+-------------------
+
+Please follow updates, and help testing, in:
+
+-   [Add Raspberry-Pi support to
+    NixOS](https://github.com/NixOS/nixos/issues/66)
+-   [Add Raspberry-Pi stdenvLinux
+    support](https://github.com/NixOS/nixpkgs/issues/234) (pure nixpkgs)
+
 State of nixpkgs
 ----------------
 
