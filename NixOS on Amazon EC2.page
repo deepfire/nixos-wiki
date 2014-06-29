@@ -1,6 +1,3 @@
-NixOS on Amazon EC2
--------------------
-
 This article has some notes on installing NixOS on Amazon's [Elastic
 Compute Cloud (EC2)](http://aws.amazon.com/ec2/). EC2 support is work in
 progress.
