@@ -18,8 +18,8 @@ flesh things out.
  yournick 
 :   your topic(s) of interest
 
-Improve python support
-----------------------
+[[edit](/w/index.php?title=Nix_Hackfest:_2012-07_20th_to_22nd&action=edit&section=1 "Edit section: Improve python support")] Improve python support
+---------------------------------------------------------------------------------------------------------------------------------------------------
 
 Work on solving some of the following issues
 
@@ -59,4 +59,3 @@ Tasks
 -   Consider how to generate nix expressions for python package (see
     garbas' repo)
 
--   
