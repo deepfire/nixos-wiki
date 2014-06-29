@@ -100,3 +100,10 @@ This routes default ALSA sound streams via PulseAudio
 You can check if everything works by using pavucontrol to see the audio
 streams and make sure PulseAudio detects your audio hardware.
 
+You may need to add your users to the audio group:
+
+    $usermod -a -G audio myusername
+
+If a user is not a member the audio group only a dummy device will
+appear in pavucontrol.
+
