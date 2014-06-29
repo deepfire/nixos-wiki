@@ -39,12 +39,21 @@ be a dhcpcd issue. Wicd better works with dhclient.)
 
 ### Setup wicd
 
-Now rebuild nixos, switch to new configuration and launch wicd gui.
+Now rebuild nixos, switch to new configuration and launch the gui.
 
-    [root@pokemon:~]# wicd-gtk --no-tray
+    	$ wicd-gtk
 
-If it doesn't see wireless networks, open preferences and check wireless
-interface name. Enter correct value (like "wlan0") if needed.
+Notes:
+
+-   If it doesn't see wireless networks, open preferences and check
+    wireless interface name. Enter correct value (like "wlan0") if
+    needed.
+-   Currently, wicd better works with dhclient. Better enable it in
+    preferences
+
+<!-- -->
+
+     instead of dhcpcd.
 
 That's it. Now use gui to find your network, enter passwords and connect
 to it.
