@@ -122,18 +122,17 @@ to merge your changes with upstream and test that it still works.
 Using nix-shell for package development
 ---------------------------------------
 
+nix-shell is a command which drops you into the build environment for a
+package. This is convenient for writing and debugging nix expressions.
+Nix-shell requires nix-1.6.x although running nix-build --run-env
+produces a similar environment.
+
+      mkdir -p /tmp/nix-shell-bc
+      cd /tmp/nix-shell-bc
       nix-shell $NIXREPOS/nixpkgs  -A bc
-      mkdir -p /tmp/foo/out
-      cd /tmp/foo
       export out=/tmp/foo/out
 
-note: nix-shell requires version nix-1.6.x
-
-also modify the configureFlags prefix:
-
-      export configureFlags="--prefix=$out --with-readline"
-
-now we have find out which phases we need to run:
+now we have find out which phases are specified for this package:
 
        typeset -f genericBuild | grep 'phases='
        phases="$prePhases unpackPhase patchPhase $preConfigurePhases configurePhase $preBuildPhases buildPhase checkPhase $preInstallPhases installPhase fixupPhase installCheckPhase $preDistPhases distPhase $postPhases";
@@ -254,6 +253,14 @@ list a particular function type:
           fi;
           runHook postUnpack
       }
+
+you can also modify the configureFlags prefix:
+
+      export configureFlags="--prefix=$out --with-readline"
+
+Tip: A git repository can be used for snapshotting attempts at building
+the package. This also makes it easy to generate patches, should you
+need to.
 
 nix channels
 ------------
