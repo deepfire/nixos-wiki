@@ -51,13 +51,14 @@ Install Prerequisites
     wget -O - http://hydra.nixos.org/job/nix/trunk/binaryTarball.x86_64-linux/latest/download | tar xvj
     /usr/bin/nix-finish-install
     source /etc/profile.d/nix.sh
+    nix-channel --remove nixpkgs
+    nix-channel --add http://nixos.org/channels/nixos-13.10 nixos
     nix-channel --update
 
 ### Checkout Nixpkgs from Git
 
     cd ~
-    nix-env -i git vim
-    git clone git://github.com/NixOS/nixpkgs.git
+    nix-env -i vim
 
 ### Install *nixos-install*, *nixos-option*, and *nixos-hardware-schan*
 
@@ -67,8 +68,6 @@ Install Prerequisites
     } 
     EOF
 
-    nix-channel --add http://nixos.org/channels/nixos-13.10 nixos
-    nix-channel --update
     export NIX_PATH=/root/.nix-defexpr/channels/nixos:nixos=/root/.nix-defexpr/channels/nixos/nixos
     export NIXOS_CONFIG=/root/configuration.nix
     nix-env -i -A config.system.build.nixos-install -A config.system.build.nixos-option -A config.system.build.nixos-generate-config -f "<nixos>"
@@ -109,6 +108,7 @@ want to turn sshd on, and perhaps create a user.
 Install NixOS!
 --------------
 
+    unset NIXOS_CONFIG
     nixos-install
 
 ### Fix Grub
