@@ -9,21 +9,28 @@ If you come across a term or word you don't know, add it here.
   Meaning
   Related Links
   ------------------ ------------------ ------------------ ------------------
-  `rec { }`          `expression evalua
-  Nix expressions.   tor`
-  The `{ }` block    Nix Manual
-  contains "mutually The part of the
-  recursive"         Nix program which
-  attributes, which  reads and
-  means they can     evaluates a Nix
-  refer to each      expression.
-  other.             [Nix Manual:
-  [Composing the     Common
-  Hello              Options](http://ni
-  Package](http://ni xos.org/nix/manual
-  xos.org/nix/manual /#sec-common-optio
-  /#ex-hello-composi ns)
-  tion)              --arg
+  `rec { }`          `evaluator`\
+  Nix expressions     or\
+  The `{ }` block    
+  contains "mutually `expression evalua
+  recursive"         tor`
+  attributes, which  Nix Manual
+  means they can     The part of the
+  refer to each      Nix program which
+  other.             reads and
+  [Composing the     evaluates a Nix
+  Hello              expression.
+  Package](http://ni [Nix Manual:
+  xos.org/nix/manual Common
+  /#ex-hello-composi Options](http://ni
+  tion)              xos.org/nix/manual
+                     /#sec-common-optio
+                     ns) `--arg`\
+                      [Nix Manual:
+                     Built-in
+                     Functions](http://
+                     nixos.org/nix/manu
+                     al/#ssec-builtins)
   ---------------------------------------------------------------------------
 
 
