@@ -144,20 +144,23 @@ working which don't use these kind of tools to make them accessible.**
 ### code completion in kdevelop
 
 kdevelop has code completion but it requires the source of the used
-libraries of course. on nixos these libraries however reside in the
+libraries of course. On NixOS these libraries however reside in the
 /nix/store and are therefore more or less very strange compared to other
 distributions.
 
-to have full code completion in kdevelop you need this procedure: 1. rm
--Rf myCustomProject/build/\* 2. load-env-sdl (where the project would
-use cmake) 3. start 'kdevelop' from that shell 4. import the
-CMakeLists.txt of the project 5. kdevelop asks where to build the
-project -\> chose the default myCustomProject/build 6. build the
-selection 7. afterwards there should be code completion for the whole
-project
+To have full code completion in kdevelop you need this procedure:
 
-what might not work is that you can open several projects in this
-kdevelop session. but that should be a minor issue i guess.
+1.  rm -Rf myCustomProject/build/\*
+2.  load-env-sdl (where the project would use cmake)
+3.  start 'kdevelop' from that shell
+4.  import the CMakeLists.txt of the project
+5.  kdevelop asks where to build the project -\> chose the default
+    myCustomProject/build
+6.  build the selection
+7.  afterwards there should be code completion for the whole project
+
+What might not work is that you can open several projects in this
+kdevelop session. But that should be a minor issue i guess.
 
 summary
 -------
