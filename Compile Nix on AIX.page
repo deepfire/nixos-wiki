@@ -136,6 +136,8 @@ You will need two more packages
 
     readline-6.2-2.aix5.1.ppc.rpm
     sqlite-3.7.5-1.aix5.1.ppc.rpm
+    sqlite-devel-3.7.5-1.aix5.1.ppc.rpm
+    pkg-config-0.19-6.aix5.2.ppc.rpm
 
     #
     #
@@ -163,6 +165,7 @@ You will need two more packages
      --enable-static-nix \
      --disable-largefile \
      --with-system=powerpc-aix \
+     --with-sqlite=/usr/bin \
      --with-coreutils-bin=/opt/qib/app/coreutils-8.4/bin \
     && perl -p -i -e 's/#define HAVE_POSIX_FALLOCATE 1/\/\*#define HAVE_POSIX_FALLOCATE 1\*\//g' config.h \
     && perl -p -i -e 's/\$shell/\$SHELL/g' tests/user-envs.builder.sh \
