@@ -46,3 +46,6 @@ vboxusers group.
 If you get this error message (like this), something went wrong:
 
     /dev/vboxdrv does not exist. Load the kernel module then try again.
+
+If in doubt, try rebooting to make sure the kernel module is loaded.
+
