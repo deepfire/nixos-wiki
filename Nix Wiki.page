@@ -7,8 +7,8 @@ something, add it somewhere. People monitor changes to the wiki and will
 eventually modify the additions to fit the design of the rest of the
 wiki.
 
-Topics
-======
+[[edit](/w/index.php?title=Nix_Wiki&action=edit&section=1 "Edit section: Topics")] Topics
+=========================================================================================
 
 The Nix project consists of efforts which span several areas, so we
 visually organize the wiki around them. These areas include
@@ -24,8 +24,8 @@ documentation and notes, though both are welcome. Rather, the Nix wiki
 should be a place for ideas, which include describing the big picture
 and explaining details.
 
-Writing Style
-=============
+[[edit](/w/index.php?title=Nix_Wiki&action=edit&section=2 "Edit section: Writing Style")] Writing Style
+=======================================================================================================
 
 If you care about Writing style, here is a quick list:
 
@@ -35,8 +35,8 @@ If you care about Writing style, here is a quick list:
 The [UDX Initiative](//UDX Initiative) page has explanations of the
 guidelines we try to follow.
 
-Terms
------
+[[edit](/w/index.php?title=Nix_Wiki&action=edit&section=3 "Edit section: Terms")] Terms
+---------------------------------------------------------------------------------------
 
 Using terms consistently helps readers make correct connections between
 topics. When deciding between multiple, technically correct terms to
@@ -45,8 +45,8 @@ important as consistent terms.
 
 -   (Add terms here)
 
-Wiki Software
-=============
+[[edit](/w/index.php?title=Nix_Wiki&action=edit&section=4 "Edit section: Wiki Software")] Wiki Software
+=======================================================================================================
 
 from the wiki's purpose of a \*central\* place for community-maintained
 big-picture info.
@@ -72,14 +72,14 @@ Nice to have:
 the content, and it works pretty well. We are, of course, willing to
 discuss alternatives.
 
-Other
-=====
+[[edit](/w/index.php?title=Nix_Wiki&action=edit&section=5 "Edit section: Other")] Other
+=======================================================================================
 
 For now, our wiki guidelines will fall-back to those described on the
 [Arch wiki
 help](https://wiki.archlinux.org/index.php/ArchWiki:Contributing) page,
 as they seem to have experience.
 
-[jacobian.org](<http://jacobian.org/writing/great-documentation/>) is
+[jacobian.org](http://jacobian.org/writing/great-documentation/) is
 another page. It has very good suggestions for documentation.
 
