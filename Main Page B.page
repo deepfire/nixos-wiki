@@ -34,9 +34,15 @@ NixOS Modules
 
 [NixOS - Main Page](//NixOS Main Page)
 
-Syntax & Tutorial & Usage & Examples
+[Using
+Modules](/w/index.php?title=NixOS_Using_Modules&action=edit&redlink=1 "NixOS Using Modules (page does not exist)")
 
-[Modifying Modules](//NixOS Modifying Modules)
+[Creating New
+Modules](/w/index.php?title=NixOS_Creating_Modules&action=edit&redlink=1 "NixOS Creating Modules (page does not exist)")
+
+[Modifying Existing Modules](//NixOS Modifying Modules)
+
+Syntax & Tutorial & Usage & Examples
 
   Community
   ---------------------------------------------
