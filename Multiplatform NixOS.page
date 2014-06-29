@@ -186,7 +186,7 @@ Sheevaplug
 You can install a NixOS with a proceeding similar to that described for
 the Fuloong. You can use this system tarball to start (it includes a
 README on how to use it):
-magnet:?xt=urn:btih:30e46b10fec185927ae2525b2f5bc0363c53beaa&dn=nixos-system-armv5tel-linux-8881d1a920aa-70dc369314.tar.xz
+magnet:?xt=urn:btih:30e46b10fec185927ae2525b2f5bc0363c53beaa&dn=nixos-system-armv5tel-linux-8881d1a920aa-70dc369314.tar.xz&xl=154984440
 
 Sheevaplug example configuration
 --------------------------------
