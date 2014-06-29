@@ -51,13 +51,6 @@ Policykit (not polkit!)
   Remove (see above)
   --------------------------------------------------------------------------
 
-Esound
-------
-
-Esound is deprecated upstream (GNOME) in favour of pulseaudio. Cinelerra
-is the only package that depends on esound. Should be upgraded or
-removed.
-
 Qt3/KDE3
 --------
 
