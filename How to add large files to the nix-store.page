@@ -1,0 +1,36 @@
+[[edit](/w/index.php?title=How_to_add_large_files_to_the_nix-store&action=edit&section=1 "Edit section: Why")] Why
+==================================================================================================================
+
+to introduce a file into the nix store, you normally either use
+
+    nix-store --add-fixed sha256 largefile
+
+or
+
+    nix-prefetch-url file://$(pwd)/largefile
+
+but both procedures try to load the whole file into memory and thus
+fail, if it doesn't fit there.
+
+[[edit](/w/index.php?title=How_to_add_large_files_to_the_nix-store&action=edit&section=2 "Edit section: How")] How
+==================================================================================================================
+
+properly adding the file on your own is a three step procedure:
+
+### [[edit](/w/index.php?title=How_to_add_large_files_to_the_nix-store&action=edit&section=3 "Edit section: find the right store path")] find the right store path
+
+    nix-store --print-fixed-path sha256 $(nix-hash --type sha256 --flat --base32 largefile) largefile
+
+### [[edit](/w/index.php?title=How_to_add_large_files_to_the_nix-store&action=edit&section=4 "Edit section: copy/move the file there (as root)")] copy/move the file there (as root)
+
+    mount -o remount,rw /nix/store
+    mv largefile /nix/store <store-path>
+    mount -o remount,ro /nix/store
+
+### [[edit](/w/index.php?title=How_to_add_large_files_to_the_nix-store&action=edit&section=5 "Edit section: register the file")] register the file
+
+    nix-store --register-validity --reregister RET
+    <store-path> RET
+    RET
+    0 RET
+    C-d
