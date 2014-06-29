@@ -10,65 +10,102 @@ regarding this setup, how to partition disks and such refer to
 [[1]](http://wiki.archlinux.org/index.php/System_Encryption_with_LUKS_for_dm-crypt)
 or other detailed guide.
 
-Config
-------
+### recent changes
 
-In this example we assume that:
+Llu�s Batlle i Rossell changed some luks related bits, so now it is:
 
--   your **boot partition** is **/dev/sda1** and
--   your **luks-encrypted partition** is **/dev/sda2** that contains the
-    LVM volume group "vg".
+If you had:
 
-This is what needs to be put into /etc/nixos/configuration.nix:
+boot.initrd.luksRoot = "/dev/sda2";
 
-### Make sure initrd finds and mounts the root partition
+Then now you have to write:
 
-      boot.initrd.luksRoot = "/dev/sda2";
+boot.initrd.luks.enable = true;
 
-If you need to decrypt additional devices, you can do it like this:
+boot.initrd.luks.devices = [ [ {ame = "luksroot"; device = "/dev/sda2";
+} ]
 
+onfig
+-----
+
+    this example we assume that:
+
+-   
+
+your **boot partition** is **/dev/sda1** and
+
+-   
+
+your **luks-encrypted partition** is **/dev/sda2** that contains the LVM
+volume group "vg".
+
+is is what needs to be put into /etc/nixos/configuration.nix:
+
+### ake sure initrd finds and mounts the root partition
+
+
+    If you need to decrypt additional devices, you can do it like this:
+    <pre>
       boot.initrd.postDeviceCommands = "cryptsetup luksOpen /dev/sda3 lukshome";
+    </
 
-Note: NixOS currently does support additional devices but only in
+te: NixOS currently does support additional devices but only in
 combination with using "boot.initrd.luksRoot". That means if you only
 want to have an encrypted /home you still have to assign a
 boot.initrd.luksRoot="foobar" which preferably should not exist at all.
 This also means that you will get an error every boot as this device
 does not exist for obvious reasons.
 
-A possible fix would be to change
+possible fix would be to change
 /etc/nixos/nixos/modules/system/boot/luksroot.nix like this:
 
-       boot.initrd.preLVMCommands = 
-         # Wait for luksRoot to appear, e.g. if on a usb drive.
-         # XXX: copied and adapted from stage-1-init.sh - should be
-         # available as a function.
-         if [ ${luksRoot} != "postBootOnly" ]; then
-              if ! test -e ${luksRoot}; then
-                  echo -n "waiting for device ${luksRoot} to appear..."
-                  for ((try = 0; try < 10; try++)); do
-                      sleep 1
-                      if test -e ${luksRoot}; then break; fi
-                      echo -n "."
-                  done
-                  echo "ok"
-              fi
-              # open luksRoot and scan for logical volumes
-              cryptsetup luksOpen ${luksRoot} luksroot
-         fi
-       ;
+     boot.initrd.preLVMCommands = 
 
-While using boot.initrd.luksRoot="postBootOnly".
+       # Wait for luksRoot to appear, e.g. if on a usb drive.
 
-### Extra modules you might need
+       # XXX: copied and adapted from stage-1-init.sh - should be
 
-Depending on the encryption algorithm you have chosen for your Luks
+       # available as a function.
+
+       if [ [{l{ksRoot} != "postBootOnly" ]; then
+
+            if ! test -e ${l{ksRoot}; then
+
+                echo -n "waiting for device ${l{ksRoot} to appear..."
+
+                for ((try = 0; try < <0; try++)); do
+
+                    sleep 1
+
+                    if test -e ${l{ksRoot}; then break; fi
+
+                    echo -n "."
+
+                done
+
+                echo "ok"
+
+            fi
+
+            # open luksRoot and scan for logical volumes
+
+            cryptsetup luksOpen ${l{ksRoot} luksroot
+
+       fi
+
+     ;
+
+W ile using boot.initrd.luksRoot="postBootOnly".
+
+### xtra modules you might need
+
+pending on the encryption algorithm you have chosen for your Luks
 volume, you will probably need to ensure kernel has the necessary crypto
 modules.
 
-If you are unsure which ones, run
+    you are unsure which ones, run
 
-    cryptsetup luksDump /dev/sda2
+\< \<precryptsetup luksDump /dev/sda2 \</pre\>
 
 What you are looking for is this:
 
@@ -78,46 +115,39 @@ What you are looking for is this:
     Cipher name:    aes
     Cipher mode:    cbc-essiv:sha256
     Hash spec:      sha1
+    </
 
-In this example you need SHA1, SHA256, AES, and CBC.
+    this example you need SHA1, SHA256, AES, and CBC.
 
-You can put the required crypto modules into initrd along with dm\_crypt
-module needed by Luks like this:
-
-    boot.initrd.kernelModules = ["dm_crypt" "aes-i586" "sha256" "sha1" "cbc"];
+u can put the required crypto modules into initrd along with dm\_crypt
+module needed by Luks like this: \< \<preboot.initrd.kernelModules =
+["dm\_crypt" "aes-i586" "sha256" "sha1" "cbc"]; \</pre\>
 
 On my 64bit system (2.6.32) I needed this modules instead the listed
 above:
 
     boot.initrd.kernelModules = ["dm_crypt" "sha256_generic" "sha1_generic" "cbc" "aes_x86_64" "aes_generic" "xts" ];
+    </
 
- Note that some USB keyboards also need special kernel support, which
-must be available in the init ramdisk to enter the pass phrase. Recent
-models of the Microsoft Internet keyboard, for example, need the module
-`hid_microsoft` in order to be recognized as an input device.
+ te that some USB keyboards also need special kernel support, which must
+be available in the init ramdisk to enter the pass phrase. Recent models
+of the Microsoft Internet keyboard, for example, need the module
+\<c\<de\>hid\_microsoft\</\<ode\> in order to be recognized as an input
+device.
 
-### Root Filesystem
+### oot Filesystem
 
-      fileSystems = [ {
-        mountPoint = "/";
-        device = "/dev/mapper/vg-root";
-        #device = "/dev/mapper/luksroot"; # use this instead when NOT using LVM
-      } {
-        mountPoint = "/boot";
-        device = "/dev/sda1";
-      }
-      #other filesystems go here 
-      ]
+\<
 
-Mounting from a rescue system
------------------------------
 
-Within the rescue system:
-
+    == Mounting from a rescue system ==
+    Within the rescue system:
+    <pre>
       # cryptsetup luksOpen /dev/sda2 crypt
       # vgscan
       # vgchange -ay
+    </
 
-Now your logical volumes should be available. XXX: written from memory,
+w your logical volumes should be available. X X: written from memory,
 please correct or remove this sentence.
 
