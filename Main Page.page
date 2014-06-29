@@ -84,9 +84,9 @@ HOWTOs
 Networking setup
 ----------------
 
+-   [Network Manager](//Network Manager) (recommended)
 -   [wpa\_supplicant](//Wpa supplicant)
 -   [WICD](//WICD)
--   [Network Manager](//Network Manager)
 
 Development
 -----------
