@@ -123,6 +123,30 @@ then run:
       cd /tmp/foo
       export out=/tmp/foo/out
 
+also modify the configureFlags prefix:
+
+      export configureFlags="--prefix=$out --with-readline"
+
+now we have find out which phases we need to run:
+
+       typeset -f genericBuild | grep 'phases='
+       phases="$prePhases unpackPhase patchPhase $preConfigurePhases configurePhase $preBuildPhases buildPhase checkPhase $preInstallPhases installPhase fixupPhase installCheckPhase $preDistPhases distPhase $postPhases";
+
+so when developing you need to run these phases in a row:
+
+      patchPhase
+      configurePhase
+      buildPhase
+      checkPhase
+      installPhase
+      fixPhase
+      installCheckPhase
+      installPhase
+      distPhase
+
+note: you do not need to run \$preConfigurePhase explicitly as it is
+run, when running configurePhase already.
+
 list all functions which are declared in **set**:
 
       typeset -F
