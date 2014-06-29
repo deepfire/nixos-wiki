@@ -5,22 +5,23 @@ Many software developers use an IDE to edit source code, such as
 [KDevelop IDE](http://www.kdevelop.org) or
 [Eclipse](http://www.eclipse.org).
 
-In this tutorial, we will discuss using tools such as these to develop
-an application, which we will call MyApp. MyApp is built with a standard
-compiler, CMake, and QT, and it is managed using Git. To get started
-working on MyApp, we need have the ability to build it, which means we
-need to install these tools into our environment. When we say "install a
-tool into an environment", what does this mean? In this case, developing
-software, it means the tools must be easily accessible from a terminal.
-To clarify, if a tool, such as Make is **not** installed in our
-environment and we type `make` in a shell, an error will be displayed,
-telling us that "make" does not exist.
+In this article, we will discuss how to use tools such as these to
+develop an application. An application is built with a standard
+compiler, CMake, and QT. To get started working on an application, we
+need have the ability to build it, which means we need to install its
+tools into our environment. When we say "install a tool into an
+environment", what does this mean? In this case, it means the tools must
+be easily accessible from a terminal. To clarify, when a tool, such as
+Make, is **not** installed in our environment and we type `make` in a
+shell, an error will be displayed, telling us that "make" does not
+exist.
 
 How can we use Nix to obtain an environment which contains all tools
-required to work on a project? Well, one solution is to use the same
-tools defined as dependencies of an app's Nix package. If we need more
-than those, we can manually define more tools in a custom environment
-definition.
+required to work on a project? Well, a Nix-packaged app has a list of
+tools required to *build* the app, so we can use its Nix expression to
+install them. If we need more tools, such as an editor or IDE, we can
+create a Nix expression which defines tools we want, then install them
+in a custom environment.
 
 ### Obtaining an Environment from an App's Nix Package
 
@@ -87,7 +88,7 @@ dependencies of a development environment? Sure!
 So, the idea is that we create a Nix expression which accepts a name and
 a set of Nix packages. The name will be the name of the development
 environment, and the set of Nix packages will be the set of tools we
-need to work on MyApp.
+need to work on the application.
 
 First, install the `myEnvFun` tool.
 
