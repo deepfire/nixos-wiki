@@ -18,6 +18,8 @@ qknight's problems
 
 ### packaging virt-manager
 
+see **problem 2** in [5]
+
 ### python-gudev
 
 i have problems packaging python-gudev:
@@ -61,4 +63,6 @@ discussions
 -   [3] <http://dpaste.com/756606/>
 -   [4]
     <https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/python-modules/python-gudev/default.nix>
+-   [5]
+    <http://permalink.gmane.org/gmane.linux.distributions.nixos/8732>
 
