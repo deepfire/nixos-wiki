@@ -1,8 +1,8 @@
-Lenovo ThinkPad Helix
-=====================
+[[edit](/w/index.php?title=Lenovo_Thinkpad_Helix&action=edit&section=1 "Edit section: Lenovo ThinkPad Helix")] Lenovo ThinkPad Helix
+====================================================================================================================================
 
-Overview
---------
+[[edit](/w/index.php?title=Lenovo_Thinkpad_Helix&action=edit&section=2 "Edit section: Overview")] Overview
+----------------------------------------------------------------------------------------------------------
 
   -------------------------------------------------------------------------
   Component
@@ -14,15 +14,15 @@ Overview
 
   :  Hardware support
 
-Preparing to boot nixos
------------------------
+[[edit](/w/index.php?title=Lenovo_Thinkpad_Helix&action=edit&section=3 "Edit section: Preparing to boot nixos")] Preparing to boot nixos
+----------------------------------------------------------------------------------------------------------------------------------------
 
 In BIOS, disable Secure boot and enable legacy boot (non-UEFI).
 
-Tips & Tricks
--------------
+[[edit](/w/index.php?title=Lenovo_Thinkpad_Helix&action=edit&section=4 "Edit section: Tips & Tricks")] Tips & Tricks
+--------------------------------------------------------------------------------------------------------------------
 
-### Disable speaker
+### [[edit](/w/index.php?title=Lenovo_Thinkpad_Helix&action=edit&section=5 "Edit section: Disable speaker")] Disable speaker
 
 Add this to your /etc/nixos/configuration.nix.
 
