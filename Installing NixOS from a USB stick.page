@@ -30,9 +30,9 @@ Using syslinux
 If you have trouble booting from a USB drive or sdcard with Unetbootin
 (I just got a blinking cursor instead of a bootloader on an Asus eee
 1000) the procedure described on
-<http://www.knoppix.net/wiki/Bootable_USB_Key> should work. After
-preparing the sdcard with mkdiskimage and syslinux you can mount it and
-copy all the content from the NixOS iso:
+<http://knoppix.net/wiki/Bootable_USB_Key> should work. After preparing
+the sdcard with mkdiskimage and syslinux you can mount it and copy all
+the content from the NixOS iso:
 
     $ mount -o loop ~/Downloads/nixos-graphical-0.1pre27337-i686-linux.iso /media/iso
     $ rsync -av --progress /media/iso/ /media/sd-card/
