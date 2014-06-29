@@ -1,8 +1,11 @@
+The intention of this article is to provide a walk through tutorial of
+the Nix expression language and helpful tips and advice for writing and
+debugging Nix expressions. The canonical resources for documentation is
+the [Nix Users
+Manual](http://hydra.nixos.org/job/nix/trunk/tarball/latest/download-by-type/doc/manual%7C).
+
 The Nix Expression Language
 ---------------------------
 
-Documentation:
-<http://hydra.nixos.org/build/1726694/download/1/manual/#id494989>
-
- \$ nix-instantiate --eval-only - rec {x = 123;}.x [Ctrl-D] 123
+\$ nix-instantiate --eval-only - rec {x = 123;}.x [Ctrl-D] 123
 
