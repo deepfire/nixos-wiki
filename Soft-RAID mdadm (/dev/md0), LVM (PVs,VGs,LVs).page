@@ -1,12 +1,12 @@
-what is this
-------------
+[[edit](/w/index.php?title=Soft-RAID_mdadm_(/dev/md0),_LVM_(PVs,VGs,LVs)&action=edit&section=1 "Edit section: what is this")] what is this
+------------------------------------------------------------------------------------------------------------------------------------------
 
 this short guide helps to create a suitable setup to have LVM on top of
 a mdadm soft raid. a closely related article is
 [Encrypted\_Root\_on\_NixOS](//Encrypted Root on NixOS)
 
-how does it work
-----------------
+[[edit](/w/index.php?title=Soft-RAID_mdadm_(/dev/md0),_LVM_(PVs,VGs,LVs)&action=edit&section=2 "Edit section: how does it work")] how does it work
+--------------------------------------------------------------------------------------------------------------------------------------------------
 
 it is possible (at least in the virtualbox virtual machine i installed
 to verify it) to boot from a boot LV which is located on top of a mdadm
@@ -27,6 +27,7 @@ this chain of commands illustrates that:
      mkfs.ext4 -n system /dev/myvolgrp/system
      
      mount -L system /mnt
+     nixos-generate-config --root /mnt
      nixos-option --install
      
      vi /etc/nixos/configuration.nix
@@ -51,8 +52,8 @@ this implies that:
 **note:** still consider turning of the disk caches when using
 soft-raids
 
-links
------
+[[edit](/w/index.php?title=Soft-RAID_mdadm_(/dev/md0),_LVM_(PVs,VGs,LVs)&action=edit&section=3 "Edit section: links")] links
+----------------------------------------------------------------------------------------------------------------------------
 
 -   <https://invalidmagic.wordpress.com/2011/05/10/nix-os-on-a-hetzner-root-server>
 -   <http://jim.studt.net/depository/index.php/debian-lenny-and-grub-with-boot-in-lvm>
