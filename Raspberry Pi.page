@@ -5,8 +5,7 @@ Please follow updates, and help testing, in:
 
 -   [Add Raspberry-Pi support to
     NixOS](https://github.com/NixOS/nixos/issues/66) - Latest image:
-    [magnet:?xt=urn:btih:3a1273137a31ef65453ddc44eafcf8e0ede24731&dn=nixos-raspberrypi-ef28e8e70e96-0236cc5d8826-sd2g.img.xz
-    Magnet DHT link]
+    magnet:?xt=urn:btih:3a1273137a31ef65453ddc44eafcf8e0ede24731&dn=nixos-raspberrypi-ef28e8e70e96-0236cc5d8826-sd2g.img.xz
 
 -   [Add Raspberry-Pi stdenvLinux
     support](https://github.com/NixOS/nixpkgs/issues/234) (pure nixpkgs)
