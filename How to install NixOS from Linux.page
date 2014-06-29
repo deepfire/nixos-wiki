@@ -11,13 +11,18 @@ NixOS ready.
 to simplyfy:
 
 /dev/sda1  : your boot partition, containing already working grub
-/dev/sda2  : your linux root partition, containing your currently
-working OS /dev/sda3  : your spare partition to where you will install
-NixOS
 
-the\_iso  : the nixos livecd iso \~/some\_dir : directory where
-"the\_iso" is (loop) mounted /boot  : the boot directory, where grub is
-installed (/dev/sda1 and /dev/sda2 \*can\* be the same partition!)
+/dev/sda2  : your linux root partition, containing your currently
+working OS
+
+/dev/sda3  : your spare partition to where you will install NixOS
+
+the\_iso  : the nixos livecd iso
+
+\~/some\_dir : directory where "the\_iso" is (loop) mounted
+
+/boot  : the boot directory, where grub is installed (/dev/sda1 and
+/dev/sda2 \*can\* be the same partition!)
 
 -   obtain the ISO "the\_iso"
 -   mount -o loop "the\_iso" "\~/some\_dir"
