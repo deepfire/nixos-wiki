@@ -43,3 +43,22 @@ remove the entry in environment.systemPackages = [ ];
     nix-env -e links2
     nix-env --delete-generations old
     nix-collect-garbage
+
+how to change the used kernel version
+-------------------------------------
+
+boot.kernelPackages \# see
+<http://hydra.nixos.org/build/1106908/download/1/nixos/manual.html>
+
+for example: add
+
+     boot.kernelPackages = pkgs.linuxPackages_2_6_25;
+
+to your /etc/nixos/configuration.nix
+
+or check for more recent entries by:
+
+     nix-env -qa '*' | grep linux-2.6.
+
+then use this version information
+
