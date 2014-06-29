@@ -228,20 +228,19 @@ executes them to build the packaged application.
 
 ### Hooks
 
-`preHook()` - Arbitrary code to execute before the "standard
+**`preHook()`** - Arbitrary code to execute before the "standard
 environment" setup script executes. This is executed after the initial
 `PATH` definition and before the `addInputsHook` hook is called.
-
 Examples of use: [All's
 prehook](https://github.com/NixOS/nixpkgs/blob/bee4c41e13a9276db4f4a582234c670d74edfa1a/pkgs/stdenv/native/default.nix#L14),
 [Darwin's
 prehook](https://github.com/NixOS/nixpkgs/blob/bee4c41e13a9276db4f4a582234c670d74edfa1a/pkgs/stdenv/native/default.nix#L20),
 [FreeBSD's
 prehook](https://github.com/NixOS/nixpkgs/blob/bee4c41e13a9276db4f4a582234c670d74edfa1a/pkgs/stdenv/native/default.nix#L29),
-[OpenBSD's prehook,
-[https://github.com/NixOS/nixpkgs/blob/bee4c41e13a9276db4f4a582234c670d74edfa1a/pkgs/stdenv/native/default.nix\#L59
-NetBSD's
+[OpenBSD's
 prehook](https://github.com/NixOS/nixpkgs/blob/bee4c41e13a9276db4f4a582234c670d74edfa1a/pkgs/stdenv/native/default.nix#L42),
+[NetBSD's
+prehook](https://github.com/NixOS/nixpkgs/blob/bee4c41e13a9276db4f4a582234c670d74edfa1a/pkgs/stdenv/native/default.nix#L59),
 [Cygwin's
 prehook](https://github.com/NixOS/nixpkgs/blob/bee4c41e13a9276db4f4a582234c670d74edfa1a/pkgs/stdenv/native/default.nix#L72),
 [Nix's
@@ -249,15 +248,15 @@ prehook](https://github.com/NixOS/nixpkgs/blob/bee4c41e13a9276db4f4a582234c670d7
 [Linux's
 prehook](https://github.com/NixOS/nixpkgs/blob/bee4c41e13a9276db4f4a582234c670d74edfa1a/pkgs/stdenv/linux/default.nix#L25)
 
-`postHook()` - Arbitrary code to execute after the "standard
+**`postHook()`** - Arbitrary code to execute after the "standard
 environment" setup script finishes loading.
 
-`userHook()` - Arbitrary code to execute after the "standard
+**`userHook()`** - Arbitrary code to execute after the "standard
 environment" setup script finishes loading. This is executed after the
 `postHook` hook is called.
 
-`addInputsHook()` - Arbitrary code to execute before executing the setup
-scripts defined in the packages specified by the `$buildInputs`,
+**`addInputsHook()`** - Arbitrary code to execute before executing the
+setup scripts defined in the packages specified by the `$buildInputs`,
 `$propagatedBuildInputs`, `$nativeBuildInputs`, and
 `$propagatedNativeBuildInputs` environment variables.
 
