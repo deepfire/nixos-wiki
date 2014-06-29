@@ -78,6 +78,7 @@ Using NixOS
 -   [NixOS Filesystem Notes](//NixOS Filesystem Notes)
 -   [Module Syntax](//NixOS:Modules)
 -   [Extending NixOS](//NixOS:extend NixOS)
+-   [NixOS Config Argument](//NixOS:config argument)
 
 ### On Physical Machine
 
