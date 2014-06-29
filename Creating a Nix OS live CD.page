@@ -1,2 +1,6 @@
-nix-build -A iso\_minimal /etc/nixos/nixos/release.nix
+This can be done using a Nix OS installation: nix-build -A iso\_minimal
+/etc/nixos/nixos/release.nix
+
+so far I could not find any way (after 2minutes of searching) to build
+that using a prefixed installation of Nix.
 
