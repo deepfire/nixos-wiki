@@ -17,10 +17,10 @@ develop it. Remember, your project needs to have deliverables in less
 than 3 months of work in most cases. Be ambitious but not too
 ambitious ;)
 
-Ideas
------
+[[edit](/w/index.php?title=GSOC_2014_ideas_list&action=edit&section=1 "Edit section: Ideas")] Ideas
+---------------------------------------------------------------------------------------------------
 
-### Packaging Gnome 3
+### [[edit](/w/index.php?title=GSOC_2014_ideas_list&action=edit&section=2 "Edit section: Packaging Gnome 3")] Packaging Gnome 3
 
 While there's been initial work done to have a minimal gnome-shell
 running, we're far from claiming support of Gnome 3.
@@ -30,7 +30,7 @@ To get a better idea what's done and what's left to be acomplished, see
 
 Contact: Domen Kožar (domen@dev.si)
 
-### Improving Python support
+### [[edit](/w/index.php?title=GSOC_2014_ideas_list&action=edit&section=3 "Edit section: Improving Python support")] Improving Python support
 
 Currently we have python 2.6 - 3.3 and PyPy support in Nix. Improving
 Python support is an on-going effort
@@ -52,7 +52,7 @@ Improvements:
 
 Contact: Domen Kožar (domen@dev.si)
 
-### Private files in the nix store
+### [[edit](/w/index.php?title=GSOC_2014_ideas_list&action=edit&section=4 "Edit section: Private files in the nix store")] Private files in the nix store
 
 Currently, all files in the nix store are world-readable, which means
 that NixOS configurations that need passwords or other credentials need
@@ -62,7 +62,7 @@ the issue can be found at <https://github.com/NixOS/nix/issues/8>.
 
 Contact: Shea Levy (shea@shealevy.com, shlevy on IRC)
 
-### Low-level improvements to nix performance
+### [[edit](/w/index.php?title=GSOC_2014_ideas_list&action=edit&section=5 "Edit section: Low-level improvements to nix performance")] Low-level improvements to nix performance
 
 There may be some low-hanging fruit for improving performance of
 evaluation of nix expressions or nix builds. Some ideas that might be
@@ -78,7 +78,7 @@ worth exploring:
 
 Contact: Shea Levy (shea@shealevy.com, shlevy on IRC)
 
-### Multiple outputs infrastructure in nixpkgs
+### [[edit](/w/index.php?title=GSOC_2014_ideas_list&action=edit&section=6 "Edit section: Multiple outputs infrastructure in nixpkgs")] Multiple outputs infrastructure in nixpkgs
 
 nix has a feature known as "multiple outputs", where a single derivation
 can produce multiple outputs which can be downloaded and
@@ -97,7 +97,7 @@ This has already been partially done in the multiple-outputs branch.
 ([talk](/w/index.php?title=User_talk:EelcoDolstra&action=edit&redlink=1 "User talk:EelcoDolstra (page does not exist)"))
 11:24, 14 February 2014 (CET)
 
-### Lightweight NixOS containers
+### [[edit](/w/index.php?title=GSOC_2014_ideas_list&action=edit&section=7 "Edit section: Lightweight NixOS containers")] Lightweight NixOS containers
 
 NixOS has some very basic support for running other NixOS configurations
 as lightweight containers via systemd-nspawn (see
@@ -126,4 +126,13 @@ and kill the us-east-1 machine. This would be awesome, as finally
 getting a good handle on mutable state is something of a holy grail :-)
 
 Contact: Eelco Dolstra (eelco.dolstra@logicblox.com)
+
+### [[edit](/w/index.php?title=GSOC_2014_ideas_list&action=edit&section=8 "Edit section: Distributed nixops deployments")] Distributed nixops deployments
+
+Currently nixops state is all stored in a local sqlite database, so all
+deployment has to be managed from one central machine. A good mechanism
+for sharing that state would allow multiple users to manage the same
+deployments from their own machines.
+
+Contact: Shea Levy (shea@shealevy.com, shlevy on IRC)
 
