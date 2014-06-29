@@ -15,3 +15,36 @@ There isn't an interactive interpreter for Nix, but \`nix-instantiate
     rec {x = 123;}.x
     <Ctrl-D>
     123
+
+\`nix-instantiate --eval-only example.nix\` will evaluate the expression
+in example.nix and print the result. Using --xml will provide an xml
+representation of the output which can provide more details.
+
+example.nix:
+
+    {x = import (/etc/nixos/nixpkgs/pkgs/tools/graphics/graphviz);}.x
+
+    $ nix-instantiate --eval-only example.nix
+    <LAMBDA>
+
+    $ nix-instantiate --eval-only --xml example.nix
+    <?xml version='1.0' encoding='utf-8'?>
+    <expr>
+      <function column="1" line="1" path="/etc/nixos/nixpkgs/pkgs/tools/graphics/graphviz/default.nix">
+        <attrspat>
+          <attr name="stdenv" />
+          <attr name="fetchurl" />
+          <attr name="pkgconfig" />
+          <attr name="libpng" />
+          <attr name="libjpeg" />
+          <attr name="expat" />
+          <attr name="libXaw" />
+          <attr name="yacc" />
+          <attr name="libtool" />
+          <attr name="fontconfig" />
+          <attr name="pango" />
+          <attr name="gd" />
+          <attr name="xlibs" />
+        </attrspat>
+      </function>
+    </expr>
