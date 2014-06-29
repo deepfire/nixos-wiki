@@ -259,16 +259,50 @@ nixpkgs using git) and try to find something like this:
 
      kde4 = recurseIntoAttrs pkgs.kde47;
      kde47 = kdePackagesFor pkgs.kde47 "4.7";
-     kde48 = kdePackagesFor pkgs.kde48 "4.8";
+     kde410 = kdePackagesFor pkgs.kde410 "4.10";
 
 2\. now pick one of the versions by adding the lines below to
 /etc/nixos/configuration.nix:
 
      nixpkgs.config.packageOverrides = pkgs : rec { 
-       kde4 = pkgs.kde48; 
+       kde4 = pkgs.kde410; 
      };
 
-3\. finally do:
+3\. install all kde stuff into the envinronment.systemPackages
+
+     environment.systemPackages = with pkgs; [
+       zsh
+       linuxPackages.virtualbox
+       wget
+       kde4.kdemultimedia
+       kde4.kdegraphics
+       kde4.kdeutils
+       kde4.applications
+       kde4.kdegames
+       kde4.kdeedu
+       kde4.kdebindings
+       kde4.kdeaccessibility
+       #kde4.kde_baseapps
+       kde4.kactivities
+       kde4.kdeadmin
+       kde4.kdeartwork
+       #kde4.kde_base_artwork
+       kde4.kdenetwork
+       kde4.kdepim
+       kde4.kdepimlibs
+       kde4.kdeplasma_addons
+       kde4.kdesdk
+       kde4.kdetoys
+       #kde4.kde_wallpapers
+       kde4.kdewebdev
+       #kde4.oxygen_icons
+       kde4.kdebase_workspace
+       kde4.kdelibs
+       kde4.kdevelop
+       kde4.kdevplatform
+     ];
+
+ 4. finally do:
 
      nixos-rebuild switch
 
