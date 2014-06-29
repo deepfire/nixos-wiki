@@ -6,7 +6,7 @@ The current supported platforms are:
 -   PC (i686-linux, x86\_64-linux)
 -   Sheevaplug (armv5tel-linux)
 -   Fuloong Mini-PC (mips64, with mips n32 binaries)
--   [Raspberry Pi]
+-   [Raspberry Pi](//Raspberry Pi)
 
 Fuloong Mini-PC
 ===============
