@@ -12,6 +12,7 @@ All functionality supported by ZFS on Linux, including:
 -   Encrypted ZFS pools (using Linux's dm-crypt)
 -   All the other ZFS goodies (cheap snapshotting, checksumming,
     compression, RAID-Z, ...)
+-   Auto-snapshotting service
 
 Known issues
 ------------
