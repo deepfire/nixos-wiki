@@ -1,0 +1,26 @@
+    {pkgs, ...}:{
+
+      packageOverrides = {
+        myHaskellCollection = pkgs.misc.collection {
+           name = "my-haskell-collection";
+           list = let p = pkgs.haskellPackages_select_a_version;
+                  in list [ p.ghc p.filepath p.XXX p.YYY ];
+        };
+
+        all = pkgs.misc.collection {
+           name = "all";
+           list = [ pkgs.myHaskellCollection pkgs.mutt pkgs.firefox35Wrapper /* ... */ ];
+        }
+
+      };
+
+    }
+
+Now you can update ghc and its libraries using \<ple\> nix-env -iA
+myCollection or nix-env -i my-haskell-collection \</pre\>
+
+The all attribute name illustrates, that you can reuse your new
+collection in yet another collection. Keeping such a big collection
+containing all important packages which you use everyday makes it easy
+to upgrade or move your setup to another pc.
+
