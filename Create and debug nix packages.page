@@ -38,7 +38,7 @@ on your local repositories:
 **example:** update the system based on your local **\~/code/nixos** and
 **\~/code/nixpkgs**
 
-     $ nixos-rebuild -I nixos=~/code/nixos -I nixpkgs=~/code/nixpkgs 
+     $ nixos-rebuild -I nixos=~/code/nixos -I nixpkgs=~/code/nixpkgs switch
 
 **example:** build an expression and put the output in to
 \`pwd\`/results
