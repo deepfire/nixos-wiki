@@ -111,12 +111,6 @@ librecad
 
 (viric) I've it half packaged.
 
-djvulibre (djview)
-
-djview4
-
-Remove useQt3 (done in stdenv-updates)
-
 taskjuggler
 
 (viric) The gui can be disabled in the build.
@@ -137,12 +131,6 @@ don't use it but I prefer it to stay. (urkud) They have qucs-qt4 branch.
 Didn't checked whether it works.
 
 mythtv
-
-xxdiff/3.2.nix
-
-xxdiff latest hg version
-
-Upgrade (done)
 
 games/six
 
