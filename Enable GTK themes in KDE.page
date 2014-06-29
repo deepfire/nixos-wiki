@@ -15,3 +15,13 @@ executable: \~/.kde/env/set-gtk-theme.sh
 
     export GTK_PATH=$GTK_PATH:~/.nix-profile/lib/gtk-2.0
     export GTK2_RC_FILES=$GTK2_RC_FILES:~/.nix-profile/share/themes/oxygen-gtk/gtk-2.0/gtkrc
+
+ Alternatively, on NixOS:
+
+        environment = {
+          systemPackages = [ pkgs.oxygen_gtk ];
+          shellInit = ''
+            export GTK_PATH=$GTK_PATH:${pkgs.oxygen_gtk}/lib/gtk-2.0
+            export GTK2_RC_FILES=$GTK2_RC_FILES:${pkgs.oxygen_gtk}/share/themes/oxygen-gtk/gtk-2.0/gtkrc
+          '';
+        };
