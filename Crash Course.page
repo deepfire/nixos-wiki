@@ -1,0 +1,61 @@
+By the word *nix* you should understand a computer language and its
+related toolkit interpreting that language. That computer language is
+not meant to be used for general purpose computing like C or Java, but
+it's meant for defining how packages and its dependencies have to be
+built.
+
+As most computer language interpreters, the *nix* interpreter has
+specific inputs and outputs.
+
+-   Inputs: nix source files, urls of files to be manipulated, command
+    line arguments.
+-   Outputs: files or directories in the *nix store*. They are named
+    "output paths". A database also maintains the validity of each path
+    (valid or not) and its dependencies on other paths.
+
+The nix store
+=============
+
+Here go all the outputs of the nix interpreters, and this is the only
+way it is filled; all the files in the nix store are meant to be created
+only as nix interpret results. And its content of "output paths" is
+meant to be deleted only through special processes, namely "garbage
+collection" or direct request for "deletion" through the *nix-store*
+interpreter.
+
+The store has a database of whether a store path is valid (properly
+built by nix), and has a database of dependencies on other store paths.
+It also has a consideration of "live" and "dead" paths. Only valid paths
+can be live, live paths cannot be deleted, dependencies of live paths
+are also live paths.
+
+Whether a path is live or not is determined by reachability through
+"gcroots" (Garbage Collector Roots). There is a directory of symlinks
+containing the gcroots. If jumping through the symlinks any store path
+can be reached, then it is considered live.
+
+As the nix stored is filled and filled while we create output store
+paths with nix, the nix user usually manually requests for "garbage
+collection", and that means: remove all dead paths in the store.
+
+The stages building using nix
+=============================
+
+The nix language allows defining how to build a specific output store
+path. For example, we can write in nix the rules to build a store path
+as a simple text file containing the text "hello". And we can write the
+nix expressions (users usually use this term) to build more complex
+store paths, as for example a directory containing the installation
+result of *xterm*. For both cases, we use the nix language to tell nix
+end up calling a program with some arguments.
+
+The first stage goes on interpreting the nix expressions (as with the
+nix-instantiate program). That will create some special files in the
+store called 'derivation builders', having the extension .drv. As the
+nix language may define complex relationships, those files contain the
+result of evaluations in terms of file names. These builders refer,
+nevertheless, only to files in the nix store.
+
+A second stage takes those .drv files, and 'builds' them (as with
+nix-store --realise).
+
