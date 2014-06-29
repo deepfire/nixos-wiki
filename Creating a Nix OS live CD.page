@@ -1,6 +1,7 @@
 This can be done using a Nix OS installation: nix-build -A iso\_minimal
 /etc/nixos/nixos/release.nix
 
-so far I could not find any way (after 2minutes of searching) to build
-that using a prefixed installation of Nix.
+Without NixOS you need to supply the
+[source](https://svn.nixos.org/repos/nix/nixos/trunk/) instead of
+/etc/nixos/nixos.
 
