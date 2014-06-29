@@ -1,7 +1,13 @@
 This wiki page contains information about using the Java plugin in
 Firefox on NixOS.
 
-From Firefox version 3.6, the old Java plugin located in
+As of 2010-09-15, Firefox 3.6 uses the correct java plugin when
+nixpkgs.config.firefox.jre = true. For nixpkgs older than 2010-09-15,
+see below:
+
+* * * * *
+
+ From Firefox version 3.6, the old Java plugin located in
 \<JRE\>/plugin/i386/javaplugin-oji.so no longer works (source:
 [[1]](http://www.oracle.com/technetwork/java/javase/manual-plugin-install-linux-136395.html)).
 The new plugin is located in \<JRE\>/lib/i386/libnpjp2.so.
