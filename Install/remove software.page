@@ -131,6 +131,27 @@ For per-user packages.
 Also see nix-env --list-generations, which will list out the number of
 previous generations and the time stamp of their creation.
 
+manage nix-build/nix-shell
+--------------------------
+
+in /nix/var/nix/gcroots/auto there are links like these:
+
+       lrwxrwxrwx 1 root root     74 Jul  3  2013 182qrbs2zqkm6g4waqw4xl7pc484zyss -> /home/joachim/Desktop/projects/nixos/nixpkgs/pkgs/desktops/kde-4.10/result/
+       lrwxrwxrwx 1 root root     12 Feb  1 18:23 7h9kz6xpi43rhva1alqny0hi54w6203b -> /root/result
+       lrwxrwxrwx 1 root root     45 Jul 31  2013 9355idpn9cxg4xfxgwwjvrdlg481gr0s -> /home/joachim/Desktop/projects/nix-ray/result/
+       lrwxrwxrwx 1 root root     47 Mar 20 00:15 964c6j34pd3b6qm418gc4j2pmwj890l7 -> /home/joachim/Desktop/projects/nixos/nix/result/
+       lrwxrwxrwx 1 root root     51 Mar 20 00:50 bwj2bawqgg8v2hw41h7zyidky2wsynar -> /home/joachim/Desktop/projects/nixos/nixpkgs/result/
+       lrwxrwxrwx 1 root root     32 May 12 16:19 mh0rdyn6ldcdljjzwpfzgfhmwyl7hi51 -> /tmp/nix-build.Jyenoc/derivation
+       lrwxrwxrwx 1 root root     30 Aug 20  2013 q1s5wwxrnn6dc0g856vxz22lfad4gg6h -> /home/joachim/Downloads/result/
+
+you can remove all, which you do not need anymore BUT except this one:
+
+       lrwxrwxrwx 1 root root     43 Jun 12  2012 77pq4kkwkcsbxczg1d3hhvi4n33la519 -> /nix/var/nix/gcroots/per-user/root/channels/
+
+afterwards run:
+
+       nix-store --gc
+
 repair your installation
 ------------------------
 
