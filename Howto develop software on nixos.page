@@ -47,7 +47,7 @@ a child shell.
  Additional info:
 <https://github.com/NixOS/nix/commit/7f38087f35e6f74a73bfdb28da8acd8930565d51>
 
-#### Example 1: Using nix-shell to Initialize a Development Shell
+### Example 1: Using nix-shell to Initialize a Development Shell
 
 This example shows a Nix expression which packages an application that
 uses the Clang compiler.
