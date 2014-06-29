@@ -82,5 +82,19 @@ texlive + optional components setup.
 
 -   nix-env way
 
-TODO
+create a file \~/.nix-defexpr/texlive.nix:
 
+     let
+       nixpkgs = (import ./nixpkgs_sys) {};
+     in
+     with nixpkgs; {
+       myTexLive = texLiveAggregationFun {
+         paths = [
+           texLive texLiveExtra texLiveBeamer
+         ];
+       } // { name = "mytexlive"; };
+     }
+
+and install with
+
+     nix-env -i -A texlive
