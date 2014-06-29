@@ -1,16 +1,47 @@
 For various reasons some work has not been committed to the main trunk
 repositories. You find a description about some of them here:
 
-Haskell overlay
----------------
+Haskell overlay (stable)
+------------------------
 
-Let's you install nearly all hackage packages easily.
-[hack-nix](http://haskell.org/haskellwiki/Hack-Nix) also provides a
-convenient way to setup multiple build environments for a project
+Let's you install nearly all hackage packages easily. Older and newer
+gtk2hs supported. [hack-nix](http://haskell.org/haskellwiki/Hack-Nix)
+also provides a convenient way to setup multiple build environments for
+a project
 [haskell-nix-overlay](http://github.com/MarcWeber/haskell-nix-overlay)
 
-Reasons for not committing it to trunk: The solver is quite ?low. There
-are many updates.
+Ruby overlay (stable)
+---------------------
+
+purpose: abstract away tedious task of finding matching versions and
+packaging ruby packages. (source: RubyGems) Let's you install all
+packages known by gem. (Contact Marc Weber if you want to try it, you
+need some more patches).
+[nixpkgs-ruby-overlay](https://gitorious.org/nixpkgs-ruby-overlay/)
+Usage example (\~/.nixpkgs/config.nix)
+
+       rubyEnv = 
+         let ro = (pkgs.overlay "ruby");
+         in ro.rubyEnv19 {
+             p = {
+                activesupport =  "=" "2.3.9" ;
+             };
+             # note: the gem dependencies of activesupport will be found automatically
+             names = [ "activesupport" ];
+         };
+
+Note: if two packages resolve different versions of the same dependency
+Nix fails. You can work around it by forcing a version as shown above.
+
+Python overlay (experimental)
+-----------------------------
+
+purpose: abstract away tedious task of finding matching versions and
+packaging python packages (source: PyPi package index) Let's you install
+all packages known by gem. (Contact Marc Weber if you want to try it,
+you need some more patches). Open issues: How to find out which package
+has to be run with python-2.x or python-3 and such.
+[nixpkgs-python-overlay](https://gitorious.org/nixpkgs-python-overlay/)
 
 nixpkgs-utilities
 -----------------
