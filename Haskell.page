@@ -91,7 +91,7 @@ libraries, only a single version is available in Nixpkgs, but for some
 packages, there are several.
 
 Both the attribute paths and the names can be used to install packages
-from this list, using `nix-env -i` or `nix-env -iA`, respectively.
+from this list, using `nix-env -iA` or `nix-env -i`, respectively.
 However, using the attribute path is *recommended*. The reason is that
 when using the attribute path, you'll usually get the *preferred*
 version of the package for the compiler version you select (in cases
