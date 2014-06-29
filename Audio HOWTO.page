@@ -97,3 +97,6 @@ This routes default ALSA sound streams via PulseAudio
        type pulse                                                                                               
        }            
 
+You can check if everything works by using pavucontrol to see the audio
+streams and make sure PulseAudio detects your audio hardware.
+
