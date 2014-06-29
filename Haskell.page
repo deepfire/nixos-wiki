@@ -2,9 +2,9 @@ The goal of this page is to explain how to use Haskell packages in a
 Nix/NixOS-based system, and how to contribute Haskell packages to the
 Nixpkgs collection.
 
-Less official alternative:
-[nixpkgs-haskell-overlay](//Nixpkgs-haskell-overlay). (Putting this link
-here because searching for Haskell will never reveal that alternative)
+There's a different approach to dealing with Haskell packages that's
+described on a separate page:
+[nixpkgs-haskell-overlay](//Nixpkgs-haskell-overlay).
 
 Getting started
 ---------------
