@@ -72,7 +72,7 @@ extend his standard environment by the desired new environment.
 
 using this new environment:
 
-     $ load-sdl-env
+     $ load-env-sdl
 
 to verify that the new environment got all tools needed, type:
 
@@ -90,7 +90,7 @@ environment if you want them to have the tools as well.
 
 loading the environment
 
-     [joachim@eliteBook-8530w:~/Desktop/projects]$ load-sdl-env 
+     [joachim@eliteBook-8530w:~/Desktop/projects]$ load-env-sdl
      env-sdl loaded
 
 using sdl-config to get the cflags
@@ -118,7 +118,7 @@ other related topics
 
 ### how to use libraries which don't have a sdl-config or don't use pkgconfig
 
-when you load `load-sdl-env` there will be some additional environment
+when you load `load-env-sdl` there will be some additional environment
 variables set:
 
 -   CMAKE\_PREFIX\_PATH
@@ -128,14 +128,14 @@ variables set:
 all these variables contain include paths and ldflags used by the
 compiler.
 
-**note: the load-sdl-env using sdl is just an example here, however the
+**note: the load-env-sdl using sdl is just an example here, however the
 mentioned environment variables can be used for various libraries which
 don't even use sdl-config like tools.**
 
 **note: once these paths are set correctly (caused by the
-load-whateveryourenvironmentiscalle-env command) you would not depend on
-tools like sdl-config or pkgconfig. this helps to get libraries working
-which don't use these kind of tools to make them accessible.**
+load-env-whateverYourEnvironmentIsCalled command) you would not depend
+on tools like sdl-config or pkgconfig. this helps to get libraries
+working which don't use these kind of tools to make them accessible.**
 
 ### code completion in kdevelop
 
