@@ -16,7 +16,7 @@ Configuration
 =============
 
 Full configurations is in my
-[dotfiles](https://github.com/ierton/dotfiles/blob/greyblade/nixos/samsung-np900x3c.nix).
+[nixrc](https://github.com/ierton/nixrc/blob/master/samsung-np900x3c.nix).
 
 ### Graphics
 
