@@ -21,8 +21,16 @@ This is what needs to be put into /etc/nixos/configuration.nix:
 
 ### Make sure initrd finds and mounts the root partition
 
-      boot.initrd.extraUtilsCommands = "cp -r ${pkgs.cryptsetup}/lib/* $out/lib/;cp -r ${pkgs.popt}/lib/* $out/lib; cp ${pkgs.cryptsetup}/sbin/* $out/bin";
-      boot.initrd.postDeviceCommands = "cryptsetup luksOpen /dev/sda2 pvcrypt;lvm vgscan;lvm vgchange -ay";
+      boot.initrd.extraUtilsCommands = ''
+        cp -r ${pkgs.cryptsetup}/lib/* $out/lib/
+        cp -r ${pkgs.popt}/lib/* $out/lib
+        cp ${pkgs.cryptsetup}/sbin/* $out/bin
+      '';
+      boot.initrd.postDeviceCommands = ''
+        cryptsetup luksOpen /dev/sda2 pvcrypt
+        lvm vgscan
+        lvm vgchange -ay
+      '';
 
 ### Extra modules you might need
 
