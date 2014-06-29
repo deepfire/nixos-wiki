@@ -25,10 +25,27 @@ To speed up builds by using pre-built binaries, you should do:
 
 Now you can run a test as follows:
 
-    $ nix-build nixos/tests/ -A simple.test
+    $ nix-build nixos/tests/ -A nfs.test
 
-This trivial "test" (defined in `nixos/tests/simple.nix`) simply starts
-a VM and shuts it down.
+This performs an automated test of the NFS client and server
+functionality in the Linux kernel, including file locking semantics
+(e.g., whether locks are maintained across server crashes). It will
+first build or download all the dependencies of the test (e.g., all
+packages needed to run a NixOS VM). The test is defined in
+`nixos/tests/nfs.nix`. If the test succeeds, `nix-build` will place a
+symlink `./result` in the current directory pointing at the location in
+the Nix store of the test results (e.g., screenshots, test reports, and
+so on).
+
+It is also possible to run the test environment interactively, allowing
+you to experiment with the VMs. For example:
+
+    $ nix-build nixos/tests/ -A nfs.vms
+    $ ./result/bin/run-vms
+
+The script `run-vms` starts the three virtual machines defined in the
+NFS test using QEMU/KVM. The root filesystem of the VMs is created on
+the fly and kept across VM restarts in `./hostname.qcow2`.
 
 Writing tests
 -------------
