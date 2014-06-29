@@ -1,6 +1,6 @@
 You can configure chromium with NixOS the standard way:
 
-/etc/nixos/configuration.nix
+/etc/nixos/configuration.nix:
 
     ...
 
@@ -25,8 +25,8 @@ You can configure chromium with NixOS the standard way:
 
 and then install `chromiumWrapper` or `firefoxWrapper`.
 
-Pepper Plugins
---------------
+[[edit](/w/index.php?title=Enable_Browser_Plugins&action=edit&section=1 "Edit section: Pepper Plugins")] Pepper Plugins
+-----------------------------------------------------------------------------------------------------------------------
 
 Chromium recently removed support for Mozilla (NPAPI) plugins. The
 options to enable the new Pepper plugins for Flash and PDF are:
@@ -38,8 +38,8 @@ options to enable the new Pepper plugins for Flash and PDF are:
       };
     };
 
-Enable GPU support
-------------------
+[[edit](/w/index.php?title=Enable_Browser_Plugins&action=edit&section=2 "Edit section: Enable GPU support")] Enable GPU support
+-------------------------------------------------------------------------------------------------------------------------------
 
 For intel:
 
