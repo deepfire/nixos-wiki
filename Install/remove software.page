@@ -212,3 +212,24 @@ to your /etc/nixos/configuration.nix
 or check for more recent entries by:
 
      nix-env -qa '*' | grep linux-2.6.
+
+how to use a different version of a package
+-------------------------------------------
+
+1\. look into pkgs/top-level/all-packages.nix (when you have checked out
+nixpkgs using git) and try to find something like this:
+
+     kde4 = recurseIntoAttrs pkgs.kde47;
+     kde47 = kdePackagesFor pkgs.kde47 "4.7";
+     kde48 = kdePackagesFor pkgs.kde48 "4.8";
+
+2\. now pick one of the versions by adding the lines below to
+/etc/nixos/configuration.nix:
+
+     nixpkgs.config.packageOverrides = pkgs : rec { 
+       kde4 = pkgs.kde48; 
+     };
+
+3\. finally do:
+
+     nixos-rebuild switch
