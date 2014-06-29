@@ -7,6 +7,8 @@ This pages describes how to install NixOS in a VirtualBox guest.
 -   Mount the CD-ROM with the NixOS ISO (by clicking on CD/DVD-ROM)
 -   Click on Settings / Advanced (or possibly System / Processor) and
     enable PAE/NX
+-   Click on Settings / Advanced (or possibly System / Acceleration) and
+    enable "VT-x/AMD-V" acceleration
 -   Networking: select "Attached to: NAT". Change host-interface to
     "en1: Airport".
 -   Now you can install NixOS:
