@@ -120,8 +120,7 @@ or, if you prefer the "-A" option:
      $ nix-env -iA nixos.pkgs.thunderbird
 
 The advantages of using a channel over the previous way (doing "svn up
-
-     /etc/nixos/*" a.k.a. nixos-checkout) are:
+/etc/nixos/\*" a.k.a. nixos-checkout) are:
 
 -   Correctness: The channel is only updated to a new revision of
     NixOS/Nixpkgs if it passes certain tests - specifically, if all jobs
