@@ -24,6 +24,8 @@ Currently the following public NixOS AMIs are available:
     2.6.32.
 -   In `eu-west-1`: **`ami-ecb49e98`** - 64-bit, NixOS r23573, Linux
     2.6.32.21.
+-   In `us-east-1`: **`ami-d93bf4b0`** - 64-bit, NixOS r29983, Linux
+    2.6.35.14.
 
 Running NixOS instances
 -----------------------
