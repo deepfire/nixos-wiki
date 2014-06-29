@@ -283,7 +283,7 @@ setup scripts defined in the packages specified by the `$buildInputs`,
 
 ### Library Functions
 
-`runHook(function or fileName or envVarName)` - Run the named hook,
+**`runHook(function or fileName or envVarName)`** - Run the named hook,
 either by calling the function with that name or by evaluating the
 variable with that name.
 
