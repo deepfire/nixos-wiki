@@ -1,19 +1,18 @@
 How to write a patch ?
 ----------------------
 
-quick & dirty: copy paste existing code and make it fit your needs.
+See the official documentation which describes how the Nix expression
+language works so that you can update existing packages and add new
+ones.
 
-Additionally you should read various docs:
-
-(TODO complete this list and put in proper urls to the final document
-rather than the xml sources)
-
-Source:
-
--   NIXPKGS\_REPO/maintainers/\*
--   NIXPKGS\_REPO/doc/\*
-
-Eg doc/coding-conventions.xml
+-   [Nix
+    manual](http://hydra.nixos.org/job/nix/trunk/tarball/latest/download-by-type/doc/manual)
+-   [Nixpkgs
+    manual](http://hydra.nixos.org/job/nixpkgs/trunk/tarball/latest/download-by-type/doc/manual),
+    in particular [Coding
+    conventions](http://hydra.nixos.org/job/nixpkgs/trunk/tarball/latest/download-by-type/doc/manual#chap-conventions)
+-   [NixOS
+    manual](http://hydra.nixos.org/job/nixos/trunk/manual/latest/download)
 
 I have a patch
 --------------
