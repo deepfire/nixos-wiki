@@ -66,7 +66,7 @@ at the end of
 
 ### step 2/2: starting ssh automatically in the image and adding a ssh key to it
 
-    vi /etc/nixos/nixos/modules/installer/cd-dvd/system-tarball.nix
+    vi /etc/nixos/nixos/modules/installer/cd-dvd/system-tarball-pc.nix
 
 add:
 
