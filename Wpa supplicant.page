@@ -13,6 +13,12 @@ To enable wireless networking add the following attribute to your
 
     networking.enableWLAN = true;
 
+You should already have set `networking.hostName` and it might be
+mandatory for wireless networking to have this set. (Is this true?)
+
+It might also be a good idea to enable a firewall by setting
+`networking.firewall.enable = true;`. (Explain pros and cons.)
+
 Prerequisites
 -------------
 
