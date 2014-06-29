@@ -33,8 +33,6 @@ HOWTOs
 -   [How to install NixOS from a USB
     stick](//Installing NixOS from a USB stick)
 -   [How to install NixOS from Linux](//How to install NixOS from Linux)
--   [How to escape from dependency hell when compiling recent
-    packages](//Escape from dependency hell)
 -   [How to write patches using TopGit in a collaborative
     manner](//Nixpkgs and TopGit)
 -   [How to install Firefox with Java plugin](//Firefox)
