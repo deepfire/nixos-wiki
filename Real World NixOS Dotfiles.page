@@ -1,11 +1,11 @@
-Dotfiles
---------
+[[edit](/w/index.php?title=Real_World_NixOS_Dotfiles&action=edit&section=1 "Edit section: Dotfiles")] Dotfiles
+--------------------------------------------------------------------------------------------------------------
 
-### shelvy
+### [[edit](/w/index.php?title=Real_World_NixOS_Dotfiles&action=edit&section=2 "Edit section: shelvy")] shelvy
 
 [[1]](https://github.com/shlevy/dotfiles/tree/master/nixos) (Xmonad)
 
-### Sergey
+### [[edit](/w/index.php?title=Real_World_NixOS_Dotfiles&action=edit&section=3 "Edit section: Sergey")] Sergey
 
 -   [[2]](https://github.com/ierton/nixrc/blob/master/nixos-intel-ideapad.nix)
     Lenovo s10-3t netbook, Wicd, Xfce, few custom packages.
@@ -14,29 +14,29 @@ Dotfiles
 -   [[4]](https://github.com/ierton/nixrc/blob/master/nixos-homeserver.nix)
     Simple home server
 
-### Chaoflow
+### [[edit](/w/index.php?title=Real_World_NixOS_Dotfiles&action=edit&section=4 "Edit section: Chaoflow")] Chaoflow
 
 [[5]](https://github.com/chaoflow/nixos-configurations), has a good
 readme!
 
-### garbas
+### [[edit](/w/index.php?title=Real_World_NixOS_Dotfiles&action=edit&section=5 "Edit section: garbas")] garbas
 
 [[6]](https://github.com/garbas/nixos-configuration) lenovo x220, i3
 
-### goibhniu
+### [[edit](/w/index.php?title=Real_World_NixOS_Dotfiles&action=edit&section=6 "Edit section: goibhniu")] goibhniu
 
 [[7]](https://gitorious.org/goibhnix/) A collection of configs with
 shared components and an update script for end users
 
-### pSub
+### [[edit](/w/index.php?title=Real_World_NixOS_Dotfiles&action=edit&section=7 "Edit section: pSub")] pSub
 
--   [[8]](https://github.com/pSub/configs/tree/master/nixos/x220)
-    Configuration of my lenovo x220.
+-   [[8]](https://github.com/pSub/configs/tree/master/nixos/configuration.nix)
+    Configuration of my notebooks.
 -   [[9]](https://github.com/pSub/configs/tree/master/nixos/server)
     Configuration of my little vServer.
 
-Other stuff
------------
+[[edit](/w/index.php?title=Real_World_NixOS_Dotfiles&action=edit&section=8 "Edit section: Other stuff")] Other stuff
+--------------------------------------------------------------------------------------------------------------------
 
 [[10]](https://nixos.org/websvn/nix/configurations/trunk/) (some up to
 date, some outdated)
