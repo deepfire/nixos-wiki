@@ -1,0 +1,77 @@
+NixOS is a Linux distribution which uses the Nix package manager to
+manage all constituents of the system, which includes configuration
+files, services, environment variables, users accounts, and even the
+kernel. See [Nix Package Manager - Main
+Page](//Main Page Package Manager) to read about how to use this package
+manager and its benefits.
+
+[[edit](/w/index.php?title=NixOS_Main_Page&action=edit&section=1 "Edit section: About")] About
+==============================================================================================
+
+-   [NixOS
+    Overview](/w/index.php?title=NixOS:Overview&action=edit&redlink=1 "NixOS:Overview (page does not exist)")
+
+[[edit](/w/index.php?title=NixOS_Main_Page&action=edit&section=2 "Edit section: Installation")] Installation
+============================================================================================================
+
+See [Nix Manual:
+Installation](http://nixos.org/nixos/manual/#ch-installation) for
+installation instructions created by NixOS developers.
+
+The NixOS wiki has community-maintained installation guides and is a
+good place for installation instructions for specific platforms.
+
+[[edit](/w/index.php?title=NixOS_Main_Page&action=edit&section=3 "Edit section: On Physical Machine =")] On Physical Machine =
+------------------------------------------------------------------------------------------------------------------------------
+
+-   [Creating a Nix OS live CD](//Creating a Nix OS live CD) - Live CD
+    or USB boot stick
+-   [How to install NixOS from a USB
+    stick](//Installing NixOS from a USB stick)
+-   [How to install NixOS from Linux](//How to install NixOS from Linux)
+-   [Multiplatform NixOS](//Multiplatform NixOS) - (PC, QEMU ARM
+    Versatile, SheevaPlug, Fuloong Mini-PC, Raspberry Pi)
+
+[[edit](/w/index.php?title=NixOS_Main_Page&action=edit&section=4 "Edit section: On Virtual Machine")] On Virtual Machine
+------------------------------------------------------------------------------------------------------------------------
+
+-   [How to install NixOS on VirtualBox](//InstallingOnVirtualBox)
+-   [NixOS and Xen](//NixOS and Xen)
+-   [NixOS and OpenStack Compute](//NixOS and OpenStack Compute)
+-   [NixOS and libvirt](//NixOS and libvirt)
+-   [How to install NixOS as OpenVZ
+    guest](//Install NixOS as OpenVZ guest)
+
+[[edit](/w/index.php?title=NixOS_Main_Page&action=edit&section=5 "Edit section: On Hosting Provider")] On Hosting Provider
+--------------------------------------------------------------------------------------------------------------------------
+
+-   [Hosting providers & NixOS](//Hosting providers & NixOS)
+-   [How to install NixOS on Amazon EC2](//NixOS on Amazon EC2)
+-   [How to install Nix OS on a hetzner rootserver](//NixOS on Hetzner)
+-   [How to install NixOS on linode.com](//Install NixOS on Linode)
+-   [How to install NixOS on
+    Rackspace](//Install NixOS on Rackspace Cloud Servers)
+
+[[edit](/w/index.php?title=NixOS_Main_Page&action=edit&section=6 "Edit section: Configuration")] Configuration
+==============================================================================================================
+
+[[edit](/w/index.php?title=NixOS_Main_Page&action=edit&section=7 "Edit section: Basic Configuration")] Basic Configuration
+--------------------------------------------------------------------------------------------------------------------------
+
+-   [Basic
+    Configuration](/w/index.php?title=NixOS:Basic_Configuration&action=edit&redlink=1 "NixOS:Basic Configuration (page does not exist)")
+
+[[edit](/w/index.php?title=NixOS_Main_Page&action=edit&section=8 "Edit section: Advanced Configuration")] Advanced Configuration
+--------------------------------------------------------------------------------------------------------------------------------
+
+-   [Hardened NixOS (More Secure)](//Hardened NixOS)
+-   [Applying security updates without waiting for the hydra
+    queue](//Security Updates)
+
+[[edit](/w/index.php?title=NixOS_Main_Page&action=edit&section=9 "Edit section: Customizing Configurations")] Customizing Configurations
+----------------------------------------------------------------------------------------------------------------------------------------
+
+-   [Modules Overview](//NixOS:Modules)
+-   [Creating Modules](//NixOS:extend NixOS)
+-   [Modifying Modules](//NixOS Modifying Modules)
+
