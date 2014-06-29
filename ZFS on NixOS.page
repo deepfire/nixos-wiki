@@ -22,6 +22,12 @@ Known issues
     ZFS filesystems to be `legacy` and let NixOS mount them using
     systemd, otherwise some filesystems may fail to mount due to
     ordering issues
+-   As of 2013-03-04, all ZFS pools available to the system will be
+    forcibly imported during boot, regardless if you had imported them
+    before or not. You should be careful not to have any other system
+    accessing them at the same time, otherwise it will corrupt your
+    pools. Normally (for the common desktop user) the latter should not
+    be a problem.
 
 How to use it
 -------------
