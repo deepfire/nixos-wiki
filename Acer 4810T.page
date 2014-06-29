@@ -1,12 +1,12 @@
-Overview
-========
+[[edit](/w/index.php?title=Acer_4810T&action=edit&section=1 "Edit section: Overview")] Overview
+===============================================================================================
 
 -   CPU: Intel Core 2 Solo U3500 @ 1.40GHz (speeds: 0.8, 1.2 and
     1.4GHz), 3MB L2
 -   Screen: 1366x768 LED
 
-BIOS versions
-=============
+[[edit](/w/index.php?title=Acer_4810T&action=edit&section=2 "Edit section: BIOS versions")] BIOS versions
+=========================================================================================================
 
 -   1.10 - average ACPI temperature around 34°C, good GL playing
 -   1.20 - average ACPI temperature around 39°C, good GL playing
@@ -18,8 +18,8 @@ older come only with a windows flasher. I used a [freedos
 image](http://www.pcengines.ch/freedos.htm) stored in a USB flash memory
 to boot freedos and flash the BIOS.
 
-Drivers
-=======
+[[edit](/w/index.php?title=Acer_4810T&action=edit&section=3 "Edit section: Drivers")] Drivers
+=============================================================================================
 
 All provided in linux 2.6.32 kernels.
 
@@ -28,8 +28,8 @@ Technology Corp. Device 1063). Loading and unloading the ethernet card
 driver module (atl1c) helps getting a working link, although it will
 change from eth0 to eth1, eth2, or another interface name.
 
-lspci
------
+[[edit](/w/index.php?title=Acer_4810T&action=edit&section=4 "Edit section: lspci")] lspci
+-----------------------------------------------------------------------------------------
 
     00:00.0 Host bridge: Intel Corporation Mobile 4 Series Chipset Memory Controller Hub (rev 07)
     00:02.0 VGA compatible controller: Intel Corporation Mobile 4 Series Chipset Integrated Graphics Controller (rev 07)
@@ -54,8 +54,8 @@ lspci
     01:00.0 Ethernet controller: Attansic Technology Corp. Device 1063 (rev c0)
     02:00.0 Network controller: Intel Corporation Wireless WiFi Link 5100
 
-Configuration
-=============
+[[edit](/w/index.php?title=Acer_4810T&action=edit&section=5 "Edit section: Configuration")] Configuration
+=========================================================================================================
 
     {
      # Make te network WLAN card (wlan0) firmware available
@@ -105,11 +105,11 @@ Configuration
       };
     };
 
-X settings
-==========
+[[edit](/w/index.php?title=Acer_4810T&action=edit&section=6 "Edit section: X settings")] X settings
+===================================================================================================
 
-Backlight
----------
+[[edit](/w/index.php?title=Acer_4810T&action=edit&section=7 "Edit section: Backlight")] Backlight
+-------------------------------------------------------------------------------------------------
 
 Having disabled Kernel Mode Setting for the i915 kernel drm module
 (kernel parameter *nomodeset*), use *xrandr* to set:
@@ -120,8 +120,8 @@ Having disabled Kernel Mode Setting for the i915 kernel drm module
 If those steps make your mouse cursor not appear, switch to another VT,
 and then back to X, and it will come.
 
-Synaptics pad
--------------
+[[edit](/w/index.php?title=Acer_4810T&action=edit&section=8 "Edit section: Synaptics pad")] Synaptics pad
+---------------------------------------------------------------------------------------------------------
 
 I like the pad speed set by:
 
@@ -130,8 +130,8 @@ I like the pad speed set by:
 Install the *xf86-input-synaptics-1.2.0* for *synclient* to be in your
 PATH.
 
-Suspending and hibernating
-==========================
+[[edit](/w/index.php?title=Acer_4810T&action=edit&section=9 "Edit section: Suspending and hibernating")] Suspending and hibernating
+===================================================================================================================================
 
 Usual pm-utils work, with pm-suspend and pm-hibernate.
 
