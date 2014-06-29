@@ -72,8 +72,10 @@ Corresponding config settings:
 Problems
 ========
 
-There are some. See [Ubuntu
-thread](http://ubuntuforums.org/showthread.php?t=1737086)
+There are some. See
+
+-   [Ubuntu thread](http://ubuntuforums.org/showthread.php?t=1737086)
+-   [Kernel.org bug](https://bugzilla.kernel.org/show_bug.cgi?id=44161)
 
 ### BIOS problems
 
