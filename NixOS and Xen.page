@@ -13,8 +13,8 @@ managing and accessing the host hardware (as the Xen kernel itself has
 no disk or network drivers). The other, unprivileged domains are called
 DomU. NixOS can run both in Dom0 and DomU.
 
-Enabling Xen
-------------
+[[edit](/w/index.php?title=NixOS_and_Xen&action=edit&section=1 "Edit section: Enabling Xen")] Enabling Xen
+----------------------------------------------------------------------------------------------------------
 
 To enable the Xen hypervisor in a NixOS system, just enable the
 following option in `configuration.nix`:
@@ -28,8 +28,8 @@ amount of memory reserved for Dom0, e.g.
 
     virtualisation.xen.domain0MemorySize = 512;
 
-Creating NixOS guests
----------------------
+[[edit](/w/index.php?title=NixOS_and_Xen&action=edit&section=2 "Edit section: Creating NixOS guests")] Creating NixOS guests
+----------------------------------------------------------------------------------------------------------------------------
 
 You can create a paravirtualised NixOS guest (DomU) from Dom0 as
 follows. First, create a sufficiently large disk image to hold the root
@@ -103,8 +103,8 @@ You should see GRUB appear, which, after a few seconds, will boot NixOS.
 Eventually you should get a login prompt. (You can exit the Xen console
 by pressing Ctrl-]. You can reconnect by running `xm console domain`.)
 
-Managing domains
-----------------
+[[edit](/w/index.php?title=NixOS_and_Xen&action=edit&section=3 "Edit section: Managing domains")] Managing domains
+------------------------------------------------------------------------------------------------------------------
 
 The `xendomains` Upstart job automatically starts all domains defined in
 `/etc/xen/auto` at boot time. It also saves and restores all running
