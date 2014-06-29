@@ -1,0 +1,40 @@
+How to install NixOS from linux
+-------------------------------
+
+You already have a running linux and a functional grub on your primary
+partition and you don't want to waste a CD-R as you feel that you really
+don't need to?
+
+Right. We also assume that you have a "spare" partition where to install
+NixOS ready.
+
+to simplyfy:
+
+/dev/sda1  : your boot partition, containing already working grub
+/dev/sda2  : your linux root partition, containing your currently
+working OS /dev/sda3  : your spare partition to where you will install
+NixOS
+
+the\_iso  : the nixos livecd iso \~/some\_dir : directory where
+"the\_iso" is (loop) mounted /boot  : the boot directory, where grub is
+installed (/dev/sda1 and /dev/sda2 \*can\* be the same partition!)
+
+-   obtain the ISO "the\_iso"
+-   mount -o loop "the\_iso" "\~/some\_dir"
+-   (mount the /boot partition, containing your working grub)
+-   cp some\_dir/boot/bzImage /boot/nixos-livecd-bzImage
+-   cp some\_dir/boot/initrd /boot/nixos-livecd-initrd
+-   cp some\_dir/nix-store.squashfs /nix-store.squashfs
+-   edit /boot/grub/menu.lst (or equivalent)
+-   add these lines (look in "\~/some\_dir" for the exact init path):
+
+<!-- -->
+
+     title NixOS LiveCD
+     kernel /nixos-livecd-bzImage init=/nix/store/0bkyc0rk56amglvas0kfsbq3zwp47yam-system/init root=/dev/sda2 splash=verbose vga=0x317
+     initrd /nixos-livecd-initrd
+
+-   save
+-   umount /dev/sda1
+-   reboot and choose "NixOS LiveCD" from the grub list
+
