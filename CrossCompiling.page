@@ -70,5 +70,6 @@ Actual problems to be solved
     -   For uclibc, gcc 4.3.4 needed a patch on libmudflap running a the
         host CPP instead of the target, on "configure". [SOLVED]
     -   util-linux-ng fails detecting the lack of TLS support in uclibc.
-        [Bug reported]
+        [Bug
+        reported](http://marc.info/?l=util-linux-ng&m=125983442420782&w=2)
 
