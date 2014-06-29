@@ -14,17 +14,19 @@ Requirements
 ============
 
 My box had very minimal configuration. So I discovered that need to
-install some additional software to compile nix.
+install some additional software to compile nix. Some packages I have
+downloaded from ibm.com, but most from <http://www.perzl.org/aix/>
 
 AIX packages
 ------------
 
 <http://www-03.ibm.com/systems/power/software/aix/linux/toolbox/alpha.html>
 
-    gettext-0.10.40-8.aix5.2.ppc.rpm
+    #this requires for sed. I could not install latest gettext-0.17-1.aix5.1.ppc.rpm because it required to install too many others
+    rpm -i gettext-0.10.40-8.aix5.2.ppc.rpm 
 
-ready to go rpm
----------------
+perzl.org
+---------
 
 All packages below you can find on <http://www.perzl.org/aix/>
 
@@ -36,42 +38,30 @@ All packages below you can find on <http://www.perzl.org/aix/>
     libgcc-4.2.4-2.aix5.2.ppc.rpm
     libstdc++-4.2.4-2.aix5.2.ppc.rpm
     libstdc++-devel-4.2.4-2.aix5.2.ppc.rpm
-    `- info-4.6-1.aix5.1.ppc.rpm
+    info-4.6-1.aix5.1.ppc.rpm
+    sed-4.2.1-2.aix5.1.ppc.rpm
 
-To install I had to login as root and used command in the folder with
-all downloaded rpms
+To install I can use command in the folder with all rpms
 
     rpm -i *.rpm
-
-Next tools were compiled and installed separately, just because I did
-not want to destabilize box
-
-    coreutils
-    sed
 
 coreutils
 ---------
 
-You can find core utils here <http://www.gnu.org/software/coreutils/>. I
-had troubles to compile the latest version of core utils so I finally
-picked version 8.4. But you may have better luck to compile latest or
-you may just install ready to go rpm
+coreutils was compiled and installed separately, just because I had to
+upgrade too many packages to install rpm You can find core utils here
+<http://www.gnu.org/software/coreutils/>. I had troubles to compile the
+latest version of core utils so I finally picked version 8.4. But you
+may have better luck to compile latest or you may just install ready to
+go rpm
 
     rm -rf /opt/qib/app/coreutils-8.4
     ./configure --prefix=/opt/qib/app/coreutils-8.4
     gmake
     gmake install
 
-sed
----
-
-You can find sed here <http://directory.fsf.org/project/sed/>. I have
-compiled version 4.2
-
-    export PATH=/opt/qib/app/coreutils-8.4/bin:$PATH
-    ./configure --prefix=/opt/qib/app/sed-4.2/
-    make
-    make install
+If you noticed I have used /opt/qib/app/ folder to install my own
+packages. You can use your own location
 
 compilation of nix
 ==================
