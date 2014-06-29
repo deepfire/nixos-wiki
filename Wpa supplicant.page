@@ -37,21 +37,21 @@ Wirless networks
 ----------------
 
 Configuration of wireless networks is being done in
-`/etc/wpa_supplicant.conf`. This file is readable and writeable by root
+`/etc/wpa_supplicant.conf`. This file is readable and writable by root
 only so make sure to have root privileges before editing. Since this
 file contains plain passwords for wireless networks you shouldn't
 attempt to make this file readable by any other account than root.
 
-The file `wpa_supplicant.conf` contains a lot of configuration and
+The file `/etc/wpa_supplicant.conf` contains a lot of configuration and
 documentation already. However, these are sensible default values which
-should work in most cases. As of now don't thouch them unless something
+should work in most cases. As of now don't touch them unless something
 isn't working as expected or you know what you are doing.
 
 To the end of the file you can describe the wireless networks you want
-to connect to. In most cases you only need to specify a essid and a
-password. To add a wireless network callsed `mynetwork` with passphrase
-`mysecretpass` add the following contents to the end of the file
-`/etc/wpa_supplicant.conf`.
+to connect to. In most cases you only need to specify a *essid* and a
+*passphrase*. To add a wireless network called `mynetwork` with
+passphrase `mysecretpass` add the following contents to the end of the
+file `/etc/wpa_supplicant.conf`.
 
     network={
       ssid="mynetwork"
@@ -62,15 +62,24 @@ You now should reconfigure your system again and wpa\_supplicant should
 take care of automatically getting you connected as soon as you are in
 range for any of the networks specified in `/etc/wpa_supplicant.conf`.
 
+You don't need the human-readable passphrase stored in
+`/etc/wpa_supplicant.conf`:
+
+`wpa_passphrase 'mynetwork' 'mysecretpassphrase' | grep -v '#psk="' >> /etc/wpa_supplicant.conf`
+
+This will append to `/etc/wpa_supplicant.conf` something like this:
+
+    network={
+           ssid="mynetwork"
+           psk=d2b1d5f68ef2c2b04a89361f0722e65a1591de6d82b979d03fabf501c4356589
+    }
+
 ### Insecure wireless networks
 
 To connect to a wireless network named `insecureNetwork` which isn't
 secured by a passphrase use the following configuration.
 
-network={
-
+    network={
      ssid="insecureNetwork"
      key_mgmt=NONE
-
-}
-
+    }
