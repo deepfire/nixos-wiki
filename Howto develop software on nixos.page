@@ -253,3 +253,25 @@ main profile with many development tools, which may have conflicts.
 Also, we can use different versions of a library on the same system,
 selecting them by selecting a development environment.
 
+nix-shell
+---------
+
+An environment with clang:
+
+clang.nix::
+
+       let
+         pkgs = import <nixpkgs> {};
+         stdenv = pkgs.stdenv;
+       in rec {
+         clangEnv = stdenv.mkDerivation rec {
+           name = "clang-env";
+           version = "1.1.1.1";
+           src = ./.;
+           buildTools = [ pkgs.clang ];
+         };
+       }
+
+Then initialise the shell::
+
+       nix-shell test.nix -A clangEnv
