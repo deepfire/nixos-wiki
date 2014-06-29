@@ -1,0 +1,18 @@
+[[edit](/w/index.php?title=Printers&action=edit&section=1 "Edit section: Printing with CUPS using Gutenprint")] Printing with CUPS using Gutenprint
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+Install gutenprint and configure CUPS to use it as a driver:
+
+        services.printing = {
+          enable = true;
+          drivers = [ pkgs.gutenprint ];
+        };
+
+Look for the model of your printer: `cups-genppd.5.2 -M` and then
+generate the PPD for that model:
+
+    $ cups-genppd.5.2 -v escp2-p50 -p .
+
+Add a printer through the web interface and upload the generated PPD in
+the section where it asks which driver to use "Or Provide a PPD File:".
+
