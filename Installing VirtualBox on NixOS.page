@@ -1,0 +1,45 @@
+if you have a nix working nix os system but you feel the urge to use
+virtualbox to have several guests like .... other nix os machines for
+example, then this will help you.
+
+what needs to be in /etc/nixos/configuration.nix
+------------------------------------------------
+
+     boot.kernelModules = [
+       "cpufreq_powersave" "fuse"
+       # at least add this 3 modules there and don't delete the other entries!
+       "vboxdrv" "vboxnetadp" "vboxnetflt"
+     ];
+
+     boot.extraModulePackages = [
+       pkgs.linuxPackages.virtualbox
+     ];
+
+     environment.systemPackages = [
+       pkgs.linuxPackages.virtualbox
+     ];
+
+after editing your configuration.nix do
+---------------------------------------
+
+     nixos-rebuild switch
+
+if everything went well:
+
+     reboot
+
+after the reboot
+----------------
+
+type:
+
+     VirtualBox
+
+if you get this error message, something went wrong:
+
+     /dev/vboxdrv does not eist. Load the kernel module then try again.
+
+(i did not alter the message, likely to be a typo but who knows?)
+
+<https://svn.nixos.org/repos/nix/configurations/trunk/misc/nicolas.b.pierron/vinon.nix>
+
