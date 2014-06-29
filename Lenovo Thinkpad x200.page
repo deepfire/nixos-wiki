@@ -1,0 +1,34 @@
+Lenovo ThinkPad X200
+====================
+
+Overview
+--------
+
+  -------------------------------------------------------------------------
+  Component
+  Hardware
+  ------------------------------------ ------------------------------------
+  Graphics                             Wireless
+  Intel Mobile 4                       Intel 5100 AGN
+  -------------------------------------------------------------------------
+
+System Management Application Program Interface
+-----------------------------------------------
+
+On the ThinkPad X200 some system information is made available through
+the System Management Application Program Interface (SMAPI) instead of
+the Advanced Configuration and Power Interface (ACPI) or Advanced Power
+Management (APM). This mostly concernes more detailed battery and
+improved accellerometer information.
+
+For this to work you need to install the tp\_smapi package.
+
+    nix-env -i tp_smapi
+
+**Note:** This package is not available in official repositories yet.
+This notice will be removed as soon as it is.
+
+Then add tp\_smapi to boot.kernelModules in
+/etc/nixos/configuration.nix.
+
+    boot.kernelModules = [ ... "tp_smapi" ];
