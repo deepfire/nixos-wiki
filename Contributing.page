@@ -79,7 +79,6 @@ To find out which packages are effected by your change:
     #!/bin/sh
     set -e -x
 
-    export NIXOS=${NIXOS:-/etc/nixos/nixos}
     export NIXPKGS_ALL=${NIXPKGS_ALL:-/etc/nixos/nixpkgs}
 
     # evaluate all derivations found in all-packages.nix:
@@ -90,7 +89,7 @@ To find out which packages are effected by your change:
     # nix-instantiate --readonly-mode $NIXPKGS_ALL/pkgs/top-level/release.nix --show-trace
 
     # build a release tarball which contains the most important packages (?)
-    nix-build -A tarball $NIXOS/release.nix --show-trace
+    nix-build -A tarball $NIXPKGS_ALL/pkgs/top-leve/release.nix --show-trace
 
 TODO: explain what is done exactly
 
