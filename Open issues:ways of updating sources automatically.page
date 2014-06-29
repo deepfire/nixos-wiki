@@ -134,3 +134,7 @@ Status so far:
     ends up replacing the wrong things there. I need to find a way to
     improve that.
 
+Update: Version 3 should be pretty robust wrt. the version number it
+replaces. I am rather happy with it so far, having converted about 60
+derivations to use my system:-)
+
