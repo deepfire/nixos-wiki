@@ -48,9 +48,6 @@ HOWTOs
 -   [How to write patches using TopGit in a collaborative
     manner](//Nixpkgs and TopGit)
 
--   [How to install Skype on x86\_64
-    NixOS](/w/index.php?title=Skype_on_x86_64_NixOS&action=edit&redlink=1 "Skype on x86 64 NixOS (page does not exist)")
-
 -   [How to install Firefox with Java plugin](//Java in Firefox)
 
 -   [Encrypted root(home, swap) on NixOS](//Encrypted Root on NixOS)
