@@ -10,21 +10,19 @@ This page describes how you can create a module.
 Vocabulary
 ----------
 
--   [Declaration](/w/index.php?title=Declaration&action=edit&redlink=1 "Declaration (page does not exist)"):
-    All options which are used with the `mkOption` function are
-    declared. Declared options should at least have a `description`
-    attribute which contains a multiple-line text of describing the
-    effect of the option.
--   [Definition](/w/index.php?title=Definition&action=edit&redlink=1 "Definition (page does not exist)"):
+-   [Declaration](//NixOS:Declaration): All options which are used with
+    the `mkOption` function are declared. Declared options should at
+    least have a `description` attribute which contains a multiple-line
+    text of describing the effect of the option.
+-   [Definition](/w/index.php?title=NixOS:Definition&action=edit&redlink=1 "NixOS:Definition (page does not exist)"):
     All options which are set to plain values are considered as
     definitions. The plain value may vary depending on the expected type
     of the option.
 -   Use: All result of options which are used to compute values of other
     option are option usages.
--   [Properties](/w/index.php?title=Properties&action=edit&redlink=1 "Properties (page does not exist)"):
-    These are option definition modifiers. Properties may change the
-    influence of an option definition in the computation of an option
-    result.
+-   [Properties](//NixOS:Properties): These are option definition
+    modifiers. Properties may change the influence of an option
+    definition in the computation of an option result.
 
 To find all files which are defining or declaring an option, you may
 refer to the generated NixOS manual or to the `man` page of
