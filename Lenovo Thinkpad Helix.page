@@ -1,0 +1,29 @@
+Lenovo ThinkPad Helix
+=====================
+
+Overview
+--------
+
+  -------------------------------------------------------------------------
+  Component
+  Hardware
+  ------------------------------------ ------------------------------------
+  Graphics                             Wireless
+  Intel HD 4000                        Intel 6205 Advanced-N
+  -------------------------------------------------------------------------
+
+  :  Hardware support
+
+Preparing to boot nixos
+-----------------------
+
+In BIOS, disable Secure boot and enable legacy boot (non-UEFI).
+
+Tips & Tricks
+-------------
+
+### Disable speaker
+
+Add this to your /etc/nixos/configuration.nix.
+
+    boot.blacklistedKernelModules = [ "pcspkr" ];
