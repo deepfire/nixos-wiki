@@ -1,0 +1,81 @@
+what is this?
+-------------
+
+say you develop a program using the kdevelop IDE. the software you are
+developing uses cmake and qt. in that case you need also need in your
+environment:
+
+-   cmake
+-   qt-library
+-   make
+-   compiler
+-   doxygen
+
+unlike other linux or unix systems, on nixos, a normal environment does
+not have such tools included. that means if you type `make` in a normal
+shell you will get an error that there is no program called make.
+
+however on nixos you can install several different versions of a single
+library on the same system. and say you have to programs you are
+developing and both require the same library but with a different
+version you won't end up by maintaining your own librarys, say in
+'/home/user/qt-3.4.5' and '/home/user/qt-4.4.2' as the package
+management handles this for you.
+
+how to setup such an environment
+--------------------------------
+
+in `/etc/nixos/nixpkgs/pkgs/misc/my-env` there is a default.nix
+expression which can be used, by a normal user, to setup such an
+environment. just open the mentioned 'default.nix' file with and text
+editor and follow the instructions.
+
+### a simple example \~/.nixpkgs/config.nix
+
+this file contains the user configuration for one or more custom
+environments. let's create it:
+
+     $ mkdir ~/.nixpkgs
+
+ensure that the config.nix contains something like:
+
+     $ cat config.nix
+     {
+       packageOverrides = pkgs : with pkgs; {
+         sdlEnv = pkgs.myEnvFun {
+             name = "sdl";
+             buildInputs = [ stdenv SDL SDL_image SDL_ttf SDL_gfx cmake SDL_net  pkgconfig];
+         };
+       };
+     }
+
+by following the installation procedure of our new custom environment,
+also found in /etc/nixos/nixpkgs/pkgs/misc/my-env/default.nix, one can
+extend his standard environment by the desired new environment.
+
+     $ nix-env -i env-sdl
+
+using this new environment:
+
+     $ load-sdl-env
+
+now pkgconfig should be in your environment ... but here it does not
+work, so what is going wrong?
+
+### how to use that environment
+
+after the new environment has loaded you can use the tools as if you
+were on ubuntu or debian linux where all the tools are available
+throughout the whole system once they have been installed. note that on
+other shells you won't have these tools, so you also have to change the
+environment if you want them to have the tools as well.
+
+### code completion in kdevelop
+
+kdevelop has code completion but it requires the source of the used
+libraries of course. on nixos these libraries however reside in the
+/nix/store and are therefore more or less very strange compared to other
+distributions.
+
+**TODO find a nice way to deal with this problem.**
+
