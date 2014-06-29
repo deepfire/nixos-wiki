@@ -37,15 +37,6 @@ Gives user hydra all rights to the database:
 
      $ echo "GRANT ALL ON DATABASE hydra TO hydra;" | sudo -u postgres psql hydra
 
-Initialize the database:
-
-     $ cat $HOME/.nix-profile/share/hydra/sql/hydra-postgresql.sql | psql -U hydra -W hydra
-
-Add user root to hydra and make admin:
-
-     $ echo "INSERT INTO Users(userName, emailAddress, password) VALUES ('root', 'some@email.com', '$(echo -n foobar | sha1sum | cut -c1-40)');" | psql -U hydra -W hydra 
-     $ echo "INSERT INTO UserRoles(userName, role) values('root', 'admin');" | psql -U hydra -W hydra
-
 Create .pgpass with following contents:
 
      localhost:*:*:hydra:yourpassword
@@ -53,3 +44,12 @@ Create .pgpass with following contents:
 Make sure permissions are set correctly
 
      $ chmod 0600 $HOME/.pgpass
+
+Initialize the database:
+
+     $ cat $HOME/.nix-profile/share/hydra/sql/hydra-postgresql.sql | psql -U hydra hydra
+
+Add user root to hydra and make admin:
+
+     $ echo "INSERT INTO Users(userName, emailAddress, password) VALUES ('root', 'some@email.com', '$(echo -n foobar | sha1sum | cut -c1-40)');" | psql -U hydra hydra 
+     $ echo "INSERT INTO UserRoles(userName, role) values('root', 'admin');" | psql -U hydra hydra
