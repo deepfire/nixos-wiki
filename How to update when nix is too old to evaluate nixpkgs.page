@@ -4,14 +4,14 @@ reference packages from NixPkgs. For example, the current NixPkgs uses
 features of Nix 1.6, but we may only have Nix 1.5. To resolve this
 situation, we must acquire a newer version of Nix.
 
-### Upgrading Nix
+### [[edit](/w/index.php?title=How_to_update_when_nix_is_too_old_to_evaluate_nixpkgs&action=edit&section=1 "Edit section: Upgrading Nix")] Upgrading Nix
 
 To upgrade Nix, we must obtain the newer version's binaries. There are
 two easy ways to do this, both of which fetch the binaries directly from
 the Nix project's build server. This method doesn't require evaluating
 NixPkgs, so it works great for upgrading the Nix program, itself.
 
-#### Installing via Browser
+#### [[edit](/w/index.php?title=How_to_update_when_nix_is_too_old_to_evaluate_nixpkgs&action=edit&section=2 "Edit section: Installing via Browser")] Installing via Browser
 
 If we have a browser installed on the target platform, we can open the
 [Nix -
@@ -22,16 +22,23 @@ which should be set up to be handled by the `nix-install-package`
 program. Note: Substitute the platform name if your platform is not
 x86\_64.
 
-#### Installing via Command Line
+#### [[edit](/w/index.php?title=How_to_update_when_nix_is_too_old_to_evaluate_nixpkgs&action=edit&section=3 "Edit section: Installing via Command Line")] Installing via Command Line
 
 If the platform doesn't have a browser installed, which is a common case
-for servers, we can directly use the `nix-install-package` program. Use
-the following command to install the latest version of the Nix program
-directly from the Nix project's build server.
+for servers, we can directly use the `nix-install-package` program.
 
-     $ nix-install-package --non-interactive --url http://hydra.nixos.org/job/nixos/trunk-combined/nixpkgs.nix.x86_64-linux/latest-finished
+First, we need to find the URL of the latest binaries. To do that, we
+must open the [Nix -
+Latest](http://hydra.nixos.org/job/nixos/trunk-combined/nixpkgs.nix.x86_64-linux/latest-finished)
+page, then copy the URL of the "One-click Install" link.
 
-##### Trusted Binary Caches
+Using the URL we just obtained, paste it into the following command to
+install the latest version of the Nix program directly from the Nix
+project's build server.
+
+     $ nix-install-package --non-interactive --url $NIX_LATEST_URL
+
+##### [[edit](/w/index.php?title=How_to_update_when_nix_is_too_old_to_evaluate_nixpkgs&action=edit&section=4 "Edit section: Trusted Binary Caches")] Trusted Binary Caches
 
 The recommended method for upgrading Nix is by using the
 `nix-install-package` program. This program uses the "nix.conf" file to
