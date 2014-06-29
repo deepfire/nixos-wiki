@@ -55,3 +55,15 @@ You now should reconfigure your system again and wpa\_supplicant should
 take care of automatically getting you connected as soon as you are in
 range for any of the networks specified in `/etc/wpa_supplicant.conf`.
 
+### Insecure wireless networks
+
+To connect to a wireless network named `insecureNetwork` which isn't
+secured by a passphrase use the following configuration.
+
+network={
+
+     ssid="insecureNetwork"
+     key_mgmt=NONE
+
+}
+
