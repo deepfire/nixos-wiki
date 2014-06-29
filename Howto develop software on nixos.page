@@ -25,7 +25,7 @@ contains all the tools needed!**
 newly installed environments this means you have to type:
 **load-env-sdl** instead of load-sdl-env
 
-there are two ways archiving this:
+there are two ways achiving this:
 
 -   AAA with support of the package manager
 -   BBB where things have to be put together manually
