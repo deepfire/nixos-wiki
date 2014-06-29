@@ -1,14 +1,19 @@
 I wanted to use my digital TV tuner in form of a USB stick. Some of the
 steps I had to go through:
 
+I wanted to use my digital TV tuner in form of a USB stick on my NixOS
+system. Below are some of the steps I had to go through:
+
 ### Find the hardware
 
-`$ lsusb `
-
+    $ lsusb
+    [..]
     Bus 002 Device 003: ID 2040:7060 Hauppauge Nova-T Stick 2
 
-However, `$ dmesg ` said:
+However, dmesg says:
 
+    $ dmesg
+    [..]
     [54625.430024] usb 2-2: new high speed USB device using ehci_hcd and address 6
     [54625.545573] usb 2-2: New USB device found, idVendor=2040, idProduct=7060
     [54625.545577] usb 2-2: New USB device strings: Mfr=1, Product=2, SerialNumber=3
@@ -16,8 +21,71 @@ However, `$ dmesg ` said:
     [54625.545581] usb 2-2: Manufacturer: Hauppauge
     [54625.545583] usb 2-2: SerialNumber: 4028664348
     [54625.546073] dvb-usb: found a 'Hauppauge Nova-T Stick' in cold state, will try to load a firmware
-    [54625.562868] dvb-usb: did not find the firmware file.
-    (dvb-usb-dib0700-1.20.fw) Please see linux/Documentation/dvb/ for more details on firmware-problems. (-2)
+    [54625.562868] dvb-usb: did not find the firmware file. (dvb-usb-dib0700-1.20.fw) Please see linux/Documentation/dvb/ for more details on firmware-problems. (-2)
+                                                             ^^^^^^^^^^^^^^^^^^^^^^^
 
-...todo
+### Install the firmware driver
 
+Find your firmware driver, mentioned in the dmeg output above, here:
+<http://www.linuxtv.org/downloads/firmware/>
+
+In your configuration.nix, add:
+
+      hardware.firmware = [ "/firmware" ];
+
+next as root:
+
+    $ mkdir /firmware
+    $ cd /firmware
+    $ wget http://linuxtv.org/downloads/firmware/dvb-usb-dib0700-1.20.fw
+
+and
+
+    $ nixos-rebuild switch
+
+then replug the USB stick and:
+
+    $ dmesg
+    [..]
+    [49344.478059] dvb-usb: found a 'Hauppauge Nova-T Stick' in cold state, will try to load a firmware
+    [49344.539358] dvb-usb: downloading firmware from file 'dvb-usb-dib0700-1.20.fw'
+    [49345.336764] dib0700: firmware started successfully.
+    [..]
+    $ ls /dev/dvb
+    adapter0
+
+good :-)
+
+### Find the channels
+
+Install the dvb-apps:
+
+    $ nix-env -i dvb-apps
+
+and use the scan tool, from the dvb-apps package, like this:
+
+    $ scan /nix/store/j6akfv58g5077pb4h275l8rrmsnrdwz3-dvb-apps-7f68f9c8d311/share/dvb/dvb-t/de-Berlin > ~/my_channels.conf
+
+    scanning [..]
+    using '/dev/dvb/adapter0/frontend0' and '/dev/dvb/adapter0/demux0'
+    initial transponder 506000000 0 2 9 1 1 2 0
+    [..]
+    >>> tune to: 506000000:INVERSION_AUTO:BANDWIDTH_8_MHZ:FEC_2_3:FEC_AUTO:QAM_16:TRANSMISSION_MODE_8K:GUARD_INTERVAL_1_8:HIERARCHY_NONE
+    WARNING: filter timeout pid 0x0011
+    WARNING: filter timeout pid 0x0000
+    WARNING: filter timeout pid 0x0010
+    [..]
+    0x0000 0x000b: pmt_pid 0x044c ARD -- rbb Brandenburg (running)
+    0x0000 0x000c: pmt_pid 0x04b0 ARD -- rbb Berlin (running)
+    0x0000 0x000d: pmt_pid 0x0514 ARD -- Phoenix (running)
+    0x0000 0x000e: pmt_pid 0x0578 ARD -- Das Erste (running)
+    0x0000 0x000f: pmt_pid 0x05dc ARD -- EinsExtra (running)
+    [..]
+
+Note: there are other scan locations to pick from to be found under your
+/nix/store/..-dvb-apps-version/share/dvb/dvb-t/..
+
+### Finally watch
+
+    $ nix-env -i vlc
+    $ vlc ~/my_channels.conf
