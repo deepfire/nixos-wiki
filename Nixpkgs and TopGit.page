@@ -1,5 +1,5 @@
-What is TopGit about ?
-----------------------
+[[edit](/w/index.php?title=Nixpkgs_and_TopGit&action=edit&section=1 "Edit section: What is TopGit about ?")] What is TopGit about ?
+-----------------------------------------------------------------------------------------------------------------------------------
 
 TopGit is used to manage a set of patches on top of upstream branches.
 Those patches are usually referred to as "topics" because each branch is
@@ -23,8 +23,8 @@ upstream. (On which branches does this topc depend upon) .topmsg will be
 end up being the commit message when exporting the topic and feeding it
 upstream. Its good practise starting all TopGit branches with t/ or tg/.
 
-step by step example (without TopGit)
--------------------------------------
+[[edit](/w/index.php?title=Nixpkgs_and_TopGit&action=edit&section=2 "Edit section: step by step example (without TopGit)")] step by step example (without TopGit)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Usually you follow upstream. Eg ` `
 
@@ -48,8 +48,8 @@ merging trunk into MY\_BRANCH). `  `
      X -  X - A   - B   -   C   -    D -  [master]
            ` H1 - H2 `*  - H3 ` * -  [MY_BRANCH]
 
-step by step example (with TopGit)
-----------------------------------
+[[edit](/w/index.php?title=Nixpkgs_and_TopGit&action=edit&section=3 "Edit section: step by step example (with TopGit)")] step by step example (with TopGit)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Simple speaking: TopGit automates this task for you:
 
@@ -80,8 +80,8 @@ perquisites: install git and gitAndTools.topGit
      # export topic(s) to patch seriees:
      tg export --quilt DIRECTORY
 
-trees of topics
----------------
+[[edit](/w/index.php?title=Nixpkgs_and_TopGit&action=edit&section=4 "Edit section: trees of topics")] trees of topics
+---------------------------------------------------------------------------------------------------------------------
 
 Of course if you would only track a simple topic you would not start
 using TopGit. topics can depend on others:
@@ -109,8 +109,8 @@ You'd use tgs summary --graphviz feature to create this graph: ` `
 Using tg depend add BRANHCH\_NAME you can make a topic depend on
 multiple upstream branches or other topics.
 
-TopGit internals
-----------------
+[[edit](/w/index.php?title=Nixpkgs_and_TopGit&action=edit&section=5 "Edit section: TopGit internals")] TopGit internals
+-----------------------------------------------------------------------------------------------------------------------
 
 Each topic branch existst of two branches: a merge base tracking
 dependencies and the topic branch. When running tg update TopGit first
@@ -119,8 +119,8 @@ into this base. Because each topic branch has a base and because each
 topic may have multiple dependencies its hard to undo an operation. So
 you understand my warning now :)
 
-The collaborative part
-----------------------
+[[edit](/w/index.php?title=Nixpkgs_and_TopGit&action=edit&section=6 "Edit section: The collaborative part")] The collaborative part
+-----------------------------------------------------------------------------------------------------------------------------------
 
 ` `
 
@@ -143,8 +143,8 @@ even if there are no conflicts. I think git folks just live with it.
 They fix the failure and do a new commit. Commits will be squashed when
 exporting TopGit branches anyway.
 
-You should know
----------------
+[[edit](/w/index.php?title=Nixpkgs_and_TopGit&action=edit&section=7 "Edit section: You should know")] You should know
+---------------------------------------------------------------------------------------------------------------------
 
 If different users work on a topic the information will be lost who did
 what because one branch will be collapsed. Best we can do is adding to
@@ -158,8 +158,8 @@ commit too early can be risky. (I hope that communication is fine that
 contributers talk before feeding such a topic upstream - So this is not
 a problem)
 
-scripts
--------
+[[edit](/w/index.php?title=Nixpkgs_and_TopGit&action=edit&section=8 "Edit section: scripts")] scripts
+-----------------------------------------------------------------------------------------------------
 
 I use these bash functions to speed exporting a topic branch up and
 creating new ones: ` `
@@ -185,8 +185,8 @@ creating new ones: ` `
              tg export "$@" $exported
      }
 
-Questions
----------
+[[edit](/w/index.php?title=Nixpkgs_and_TopGit&action=edit&section=9 "Edit section: Questions")] Questions
+---------------------------------------------------------------------------------------------------------
 
 contact MarcWeber on irc and ask him to improve this article!
 
