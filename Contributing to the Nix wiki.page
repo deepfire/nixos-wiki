@@ -9,11 +9,16 @@ This is a list containing random notes right now. Add items yourself
 here.
 
 -   haskell on Nix howto. (Marc Weber is going to write this?)
+
 -   vim and .nix files. (Marc Weber is going to write this?)
+
 -   contributor guide and workflows?
+
 -   python on Nix (Marc Weber is going to contribute writing down how it
     is and which problems are there)
+
 -   ruby on Nix (Marc Weber is going to write about what he has done)
+
 -   buildfarm stuff
 
 <!-- -->
@@ -29,20 +34,33 @@ here.
      where to get patches / source from.
      special hints about special make systems such as cmake whatsoever
 
-    * Howto X?
+-   Howto X?
+
+<!-- -->
+
      Which package managers are supported and which features of them ? eg kde, gnome etc
 
-     * Nix and encryption
+-   Nix and encryption
 
-     * Howto add completion to bash and zsh?
-     * Howto work with nix - common practises
+-   Howto add completion to bash and zsh?
+
+-   Howto work with nix - common practises
+
+<!-- -->
+
        this should answer:
        how to find the package I'm looking for (Marc Weber is going to contribute)
 
-     * howto use git to track nix ?
+-   howto use git to track nix ?
+
+<!-- -->
+
        I'm a fan of git :)
        
-     * ...
+
+-   ...
+
+-   list of advanced buliders
 
 random notes
 ------------
