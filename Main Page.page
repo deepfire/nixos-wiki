@@ -24,6 +24,8 @@ HOWTOs
 -   [How to remote control a vm within a build
     job](//Remote controlling a vm)
 
+-   [How to install NixOS on linode.com](//Install NixOS on Linode)
+
 Development
 -----------
 
