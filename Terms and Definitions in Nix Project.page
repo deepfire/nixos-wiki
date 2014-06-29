@@ -1,0 +1,27 @@
+If you come across a term or word you don't know, add it here.
+
+  ---------------------------------------------------------------------------
+  Term
+  Context
+  Meaning
+  Related Links
+  ------------------ ------------------ ------------------ ------------------
+  `rec { }`
+  In Nix
+  expressions.
+  The `{ }` block
+  contains "mutually
+  recursive"
+  attributes, which
+  means they can
+  refer to each
+  other.
+  [Composing the
+  Hello
+  Package](http://ni
+  xos.org/nix/manual
+  /#ex-hello-composi
+  tion)
+  ---------------------------------------------------------------------------
+
+
