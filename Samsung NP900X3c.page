@@ -85,8 +85,10 @@ Acpi thinks lid is always open
 
 ### Multimedia keys
 
-rfkill/fanless don't work volume up/down don't work brightness up/down
-work, but release is broken touchpad disable works
+-   rfkill/fanless don't work
+-   volume up/down don't work
+-   brightness up/down work, but release is broken
+-   touchpad disable works
 
 Related discussion on
 [jablonskis.org](http://jablonskis.org/2012/linux-and-samsung-series-laptop-9-fn-keys/)
