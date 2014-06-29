@@ -207,8 +207,7 @@ normal devices.
 
 [![Kmix-pulseaudio-with-jack.png](/w/images/f/f4/Kmix-pulseaudio-with-jack.png)](//File:Kmix-pulseaudio-with-jack.png)
 
-Troubleshooting JACK and PulseAudio
------------------------------------
+#### Troubleshooting JACK and PulseAudio
 
     $ pactl load-module module-jack-sink channels=2
     Failure: Module initalization failed
