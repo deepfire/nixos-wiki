@@ -100,12 +100,8 @@ Related discussion on
 
 ### System hangups
 
-I've expected runtime system freezes. Currently the only way I know to
-bypass it - disable i915 video driver and switch to vesa.
+I expected runtime system freezes on Linux kernels prior to 3.9.
+Probably, that was because of bugs in intel video drivers. In 3.9 they
+are gone so add following lines to the config:
 
-      boot.blacklistedKernelModules = [ "i915" ];
-      services.xserver = { videoDrivers = [ "vesa" ]; };
-
-Something similar is described in [this mail
-thread](http://comments.gmane.org/gmane.linux.kernel/1425376)
-
+       boot.kernelPackages = pkgs.linuxPackages_3_9;
