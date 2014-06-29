@@ -4,14 +4,16 @@ Tramp
 Tramp needs to call \`ls\` and \`id\` but it will not find them on a
 NixOS machine without additional configuration because they are not in
 the usual places. To fix this you can add the following to your
-\~/.emacs (require 'tramp) (add-to-list 'tramp-remote-path
-"/var/run/current-system/sw/bin")
+\~/.emacs
 
-You can then edit local files as root e.g. C-x C-f
-/su::/etc/nixos/configuration.nix
+    (require 'tramp) 
+    (add-to-list 'tramp-remote-path "/var/run/current-system/sw/bin")
 
-Nix mode
---------
+You can then edit local files as root e.g.
 
-(load-library "nix-mode")
+    C-x C-f /su::/etc/nixos/configuration.nix
 
+Enable Nix mode
+---------------
+
+    (load-library "nix-mode")
