@@ -5,6 +5,14 @@ instance:
 
     services.postgresql.enable = true;
     services.postgresql.package = pkgs.postgresql92;
+    services.postgresql.authentication = pkgs.lib.mkOverride 10 ''
+     local mediawiki all ident map=mwusers
+     local all all ident
+    '';
+    services.postgresql.identMap = ''
+      mwusers root mediawiki
+      mwusers wwwrun mediawiki
+    ';
     services.httpd.enable = true;
     services.httpd.adminAddr = "admin@example.org";
     services.httpd.extraSubservices =
@@ -47,7 +55,14 @@ this example features two vhost entries:
 
       services.postgresql.enable = true;
       services.postgresql.package = pkgs.postgresql92;
-
+      services.postgresql.authentication = pkgs.lib.mkOverride 10 ''
+       local mediawiki all ident map=mwusers
+       local all all ident
+      '';
+      services.postgresql.identMap = ''
+        mwusers root mediawiki
+        mwusers wwwrun mediawiki
+      ';
       services.httpd = {
         enable = true;
         logPerVirtualHost = true;
