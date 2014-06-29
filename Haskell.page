@@ -193,6 +193,27 @@ use one or the other.
 
 [To be written.]
 
+Cabal can depend on a number of binaries at run time, which are not
+installed by default when cabal is, including **ar**, **happy**,
+**alex**, and **haddock**. In particular **ar** the library achiever is
+needed for the **cabal install** command to work properly. **ar** can be
+found in the standard environment and there are few methods to get
+**cabal install** working properly with it.
+
+-   Install the standard environment into the profile that contains
+    cabal. This is probably prefered for a profile whose main purpose is
+    for cabal usage.
+
+<!-- -->
+
+     nix-env -f "<nixpkgs>" -iA pkgs.stdenv
+
+-   Alternatively you can use a [custom
+    environment](//Howto develop software on nixos#BBB manual cloning of an environment not using the package manager)
+    for cabal can be created an environment that loads the **ar**
+    through the standard environment and load it with
+    **load-env-\$(env-name)**.
+
 #### Keeping Haskell packages up-to-date
 
 [To be written.]
