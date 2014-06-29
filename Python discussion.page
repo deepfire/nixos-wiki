@@ -1,3 +1,10 @@
+python basics
+-------------
+
+-   **\*.pth** files
+-   PYTHONPATH
+-   PYTHONUSERBASE
+
 general python integration into nixos
 -------------------------------------
 
@@ -7,10 +14,8 @@ general python integration into nixos
 -   pyLibA (python wrapper for a library) is used by pyLibB: nix
     expressions must be able to use either
 
-### environment variables
+### proposed nixos environment variables
 
--   PYTHONPATH
--   PYTHONUSERBASE
 -   NIX\_PYTHON\_SITES
 
 qknight's problems
