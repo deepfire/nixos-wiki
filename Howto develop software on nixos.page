@@ -190,26 +190,25 @@ Note: Once these paths are set correctly (caused by the
 `sdl-config` or `pkgconfig`. This helps to get libraries working which
 don't use these kind of tools to make them accessible.
 
-##### Code Completion in KDevelop
+##### Code Completion in KDevelop IDE
 
-KDevelop has code completion but it requires the source of the used
-libraries of course. On NixOS these libraries however reside in
-`/nix/store` and are therefore more or less very strange compared to
-other distributions.
+The KDevelop IDE has a code completion feature, but it will only work if
+it has access to the source code of referenced libraries. This is a
+problem on NixOS, because these libraries exist in the Nix store, which
+is unique among Linux distributions. To make the correct libraries
+visible to KDevelop when working on a project, launch it from a shell
+which was created from the `myEnvFun` tool. The following commands can
+give you an idea.
 
-To have full code completion in kdevelop you need this procedure:
+     rm -Rf myCustomProject/build/*
+     load-env-sdl #(where the project would use cmake)
 
-1.  rm -Rf myCustomProject/build/\*
-2.  load-env-sdl (where the project would use cmake)
-3.  start 'kdevelop' from that shell
-4.  import the CMakeLists.txt of the project
-5.  kdevelop asks where to build the project -\> chose the default
-    myCustomProject/build
-6.  build the selection
-7.  afterwards there should be code completion for the whole project
-
-What might not work is that you can open several projects in this
-kdevelop session. But that should be a minor issue i guess.
+Now, start `kdevelop` from this shell, which is the development
+environment for SDL. Import the `CMakeLists.txt` of the project. When
+KDevelop asks where to build the project, choose the default option,
+`myCustomProject/build`. After building the selection, code completion
+should work for the whole project. What might not work, however, is
+opening several projects in the same KDevelop session.
 
 Sample Development Environments
 -------------------------------
