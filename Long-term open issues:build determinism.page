@@ -1,0 +1,16 @@
+What are the builder-accessible pieces of information that can lead to
+repeated build producing bit-for-bit different outputs?
+
+### System time
+
+#### Ways to fix the problem
+
+##### LD\_PRELOAD
+
+Works only for dynamically-linked programs
+
+##### ptrace
+
+Slower?
+
+### System CPU model/features
