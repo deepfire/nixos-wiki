@@ -75,7 +75,8 @@ Problems
 There are some. See
 
 -   [Ubuntu thread](http://ubuntuforums.org/showthread.php?t=1737086)
--   [Kernel.org bug](https://bugzilla.kernel.org/show_bug.cgi?id=44161)
+-   [Kernel.org bug](http://bugzilla.kernel.org/show_bug.cgi?id=44161)
+-   [jablonskis.org](http://jablonskis.org/2012/linux-and-samsung-series-laptop-9-fn-keys/)
 
 ### BIOS problems
 
@@ -85,8 +86,6 @@ changing boot priority didn't help.
 ### Battery
 
 Battery charging/discharging indicator doesn't work good.
-
-Related [kernel bug](https://bugzilla.kernel.org/show_bug.cgi?id=44161)
 
 ### Lid
 
