@@ -101,6 +101,9 @@ version](http://article.gmane.org/gmane.linux.distributions.nixos/5575/match=aut
 [mailinglist v2, based on Ludo's
 ideas?](http://thread.gmane.org/gmane.linux.distributions.nixos/5594/focus=5597)
 
+[mailinglist
+v3](http://thread.gmane.org/gmane.linux.distributions.nixos/5632)
+
 Marc Weber's comments: None. I haven't had time to look into it. v2 also
 uses evaluation so it also suffers from the configuration issue.
 
