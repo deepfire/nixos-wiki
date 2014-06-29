@@ -1,10 +1,10 @@
-Overview
-========
+[[edit](/w/index.php?title=Samsung_NP900X3c&action=edit&section=1 "Edit section: Overview")] Overview
+=====================================================================================================
 
 Most of the features seem to be working with Linux \>= 3.9
 
-Hardware
---------
+[[edit](/w/index.php?title=Samsung_NP900X3c&action=edit&section=2 "Edit section: Hardware")] Hardware
+-----------------------------------------------------------------------------------------------------
 
 -   CPU Intel(R) Core(TM) i5-3317U CPU @ 1.70GHz
 -   RAM 4 GB
@@ -12,14 +12,14 @@ Hardware
 -   Screen 13.3-Inch Screen
 -   Graphics Intel HD Graphics 4000, Ivy bridge
 
-Configuration
-=============
+[[edit](/w/index.php?title=Samsung_NP900X3c&action=edit&section=3 "Edit section: Configuration")] Configuration
+===============================================================================================================
 
 Full configurations is in my [nixpkgs
 branch](https://raw.github.com/grwlf/nixpkgs/local/machines/samsung-np900x3c-v2.nix).
 Note, it requires several local packages.
 
-### Touchpad
+### [[edit](/w/index.php?title=Samsung_NP900X3c&action=edit&section=4 "Edit section: Touchpad")] Touchpad
 
 Touchpad is detected as 'ETPS/2 Elantech Touchpad'. xf86-input-synaptics
 handles it well. Corresponding config lines:
@@ -49,7 +49,7 @@ handles it well. Corresponding config lines:
           };
       };
 
-### Wireless
+### [[edit](/w/index.php?title=Samsung_NP900X3c&action=edit&section=5 "Edit section: Wireless")] Wireless
 
 System requires iwlwifi-6000g2b-6.ucode in order to work. I've extracted
 the file from some debian package and placed it into /root/firmware.
@@ -57,8 +57,8 @@ Corresponding config settings:
 
       hardware.firmware = [ "/root/firmware" ];
 
-Problems
-========
+[[edit](/w/index.php?title=Samsung_NP900X3c&action=edit&section=6 "Edit section: Problems")] Problems
+=====================================================================================================
 
 There are some. See
 
@@ -66,20 +66,20 @@ There are some. See
 -   [Kernel.org bug](http://bugzilla.kernel.org/show_bug.cgi?id=44161)
 -   [jablonskis.org](http://jablonskis.org/2012/linux-and-samsung-series-laptop-9-fn-keys/)
 
-### BIOS problems
+### [[edit](/w/index.php?title=Samsung_NP900X3c&action=edit&section=7 "Edit section: BIOS problems")] BIOS problems
 
 I had to disable SSD boot completely in order to boot from USB. Just
 changing boot priority didn't help.
 
 Fix: Update BIOS up to recent version
 
-### Battery
+### [[edit](/w/index.php?title=Samsung_NP900X3c&action=edit&section=8 "Edit section: Battery")] Battery
 
 Battery charging/discharging indicator doesn't work good.
 
 Fix: Update BIOS up to recent version
 
-### Lid
+### [[edit](/w/index.php?title=Samsung_NP900X3c&action=edit&section=9 "Edit section: Lid")] Lid
 
 Acpi thinks lid is always open
 
@@ -89,7 +89,7 @@ Acpi thinks lid is always open
 Related [Kernel bug
 \#44161](https://bugzilla.kernel.org/show_bug.cgi?id=44161)
 
-### Multimedia keys
+### [[edit](/w/index.php?title=Samsung_NP900X3c&action=edit&section=10 "Edit section: Multimedia keys")] Multimedia keys
 
 -   rfkill/fanless don't work
 -   volume up/down don't work
@@ -99,11 +99,10 @@ Related [Kernel bug
 Related discussion on
 [jablonskis.org](http://jablonskis.org/2012/linux-and-samsung-series-laptop-9-fn-keys/)
 
-### System hangups
+### [[edit](/w/index.php?title=Samsung_NP900X3c&action=edit&section=11 "Edit section: System hangups")] System hangups
 
 I expected runtime system freezes on Linux kernels prior to 3.9.
 Probably, that was because of bugs in intel video drivers. In 3.9 they
-are gone so add following lines to the config if current kernel version
-is below 3.9:
+are gone:
 
-       boot.kernelPackages = pkgs.linuxPackages_3_9;
+       boot.kernelPackages = pkgs.linuxPackages_3_12;
