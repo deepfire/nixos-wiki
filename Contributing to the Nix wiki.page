@@ -70,3 +70,11 @@ should be used everywhere. What about links? Should they all start with
 an upper case letter? Anyway. Keep this short because everyone is
 supposed to read it!
 
+Do we want subsections for different projects?
+
+Eg [NixOS:Modules](//NixOS:Modules) using a colon (":") to separate the
+project and the page contents? Or does Mediawiki allow [NixOS/Modules,
+Don't create this
+page](/w/index.php?title=NixOS/Modules&action=edit&redlink=1 "NixOS/Modules (page does not exist)")
+as well using a slash?
+
