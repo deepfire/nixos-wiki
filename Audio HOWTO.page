@@ -107,3 +107,47 @@ You may need to add your users to the audio group:
 If a user is not a member the audio group only a dummy device will
 appear in pavucontrol.
 
+### Using JACK with pulseaudio
+
+[Jack Audio Connection Kit](http://jackaudio.org:The) is used by most of
+the serious audio applications on Linux. It provides real-time, low
+latency connections for both audio and MIDI data between applications
+that implement its API. NixOS uses the dbus version of JACK2 (jackdbus).
+This can be used together with pulseaudio with a little configuration.
+The result is that you don't have to manually hunt down applications
+which are using the sound device and kill them before starting JACK. You
+can also continue to use non-JACK aware applications (e.g. flash) at the
+same time as using JACK applications (e.g. Ardour).
+
+1.  Enable JACK support
+
+    In your configuration file:
+
+        environment.systemPackages = [ (pkgs.pulseaudio.override {jackaudioSupport = true;}) ];
+
+2.  Ensure that the JACK enabled pulseaudio is being used
+
+    \~/.pulse/client.conf
+
+        daemon-binary=/var/run/current-system/sw/bin/pulseaudio
+
+3.  Configure QjackCtl
+    1.  Enable jackdbus
+        Setup -\> Settings -\> Server Path: jackdbus
+        Setup -\> Misc -\> Enable D-Bus interface: check
+    2.  Load the jack modules for pulseaudio after starting jackdbus
+
+        Setup -\> Settings -\> Options -\> Execute script after Startup:
+        check
+
+            pactl load-module module-jack-sink channels=2; pactl load-module module-jack-source channels=2; pacmd set-default-sink jack_out
+
+        Setup -\> Settings -\> Options -\> Execute script on Shutdown:
+        check
+
+            pactl unload-module `pactl list|grep -A 3 jack-source|tail -1|awk '{ print $NF }'`;pactl unload-module `pactl list|grep -A 3 jack-sink|tail -1|awk '{ print $NF }'`
+
+You should now be able to start JACK with QjackCtl, you will notice a
+new playback and capture device in your sound mixer along with your
+normal devices.
+
