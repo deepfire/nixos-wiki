@@ -55,7 +55,12 @@ module needed by Luks like this:
 
     boot.initrd.kernelModules = ["dm_crypt" "aes-i586" "sha256" "sha1" "cbc"];
 
-Note that some USB keyboards also need special kernel support, which
+On my 64bit system (2.6.32) I needed this modules instead the listed
+above:
+
+    boot.initrd.kernelModules = ["dm_crypt" "sha256_generic" "sha1_generic" "cbc" "aes_x86_64" "aes_generic"];
+
+ Note that some USB keyboards also need special kernel support, which
 must be available in the init ramdisk to enter the pass phrase. Recent
 models of the Microsoft Internet keyboard, for example, need the module
 `hid_microsoft` in order to be recognized as an input device.
