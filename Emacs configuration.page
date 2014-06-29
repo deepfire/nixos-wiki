@@ -13,6 +13,10 @@ You can then edit local files as root e.g.
 
     C-x C-f /su::/etc/nixos/configuration.nix
 
+To login to a remote NixOS machine which uses port 1234 for ssh:
+
+    C-x C-f /ssh:username@hostname#1234:/
+
 Enable Nix mode
 ---------------
 
