@@ -1,4 +1,4 @@
-### derivation styles
+### [[edit](/w/index.php?title=Open_issues:derivation_styles&action=edit&section=1 "Edit section: derivation styles")] derivation styles
 
 Telling you about the different styles which can be used to pass
 dependency to a derivation.
@@ -16,8 +16,8 @@ General items to be considered:
 
 Note: I gave them names so that we can talk about them more easily.
 
-verbose style
--------------
+[[edit](/w/index.php?title=Open_issues:derivation_styles&action=edit&section=2 "Edit section: verbose style")] verbose style
+----------------------------------------------------------------------------------------------------------------------------
 
 pro: faster to evaluate. con: you have to wirite the name of dependency
 once more.
@@ -43,8 +43,8 @@ path/default.nix:
         [...]
       }
 
-with style
-----------
+[[edit](/w/index.php?title=Open_issues:derivation_styles&action=edit&section=3 "Edit section: with style")] with style
+----------------------------------------------------------------------------------------------------------------------
 
 pro: no duplication of dependencies
 
@@ -69,8 +69,8 @@ path/default.nix:
         [...]
       }
 
-rescuing with style
--------------------
+[[edit](/w/index.php?title=Open_issues:derivation_styles&action=edit&section=4 "Edit section: rescuing with style")] rescuing with style
+----------------------------------------------------------------------------------------------------------------------------------------
 
 How can the with style be rescued? Does this make evaluation faster
 again? Now a. is duplicated. But that's trivial.
@@ -91,8 +91,8 @@ path/default.nix:
         [...]
       }
 
-get-args-in-file 1
-------------------
+[[edit](/w/index.php?title=Open_issues:derivation_styles&action=edit&section=5 "Edit section: get-args-in-file 1")] get-args-in-file 1
+--------------------------------------------------------------------------------------------------------------------------------------
 
 This was introduced by Yury G. Kudryashov
 
@@ -119,8 +119,8 @@ path/default.nix:
         buildInputs = if cg "gtk" false then [ gtk glib ] else [];
       }
 
-get-args-in-file 2
-------------------
+[[edit](/w/index.php?title=Open_issues:derivation_styles&action=edit&section=6 "Edit section: get-args-in-file 2")] get-args-in-file 2
+--------------------------------------------------------------------------------------------------------------------------------------
 
 This was proposed by Eelco Dolstra in Nix commit -r 17160
 
@@ -154,17 +154,100 @@ comments taken from commit -r :17160
 [Mail by Eelco giving more
 details](http://thread.gmane.org/gmane.linux.distributions.nixos/3753/focus=3764)
 
-string-with-deps-style
-----------------------
+[[edit](/w/index.php?title=Open_issues:derivation_styles&action=edit&section=7 "Edit section: string-with-deps-style")] string-with-deps-style
+----------------------------------------------------------------------------------------------------------------------------------------------
 
 I'm not sure this style can even be compared against the others. It's
 defining a customizable builder. There are many examples. Watch out for
 builderDefsPackage in all-packages.nix to find those examples.
 
-composableDerivation
---------------------
+[[edit](/w/index.php?title=Open_issues:derivation_styles&action=edit&section=8 "Edit section: composableDerivation")] composableDerivation
+------------------------------------------------------------------------------------------------------------------------------------------
 
 This is similar. It tries to make the default derivation customaziable
 adding a way to define build options. It automatically passes
 dependencies or adds configuration options..
+
+[[edit](/w/index.php?title=Open_issues:derivation_styles&action=edit&section=9 "Edit section: versionedDerivation")] versionedDerivation
+----------------------------------------------------------------------------------------------------------------------------------------
+
+TODO: Find out whether this is generally bad style or useful in some
+particular cases. Marc Weber thinks it is useful in particular cases.
+
+Usage example (imaginary xml-library):
+
+     xml-library = callPackage ./xml-library/default.nix { };
+     xml-library-2.0 = callPackage ./xml-library/default.nix { version = "2.0"; };
+     xml-library-dev = callPackage ./xml-library/default.nix { version = "dev"; };
+
+     {stdenv, flex, bison, versionedDerivation
+     , version ? "1.0"}
+
+     versionedDerivation "xml-library" version {
+       // merge version specific settings [1]
+       "dev" = {
+         name = "xml-library-latest";
+         src = prefetchgit { url = ..; sha256 = "..."; };
+         buildInputs = [ autoconf automake libtool];
+         preConfigure = 
+           automake && autoconf
+         ;
+         // [3] if you want name (such as buildInputs) to be merged by // use
+         // uncomment such:
+         // mergeAttrsBy = { name = a: b: a // b; };
+       };
+       "1.0" = {
+         name = "xml-library-1.0";
+         src = fetchurl { url = ..; sha256 = "..."; }
+       };
+       "2.0" = {
+         name = "xml-library-2.0";
+         src = { url = ..; sha256 = "..."; };
+       };
+     } {
+       // shared data [2];
+       configureFlags = [ ... ];
+       buildInputs = [ flex bison ];
+       meta = { ... };
+     }
+
+Explanation: If version matches "dev" "1.0" or "2.0" those values get
+merged with the shared data [2] - otherwise a nice error message is
+shown. The merged attr set gets passed to mkDerivation as usual.
+
+The merge is done by mergeAttrsByFuncDefaultsClean having a predefined
+mergeAttrsBy attr set declaring common merge common merge operations for
+as configureFlags, buildInputs and the like. [3] shows how to
+extend/override this.
+
+### [[edit](/w/index.php?title=Open_issues:derivation_styles&action=edit&section=10 "Edit section: When is versionedDerivation useful?")] When is versionedDerivation useful?
+
+-   If you want to test multiple versions which only differ slightly it
+    is faster to write. Differences between versions (such as new
+    configure flags) can be spotted easily.
+
+### [[edit](/w/index.php?title=Open_issues:derivation_styles&action=edit&section=11 "Edit section: When is versionedDerivation the wrong tool - or when to start a new file?")] When is versionedDerivation the wrong tool - or when to start a new file?
+
+-   If a new versions differs to much from older versions then there is
+    not much to share, then you should definitely give up this style and
+    have multiple independent mkDerivation calls. Whether this will
+    happen in the future is hard to know.
+
+-   If there are many packages depending on a package using too many
+    overriding magic will be hard to maintain.
+
+TODO: Find out whether this is generally bad style or useful in some
+particular cases. Marc Weber thinks it is useful in particular cases.
+
+In any case rewriting versionedDerivation to multiple mkDerivation calls
+is straight forward.
+
+Usages:
+
+-   php\_configurable (github.com/MarcWeber/nixpkgs php branch)
+-   ghostscript does use a similar style without versionedDerivation
+    call
+-   [[pull/1120](https://github.com/NixOS/nixpkgs/pull/1120)] proposes
+    using it for cups
+-   ./pkgs/development/tools/ocaml/deriving/default.nix
 
