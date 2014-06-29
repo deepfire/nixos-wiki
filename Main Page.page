@@ -30,9 +30,6 @@ Development
 -----------
 
 -   [Contributing to NixOS or Nix related projects](//Contributing)
-
-### stdenv-updates branch
-
 -   [CrossCompiling](//CrossCompiling)
 -   [Multiplatform NixOS](//Multiplatform NixOS) - PC, qemu arm
     versatile and sheevaplug by now
