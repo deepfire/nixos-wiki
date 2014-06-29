@@ -25,4 +25,5 @@ To login to a remote NixOS machine which uses port 1234 for ssh:
 Enable Nix mode
 ---------------
 
-    (load-library "nix-mode")
+     (setq auto-mode-alist (append '(("\\.nix$" . nix-mode)) auto-mode-alist))
+     (autoload 'nix-mode "nix-mode" "nix mode" t)
