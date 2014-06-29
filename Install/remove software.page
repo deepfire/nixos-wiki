@@ -56,6 +56,10 @@ remove the entry in environment.systemPackages = [ ];
     nix-env --delete-generations old
     nix-collect-garbage
 
+additionally it makes sense to run:
+
+    nix-collect-garbage -d (as root)
+
 how to list installed software
 ------------------------------
 
