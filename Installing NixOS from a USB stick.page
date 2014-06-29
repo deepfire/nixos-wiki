@@ -27,6 +27,17 @@ waste a blank CD. Here is how to do it:
 Using syslinux
 --------------
 
+### Create a hybrid iso and use dd
+
+It should be possible to convert the iso to a hybrid iso and then use dd
+to copy the image onto a usb stick:
+
+<http://www.syslinux.org/wiki/index.php/Doc/isolinux>
+
+Please update this entry if you have tested this and found it to work.
+
+### Using syslinux.cfg
+
 If you have trouble booting from a USB drive or sdcard with Unetbootin
 (I just got a blinking cursor instead of a bootloader on an Asus eee
 1000) the procedure described on
