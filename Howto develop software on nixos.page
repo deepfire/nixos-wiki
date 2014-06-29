@@ -33,7 +33,7 @@ there are two ways achiving this:
 AAA changing into an environment using the package manager
 ----------------------------------------------------------
 
-     nix-build --run-env [--command /bin/sh] nvi
+     nix-shell [--command /bin/sh] nvi
 
 to get the build environment of the package nvi running code in an
 interactive shell.
