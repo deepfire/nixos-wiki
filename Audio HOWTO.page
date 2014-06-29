@@ -122,7 +122,8 @@ Test the audio and enjoy the relaxing KDE's arpeggio.
 
 ### Making PulseAudio work for most of apps *OBSOLETE*
 
-The following can now be achieved with:
+The instructions described below can now be achieved with a
+configuration option:
 
     hardware.pulseaudio.enable = true
 
