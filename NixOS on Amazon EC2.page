@@ -114,8 +114,8 @@ upload it to S3, and start an instance.
     The resulting bundle is stored in `/tmp/nixos.img.manifest.xml` and
     `/tmp/nixos.img.part.*`. Use `--arch x86_64` for 64-bit images. Note
     that `aki-c34d67b7` is an Ubuntu Linux 2.6.32 kernel known to work
-    with NixOS. For 64-bit images, use `aki-4feec43b` (a PV-GRUB
-    "kernel" that boots the native NixOS kernel in the image).
+    with NixOS. For 64-bit images in the EU, use `aki-62695816` (a
+    PV-GRUB "kernel" that boots the native NixOS kernel in the image).
 
 4.  Upload the bundle:
 
