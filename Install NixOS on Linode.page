@@ -22,6 +22,6 @@
 
 -   Reboot. Have fun.
 
-Until the bootstrap archives can be downloaded from nixos.org you can
-download mine: <http://mawercer.de/~marc/bootstrap-archive-i686.tar.bz2>
+The bootstrap archives can be downloaded from
+[minimal\_install\_archive](http://hydra.nixos.org/jobset/nixos/trunk)
 
