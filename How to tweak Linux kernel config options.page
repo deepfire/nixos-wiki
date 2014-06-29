@@ -1,3 +1,6 @@
+Adding options to the mainstream kernel
+---------------------------------------
+
 Following config snippet asks Nix to add "CONFIG\_PPP\_FILTER y" option
 to the set of kernel options for current kernel. Of course, that would
 require Nix to rebuild the kernel locally.
@@ -11,3 +14,54 @@ require Nix to rebuild the kernel locally.
          }; 
        };
      };
+
+Building the kernel with your own .config
+-----------------------------------------
+
+**Note: this section describes non-trivial operations.**
+
+**TODO: Rewrite the steps below assuming that nixpkgs tree is available
+read-only.**
+
+In order to build the completely different kernel, you will need to
+write your own kernel expression.
+
+-   Obtain the .config file you want to build the kernel with (do the
+    make menuconfig).
+-   Write the nix expression for the kernel you want to build. The
+    expression may use the buildLinux function declared in
+    all-packages.nix. My version looks like the following:
+
+<!-- -->
+
+
+    # File pkgs/my-linux.nix
+    { stdenv, fetchurl, buildLinux } :
+
+    buildLinux rec {
+
+      version = "3.10.28";
+
+      src = fetchurl {
+        url = "mirror://kernel/linux/kernel/v3.x/linux-${version}.tar.xz";
+        sha256 = "1blzvr3qywi8wxgl28zsn5djwgvw70yh3i6qjh2sz3zk9gnpd6mq";
+      };
+
+      configfile = /path/to/your/.config;
+
+      allowImportFromDerivation = true;
+    }
+
+Change the src according to your needs.
+
+-   Modify pkgs/all-packages.nix. Add the following lines pointing to
+    your expression
+
+<!-- -->
+
+    my_linux = callPackage ../my-linux.nix { };
+    my_linuxPackages = recurseIntoAttrs (linuxPackagesFor pkgs.my_linux my_linuxPackages);
+
+-   Change the boot.kernelPackages option in your NixOS configuration
+    file. Point it to pkgs.my\_linuxPackages.
+
