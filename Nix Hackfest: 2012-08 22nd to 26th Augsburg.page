@@ -29,6 +29,10 @@ Work on solving some of the following issues
 -   Look at generating nix expressions from pypi (see MarcWeber's work
     on this)
 
+-   <https://github.com/garbas/python2nix>
+-   <https://github.com/chaoflow/nixpkgs> (python branch)
+-   <https://gitorious.org/nixpkgs-python-overlay>
+
 Package Tracking System
 -----------------------
 
