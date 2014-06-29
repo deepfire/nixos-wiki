@@ -17,7 +17,6 @@ machine.
 
     # cat /etc/conf.d/net | tail -n 9
     modules="ifconfig"
-
     config_eth0="209.61.142.12 netmask 255.255.255.0"
     routes_eth0="default via 209.61.142.1"
     dns_servers_eth0="72.3.128.240
