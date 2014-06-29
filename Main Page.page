@@ -51,11 +51,10 @@ Using Nix
 
 ### Languages
 
--   [Haskell](//Haskell)
--   [Python](//Python)
--   [python discussion](//Python discussion)
 -   [How to develop on NixOS](//Howto develop software on nixos) - (NOT
     how to develop \*for\* NixOS or Nix)
+-   [Haskell](//Haskell)
+-   [Python](//Python)
 -   [Android](//Android)
 -   [Plone development](//Plone development)
 
