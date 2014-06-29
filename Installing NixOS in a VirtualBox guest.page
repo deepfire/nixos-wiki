@@ -25,10 +25,12 @@ Using NixOS with VirtualBox on OS X.
 
      {pkgs, config, ...}:
      {
-       boot.initrd.extraKernelModules = [  "ata_piix" ];
-       boot.kernelModules = [  ];
-       boot.grubDevice = "/dev/sda";
-       fileSystems = [
+       boot = {
+         loader.grub.device = "/dev/sda";
+         initrd.kernelModules = [  "ata_piix" ];
+      };
+
+      fileSystems = [
          { mountPoint = "/";
            label = "nixos";
          }
