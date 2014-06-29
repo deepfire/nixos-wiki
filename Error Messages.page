@@ -3,19 +3,29 @@ Error Messages
 
 If you are stumped by an error message, add it here.
 
-  --------------------------------------------------------------------------
+  ---------------------------------------------------------------------------
   Error Message
+  Occurs When
   Meaning
   Suggested Solution
-  ------------------------ ------------------------ ------------------------
-  `` error: cannot auto-ca
-  ll a function that has a
-  n argument without a def
-  ault value (`stdenv') ``
+  ------------------ ------------------ ------------------ ------------------
+  `` error: cannot a
+  uto-call a functio
+  n that has an argu
+  ment without a def
+  ault value (`stden
+  v') ``
+  Trying to build
+  individual package
+  with:
+  `nix-build --dry-r
+  un --show-trace ./
+  default.nix`
   A Nix function was
-  called, but it wasn't
-  given a parameter.
+  called, but it
+  wasn't given a
+  parameter.
   Please help.
-  --------------------------------------------------------------------------
+  ---------------------------------------------------------------------------
 
 
