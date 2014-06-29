@@ -35,11 +35,10 @@ type:
 
      VirtualBox
 
-if you get this error message, something went wrong:
+if you get this error message (like this), something went wrong:
 
-     /dev/vboxdrv does not eist. Load the kernel module then try again.
+     "/dev/vboxdrv does not exist. Load the kernel module then try again."
 
-(i did not alter the message, likely to be a typo but who knows?)
 
 <https://svn.nixos.org/repos/nix/configurations/trunk/misc/nicolas.b.pierron/vinon.nix>
 
