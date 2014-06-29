@@ -1,10 +1,10 @@
-Mercurial and Nix repositories
-------------------------------
+[[edit](/w/index.php?title=Mercurial_and_Nix_repositories&action=edit&section=1 "Edit section: Mercurial and Nix repositories")] Mercurial and Nix repositories
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 You really can't get into non-distributed VCS? Then this page might be
 what you're looking for!
 
-### Installing Mercurial and hgsubversion
+### [[edit](/w/index.php?title=Mercurial_and_Nix_repositories&action=edit&section=2 "Edit section: Installing Mercurial and hgsubversion")] Installing Mercurial and hgsubversion
 
      nix-env -i mercurial
 
@@ -12,7 +12,7 @@ what you're looking for!
 
 (hgsubversion will be hopefully soon available via nix...)
 
-### Configuring Mercurial to use hgsubversion
+### [[edit](/w/index.php?title=Mercurial_and_Nix_repositories&action=edit&section=3 "Edit section: Configuring Mercurial to use hgsubversion")] Configuring Mercurial to use hgsubversion
 
 -   EDIT \~/.hgrc
 
@@ -43,7 +43,7 @@ what you're looking for!
      Subversion: 1.6.12
      bindings: Subvertpy 0.7.4
 
-### Cloning the nixpkgs svn repository
+### [[edit](/w/index.php?title=Mercurial_and_Nix_repositories&action=edit&section=4 "Edit section: Cloning the nixpkgs svn repository")] Cloning the nixpkgs svn repository
 
 This \*WILL\* take a \*LONG\* time (about 10-20 minutes)
 
@@ -80,16 +80,26 @@ This \*WILL\* take a \*LONG\* time (about 10-20 minutes)
 
 (owner and group are not important)
 
-### Staying up to date
+### [[edit](/w/index.php?title=Mercurial_and_Nix_repositories&action=edit&section=5 "Edit section: Staying up to date")] Staying up to date
 
      $ hg pull
 
-### Diffs between svn and your version
+If for some reason you get an:
+
+     abort: unknown revision hash_of_revision
+
+Do a
+
+     $ hg svn rebuildmeta
+
+and retry the pull.
+
+### [[edit](/w/index.php?title=Mercurial_and_Nix_repositories&action=edit&section=6 "Edit section: Diffs between svn and your version")] Diffs between svn and your version
 
      $ hg diff --svn -r<hg LOCAL revision>
 
 (will show the svn revision of modified files)
 
-### Commit to svn (not tested!)
+### [[edit](/w/index.php?title=Mercurial_and_Nix_repositories&action=edit&section=7 "Edit section: Commit to svn (not tested!)")] Commit to svn (not tested!)
 
      $ hg push
