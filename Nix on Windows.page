@@ -5,3 +5,18 @@ not taken as \*strictly shared\* by Windows only based on the filename.
 this behaviour of sxs will only happen if the files are placed in the
 named directory, or otherwise they will be taken as shared.
 
+i've been experimenting with nix on windows and mingw as a new
+toolchain:
+
+    https://invalidmagic.wordpress.com/2011/02/14/bringing-nix-to-its-limits/
+
+two problems (discussed at the blog posting from above):
+
+-   curl vs curl.exe seems to create problems (as cygwin sees both as
+    the same program)
+-   symlinks and dll files (PATH, missing LD\_LIBRARY\_PATH) is another
+
+just don't forget to check it out!
+--[Invalidmagic](/w/index.php?title=User:Invalidmagic&action=edit&redlink=1 "User:Invalidmagic (page does not exist)")
+19:49, 14 February 2011 (UTC)
+
