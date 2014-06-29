@@ -175,7 +175,16 @@ above.
 
 ### Customized GHC environment
 
-[To be written.]
+As indicated above, using a wrapped GHC can be somewhat uncomfortable at
+times, because it behaves a bit differently from the original program.
+Furthermore, while the easy detection of installed libraries is useful
+in some settings, there are other scenarios where you want full an
+reliable control over the packages available. For these purposes, there
+exists a function `ghcWithPackages` within the `haskellPackages`
+attribute sets that enables you to build a GHC with a clearly specified
+set of packages in its global package database. The easiest way to use
+this function is via `~/.nixpkgs/config.nix` or
+`/etc/nixos/configuration.nix`.
 
 Contributing Haskell packages to Nixpkgs
 ----------------------------------------
