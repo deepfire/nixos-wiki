@@ -3,29 +3,22 @@ Error Messages
 
 If you are stumped by an error message, add it here.
 
-  ---------------------------------------------------------------------------
-  Error Message
-  Occurs When
-  Meaning
-  Suggested Solution
-  ------------------ ------------------ ------------------ ------------------
-  `` error: cannot a
-  uto-call a functio
-  n that has an argu
-  ment without a def
-  ault value (`stden
-  v') ``
-  Trying to build
-  individual package
-  with:
-  `nix-build --dry-r
-  un --show-trace ./
-  default.nix`
-  A Nix function was
-  called, but it
-  wasn't given a
-  parameter.
-  Please help.
-  ---------------------------------------------------------------------------
+Error Message
 
+Occurs When
+
+Meaning
+
+Suggested Solution
+
+Related Links
+
+`` error: cannot auto-call a function that has an argument without a default value (`stdenv') ``
+
+Trying to build individual package with:
+`nix-build --dry-run --show-trace ./default.nix`
+
+A Nix function was called, but it wasn't given a parameter.
+
+Please help.
 
