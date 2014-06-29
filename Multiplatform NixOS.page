@@ -99,6 +99,10 @@ the usual `nixos-install` procedures as described in the [NixOS
 manual](http://hydra.nixos.org/job/nixos/trunk/manual/latest/download)
 installing from a bootable CD.
 
+You may want to use this channel:
+
+    nix-pull http://vicerveza.homeunix.net/~viric/tmp/nix/fuloongchannel/MANIFEST
+
 Configuration details
 ---------------------
 
@@ -160,6 +164,14 @@ commands working fine:
     {
       platform = pkgs.platforms.fuloong2f_n32;
     }
+
+MANIFEST
+--------
+
+In order to install programs, you can get some precompiled binaries
+using this MANIFEST:
+
+    nix-pull http://vicerveza.homeunix.net/~viric/tmp/nix/fuloongchannel/MANIFEST
 
 Support
 -------
