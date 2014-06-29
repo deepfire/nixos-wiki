@@ -107,6 +107,16 @@ Note this does not revert configuration files like
 change them by hand the nest nixos-rebuild --switch will install them
 again.
 
+To see the available system generations you can pass the profile to
+nix-env:
+
+     nix-env -p /nix/var/nix/profiles/system --list-generations
+
+To rollback the system to an earlier generation:
+
+     nix-env --switch-generation 3141 -p /nix/var/nix/profiles/system
+     /nix/var/nix/profiles/system/bin/switch-to-configuration switch
+
 For per-user packages.
 
      nix-env --rollback
