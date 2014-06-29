@@ -16,6 +16,10 @@ general python integration into nixos
 qknight's problems
 ------------------
 
+### packaging virt-manager
+
+### python-gudev
+
 i have problems packaging python-gudev:
 
      gudevmodule.c:19:23: fatal error: pygobject.h: No such file or directory
