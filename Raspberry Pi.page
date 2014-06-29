@@ -80,19 +80,20 @@ NixOS on Raspberry Pi.
 
 ##### On Raspberry Pi
 
-We can use a new feature of stdenv-updates stdenv, called `userHook`.
-You have to set it up to introduce an impurity in your nixpkgs like
-this:
+How do we inject `distcc` into the Nix build system? We can use a new
+feature of stdenv-updates stdenv, called `userHook`. Nix wants to avoid
+changing the compiler, so by moving using distcc to compile, we are
+introducing an "impurity". To introduce this impurity into our NixPkgs,
+we can call a shell script like this:
 
     {
       stdenv.userHook = "if [ -f /niximpure/impure.sh ]; then . /niximpure/impure.sh; fi";
     }
 
-In case you build NixOS, remember to set the `userHook` in the
+If you build NixOS, remember to set the `userHook` in the
 `nixpkgs.config` option.
 
-The `impure.sh` script will be in charge of loading `distcc`. Here is a
-simplification of what I use:
+The `impure.sh` script will load `distcc`. Here is a simplification:
 
     case $out in
       *)
@@ -113,10 +114,7 @@ simplification of what I use:
        ;;
     esac
 
-The `/niximpure` tree looks like this. Notice `/usr/bin/distcc` file,
-which can point at any `distcc` you have installed, such as in `/usr` or
-one which Nix built. When building, rather than using `/usr/bin/gcc`,
-the `gcc` found in the `PATH` environment variable will be used.
+The `/niximpure` tree which is referenced looks like this.
 
     # ls -lR /niximpure
     /niximpure:
@@ -135,6 +133,13 @@ the `gcc` found in the `PATH` environment variable will be used.
 
     /niximpure/home:
     total 0
+
+Notice the `/usr/bin/distcc` directory, which allows us to point at any
+`distcc` version you have installed, such as one in `/usr` or one which
+Nix built.
+
+When building, rather than using `/usr/bin/gcc`, the `gcc` found in the
+`PATH` environment variable will be used.
 
 ##### On Shared Machines
 
