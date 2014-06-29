@@ -57,7 +57,7 @@ Indexing and searching Nix files
 One method of quickly finding the attribute names of packages is to use
 the Ctags program, which is a tool used for code navigation. To use this
 method, install the
-[`ctagsWrapped`](https://github.com/NixOS/nixpkgs/blob/bee4c41e13a9276db4f4a582234c670d74edfa1a/pkgs/development/tools/misc/ctags/wrapped.nix%7C)
+[`ctagsWrapped`](https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/tools/misc/ctags/wrapped.nix)
 package, then use the `ctags` command line program to index Nix files or
 directories of Nix files, such as a directory which contains the NixPkgs
 repository. This package customizes a ctags installation by adding a
