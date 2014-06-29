@@ -1,13 +1,13 @@
-This is a tutorial which covers the major points of NixOS configuration.
-As an example, we show how a user can configure NixOS to start an irc
-client each time his computer is starts up. This page will cover the
-evolution of the configuration files from a simple setup to more
-advanced modular setup.
+This tutorial covers the major points of NixOS configuration. As an
+example, we show how a user can configure NixOS to start an irc client
+each time his computer starts. This page will follow the evolution of
+the configuration files from a simple setup to a more advanced modular
+setup.
 
 Simple Configuration
 ====================
 
-The user wants to start his irc session inside NixOS. In other
+The user wants to start his irc session inside NixOS on boot. In other
 distributions, you would typically add an init script inside
 `/etc/init.d` or a similar directory. In NixOS, you have to keep your
 dependencies clean, this implies that you have to use your configuration
