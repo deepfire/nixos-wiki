@@ -92,7 +92,17 @@ upload it to S3, and start an instance.
 
         $ nix-env -i ec2-ami-tools
 
-2.  Build the raw disk image:
+2.  The easy way to build NixOS AMIs is to run the following command:
+
+        $ NIXOS=/path/to/nixos NIXPKGS=/path/to/nixpkgs /path/to/nixos/maintainers/scripts/create-amis.sh
+
+    This will build, bundle and upload AMIs to several EC2 regions. Note
+    that the resulting AMIs will be public.
+
+    Alternatively, you can perform the steps below to create the AMI
+    manually.
+
+3.  Build the raw disk image:
 
         $ NIXPKGS=/path/to/nixpkgs NIXOS_CONFIG=/path/to/nixos/modules/virtualisation/amazon-config.nix \
             nix-build /path/to/nixos -A config.system.build.amazonImage \
@@ -104,7 +114,7 @@ upload it to S3, and start an instance.
         $ ls -l ./result/nixos.img 
         -r--r--r-- 1 root nixbld 4294967296 Jan  1  1970 ./result/nixos.img
 
-3.  Bundle the image:
+4.  Bundle the image:
 
         $ ec2-bundle-image -i ./result/nixos.img --user $AWS_ACCOUNT --arch i386 \
             -c $EC2_CERT -k $EC2_PRIVATE_KEY \
@@ -120,12 +130,12 @@ upload it to S3, and start an instance.
         ec2-bundle-image complete.
 
     The resulting bundle is stored in `/tmp/nixos.img.manifest.xml` and
-    `/tmp/nixos.img.part.*`. Use `--arch x86_64` for 64-bit images. Note
-    that `aki-c34d67b7` is an Ubuntu Linux 2.6.32 kernel known to work
-    with NixOS. For 64-bit images in the EU, use `aki-62695816` (a
-    PV-GRUB "kernel" that boots the native NixOS kernel in the image).
+    `/tmp/nixos.img.part.*`. Use `--arch x86_64` for 64-bit images. For
+    the kernel, you should use `pv-grub-hd0_1.02-arch` (use
+    `ec2-describe-images -a` to find the AMI ID). This is the PV-GRUB
+    "kernel" that boots the native NixOS kernel in the image.
 
-4.  Upload the bundle:
+5.  Upload the bundle:
 
         $ ec2-upload-bundle -b nixos-img -m /tmp/nixos.img.manifest.xml \
             -a $AWS_ACCESS_KEY_ID -s $AWS_SECRET_ACCESS_KEY --location EU
@@ -141,7 +151,7 @@ upload it to S3, and start an instance.
 
     (Of course you can use any other bucket location as well.)
 
-5.  Register the image as a private AMI:
+6.  Register the image as a private AMI:
 
         $ ec2-register nixos-img/nixos.img.manifest.xml -n nixos-img -d '...description...'
         IMAGE   ami-efffd59b
