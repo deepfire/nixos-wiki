@@ -22,19 +22,18 @@ Installation of NixOS Image
 
 ### Download Image
 
-To download the image file, open the following magnet link in a
+To download an image file, open the following magnet link in a
 BitTorrent client, such as Transmission.
 
-       magnet:?xt=urn:btih:3a1273137a31ef65453ddc44eafcf8e0ede24731&dn=nixos-raspberrypi-ef28e8e70e96-0236cc5d8826-sd2g.img.xz
-
-Here is a newer image file, that works with a Raspberry Pi that has a
-Hynix chip. It also has the serial console enabled, and the HDMI
-definitely works (configured in safe mode):
+This image was tested with a Raspberry Pi having a Hynix chip and an
+HDMI display, configured in safe mode. It has the serial console
+enabled. (sha1sum: `fc2a664ccd1144209662285a37e89ef9be48656b`).
 
        magnet:?xt=urn:btih:2bfa17780de41c2257f97a38b3cf131861c383e7&dn=nixos-raspberrypi-hynix.img.xz&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80%2Fannounce
 
-This image was made by manually inserting newer firmware into the
-earlier image. Its sha1sum is fc2a664ccd1144209662285a37e89ef9be48656b .
+Use this image file as an alternative, as it contains an older firmware.
+
+       magnet:?xt=urn:btih:3a1273137a31ef65453ddc44eafcf8e0ede24731&dn=nixos-raspberrypi-ef28e8e70e96-0236cc5d8826-sd2g.img.xz
 
 ### Write Image to SD Card
 
