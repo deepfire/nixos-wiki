@@ -1,21 +1,31 @@
 ### Installation
 
-There are two steps to installing fonts globally on NixOS - building the
-font, and registering it with Fontconfig so that applications can
-discover it. The `configuration.nix` snippet below installs and
-registers a single font, "inconsolata".
+1.  Pick a few fonts (`nix-env -qaP|grep -i font` or look at
+    <https://github.com/NixOS/nixpkgs/tree/master/pkgs/data/fonts> )
+2.  Put them in `configuration.nix`:
+
+<!-- -->
 
      {
-       environment.systemPackages = with pkgs; [
-         inconsolata
-       ];
-     
-       fonts.fonts = [ pkgs.inconsolata ];
+       fonts = {
+         enableCoreFonts = true;
+         enableFontDir = true;
+         enableGhostscriptFonts = true;
+         fonts = with pkgs; [
+           corefonts  # Micrsoft free fonts
+           inconsolata  # monospaced
+           ubuntu_font_family  # Ubuntu fonts
+         ];
+       };
      }
 
 ### Debugging
 
 The global Fontconfig configuration is kept in `/etc/fonts/fonts.conf`.
 This file is generated automatically, and should not be edited directly,
-but it can be useful to see what is actually written there.
+but it can be useful to see what is actually written there. If you
+enable `enableFontDir`, all fonts are available under
+`/run/current-system/sw/share/X11-fonts` as well
+
+You can also use `xlsfonts` to see which fonts are available to X.
 
