@@ -182,9 +182,9 @@ And add both profiles to your command search path:
 
     export PATH="$HOME/ghc-7.6.2/bin:$HOME/ghc-6.10.4/bin:$PATH"
 
-Unversioned commands like 'ghc' will refer to GHC 7.6.2. If you want to
+Unversioned commands like `ghc` will refer to GHC 7.6.2. If you want to
 run an older version, you have to invoke it explicitly (e.g.,
-'ghc-6.10.4').
+`ghc-6.10.4`).
 
 Obviously, libraries are GHC-version-specific, so you might have to
 install the libraries you want to use in each of these versions several
