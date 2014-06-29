@@ -28,5 +28,28 @@ To login to a remote NixOS machine which uses port 1234 for ssh:
 Enable Nix mode
 ---------------
 
-     (setq auto-mode-alist (append '(("\\.nix$" . nix-mode)) auto-mode-alist))
-     (autoload 'nix-mode "nix-mode" "nix mode" t)
+The library is in the file
+`/var/run/current-system/sw/share/emacs/site-list/nix-mode.el`.
+
+Load the library with `M-x load-library<ENTER>nix-mode<ENTER>`, and then
+enable the mode for the current buffer with `M-x nix-mode`.
+
+Add to .emacs with the following line:
+
+     (require 'nix-mode)
+
+This loads the library on every startup, and installs mode hooks that
+enables the mode for files with a file name extension *.nix*, or
+*.nix.in*.
+
+Or, if lazy loading of the library is preferred, add to .emacs the
+following lines:
+
+     (autoload 'nix-mode "nix-mode" "Major mode for editing Nix expressions." t)
+     (push '("\\.nix\\'" . nix-mode) auto-mode-alist)
+     (push '("\\.nix.in\\'" . nix-mode) auto-mode-alist)
+
+The first line makes the command `nix-mode` automatically load the
+library, and the last two install the same file name extensions as above
+in the mode hooks.
+
