@@ -50,9 +50,11 @@ or removes software in our environment.
 Besides the "hello" package, what else can we install? For more options,
 see the other attributes in the
 [`all-packages.nix`](https://github.com/NixOS/nixpkgs/blob/master/pkgs/top-level/all-packages.nix#L8107)
-file. Each of these attributes is a "Nix package". The definition of the
-package which we call the package's "Nix expression", is stored
-elsewhere, to keep the list clean.
+file. Most of these attributes, those which are defined by the
+`callPackage` or `mkDerivation` functions, creates a "Nix package".
+These functions produce a package by being passed a "Nix expression"
+which defines the package. These Nix expressions are stored elsewhere in
+the `pkgs` directory to keep the package list easy to read.
 
 Let's install some other packages we found in the `all-packages.nix`
 file.
