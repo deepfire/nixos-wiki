@@ -75,6 +75,11 @@ Problems
 There are some. See [Ubuntu
 thread](https://bugzilla.kernel.org/show_bug.cgi?id=44161)
 
+### BIOS problems
+
+I had to disable SSD boot completely in order to boot from USB. Just
+changing boot priority didn't help.
+
 ### Battery
 
 Battery charging/discharging indicator doesn't work good.
