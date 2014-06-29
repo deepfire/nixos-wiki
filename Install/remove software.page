@@ -239,7 +239,9 @@ nixpkgs using git) and try to find something like this:
 ### grub
 
 1\. similar to the kde example search the all-packages.nix for available
-grub versions 2. to use a different version of grub add this line to
+grub versions
+
+2\. to use a different version of grub add this line to
 /etc/nixos/configuration.nix
 
      nixpkgs.config.packageOverrides = pkgs : rec { grub2 = pkgs.grub198; };
