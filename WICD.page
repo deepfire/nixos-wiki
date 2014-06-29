@@ -41,7 +41,7 @@ be a dhcpcd issue. Wicd better works with dhclient.)
 
 Now rebuild nixos, switch to new configuration and launch the gui.
 
-    	$ wicd-gtk
+    $ wicd-gtk
 
 Notes:
 
