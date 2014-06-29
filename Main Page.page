@@ -183,7 +183,7 @@ How-tos
 
 -   [How to set up MediaWiki in NixOS with
     vhosts](//Setting up MediaWiki & vhosts)
--   [How to install Firefox with Java plugin](//Firefox)
+-   [How to install Firefox with plugins (java, flash, ...)](//Firefox)
 -   [Chromium](//Chromium)
 -   [How to setup UPS/NUT](//How to setup UPS/NUT)
 -   [TexLive Howto](//TexLive HOWTO)
