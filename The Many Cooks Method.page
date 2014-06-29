@@ -1,0 +1,150 @@
+Introduction
+------------
+
+Nix is a package manager which manages software installation on behalf
+of more than one party. System administrators as well as end users may
+use it to deploy software. The advantage of using Nix in this way is
+that it manages consistent sets of software, called closures.
+
+Software deployment with Nix requires that a master Nix expression be
+assembled for evaluation. In the simplest case, all of the parties
+involved will select installable software from a single, centralized set
+of expressions. To support multiple parties with conflicting
+requirements, or even requirements which differ in focus, it is
+necessary to draw from multiple pools of Nix expressions.
+
+This page is about outlining the scenario where end users, institutions,
+"special interests", and an OS distribution collaborate to meet the
+needs of all parties while minimizing or eliminating duplicate work.
+
+The Scenario
+------------
+
+The following figure defines a desired future condition where the
+*sources* of nix expressions have become modular. This is in contrast to
+the current situation where there is one centralized repository of
+self-consistent nix expressions called "Nixpkgs". Currently, the
+recommended method for "local customization" is to check out the single
+centralized repository of expressions, modify as required, and use on
+the local machine. The tooling may be capable of more than this, but the
+human Nix community has not yet caught up. It is important to stress
+that this page covers the modularization of the Nix community itself,
+not the tooling. It is also important to stress that modularizing the
+community is not the same thing as fracturing it.
+
+[![Nixrepos.png](/w/images/4/46/Nixrepos.png)](//File:Nixrepos.png)
+
+In this desired future condition, there are many sources of Nix
+expressions. User1 and User2 (who may belong to the same organization or
+a different one), have packaged something interesting to our End User.
+Moreover, they have opted to share their packaging with our End User.
+Our end user needs some "special purpose" software from a couple of
+groups which have formed around a particular interest, such as
+*statistics software*, or *desktop environments*. The End User also
+belongs to an institution, which provides customized expressions
+designed to integrate a computer into the local environment. The
+institution may also have licenses for commercial software, which must
+be treated separately from open source software. Lastly, the bulk of the
+packaging is expected to come from the centralized repository, labeled
+"NixOS exprs".
+
+Stakeholders
+------------
+
+In this section, the various stakeholders are explicitly called out.
+
+-   **Distribution Maintainers** : Have an interest in assembling a
+    comprehensive set of packages of general utility. The default
+    settings should be "good enough for most people", and controls
+    should be provided to perform the most common customizations. Not
+    wanting to play favorites, distribution maintainers will try to
+    exclude overly-customized packages which may only work for users
+    from a specific institution.
+-   **Vendors** : Commercially support institutions via customization,
+    maintenance, configuration design and testing, incident response,
+    and fielding user questions. Vendors must ensure that the customer's
+    needs are met while providing an open source product not under their
+    direct control. To minimize the amount of work required by each new
+    customer, it is in the interest of the vendor to identify general
+    purpose packages and commonly required customizations. Vendors serve
+    as an adaptation layer between the distribution itself and the
+    institutions which employ them.
+-   **Interest groups** : Organized around a topic or a theme, an
+    interest group will try and provide high quality packaging for one
+    or more libraries, services, or applications. Interest groups will
+    also avoid customizing the packages for a particular environment.
+-   **Institutions/Organizations** : An organizational entity which has
+    selected Nix as a software deployment tool needs to publish
+    customizations which are compatible with the local environment.
+    These customizations will be common to all (or a large number of)
+    employees. Typically performed by the CIO of the organization,
+    common needs will be: deploying a good "default" image to users;
+    tracking what version or what software is installed on which
+    machines; "blacklisting" software known to have specific
+    vulnerabilities; checking for conformance with institutional policy.
+-   **Individuals** : Having a specific job to do, individuals often
+    require highly specific tools. Individuals would prefer to install
+    something which is already packaged. If forced to package something
+    themselves, they would likely be willing to share the packaging,
+    particularly if: a] it's easy; and b] there's some value-added to
+    them (i.e., someone else detects if a future change to Nix
+    expressions breaks the package, and fixes it).
+
+A modular community
+-------------------
+
+No stakeholder has infinite resources, whether those resources are time,
+money, bandwidth or compute power. The arrows in the above figure are
+bidirectional because each stakeholder (hexagon) in the community
+(cloud) should be expected to bring resources to the table, not just
+demands. Moreover, the resources provided to the community should be
+proportional to the demands placed on the community. In this section I
+have provided an initial set of expectations for each stakeholder with
+the intent to offer them up for discussion and eventual revision.
+
+End users who contribute nothing are entitled to demand nothing special
+from the community. This is likely to be the majority of users. They
+just want to install the software on their machine as is. They can have
+access to the publicly available resources, such as the compiled
+artifacts, mailing lists, and the wiki.
+
+Individuals package software they know they need without any concern for
+how many others may also need it. This differentiates them from
+institutions which attempt to tease out requirements common to the bulk
+of their employees. Individuals may share nix expressions and/or
+closures of compiled code among each other. However, if the two
+individuals belong to different organizations, their configurations may
+be different enough that the nix expression is to be preferred over the
+closure.
+
+An institution with hundreds of users should provide their own internal
+support. This should include a helpdesk or some other mechanism to avoid
+flooding the public lists with requests specific to a particular
+institution. It should provide its own mirror, at least for the internal
+users and preferably for the public as well. This institution should be
+invested in any packages it depends on, actively participating in their
+maintenance and feeding relevant and/or critical updates to the
+upstream. It should not, however, be dependent on the upstream accepting
+those updates. An institution should be expected to maintain its own set
+of Nix expressions which bridge the gap between local requirements and
+the general purpose expressions governed by the distribution
+maintainers. As such, they will probably set up a small build farm to
+compile the customized packages. It may not be unreasonable to expect
+that such an institution donate some time on this build farm to the
+"public good".
+
+Interest groups may provide alternatives to the packages in the baseline
+distribution, or may simply form a smaller, more focused group in charge
+of maintaining a well-defined subset of software. Reasons to do this may
+be to separate chatter on email list, provide resources specific to the
+thematic area, remove OS-dependencies from the baseline, or simply to
+make the baseline smaller.
+
+Summary
+-------
+
+While the specifics of this page are certainly amenable to change, the
+idea is to ensure that the community can grow without placing undue
+burden on any particular stakeholder. There is a need to allow "Many
+Cooks" in the kitchen in a way that does not spoil the soup.
+
