@@ -19,6 +19,11 @@ netcup.de:
     NixOS works without problems, since you are able able to run your
     own kernel and upload ISOs to boot from.
 
+supremebytes.com:
+
+-   KVM hosting with custom ISO images on
+    <http://www.supremebytes.com/business-virtual-servers.php>
+
 NixOs experiences about other providers
 ---------------------------------------
 
