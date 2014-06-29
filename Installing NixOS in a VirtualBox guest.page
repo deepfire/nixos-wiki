@@ -34,7 +34,7 @@ Using NixOS with VirtualBox on OS X.
        ];
        nix.maxJobs = 1;
        services = {
-         sshd = { enable = true; };
+         openssh.enable =true;
          xserver.videoDriver = "virtualbox";
        };
        # If you disable kde4, set environment.systemPackages instead.
