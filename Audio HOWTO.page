@@ -44,6 +44,38 @@ boot.blacklistedKernelModules option:
 Now reboot and retry from the beginning (i.e. check that your real card
 is shown by alsamixer without using the 'S' key).
 
+### Other hardware specific problems
+
+If you're mic is always at a very low volume or you experience other
+oddness you may need to specify a particular card model when loading
+snd-hda-intel:
+
+      boot.extraModprobeConfig = ''
+        options snd-hda-intel model=YOUR_MODEL 
+      '';
+
+You should be able to look up the available options for model in
+[[1]](http://www.kernel.org/doc/Documentation/sound/alsa/HD-Audio-Models.txt:HD-Audio-Models.txt).
+You can try them out interactively as follows:
+
+1.  Close any applications using the sound card
+    1.  See if any applications are using the sound card
+        \$ lsof /dev/snd/\*
+        COMMAND PID USER FD TYPE DEVICE SIZE/OFF NODE NAME\</pre\>
+        pulseaudi 14080 goibhniu 30u CHR 116,7 0t0 5169
+        /dev/snd/controlC0
+        pulseaudi 14080 goibhniu 37u CHR 116,7 0t0 5169
+        /dev/snd/controlC0
+    2.  Kill them
+        for any process apart from pulseaudio you could just do:
+        \$ kill -9 14080
+        but in the case of pulseaudio you have to prevent it from
+        respawning itself automatically
+        \$ mkdir -P \~/.pulse && echo "autospawn=no" \>\>
+        \~/.pulse/client.conf
+        you can then stop pulseaudio with:
+        pulseaudio -k \# or kill it by process id
+
 ### Fixing sound in KDE
 
 (alsamixer shows my audio card by default, but i get no sound in KDE)
