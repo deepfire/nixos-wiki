@@ -90,3 +90,25 @@ add something like this to your `/etc/nixos/configuration.nix` file:
      services.udev.extraRules = 
        ATTRS{idVendor}=="0665", ATTRS{idProduct}=="5161", MODE="666", SYMLINK+="hidraw_protecthome"
      ;
+
+Why \<hash\>-\<name\> instead of \<name\>-\<hash\>?
+---------------------------------------------------
+
+For the rare cases where we have to dig into the /nix/store it is more
+practical to keep in mind the first few letters at the beginning than
+finding a package by name. In addition, the hash is printed by Nix
+commands. I you still wonder why, run
+"`ls -1 /nix/store | sort -R -t - -k 2 | less`" in your shell.
+
+This is what might happen if you don't garbage collect frequently, or if
+you are testing compilation variants:
+
+     q0yi2nr8i60gm2zap46ryysydd2nhzhp-automake-1.11.1/
+     vbi4vwwidvd6kklq2kc0kx3nniwa3acl-automake-1.11.1/
+     wjgzir57hcbzrq3mcgxiwkyiqss3r4aq-automake-1.11.1/
+     1ch5549xnck37gg2w5fh1jgk6lkpq5mc-nixos-build-vms/
+     4cmjlxknzlvcdmfwj0ih0ggqsj5q73hb-nixos-build-vms/
+     7fv4kwi5wwwzd11ili3qwg28xrj8rxw2-nixos-build-vms/
+     8jij13smq9kdlqv96hm7y8xmbh2c54iy-nixos-build-vms/
+     j714mv53xi2j4ab4g2i08knqr137fd6l-nixos-build-vms/
+     xvs7y09jf7j48p6l0p87iypgpq470jqw-nixos-build-vms/
