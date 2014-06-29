@@ -58,8 +58,8 @@ The attribute set resulting from a stdenv.mkDerivation call returns the
 usual result comming from a usual native build, with two additional
 attributes:
 
--   hostDrv - the derivation cross-built
--   buildDrv - the derivation built in for the build system (a usual
+-   crossDrv - the derivation cross-built
+-   nativeDrv - the derivation built in for the build system (a usual
     native build).
 
 Thus, these calls equivalently build the native derivation for 'bison'
@@ -67,12 +67,12 @@ Thus, these calls equivalently build the native derivation for 'bison'
 
     nix-build -A bison default.nix
     nix-build -A bison comtrend.nix
-    nix-build -A bison.buildDrv comtrend.nix
+    nix-build -A bison.nativeDrv comtrend.nix
 
 If we want to cross-build bison for the arm target described above, we
 can run:
 
-    nix-build -A bison.hostDrv comtrend.nix
+    nix-build -A bison.crossDrv comtrend.nix
 
 New buildInputs
 ---------------
