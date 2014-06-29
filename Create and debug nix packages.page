@@ -68,7 +68,7 @@ now after some modifications ...
      git pull --rebase upstream master
      git push upstream
 
-### keeping in sync with hydra builds
+### theory: keeping in sync with hydra builds
 
 problem: if you use a local git checkout of nixos/nixpkgs's **upstream
 master** to develop software with, you might end up in compiling a lot
@@ -90,6 +90,25 @@ nixos/nixpkgs) if you type **nix-env -i firefox**
     * you might get an older binary substitute if the hydra build of a newer version failed
 
 #### how does this work
+
+you need this script:
+
+     https://github.com/chaoflow/skel/blob/master/bin/create_tags_from_nixos_channel.sh
+
+ I use it:
+
+     % sudo -H nix-channel --update
+     % cd dev/nixos
+     % (cd nixos && git pull --rebase)
+     % (cd nixpkgs && git pull --rebase)
+     % create_tags_from_nixos_channel.sh
+
+ dev/nixos contains nixos and nixpkgs as subdirs
+
+     % ls -l dev/nixos
+     total 8K
+     drwxr-xr-x 9 cfl cfl 4096 Jul 15 07:02 nixos/
+     drwxr-xr-x 6 cfl cfl 4096 Jul 15 04:01 nixpkgs/
 
 nix channels
 ------------
