@@ -400,6 +400,259 @@ Testing the changes
 Pushing the local changes to GitHub
 -----------------------------------
 
+### Committing to the local repository
+
+-   The first step is to commit your local changes to the local
+    repository.
+-   A quick overview of the affected stuff:
+
+<!-- -->
+
+    $ git status
+    # On branch example
+    # Changes not staged for commit:
+    #   (use "git add <file>..." to update what will be committed)
+    #   (use "git checkout -- <file>..." to discard changes in working directory)
+    #
+    #       modified:   pkgs/applications/window-managers/i3/default.nix
+    #       modified:   pkgs/top-level/all-packages.nix
+    #
+    no changes added to commit (use "git add" and/or "git commit -a")
+
+-   As we have just seen, you can review the pending changes with
+    `git diff`
+-   You can limit the scope to review piece by piece:
+
+<!-- -->
+
+    $ git diff pkgs/top-level/all-packages.nix
+    diff --git a/pkgs/top-level/all-packages.nix b/pkgs/top-level/all-packages.nix
+    index 0d3e4cc..a1c0d4b 100644
+    --- a/pkgs/top-level/all-packages.nix
+    +++ b/pkgs/top-level/all-packages.nix
+    @@ -7224,7 +7224,9 @@ let
+     
+       hydrogen = callPackage ../applications/audio/hydrogen { };
+     
+    -  i3 = callPackage ../applications/window-managers/i3 { };
+    +  i3 = callPackage ../applications/window-managers/i3 {
+    +    cairo = cairo.override { xcbSupport = true; };
+    +  };
+     
+       i3lock = callPackage ../applications/window-managers/i3/lock.nix {
+         cairo = cairo.override { xcbSupport = true; };
+
+-   This change, at the time, looked good to me. So I went ahead
+    committing it:
+
+<!-- -->
+
+    $ git commit pkgs/top-level/all-packages.nix -m 'i3 window manager: cairo.override with xcbSupport enabled'
+    [example 731abb2] i3 window manager: cairo.override with xcbSupport enabled
+     1 file changed, 3 insertions(+), 1 deletion(-)
+
+-   Let's review what's left:
+
+<!-- -->
+
+    $ git diff pkgs/applications/window-managers/i3/default.nix
+    diff --git a/pkgs/applications/window-managers/i3/default.nix b/pkgs/applications/window-managers/i3/default.nix
+    index f8e4e16..4173660 100644
+    --- a/pkgs/applications/window-managers/i3/default.nix
+    +++ b/pkgs/applications/window-managers/i3/default.nix
+    @@ -1,21 +1,20 @@
+     { fetchurl, stdenv, which, pkgconfig, libxcb, xcbutilkeysyms, xcbutil,
+       xcbutilwm, libstartup_notification, libX11, pcre, libev, yajl,
+    -  libXcursor, coreutils, perl }:
+    +  libXcursor, coreutils, perl, pango }:
+     
+     stdenv.mkDerivation rec {
+       name = "i3-${version}";
+    -  version = "4.5";
+    +  version = "4.5.1";
+     
+       src = fetchurl {
+         url = "http://i3wm.org/downloads/${name}.tar.bz2";
+    -    sha256 = "1kiffcbvvjljqchw9ffgy9s8f9z06i8805jvjas58q5i2yxl5kcy";
+    +    sha256 = "bae55f1c7c4a21d71aae182e4fab6038ba65ba4be5d1ceff9e269f4f74b823f2";
+       };
+     
+       buildInputs = [ which pkgconfig libxcb xcbutilkeysyms xcbutil xcbutilwm
+    -    libstartup_notification libX11 pcre libev yajl libXcursor perl ];
+    +    libstartup_notification libX11 pcre libev yajl libXcursor perl pango ];
+     
+       patchPhase = ''
+    -    sed -i -e '/^# Pango/,/^$/d' common.mk
+         patchShebangs .
+       '';
+
+-   These changes were made with two different purposes. I don't like
+    commits mixing unrelated changes. It turns out that git can help
+    here saving a lot of time and potential human error:
+    `git commit --patch pkgs/applications/window-managers/i3/default.nix`.
+-   *git* will sequentially show "groups of changes" (it calls them
+    *hunks*). For each *hunk* we are asked what we want to do; we can do
+    several things than are displayed by typing a question mark. I will
+    explain with my words the ones we are interested in right now.
+    Obviously the explanation given by git prevails:
+    -   type `y` to include the changes on this hunk in the commit
+    -   type `n` to leave the changes on this hunk out of this commit
+    -   type `s` to split the hunk if it consists of unrelated changes.
+        You are then asked again about the smaller hunks.
+-   Note that this command is not destructive. Changes left out of the
+    commit are not discarded.
+-   So I will do a first commit with all changes related to enabling
+    pango support for i3. Please note how I explain git to `s` split the
+    big hunk, `y` include the first small hunk on the commit, `n` skip
+    the second hunk, `n` skip the third hunk, `y` and `y` to include the
+    last two hunks:
+
+<!-- -->
+
+    $ git commit --patch pkgs/applications/window-managers/i3/default.nix -m 'i3 window manager: enable Pango support for anti-aliased fonts'
+    diff --git a/pkgs/applications/window-managers/i3/default.nix b/pkgs/applications/window-managers/i3/default.nix
+    index f8e4e16..4173660 100644
+    --- a/pkgs/applications/window-managers/i3/default.nix
+    +++ b/pkgs/applications/window-managers/i3/default.nix
+    @@ -1,21 +1,20 @@
+     { fetchurl, stdenv, which, pkgconfig, libxcb, xcbutilkeysyms, xcbutil,
+       xcbutilwm, libstartup_notification, libX11, pcre, libev, yajl,
+    -  libXcursor, coreutils, perl }:
+    +  libXcursor, coreutils, perl, pango }:
+     
+     stdenv.mkDerivation rec {
+       name = "i3-${version}";
+    -  version = "4.5";
+    +  version = "4.5.1";
+     
+       src = fetchurl {
+         url = "http://i3wm.org/downloads/${name}.tar.bz2";
+    -    sha256 = "1kiffcbvvjljqchw9ffgy9s8f9z06i8805jvjas58q5i2yxl5kcy";
+    +    sha256 = "bae55f1c7c4a21d71aae182e4fab6038ba65ba4be5d1ceff9e269f4f74b823f2";
+       };
+     
+       buildInputs = [ which pkgconfig libxcb xcbutilkeysyms xcbutil xcbutilwm
+    -    libstartup_notification libX11 pcre libev yajl libXcursor perl ];
+    +    libstartup_notification libX11 pcre libev yajl libXcursor perl pango ];
+     
+       patchPhase = ''
+    -    sed -i -e '/^# Pango/,/^$/d' common.mk
+         patchShebangs .
+       '';
+     
+    Stage this hunk [y,n,q,a,d,/,s,e,?]? s
+    Split into 5 hunks.
+    @@ -1,6 +1,6 @@
+     { fetchurl, stdenv, which, pkgconfig, libxcb, xcbutilkeysyms, xcbutil,
+       xcbutilwm, libstartup_notification, libX11, pcre, libev, yajl,
+    -  libXcursor, coreutils, perl }:
+    +  libXcursor, coreutils, perl, pango }:
+     
+     stdenv.mkDerivation rec {
+       name = "i3-${version}";
+    Stage this hunk [y,n,q,a,d,/,j,J,g,e,?]? y
+    @@ -4,7 +4,7 @@
+     
+     stdenv.mkDerivation rec {
+       name = "i3-${version}";
+    -  version = "4.5";
+    +  version = "4.5.1";
+     
+       src = fetchurl {
+         url = "http://i3wm.org/downloads/${name}.tar.bz2";
+    Stage this hunk [y,n,q,a,d,/,K,j,J,g,e,?]? n
+    @@ -8,7 +8,7 @@
+     
+       src = fetchurl {
+         url = "http://i3wm.org/downloads/${name}.tar.bz2";
+    -    sha256 = "1kiffcbvvjljqchw9ffgy9s8f9z06i8805jvjas58q5i2yxl5kcy";
+    +    sha256 = "bae55f1c7c4a21d71aae182e4fab6038ba65ba4be5d1ceff9e269f4f74b823f2";
+       };
+     
+       buildInputs = [ which pkgconfig libxcb xcbutilkeysyms xcbutil xcbutilwm
+    Stage this hunk [y,n,q,a,d,/,K,j,J,g,e,?]? n
+    @@ -12,6 +12,6 @@
+       };
+     
+       buildInputs = [ which pkgconfig libxcb xcbutilkeysyms xcbutil xcbutilwm
+    -    libstartup_notification libX11 pcre libev yajl libXcursor perl ];
+    +    libstartup_notification libX11 pcre libev yajl libXcursor perl pango ];
+     
+       patchPhase = ''
+    Stage this hunk [y,n,q,a,d,/,K,j,J,g,e,?]? y
+    @@ -16,6 +16,5 @@
+     
+       patchPhase = ''
+    -    sed -i -e '/^# Pango/,/^$/d' common.mk
+         patchShebangs .
+       '';
+     
+    Stage this hunk [y,n,q,a,d,/,K,g,e,?]? y
+
+    [example 729796b] i3 window manager: enable Pango support for anti-aliased fonts
+     1 file changed, 2 insertions(+), 3 deletions(-)
+
+-   As expected, the skipped hunks are still on the local file,
+    uncommitted:
+
+<!-- -->
+
+    $ git diff pkgs/applications/window-managers/i3/default.nix
+    diff --git a/pkgs/applications/window-managers/i3/default.nix b/pkgs/applications/window-managers/i3/default.nix
+    index b977a6a..4173660 100644
+    --- a/pkgs/applications/window-managers/i3/default.nix
+    +++ b/pkgs/applications/window-managers/i3/default.nix
+    @@ -4,11 +4,11 @@
+     
+     stdenv.mkDerivation rec {
+       name = "i3-${version}";
+    -  version = "4.5";
+    +  version = "4.5.1";
+     
+       src = fetchurl {
+         url = "http://i3wm.org/downloads/${name}.tar.bz2";
+    -    sha256 = "1kiffcbvvjljqchw9ffgy9s8f9z06i8805jvjas58q5i2yxl5kcy";
+    +    sha256 = "bae55f1c7c4a21d71aae182e4fab6038ba65ba4be5d1ceff9e269f4f74b823f2";
+       };
+     
+       buildInputs = [ which pkgconfig libxcb xcbutilkeysyms xcbutil xcbutilwm
+
+-   As these changes are both related, we can issue a simple commit:
+
+<!-- -->
+
+    $ git commit pkgs/applications/window-managers/i3/default.nix -m "i3 window manager: version bump from 4.5 to 4.5.1"
+    [example 4c7daed] i3 window manager: version bump from 4.5 to 4.5.1
+     1 file changed, 2 insertions(+), 2 deletions(-)
+
+-   Let's check if we're done:
+
+<!-- -->
+
+    $ git status
+    # On branch example
+    # Your branch is ahead of 'origin/example' by 3 commit.
+    #   (use "git push" to publish your local commits)
+    #
+    nothing to commit, working directory clean
+
+### Pushing to GitHub
+
+-   Now we want to push the local commits to our clone of NixOS/nixpkgs
+    at GitHub:
+
+<!-- -->
+
+    $ git push 
+    Counting objects: 27, done.
+    Delta compression using up to 2 threads.
+    Compressing objects: 100% (7/7), done.
+    Writing objects: 100% (19/19), 1.78 KiB, done.
+    Total 19 (delta 14), reused 14 (delta 12)
+    To https://github.com/your_username/nixpkgs.git
+       1c86db4..4c7daed  example -> example
+    Branch example set up to track remote branch example from origin.
+
 Sending a pull request to the official nixpkgs repository
 ---------------------------------------------------------
 
