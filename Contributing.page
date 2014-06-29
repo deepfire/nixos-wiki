@@ -77,8 +77,11 @@ The nixpkgs-dev-utilities referenced on [Nix(OS) related repositories
 and work](//Nix(OS) related repositories and work) tries to implement
 this for your convinience
 
-Upgrade the version of a package already in nixpkgs\_unstable
--------------------------------------------------------------
+Upgrade the version of a package already in nixpkgs\_unstable manually
+----------------------------------------------------------------------
+
+If you are running NixOS the svn checkout will already be in
+/etc/nixos/nixpkgs/pkgs, otherwise:
 
     svn co https://svn.nixos.org/repos/nix/nixpkgs/trunk ./nixpkgs_svn
 
