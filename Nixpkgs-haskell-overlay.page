@@ -1,11 +1,11 @@
-### Hack-nix & nixpkgs-haskell-overlay
+### [[edit](/w/index.php?title=Nixpkgs-haskell-overlay&action=edit&section=1 "Edit section: Hack-nix & nixpkgs-haskell-overlay")] Hack-nix & nixpkgs-haskell-overlay
 
 TODO: This page should be merged with [Haskell](//Haskell).
 
 Hack-nix is an alternative way packaging most of hackage for Nix.
 
-Introduction
-------------
+[[edit](/w/index.php?title=Nixpkgs-haskell-overlay&action=edit&section=2 "Edit section: Introduction")] Introduction
+--------------------------------------------------------------------------------------------------------------------
 
 Hackage and cabal files are the standard to define build dependencies of
 Haskell packages. There are almost no exceptions left using different
@@ -19,8 +19,8 @@ Hack-nix tries to solve these kind of issues by making Nix choose the
 correct versions from a pool of hackage packages - doing almost the same
 analysis cabal would do.
 
-How does hack-nix work?
------------------------
+[[edit](/w/index.php?title=Nixpkgs-haskell-overlay&action=edit&section=3 "Edit section: How does hack-nix work?")] How does hack-nix work?
+------------------------------------------------------------------------------------------------------------------------------------------
 
 It's best explained by the workflow:
 
@@ -72,12 +72,12 @@ satisfied or nix builds your packages. If dependencies are missing very
 often its enough to rebuild the dump adding some additional older
 versions.
 
-INSTALLATION
-------------
+[[edit](/w/index.php?title=Nixpkgs-haskell-overlay&action=edit&section=4 "Edit section: INSTALLATION")] INSTALLATION
+--------------------------------------------------------------------------------------------------------------------
 
       mkdir hack-nix; cd hack-nix
       git clone --depth=1 git://github.com/MarcWeber/nixpkgs -b experimental/hack-nix
-      get clone --depth=1  git://github.com/MarcWeber/nixpkgs-haskell-overlay.git
+      git clone --depth=1  git://github.com/MarcWeber/nixpkgs-haskell-overlay.git
 
 Way 1 to run the solver: See exeByName definitions in the [default.nix
 of the
@@ -105,8 +105,8 @@ can build the same package in different shells using different shell
 environment settings easily testing different cabal flags or ghc
 versions.
 
-TIPS
-----
+[[edit](/w/index.php?title=Nixpkgs-haskell-overlay&action=edit&section=5 "Edit section: TIPS")] TIPS
+----------------------------------------------------------------------------------------------------
 
 TIP 1)
 
@@ -143,14 +143,14 @@ use them:
 TIP 3) The README files of the github repositories may contain some
 additional information.
 
-How will the FUTURE look like ?
--------------------------------
+[[edit](/w/index.php?title=Nixpkgs-haskell-overlay&action=edit&section=6 "Edit section: How will the FUTURE look like ?")] How will the FUTURE look like ?
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Depends on you. Peter and Andreas Loeh has shown with their traditional
 way that the problems I saw do not happen in practice.
 
-BUGS
-----
+[[edit](/w/index.php?title=Nixpkgs-haskell-overlay&action=edit&section=7 "Edit section: BUGS")] BUGS
+----------------------------------------------------------------------------------------------------
 
 Oh, there are many. build tools were not defined by cabal files in the
 past which is why tools like happy have to added as buildinputs manually
@@ -158,14 +158,14 @@ past which is why tools like happy have to added as buildinputs manually
 - what about implementing NAT for finding solutions for the dependency
 trees?
 
-TROUBLE ?
----------
+[[edit](/w/index.php?title=Nixpkgs-haskell-overlay&action=edit&section=8 "Edit section: TROUBLE ?")] TROUBLE ?
+--------------------------------------------------------------------------------------------------------------
 
 hack-nix is not very friendly to new users. If you have any questions
 contact Marc Weber on irc or by mail (marco-oweber ATT gmx DOT de)
 
-Related projects
-----------------
+[[edit](/w/index.php?title=Nixpkgs-haskell-overlay&action=edit&section=9 "Edit section: Related projects")] Related projects
+----------------------------------------------------------------------------------------------------------------------------
 
 I did something similar for rubyforge and PyPi.
 
