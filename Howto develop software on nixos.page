@@ -52,6 +52,27 @@ nix-shell, specify the package by attribute.
 Additional info:
 <https://github.com/NixOS/nix/commit/7f38087f35e6f74a73bfdb28da8acd8930565d51>
 
+#### Using the nix-shell environment
+
+The environment provided by nix-shell has all appropriate environment
+variables set and `setup` sourced.
+
+For example, in a `systemd` nix-shell environment. The environment
+variables include:
+
+-   `src = /nix/store/0cg52ncqn9lajgdy4njma3wk7lf3591d-systemd-212.tar.xz`
+-   `patches = /nix/store/slczdayjgxh55kijyhs8y57ga7jcapy3-fixes.patch`
+-   `NIX_CFLAGS_COMPILE = -UPOLKIT_AGENT_BINARY_PATH -DPOLKIT_AGENT_BINARY_PATH="`(continues
+    for much longer.)
+
+`setup` adds functions for each of the phases. These can be called
+manually to step through the standard package build process:
+
+-   `unpackPhase` will unpack the source archive in `$src`
+-   `patchPhase` will patch the source.
+-   `configurePhase` will configure the unpacked source
+-   and so on
+
 ### Obtaining an Environment from a Custom Definition
 
 The first solution, to rely on the Nix package, will give us a single
