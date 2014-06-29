@@ -108,6 +108,8 @@ Using NixOS
 #### Advanced Configuration
 
 -   [Hardened NixOS (More Secure)](//Hardened NixOS)
+-   [Applying security updates without waiting for the hydra
+    queue](//Security Updates)
 
 ### On Virtual Machine
 
