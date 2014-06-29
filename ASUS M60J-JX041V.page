@@ -26,7 +26,7 @@ While searching on the web you find that this ethernet device need the
 kernel module `atl1e` instead of `atl1c`.
 
     [root@nixos:]# rmmod atl1c
-    [root@nixos:]# modprobe atl1e
+    [root@nixos:]# modprobe alt1e
 
 Grub entries & BIOS boot order
 ------------------------------
