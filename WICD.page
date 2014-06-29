@@ -34,8 +34,8 @@ conflicts, disable other network agents
     };
 
 (Roconnor 2012-08-13: setting useDHCP to false breaks for me in that
-wicd never sets the DNS server Sergey: confirm, that seems to be a
-dhcpcd issue. Wicd better works with dhclient.)
+wicd never sets the DNS server. Sergey 2013-06: confirm, that seems to
+be a dhcpcd issue. Wicd better works with dhclient.)
 
 ### Setup wicd
 
