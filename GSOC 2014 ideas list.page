@@ -1,0 +1,30 @@
+Want to spend your summer contributing full-time to NixOS and get paid
+for it?
+
+Most ideas listed here have a contact person associated with them.
+Please get in touch with them earlier rather than later to develop your
+idea into a complete application. You can find many of them on
+Freenode's IRC network under the same username. If there is no contact
+information, please join the nix-dev mailing list or \#nixos on the
+Freenode IRC network, and we will work with you to find a mentor and
+discuss your idea.
+
+You don't have to apply for one of these ideas! You can come up with
+your own, and as long as it fits into Nix stack, we'll be happy to work
+with you to develop it. Remember, your project needs to have
+deliverables in less than 3 months of work in most cases. Be ambitious
+but not too ambitious ;)
+
+Ideas
+-----
+
+### Packaging Gnome 3
+
+While there's been initial work done to have a minimal gnome-shell
+running, we're far from claiming support of Gnome 3.
+
+To get a better idea what's done and what's left to be acomplished, see
+<https://github.com/NixOS/nixpkgs/issues/247>
+
+Contact: Domen Kožar (domen@dev.si)
+
