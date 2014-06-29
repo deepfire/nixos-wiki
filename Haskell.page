@@ -12,7 +12,7 @@ Getting started
 If you just want to get a running Haskell environment on NixOS quickly,
 a good way to get started is to install the current Haskell Platform:
 
-     $ nix-env -iA nixos.pkgs.haskellPlatform
+     $ nix-env -iA nixpkgs.haskellPlatform
 
 If all you want is to use the xmonad window manager, then put the
 following options into your `/etc/nixos/configuration.nix`:
