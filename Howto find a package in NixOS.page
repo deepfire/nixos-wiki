@@ -15,49 +15,11 @@ Now how to find a package?
 to list all packages you can install. However Nix has to evaluate all
 names so this is quite slow.
 
-At the beginning you may have to look things up very often. That's why I
-have written this script which is caching the result (quick & dirty):
+Eg put this into your \~/.bashrc
 
-    #!/bin/sh
-    # this small scripts needs NIXPKGS_ALL be set to a pkgs/top-level/all-packages.nix file of a nixpkgs repository
-    # then it takes the git/svn revision + repo state and caches the output of
-    # nix-env -qa \* -P
+    query(){ nix-env -qa \* -P -f $NIXPKGS_ALL | grep -i "$1"; }
 
-    # TODO: take NIXPKS_CONFIG into acount
-
-    revhash(){
-      pushd . &> /dev/null
-      cd $(dirname $(dirname $(dirname $NIXPKGS_ALL)))
-      if [ -d .svn ]; then
-        rev=`svn info | sed -n 's/.*Rev: \(.*\)/\1/p'` &> /dev/null
-        hash=$(svn diff | md5sum | sed 's/ .*//' )
-        type=svn
-      elif [ -d .git ]; then
-        rev=`git rev-parse --verify HEAD`
-        hash=$(git diff | md5sum | sed 's/ .*//' )
-        type=git
-      else
-        echo unkown repo type in `pwd`
-        exit 1
-      fi
-      popd &> /dev/null
-    }
-    echo $NIXPKGS_ALL
-
-    revhash
-    mkdir -p /tmp/nix-caches/
-    tmp="/tmp/nix-caches/$type-$rev-$hash-cache"
-    echo cachefile is $tmp
-
-    [ -f "$tmp" ] || {
-      echo -n refreshing cache ..
-      # --out-path 
-      nix-env -qa \* -P -f $NIXPKGS_ALL > $tmp || { rm $tmp; echo "error"; exit 1; }
-      echo done
-    }
-    grep -i $1 $tmp
-
- You've found a package and it doesn't show up? If a package is defined
+You've found a package and it doesn't show up? If a package is defined
 as sub attribute set it is only shown if the function
 
     recurseIntoAttrs
