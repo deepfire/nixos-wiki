@@ -19,3 +19,9 @@ You can configure chromium with NixOS the standard way:
 
 and then install \*chromiumWrapper\*
 
+Enable GPU support
+------------------
+
+For intel:
+
+    services.xserver.vaapiDrivers = [ pkgs.vaapiIntel ];
