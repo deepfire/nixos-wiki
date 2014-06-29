@@ -24,7 +24,11 @@ Requirements:
 -   Download the [system
     tarball](http://vicerveza.homeunix.net/~viric/tmp/nix/nixos-system-mips64-linux.tar.xz)
     and unpack it somewhere accessible by the NFS client you will have
-    in your Fuloong Mini-PC
+    in your Fuloong Mini-PC. You can use an 'exports' like:
+
+<!-- -->
+
+    /home/fuloongroot 192.168.1.0/24(rw,no_root_squash,no_all_squash)
 
 Procedure:
 
