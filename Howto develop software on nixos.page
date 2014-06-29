@@ -213,13 +213,13 @@ opening several projects in the same KDevelop session.
 Sample Development Environments
 -------------------------------
 
-### Python Development Environment
+### Python - Plone Development Environment
 
        {
          # Define a myEnvFun environment, which makes use of pythonPlone
          packageOverrides = pkgs: rec {
         
-           # Define a version of python which has access to all the Plone modules
+           # Define a version of Python which has access to all the Plone modules
            pythonPlone = pkgs.pythonFull.override {
              extraLibs = with pkgs.python27Packages; [ Plone ];
            };
@@ -231,8 +231,8 @@ Sample Development Environments
                python27Packages.zc_buildout_nix
                stdenv # provides gcc for building python c extensions
             ];
-            # Export the path to the custom version of python with all the goodies
-            # Other python command line utilies could also be used, e.g. IPython
+            # Export the path to the custom version of Python with all the goodies
+            # Other Python command line utilies could also be used, e.g. IPython
             extraCmds = 
               export PYTHONHOME=${pythonPlone}
               unset http_proxy # otherwise downloads will fail ("nodtd.invalid")
