@@ -10,7 +10,9 @@ hydra.nixos.org
 -   stan
 -   kenny
 -   jimmy 32
+    -   Intel Core 2 6700 2.66GHz, 2GB, 220GB disk
 -   timmy 32
+    -   Intel Core 2 6700 2.66GHz, 2GB, 220GB disk
 
 #### Mac OS X
 
@@ -25,12 +27,15 @@ hydra.nixos.org
 #### Windows
 
 -   garrison
+    -   Intel Core 2 6700 2.66GHz, 2GB, 220GB disk
 
 #### FreeBSD
 
 -   phillip
+    -   Intel Core 2 6700 2.66GHz, 2GB, 220GB disk
 
 #### Solaris
 
 -   tweek
+    -   Xen VM
 
