@@ -7,8 +7,18 @@ Virtualbox, and specifically on getting a GUI up and running. Many parts
 of it are likely not specific to Macs, but nevertheless that is the
 focus of this article.
 
-TODO Create VM
---------------
+TODO Setup VM
+-------------
+
+### Install VirtualBox
+
+VirtualBox is available from <http://www.virtualbox.org/>. Installing it
+should be more or less straightforward.
+
+### Create VM
+
+Open the VirtualBox application and create a new VM, which will bring up
+the "New Virtual Machine Wizard".
 
 TODO Install NixOS
 ------------------
