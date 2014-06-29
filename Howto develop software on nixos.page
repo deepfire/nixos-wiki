@@ -1,5 +1,5 @@
-What is a Development Environment?
-----------------------------------
+[[edit](/w/index.php?title=Howto_develop_software_on_nixos&action=edit&section=1 "Edit section: What is a Development Environment?")] What is a Development Environment?
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Many software developers use an IDE to edit source code, such as
 [KDevelop IDE](http://www.kdevelop.org) or
@@ -23,7 +23,7 @@ install them. If we need more tools, such as an editor or IDE, we can
 create a Nix expression which defines tools we want, then install them
 in a custom environment.
 
-### Obtaining an Environment from an App's Nix Package
+### [[edit](/w/index.php?title=Howto_develop_software_on_nixos&action=edit&section=2 "Edit section: Obtaining an Environment from an App's Nix Package")] Obtaining an Environment from an App's Nix Package
 
 A Nix package declares everything required to build the packaged code.
 Therefore, if we want to work on the packaged app, we can ask the
@@ -52,7 +52,7 @@ nix-shell, specify the package by attribute.
 Additional info:
 <https://github.com/NixOS/nix/commit/7f38087f35e6f74a73bfdb28da8acd8930565d51>
 
-#### Using the nix-shell environment
+#### [[edit](/w/index.php?title=Howto_develop_software_on_nixos&action=edit&section=3 "Edit section: Using the nix-shell environment")] Using the nix-shell environment
 
 The environment provided by nix-shell has all appropriate environment
 variables set and `setup` sourced.
@@ -73,7 +73,7 @@ manually to step through the standard package build process:
 -   `configurePhase` will configure the unpacked source
 -   and so on
 
-### Obtaining an Environment from a Custom Definition
+### [[edit](/w/index.php?title=Howto_develop_software_on_nixos&action=edit&section=4 "Edit section: Obtaining an Environment from a Custom Definition")] Obtaining an Environment from a Custom Definition
 
 The first solution, to rely on the Nix package, will give us a single
 shell which can build the app, which is a very useful tool. Sometimes,
@@ -92,7 +92,7 @@ rather complicated, but the key idea is that Nix manages which of its
 applications are visible. This set of applications is called a "User
 Environment".
 
-#### Introducing myEnvFun
+#### [[edit](/w/index.php?title=Howto_develop_software_on_nixos&action=edit&section=5 "Edit section: Introducing myEnvFun")] Introducing myEnvFun
 
 So, our goal is to create a User Environment which contains all required
 tools to edit a Nix-packaged app. How do we create this User
@@ -140,7 +140,7 @@ naming convention.
 
      $ load-env-someEnvName
 
-#### Using myEnvFun Environments
+#### [[edit](/w/index.php?title=Howto_develop_software_on_nixos&action=edit&section=6 "Edit section: Using myEnvFun Environments")] Using myEnvFun Environments
 
 To test the results, try to use one of this environment's tools from
 this shell.
@@ -149,7 +149,7 @@ Other shells won't have this environment, so we must use the
 `load-env-someEnvName` command again to switch to the environment before
 using its tools.
 
-#### Example: "SDL" Environment
+#### [[edit](/w/index.php?title=Howto_develop_software_on_nixos&action=edit&section=7 "Edit section: Example: "SDL" Environment")] Example: "SDL" Environment
 
 The author of [this blog
 post](http://invalidmagic.wordpress.com/2012/03/23/developing-software-using-nixos/)
@@ -190,9 +190,9 @@ In the `Makefile` of a project which uses SDL, we usually use
 `sdl-config` to get these values and paths. In an SDL environment, we
 can also use these commands.
 
-#### Related Topics
+#### [[edit](/w/index.php?title=Howto_develop_software_on_nixos&action=edit&section=8 "Edit section: Related Topics")] Related Topics
 
-##### Using Libraries not using `pkgconfig`
+##### [[edit](/w/index.php?title=Howto_develop_software_on_nixos&action=edit&section=9 "Edit section: Using Libraries not using pkgconfig")] Using Libraries not using `pkgconfig`
 
 When you load `load-env-sdl` there will be some additional environment
 variables set:
@@ -213,7 +213,7 @@ Note: Once these paths are set correctly (caused by the
 `sdl-config` or `pkgconfig`. This helps to get libraries working which
 don't use these kind of tools to make them accessible.
 
-##### Code Completion in KDevelop IDE
+##### [[edit](/w/index.php?title=Howto_develop_software_on_nixos&action=edit&section=10 "Edit section: Code Completion in KDevelop IDE")] Code Completion in KDevelop IDE
 
 The KDevelop IDE has a code completion feature, but it will only work if
 it has access to the source code of referenced libraries. This is a
@@ -233,10 +233,10 @@ KDevelop asks where to build the project, choose the default option,
 should work for the whole project. What might not work, however, is
 opening several projects in the same KDevelop session.
 
-Sample Development Environments
--------------------------------
+[[edit](/w/index.php?title=Howto_develop_software_on_nixos&action=edit&section=11 "Edit section: Sample Development Environments")] Sample Development Environments
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### Example 1: Using nix-shell to Initialize a Development Shell
+### [[edit](/w/index.php?title=Howto_develop_software_on_nixos&action=edit&section=12 "Edit section: Example 1: Using nix-shell to Initialize a Development Shell")] Example 1: Using nix-shell to Initialize a Development Shell
 
 This example shows a Nix expression which packages an application that
 uses the Clang compiler.
@@ -260,7 +260,7 @@ following command.
 
        $ nix-shell clang.nix -A clangEnv
 
-### Example 2: Using myEnvFun to Create a Persistent Development Environment
+### [[edit](/w/index.php?title=Howto_develop_software_on_nixos&action=edit&section=13 "Edit section: Example 2: Using myEnvFun to Create a Persistent Development Environment")] Example 2: Using myEnvFun to Create a Persistent Development Environment
 
 The main difference between `myEnvFun` and `nix-shell` is the separation
 between building a development environment and activating it. If we use
@@ -296,18 +296,18 @@ following commands install our Clang environment into the `clang` user
 profile and makes a convenience link to that profile's Clang environment
 into the current directory.
 
-       $ nix-env -iA clangEnv -f envfun.nix -p /nix/var/nix/gcroots/per-user/clang
+       $ nix-env -iA clangEnv -f clangenv.nix -p /nix/var/nix/gcroots/profiles/per-user/clang
        
        # Make a convenience link.
-       $ ln -sf /nix/var/nix/gcroots/per-user/clang/bin/load-env-clang .
+       $ ln -sf /nix/var/nix/gcroots/profiles/per-user/clang/bin/load-env-clang-env .
        
        # Activate the environment.
-       $ ./load-env-clang
+       $ ./load-env-clang-env
        
        # Optionally, rollback to an earlier generation of this profile.
-       $ nix-env --list-generations -p /nix/var/nix/gcroots/per-user/clang
+       $ nix-env --list-generations -p /nix/var/nix/gcroots/profiles/per-user/clang
 
-### Example 3: Python - Plone Development Environment
+### [[edit](/w/index.php?title=Howto_develop_software_on_nixos&action=edit&section=14 "Edit section: Example 3: Python - Plone Development Environment")] Example 3: Python - Plone Development Environment
 
        {
          # Define a myEnvFun environment, which makes use of pythonPlone
@@ -336,8 +336,8 @@ into the current directory.
          };
        }
 
-Summary
--------
+[[edit](/w/index.php?title=Howto_develop_software_on_nixos&action=edit&section=15 "Edit section: Summary")] Summary
+-------------------------------------------------------------------------------------------------------------------
 
 We can add several different environments to our `~/.nixpkgs/config.nix`
 file, one for each project we work on. These can be used one at a time
