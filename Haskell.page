@@ -259,10 +259,10 @@ to the `environment.systemPackages` attribute in your
 
         environment.systemPackages = [
           # other system packages
-          pkgs.haskellPackages.ghcWithPackages (self : [
+          (pkgs.haskellPackages.ghcWithPackages (self : [
             self.haskellPlatform
             # add more Haskell packages here
-          ])
+          ]))
         ];
       }
 
