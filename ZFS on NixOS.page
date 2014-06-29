@@ -2,8 +2,8 @@ NixOS has native support for ZFS. It uses the code from the [ZFS on
 Linux project](http://zfsonlinux.org/), including kernel modules and
 userspace utilities.
 
-What works
-----------
+[[edit](/w/index.php?title=ZFS_on_NixOS&action=edit&section=1 "Edit section: What works")] What works
+-----------------------------------------------------------------------------------------------------
 
 All functionality supported by ZFS on Linux, including:
 
@@ -14,9 +14,12 @@ All functionality supported by ZFS on Linux, including:
     compression, RAID-Z, ...)
 -   Auto-snapshotting service
 
-Known issues
-------------
+[[edit](/w/index.php?title=ZFS_on_NixOS&action=edit&section=2 "Edit section: Known issues")] Known issues
+---------------------------------------------------------------------------------------------------------
 
+-   If you use kernel 3.14 or higher, set the option
+    "boot.zfs.useGit=true" in your config to use a more recent version
+    of ZFS
 -   As of 2014-03-04, you shouldn't use a ZVol as a swap device, as it
     can deadlock under memory pressure
 -   As of 2014-03-04, you should set the `mountpoint` property of your
@@ -31,8 +34,8 @@ Known issues
     problem, as a hard disk is usually only directly connected to one
     machine.
 
-How to use it
--------------
+[[edit](/w/index.php?title=ZFS_on_NixOS&action=edit&section=3 "Edit section: How to use it")] How to use it
+-----------------------------------------------------------------------------------------------------------
 
 Just add the following to your `configuration.nix` file:
 
@@ -72,8 +75,8 @@ filesystems for NixOS to mount during boot, e.g.:
         };
     (...)
 
-How to use the auto-snapshotting service
-----------------------------------------
+[[edit](/w/index.php?title=ZFS_on_NixOS&action=edit&section=4 "Edit section: How to use the auto-snapshotting service")] How to use the auto-snapshotting service
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 To auto-snapshot a ZFS filesystem or a ZVol, set its
 `com.sun:auto-snapshot` property to `true`, like this:
@@ -109,8 +112,8 @@ setting a ZFS property, like this:
 
 This would disable only weekly snapshots on the given filesystem.
 
-How to install NixOS on a ZFS root filesystem
----------------------------------------------
+[[edit](/w/index.php?title=ZFS_on_NixOS&action=edit&section=5 "Edit section: How to install NixOS on a ZFS root filesystem")] How to install NixOS on a ZFS root filesystem
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Here's an example of how to create a ZFS root pool using 4 disks in
 RAID-10 mode (striping+mirroring), create a ZFS root+home filesystems
@@ -197,8 +200,8 @@ and install NixOS on them: (thanks to Danny Wilson for the instructions)
     # Ready to go!
     nixos-install
 
-Need more info?
----------------
+[[edit](/w/index.php?title=ZFS_on_NixOS&action=edit&section=6 "Edit section: Need more info?")] Need more info?
+---------------------------------------------------------------------------------------------------------------
 
 Feel free to ask your questions on the NixOS mailing list or the IRC
 channel: <http://nixos.org/development/>
