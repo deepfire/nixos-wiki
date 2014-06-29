@@ -69,7 +69,7 @@ hitting the "merge" button on github is fine, however doing
 
 is finer, because history will be cleaner.
 
-check if there are any evaluation errors wit your distribution
---------------------------------------------------------------
+check if there are any evaluation errors with your distribution
+---------------------------------------------------------------
 
     nix-instantiate --eval-only --strict --xml -A <packagename>
