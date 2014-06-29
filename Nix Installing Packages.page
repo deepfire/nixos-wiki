@@ -35,16 +35,18 @@ We can also see which packages we currently have installed by using the
        $ nix-env --query --installed
        $ nix-env -q
 
-Another way to see available packages is to look at the attributes in
-the
+The
 [`all-packages.nix`](https://github.com/NixOS/nixpkgs/blob/master/pkgs/top-level/all-packages.nix#L8107)
-file. Most of these attributes, those which are defined by the
-`callPackage` or `mkDerivation` functions, define a "Nix package". The
-implementation of these Nix packages are stored elsewhere in the `pkgs`
-directory to keep the package list easy to read.
+file is the source of these commands, which contains the declarations
+and definitions of Nix packages. The attributes in this file which are
+defined by the `callPackage` or `mkDerivation` functions define a Nix
+package, which means we can use these attribute names to install them on
+the command line. Note that the implementation of these Nix packages are
+stored elsewhere in the `pkgs` directory, which keeps the package list
+easy to read.
 
 Let's install some other packages we found in the `all-packages.nix`
-file.
+file, such as the `dropbox` and `bitcoin` packages.
 
        $ nix-env --install firefox
        $ nix-env --install dropbox bitcoin
