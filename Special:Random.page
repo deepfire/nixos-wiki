@@ -1,3 +1,8 @@
+Find elisp modules in standard profiles
+---------------------------------------
+
+     (setq load-path (append (list "~/.nix-profile/share/emacs/site-lisp" "/var/run/current-system/sw/share/emacs/site-lisp") load-path))
+
 Tramp
 -----
 
