@@ -2,7 +2,7 @@ I have a netbook which I use to connect to my WPA2-protected wifi
 network at home. Here is my experience of setting up wicd and wireless
 connection.
 
-### Check the hardware
+### [[edit](/w/index.php?title=WICD&action=edit&section=1 "Edit section: Check the hardware")] Check the hardware
 
 Check that your wireless adapter is working
 
@@ -18,7 +18,7 @@ If not, consult dmesg. One possible reason is missing firmware.
 Sometimes you may need to enable it explicitly, see
 networking.enableIntel2100BGFirmware option as an example.
 
-### Enable wicd, disable other networking
+### [[edit](/w/index.php?title=WICD&action=edit&section=2 "Edit section: Enable wicd, disable other networking")] Enable wicd, disable other networking
 
 Wicd is fully-functional network manager, it takes responsibility for
 connecting, launching dhcp clients, storing passwords, etc. To prevent
@@ -37,7 +37,7 @@ conflicts, disable other network agents
 wicd never sets the DNS server. Sergey 2013-06: confirm, that seems to
 be a dhcpcd issue. Wicd better works with dhclient.)
 
-### Setup wicd
+### [[edit](/w/index.php?title=WICD&action=edit&section=3 "Edit section: Setup wicd")] Setup wicd
 
 Now rebuild nixos, switch to new configuration and launch the gui.
 
