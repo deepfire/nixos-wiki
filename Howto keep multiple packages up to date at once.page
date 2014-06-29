@@ -1,6 +1,12 @@
 The standard way to keep a set of packages up-to-date in Nix is to
 install them into a profile -- typically the default profile -- and to
-run "`nix-env -u \*`", possibly even "`nix-env -u \* --always"`.
+run
+
+    nix-env -u \*
+
+or possibly even
+
+    nix-env -u \* --always
 
 Sometimes, however, it is desirable to refer to packages by their
 nixpkgs attribute rather their name, or maybe one would like to group a
