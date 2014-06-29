@@ -47,8 +47,10 @@ is shown by alsamixer without using the 'S' key).
 ### Other hardware specific problems
 
 If you're mic is always at a very low volume or you experience other
-oddness you may need to specify a particular card model when loading
-snd-hda-intel:
+oddness and you have already checked the settings in alsamixer to make
+sure nothing is muted, and also any buttons on your computer (I have
+twice overlooked the mute button on laptops!) you may need to specify a
+particular card model when loading snd-hda-intel:
 
       boot.extraModprobeConfig = ''
         options snd-hda-intel model=YOUR_MODEL 
@@ -75,6 +77,20 @@ You can try them out interactively as follows:
         \~/.pulse/client.conf
         you can then stop pulseaudio with:
         pulseaudio -k \# or kill it by process id
+
+2.  Unload the snd-hda-intel module
+    rmmod snd-hda-intel
+3.  [Look up the model options for your
+    card](http://www.kernel.org/doc/Documentation/sound/alsa/HD-Audio-Models.txt:HD-Audio-Models.txt:)
+4.  Try each one
+    modprobe snd-hda-intel model=3stack-6ch
+5.  Test if this has fixed your problem (tip: aplay and arecord are alsa
+    based command line tools you can use to quickly check)
+6.  Repeat until you have exhausted all the options or have fixed your
+    problem
+7.  TIDY UP!
+    Don't forget to re-enable pulse autospawning by changing
+    "autospawn=no" to "autospawn=yes" in \~/.pulse/client.conf
 
 ### Fixing sound in KDE
 
