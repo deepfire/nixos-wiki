@@ -143,3 +143,16 @@ The actual package "recipe"
         license = stdenv.lib.licenses.bsd3;
       };
     }
+
+-   As an example of the trivial fixes and improvements I was talking
+    about, you can have a look at two changesets I did:
+    -   adding the *pango* dependency to [enable antialiased fonts on
+        i3](https://github.com/NixOS/nixpkgs/commit/f976962d7b7087920a6635ca90f07b06e8a44202)
+    -   and [updating from upstream version 4.5 to
+        4.5.1](https://github.com/NixOS/nixpkgs/commit/ae9b33ac51dee8b24479cbdb54fe8d752a912ce4)
+-   As I anticipated above, I am not going to explain what's the purpose
+    of the list of `buildInputs`, how a list enclosed by square brackets
+    separated by spaces differs from the list at the beginning or the
+    relevance of the colon that follows its closing curly brace. I just
+    don't know so much *yet*.
+
