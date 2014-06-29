@@ -126,35 +126,66 @@ Conclusion
 Above example should work cross-platform on Darwin(OSX)/Linux/FreeBSD.
 I(garbas) tested Linux and OSX 10.8.
 
-How to use myEnvFun and buildout-nix to create a plone development environment
-==============================================================================
+How to use myEnvFun and buildout-nix to create a python development environment
+===============================================================================
 
-1\. Add a myEnvFun expression for plone development to
-\~/.nixpkgs/config.nix:
+For example, let's set up an environment we can use for plone
+development. All binaries such as lxml and PIL will be provided by nix,
+and you can still use buildout for installing extra packages,
+development and testing. Eventually, it will be possible to install and
+configure plone as a NixOS module.
+
+When you've set it up and installed it, you can then load the
+environment and hack away. Think of virtualenv, except way more awesome!
+The \`load-env-plone\` script will drop you into a subshell, so ctrl-d
+will return you to the normal shell, and you can reload it again later.
+The environment will stay exactly the same until you explicitly update
+it, then you will probably need to run whatever build scripts you need
+for your custom stuff. If you use buildout, then the custom version of
+buildout: \`buildout-nix\` will try to clean up some things for you and
+otherwise take advantage of nix. Remember though, that your development
+code is managed outside of nix, so it is subject to the normal whims of
+build tools.
+
+1\. Add these sections to \~/.nixpkgs/config.nix:
 
     {
-     packageOverrides = pkgs: {
-        plone43 = pkgs.myEnvFun {
-          name = "plone43";
+
+      # Define a version of python which has access to all the Plone modules
+      pythonPlone = pkgs.pythonFull.override {
+         extraLibs = with pkgs.python27Packages; [ Plone ];
+      };
+
+      # Define a myEnvFun environment, which makes use of pythonPlone
+      # You can 
+      packageOverrides = pkgs: {
+        plone = pkgs.myEnvFun {
+          name = "plone";
           buildInputs = with pkgs; [
-            python27Packages."Plone-4.3.1"
-            pythonFull # provides python standard library, readline etc.
+            pythonPlone
             python27Packages.zc_buildout_nix
             stdenv # provides gcc for building python c extensions
          ];
+         # Export the path to the custom version of python with all the goodies
+         # Other python command line utilies could also be used, e.g. IPython
+         extraCmds = ''
+           export PYTHONHOME=${pythonPlone}
+         '';
         };
 
       };
     }
 
-2\. Initialize the environment:
+2\. Install it: \`nix-env -i env-plone\`
 
-    $ load-env-plone43
-    env-plone43 loaded
+3\. Activate it:
 
-    plone43:[goibhniu@macha:~/Projects/Plone/plone.chat]$
+    $ load-env-plone
+    env-plone loaded
 
-3\. Create a buildout.cfg:
+    plone:[goibhniu@macha:~/Projects/Plone]$
+
+4\. Create a buildout.cfg:
 
     [buildout]
     extends = http://dist.plone.org/release/4.3/versions.cfg
