@@ -46,3 +46,17 @@ Considerations:
 -   Should we use distribute as the basis for installing python
     packages?
 
+Tasks
+
+-   Merging of python fork
+-   Documents: Improve Section 5.2 on
+    <http://hydra.nixos.org/job/nixpkgs/trunk/tarball/latest/download-by-type/doc/manual#id541167>
+    to provide an example of a good package
+-   Easy to use python environment, e.g. for Plone
+-   Python purity
+-   Problematic python packages: numpy, mathplotlib etc. :
+    <https://github.com/chaoflow/nixpkgs/issues/2>
+-   Consider how to generate nix expressions for python package (see
+    garbas' repo)
+
+-   
