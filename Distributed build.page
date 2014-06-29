@@ -2,6 +2,10 @@ Sometimes you want to use a faster machine for building a nix derivation
 you want to use on a slower one. If both of them run NixOS you can
 follow this little HOWTO to make it happen.
 
+--- ignore this, look at nix.buildMachines in [NixOS
+Manual](http://hydra.nixos.org/job/nixos/trunk/manual/latest/download)
+---
+
 Prerequisites
 -------------
 
