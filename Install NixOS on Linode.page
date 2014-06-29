@@ -3,10 +3,10 @@ the Rescue Mode, then mount the partitions we'll install on, install
 NixOS and NixPkgs on the Rescue Disk and then have it install to the
 mounted partition we actually want it installed on.
 
-Setup your Disk Image partions.
--------------------------------
+[[edit](/w/index.php?title=Install_NixOS_on_Linode&action=edit&section=1 "Edit section: Setup your Disk Image partions.")] Setup your Disk Image partions.
+----------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### Create Disk Images in Linode Manager
+### [[edit](/w/index.php?title=Install_NixOS_on_Linode&action=edit&section=2 "Edit section: Create Disk Images in Linode Manager")] Create Disk Images in Linode Manager
 
 You will need:
 
@@ -19,30 +19,30 @@ You will need:
 Additionally, be sure to choose the "pv\_grub-\<arch\>" kernel to
 actually use the kernel supplied from the nixos installation.
 
-### Boot into Rescue Mode and use LISH to connect to your machine
+### [[edit](/w/index.php?title=Install_NixOS_on_Linode&action=edit&section=3 "Edit section: Boot into Rescue Mode and use LISH to connect to your machine")] Boot into Rescue Mode and use LISH to connect to your machine
 
 What will become /boot needs to be ext2, I make my main partition ext4:
 
     mkfs.ext2 /dev/xvda
     mkfs.ext4 /dev/xvdc
 
-### Add a filesystem label to the NixOS Installation Disk
+### [[edit](/w/index.php?title=Install_NixOS_on_Linode&action=edit&section=4 "Edit section: Add a filesystem label to the NixOS Installation Disk")] Add a filesystem label to the NixOS Installation Disk
 
 This is optional. The label is used in configuration.nix later so make
 sure to adapt it to your needs.
 
     e2label /dev/xvdc nixos
 
-### Mount the Partitions
+### [[edit](/w/index.php?title=Install_NixOS_on_Linode&action=edit&section=5 "Edit section: Mount the Partitions")] Mount the Partitions
 
     mount /dev/xvdc /mnt
     mkdir /mnt/boot
     mount /dev/xvda /mnt/boot
 
-Install Prerequisites
----------------------
+[[edit](/w/index.php?title=Install_NixOS_on_Linode&action=edit&section=6 "Edit section: Install Prerequisites")] Install Prerequisites
+--------------------------------------------------------------------------------------------------------------------------------------
 
-### Install Nix in the Rescue System
+### [[edit](/w/index.php?title=Install_NixOS_on_Linode&action=edit&section=7 "Edit section: Install Nix in the Rescue System")] Install Nix in the Rescue System
 
     # bash <(curl https://nixos.org/nix/install)
     # source /etc/profile.d/nix.sh
@@ -50,11 +50,11 @@ Install Prerequisites
     # nix-channel --add http://nixos.org/channels/nixos-14.04 nixos
     # nix-channel --update
 
-### Install vim for editing
+### [[edit](/w/index.php?title=Install_NixOS_on_Linode&action=edit&section=8 "Edit section: Install vim for editing")] Install vim for editing
 
     # nix-env -i vim
 
-### Install *nixos-install*, *nixos-option*, and *nixos-hardware-schan*
+### [[edit](/w/index.php?title=Install_NixOS_on_Linode&action=edit&section=9 "Edit section: Install nixos-install, nixos-option, and nixos-hardware-schan")] Install *nixos-install*, *nixos-option*, and *nixos-hardware-schan*
 
     # cat <<EOF > configuration.nix
     { fileSystems."/" = {};
@@ -66,15 +66,15 @@ Install Prerequisites
     # export NIXOS_CONFIG=/root/configuration.nix
     # nix-env -i -A config.system.build.nixos-install -A config.system.build.nixos-option -A config.system.build.nixos-generate-config -f "<nixos>"
 
-Configure your system
----------------------
+[[edit](/w/index.php?title=Install_NixOS_on_Linode&action=edit&section=10 "Edit section: Configure your system")] Configure your system
+---------------------------------------------------------------------------------------------------------------------------------------
 
-### Generate configuration.nix template in /mnt/etc/nixos/
+### [[edit](/w/index.php?title=Install_NixOS_on_Linode&action=edit&section=11 "Edit section: Generate configuration.nix template in /mnt/etc/nixos/")] Generate configuration.nix template in /mnt/etc/nixos/
 
     # nixos-generate-config --root /mnt
 
-Edit your */mnt/etc/nixos/configuration.nix*
---------------------------------------------
+[[edit](/w/index.php?title=Install_NixOS_on_Linode&action=edit&section=12 "Edit section: Edit your /mnt/etc/nixos/configuration.nix")] Edit your */mnt/etc/nixos/configuration.nix*
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 These are the minimal changes you'll have to make, you probably also
 want to turn sshd on, and perhaps create a user. That disk and swap
@@ -89,13 +89,13 @@ should check to confirm.
        device = "nodev";
      };
 
-Install NixOS!
---------------
+[[edit](/w/index.php?title=Install_NixOS_on_Linode&action=edit&section=13 "Edit section: Install NixOS!")] Install NixOS!
+-------------------------------------------------------------------------------------------------------------------------
 
     # unset NIXOS_CONFIG
     # nixos-install
 
-### Fix Grub
+### [[edit](/w/index.php?title=Install_NixOS_on_Linode&action=edit&section=14 "Edit section: Fix Grub")] Fix Grub
 
 Because of how Linode will try to load grub on the /boot partition, we
 need to make this symlink so it can find it:
@@ -104,8 +104,8 @@ need to make this symlink so it can find it:
     # cd /mnt/boot/boot/grub
     # ln -sv ../../grub/menu.lst /mnt/boot/boot/grub
 
-Reboot to NixOS
----------------
+[[edit](/w/index.php?title=Install_NixOS_on_Linode&action=edit&section=15 "Edit section: Reboot to NixOS")] Reboot to NixOS
+---------------------------------------------------------------------------------------------------------------------------
 
 The installation is finished. The last steps before booting the system
 is creating a configuration profile in the Linode Manager:
@@ -121,10 +121,12 @@ is creating a configuration profile in the Linode Manager:
 Change other configuration options to your preference.
 
 Now hit *boot* in the Linode Manager and wait for NixOS to boot. You can
-check progress in the Remote Access Console.
+check progress in the Remote Access Console. Note that root logins via
+SSH are disabled so you'll need to add a user and give it a password to
+SSH into the Linode.
 
-Update Channels to finish installation
---------------------------------------
+[[edit](/w/index.php?title=Install_NixOS_on_Linode&action=edit&section=16 "Edit section: Update Channels to finish installation")] Update Channels to finish installation
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     nix-channel --update
 
