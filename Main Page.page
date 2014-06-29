@@ -1,7 +1,7 @@
 Welcome to the Nix wiki!
 
-Getting started
----------------
+[[edit](/w/index.php?title=Main_Page&action=edit&section=1 "Edit section: Getting started")] Getting started
+------------------------------------------------------------------------------------------------------------
 
 -   Nix [manual](http://nixos.org/nix/manual/) [source
     code](https://github.com/NixOS/nix)
@@ -18,8 +18,8 @@ Getting started
 -   [FAQ](//FAQ)
 -   [Contributing](//Contributing)
 
-Installation
-------------
+[[edit](/w/index.php?title=Main_Page&action=edit&section=2 "Edit section: Installation")] Installation
+------------------------------------------------------------------------------------------------------
 
 -   [Nix manual:
     Installation](http://nixos.org/nix/manual/#chap-installation)
@@ -28,10 +28,10 @@ Installation
 -   [How to install nix in home (on another
     distribution)](//How to install nix in home (on another distribution))
 
-Using Nix
----------
+[[edit](/w/index.php?title=Main_Page&action=edit&section=3 "Edit section: Using Nix")] Using Nix
+------------------------------------------------------------------------------------------------
 
-### Package Management
+### [[edit](/w/index.php?title=Main_Page&action=edit&section=4 "Edit section: Package Management")] Package Management
 
 -   [Installing/Viewing Packages](//Install/remove software)
 -   [Searching for a package](//Howto find a package in NixOS)
@@ -44,12 +44,12 @@ Using Nix
     nix-store](//How to add large files to the nix-store)
 -   [Modifying Software](//Modify software)
 
-### Platforms
+### [[edit](/w/index.php?title=Main_Page&action=edit&section=5 "Edit section: Platforms")] Platforms
 
 -   [CrossCompiling](//CrossCompiling)
 -   [Nix on Windows](//Nix on Windows)
 
-### Languages
+### [[edit](/w/index.php?title=Main_Page&action=edit&section=6 "Edit section: Languages")] Languages
 
 -   [How to develop on NixOS](//Howto develop software on nixos) - (NOT
     how to develop \*for\* NixOS or Nix)
@@ -59,7 +59,7 @@ Using Nix
 -   [Android](//Android)
 -   [Plone development](//Plone development)
 
-### Issues
+### [[edit](/w/index.php?title=Main_Page&action=edit&section=7 "Edit section: Issues")] Issues
 
 -   [Terms and Definitions in Nix
     Project](//Terms and Definitions in Nix Project)
@@ -73,8 +73,8 @@ Using Nix
     nixpkgs](//How to update when nix is too old to evaluate nixpkgs)
 -   [NixOps:Deploying\_From\_Non-Linux\_OS](//NixOps:Deploying From Non-Linux OS)
 
-Using NixOS
------------
+[[edit](/w/index.php?title=Main_Page&action=edit&section=8 "Edit section: Using NixOS")] Using NixOS
+----------------------------------------------------------------------------------------------------
 
 -   [Real World NixOS Dotfiles](//Real World NixOS Dotfiles) - (Learn by
     seeing different configurations.)
@@ -83,7 +83,7 @@ Using NixOS
 -   [Extending NixOS](//NixOS:extend NixOS)
 -   [NixOS Config Argument](//NixOS:config argument)
 
-### On Physical Machine
+### [[edit](/w/index.php?title=Main_Page&action=edit&section=9 "Edit section: On Physical Machine")] On Physical Machine
 
 -   [Creating a Nix OS live CD](//Creating a Nix OS live CD) - Live CD
     or USB boot stick
@@ -93,7 +93,7 @@ Using NixOS
 -   [Multiplatform NixOS](//Multiplatform NixOS) - (PC, QEMU ARM
     Versatile, SheevaPlug, Fuloong Mini-PC, Raspberry Pi)
 
-#### Configuration Files for Hardware
+#### [[edit](/w/index.php?title=Main_Page&action=edit&section=10 "Edit section: Configuration Files for Hardware")] Configuration Files for Hardware
 
 -   [Acer 4810T](//Acer 4810T)
 -   [ASUS M60J-JX041V](//ASUS M60J-JX041V)
@@ -106,13 +106,13 @@ Using NixOS
 -   [Lenovo Thinkpad Helix](//Lenovo Thinkpad Helix)
 -   [Samsung NP900X3c](//Samsung NP900X3c)
 
-#### Advanced Configuration
+#### [[edit](/w/index.php?title=Main_Page&action=edit&section=11 "Edit section: Advanced Configuration")] Advanced Configuration
 
 -   [Hardened NixOS (More Secure)](//Hardened NixOS)
 -   [Applying security updates without waiting for the hydra
     queue](//Security Updates)
 
-### On Virtual Machine
+### [[edit](/w/index.php?title=Main_Page&action=edit&section=12 "Edit section: On Virtual Machine")] On Virtual Machine
 
 -   [How to install NixOS on VirtualBox](//InstallingOnVirtualBox)
 -   [NixOS and Xen](//NixOS and Xen)
@@ -121,7 +121,7 @@ Using NixOS
 -   [How to install NixOS as OpenVZ
     guest](//Install NixOS as OpenVZ guest)
 
-### On Hosting Provider
+### [[edit](/w/index.php?title=Main_Page&action=edit&section=13 "Edit section: On Hosting Provider")] On Hosting Provider
 
 -   [Hosting providers & NixOS](//Hosting providers & NixOS)
 -   [How to install NixOS on Amazon EC2](//NixOS on Amazon EC2)
@@ -130,31 +130,31 @@ Using NixOS
 -   [How to install NixOS on
     Rackspace](//Install NixOS on Rackspace Cloud Servers)
 
-Contributing to Nix Projects
-----------------------------
+[[edit](/w/index.php?title=Main_Page&action=edit&section=14 "Edit section: Contributing to Nix Projects")] Contributing to Nix Projects
+---------------------------------------------------------------------------------------------------------------------------------------
 
-### Before You Start
+### [[edit](/w/index.php?title=Main_Page&action=edit&section=15 "Edit section: Before You Start")] Before You Start
 
 -   [Contributing](//Contributing)
 -   [Getting Help](//Getting Help)
 
-### Development Topics
+### [[edit](/w/index.php?title=Main_Page&action=edit&section=16 "Edit section: Development Topics")] Development Topics
 
 -   [How to write a NixOS module](//NixOS:Modules)
 
-### Debugging
+### [[edit](/w/index.php?title=Main_Page&action=edit&section=17 "Edit section: Debugging")] Debugging
 
 -   [Create and debug nix packages](//Create and debug nix packages)
 
-Documentation
--------------
+[[edit](/w/index.php?title=Main_Page&action=edit&section=18 "Edit section: Documentation")] Documentation
+---------------------------------------------------------------------------------------------------------
 
-### Design and Architecture
+### [[edit](/w/index.php?title=Main_Page&action=edit&section=19 "Edit section: Design and Architecture")] Design and Architecture
 
 -   [Anatomy of Nix Package
     Management](//Anatomy of Nix Package Management)
 
-### Manuals
+### [[edit](/w/index.php?title=Main_Page&action=edit&section=20 "Edit section: Manuals")] Manuals
 
 -   [Nix
     manual](http://hydra.nixos.org/job/nix/trunk/tarball/latest/download-by-type/doc/manual)
@@ -165,23 +165,23 @@ Documentation
 -   [NixOps
     manual](http://hydra.nixos.org/job/nixops/master/tarball/latest/download-by-type/doc/manual)
 
-### Source Code
+### [[edit](/w/index.php?title=Main_Page&action=edit&section=21 "Edit section: Source Code")] Source Code
 
 -   [Nix on GitHub](https://github.com/NixOS/nix)
 -   [NixOS on GitHub](https://github.com/NixOS/nixos)
 -   [Nixpkgs on GitHub](https://github.com/NixOS/nixpkgs)
 -   [NixOps on GitHub](https://github.com/NixOS/nixops)
 
-### Third-Party Talk
+### [[edit](/w/index.php?title=Main_Page&action=edit&section=22 "Edit section: Third-Party Talk")] Third-Party Talk
 
 -   [User Reviews](//User Reviews)
 -   [Nix(OS) on the media](//Nix(OS) on the media)
 -   [Nix(OS) in production](//Nix(OS) in production)
 
-How-tos
--------
+[[edit](/w/index.php?title=Main_Page&action=edit&section=23 "Edit section: How-tos")] How-tos
+---------------------------------------------------------------------------------------------
 
-### Installing Software
+### [[edit](/w/index.php?title=Main_Page&action=edit&section=24 "Edit section: Installing Software")] Installing Software
 
 -   [How to set up MediaWiki in NixOS with
     vhosts](//Setting up MediaWiki & vhosts)
@@ -195,7 +195,7 @@ How-tos
 -   [Setting up OpenGrok source code search and cross
     reference](//OpenGrok)
 
-### Configuration
+### [[edit](/w/index.php?title=Main_Page&action=edit&section=25 "Edit section: Configuration")] Configuration
 
 -   [Using ZSH](//Using the ZSH SHELL)
 -   [Emacs configuration](//Emacs configuration)
@@ -206,7 +206,7 @@ How-tos
 -   [How to tweak Linux kernel config
     options](//How to tweak Linux kernel config options)
 
-### Hardware
+### [[edit](/w/index.php?title=Main_Page&action=edit&section=26 "Edit section: Hardware")] Hardware
 
 -   [Audio Howto](//Audio HOWTO)
 -   [Bluetooth](//Bluetooth)
@@ -217,7 +217,7 @@ How-tos
 -   [wpa\_supplicant](//Wpa supplicant)
 -   [WICD](//WICD)
 
-### Other
+### [[edit](/w/index.php?title=Main_Page&action=edit&section=27 "Edit section: Other")] Other
 
 -   [Mercurial and Nix repositories](//Mercurial and Nix repositories)
 -   [How to enable subpixel rendering in
@@ -231,7 +231,7 @@ How-tos
 -   [How to download all sources for building a package and its
     dependencies](//Download all sources)
 
-### Virtualisation
+### [[edit](/w/index.php?title=Main_Page&action=edit&section=28 "Edit section: Virtualisation")] Virtualisation
 
 -   [Writing and running NixOS VM tests](//NixOS VM tests)
 -   [QEMU guest with networking and
@@ -240,8 +240,8 @@ How-tos
     (PVs,VGs,LVs)](//Soft-RAID mdadm (/dev/md0), LVM (PVs,VGs,LVs)) and
     booting from LVM on top of a mdadm volume
 
-Developer Chat
---------------
+[[edit](/w/index.php?title=Main_Page&action=edit&section=29 "Edit section: Developer Chat")] Developer Chat
+-----------------------------------------------------------------------------------------------------------
 
 -   [open issues:derivation styles](//Open issues:derivation styles)
 -   [open issues:maintenance properties of a
@@ -252,23 +252,21 @@ Developer Chat
     determinism](//Long-term open issues:build determinism)
 -   [TODO - What is missing in the nix
     community?](//TODO - What is missing in the nix community)
--   [TODO - Cleaning up wiki
-    spam](/w/index.php?title=TODO_-_Cleaning_up_wiki_spam&action=edit&redlink=1 "TODO - Cleaning up wiki spam (page does not exist)")
 -   [The Many Cooks Method](//The Many Cooks Method)
 
-### Licenses
+### [[edit](/w/index.php?title=Main_Page&action=edit&section=30 "Edit section: Licenses")] Licenses
 
 -   [Software
     Licenses](https://fedoraproject.org/wiki/Licensing#SoftwareLicenses)
     (Fedora Project)
 
-### Branding, T-shirts, Stickers and other swag
+### [[edit](/w/index.php?title=Main_Page&action=edit&section=31 "Edit section: Branding, T-shirts, Stickers and other swag")] Branding, T-shirts, Stickers and other swag
 
 -   [Rough ideas](//Rough ideas)
 -   <http://www.cafepress.com/nixos>
 
-Misc
-----
+[[edit](/w/index.php?title=Main_Page&action=edit&section=32 "Edit section: Misc")] Misc
+---------------------------------------------------------------------------------------
 
 -   [Nix(OS) related repositories and
     work](//Nix(OS) related repositories and work)
@@ -278,8 +276,8 @@ Misc
     settings](/w/index.php?title=Xorg/xserver_example_settings&action=edit&redlink=1 "Xorg/xserver example settings (page does not exist)")
 -   [bower2nix](//Bower2nix)
 
-Events
-------
+[[edit](/w/index.php?title=Main_Page&action=edit&section=33 "Edit section: Events")] Events
+-------------------------------------------------------------------------------------------
 
 -   [Nixos Hackday: 2013-03-01](//Nixos Hackday: 2013-03-01)
 -   [Nix Hackfest: 2012-07 20th to
