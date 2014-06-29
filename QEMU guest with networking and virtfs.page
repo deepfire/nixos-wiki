@@ -46,14 +46,19 @@ Ethernet) is probably the easiest and most versatile.
 As root add a "kvm" group so that you only have to do the networking
 setup as root:
 
-    $ groupadd kvm
-    $ usermod -G kvm username
+    # groupadd kvm
+    # usermod -G kvm username
 
-Start the vde daemon
+To change the groups of the user without logging out and back in again
+(as username):
 
-    $ vde_switch -tap tap0 -mod 660 -group kvm -daemon
-    $ ip addr add 10.0.2.1/24 dev tap0
-    $ ip link set dev tap0 up
+    $ su username -
+
+Start the vde daemon (as root):
+
+    # vde_switch -tap tap0 -mod 660 -group kvm -daemon
+    # ip addr add 10.0.2.1/24 dev tap0
+    # ip link set dev tap0 up
 
 You should now see the tap0 interface with \`ip addr\`/\`ifconfig\` and
 it should have been assigned the IP address specified. It is important
@@ -62,10 +67,30 @@ that you don't use the same subnet as your host network interface
 
 Forward traffic:
 
-    $ sysctl -w net.ipv4.ip_forward=1
-    $ iptables -t nat -A POSTROUTING -s 10.0.2.0/24 -j MASQUERADE
+    # sysctl -w net.ipv4.ip_forward=1
+    # iptables -t nat -A POSTROUTING -s 10.0.2.0/24 -j MASQUERADE
 
- References:
+Guest network config
+--------------------
+
+You can now start the VM as a normal user by adding the following
+options \`-net nic,model=virtio -net vde\`:
+
+VirtFS
+------
+
+Tips
+----
+
+=
+=
+
+### Snapshots
+
+You can save the current state of the VM (including the CPU state) and
+then load it later. This
+
+References:
 
 -   [Building a Virtual
     Army](http://blog.falconindy.com/articles/build-a-virtual-army.html)
