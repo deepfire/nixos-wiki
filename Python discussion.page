@@ -30,7 +30,8 @@ general python integration into nixos
 
 marcweber and qknight **vote against that**. it makes packaging
 complicated: to mix python2 and python3? We could introduce
-NIX\_PYTHON\_SITES\_2 and NIX\_PYTHON\_SITES\_3 or such.
+NIX\_PYTHON\_SITES\_2 and NIX\_PYTHON\_SITES\_3 or such. a better way is
+to use load-env-whatever (see [7])
 
 -   pyLibA (python wrapper for a library) is used by pyLibB: nix
     expressions must be able to use either
@@ -93,4 +94,6 @@ links
     <http://permalink.gmane.org/gmane.linux.distributions.nixos/8732>
 -   [6]
     <http://djangotricks.blogspot.de/2008/09/note-on-python-paths.html>
+-   [7]
+    <http://invalidmagic.wordpress.com/2012/03/23/developing-software-using-nixos/>
 
