@@ -25,7 +25,8 @@ happens. The best thing to do is to fix your patch. Try to check first
 if it will cause a lot of rebuilds and add a note to your pull request
 if you have already tested everything.
 
-### what meta attributes are important
+what meta attributes are important
+----------------------------------
 
 -   \*meta.platforms\* will tell hydra to build binaries for specific
     platform targets. By default hydra doesn't build anything.
