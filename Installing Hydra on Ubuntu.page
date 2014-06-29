@@ -39,3 +39,8 @@ Gives user hydra all rights to the database:
 Initialize the database:
 
      $ cat $HOME/.nix-profile/share/hydra/sql/hydra-postgresql.sql | psql -U hydra -W hydra
+
+Add user root to hydra and make admin:
+
+     $ echo "INSERT INTO Users(userName, emailAddress, password) VALUES ('root', 'some@email.com', '$(echo -n foobar | sha1sum | cut -c1-40)');" | psql -U hydra -W hydra 
+     $ echo "INSERT INTO UserRoles(userName, role) values('root', 'admin');" | psql -U hydra -W hydra
