@@ -1,3 +1,12 @@
+Python is a nice programming language. How can we use Python and Nix
+together? Here are a few ways:
+
+1\) Install Python, the interpreter, from NixPkgs.
+
+2\) Install Python packages, such as pyramid, from NixPkgs.
+
+3\) Use multiple versions of Python on one machine.
+
 Installing Python interpreters
 ==============================
 
