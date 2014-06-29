@@ -2,9 +2,18 @@ Frequently asked questions and common newcomer trouble should be put
 here so that we can point to this page intsead of answering the same
 question over and over again.
 
-NixOS segfaults when running on VirtualPC: You may have hit
+-   NixOS segfaults when running on VirtualPC:
+
+You may have hit
 <http://jagbarcelo.blogspot.com/2009/11/segmentation-fault-ubuntu-virtual-pc.html>
 There may be a different cause (out of memory) You can check
 /var/log/messages to see if there is something about the OOM killer
 kicking in
+
+-   Nix(OS) substitutes break on older
+    [Btrfs](http://en.wikipedia.org/Btrfs) implementation since the
+    merge of SQLite support (feb 2011 in trunk).
+
+Subtituted files are padded by zero bytes, which makes them unusable.
+Upgrading Btrfs to 2.6.37+ kernel resolves the issue.
 
