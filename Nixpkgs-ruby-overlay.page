@@ -1,0 +1,57 @@
+[[edit](/w/index.php?title=Nixpkgs-ruby-overlay&action=edit&section=1 "Edit section: nixpkgs-ruby-overlay")] nixpkgs-ruby-overlay
+=================================================================================================================================
+
+Experimental "dump rubyforge to nix" implementation. It consists of
+
+1\) A patch for nixpkgs adding the overlay feature (like gentoo). This
+allows maintaining packages outside of the official nixpkgs tree [Marc
+Weber's nixpkgs overlay
+branch](https://github.com/MarcWeber/nixpkgs/tree/experimental/overlays).
+This is optional
+
+2\) [A patch for nixpkgs adding special
+hooks](https://github.com/MarcWeber/nixpkgs/tree/experimental/ruby).
+Required for some ruby packages.
+
+3\) [nixpkgs-ruby-overlay](https://gitorious.org/nixpkgs-ruby-overlay).
+This contains the gem command "nixpkgsoverlay" which dumps rubyforge
+(the ruby package database) into a format nix can read. This also
+contais the code interpreting that dump creating derivations (optionally
+adding tag files) on the fly. I'm running this command manually once in
+a while to update the specs. This repository also merges in information
+about C dependencies such as "mysql C library" for ruby's mysql
+implementation.
+
+4)
+[nixpkgs-ruby-overlay-specs](https://gitorious.org/nixpkgs-ruby-overlay-specs)
+The dump of ruby forge (40.000 package descriptions), this is quite
+large. In the future this information should be fetched from a server.
+
+[[edit](/w/index.php?title=Nixpkgs-ruby-overlay&action=edit&section=2 "Edit section: sample usage")] sample usage
+-----------------------------------------------------------------------------------------------------------------
+
+\~/.nixpkgs/config.nix:
+
+       rubyEnv = 
+        # Access overlay by name
+        let ro = (pkgs.overlay "ruby");
+        #
+        # From overlay use rubyEnv19 function which
+        # - reads the gems dumped to the specs repository 
+        # - creates an environment script you can source use like this: "ruby-env-test bash"
+        # That script extends RUBYLIB and TAG_FILES.
+        # TAG_FILES can be read in any editor such as Vim.
+        #
+        # Latest package versions are preferred.
+        # Example: names  = ["A" "B"], A depending on D, D-2.0 being latest,
+        # B also depending on D but requiring "1.0", this will fail if A was seen first.
+        # The fix is to force version 1.0 of D by adding  D =  "=" "1.0" ; to p.
+        # Turning a "Gemfile.lock" into an environment is not supported yet.
+        in ro.rubyEnv19 {
+            name = "test";
+            p = {
+               # choose version 2.3.9, all gem like comparison operators are supported)
+               activesupport =  "=" "2.3.9" ;
+            };
+            names = [ "activesupport" "rails"];
+        };
