@@ -169,19 +169,21 @@ which are using the sound device and kill them before starting JACK. You
 can also continue to use non-JACK aware applications (e.g. flash) at the
 same time as using JACK applications (e.g. Ardour).
 
-1.  Enable JACK support
+1.  Load the sequencer and midi kernel modules
+    boot.kernelModules = [ "snd-seq" "snd-rawmidi" ];
+2.  Enable JACK support
 
     In your configuration file:
 
         hardware.pulseaudio.package = pkgs.pulseaudio.override { jackaudioSupport = true; };
 
-2.  Ensure that the JACK enabled pulseaudio is being used
+3.  Ensure that the JACK enabled pulseaudio is being used
 
     \~/.pulse/client.conf
 
         daemon-binary=/var/run/current-system/sw/bin/pulseaudio
 
-3.  Configure QjackCtl
+4.  Configure QjackCtl
     1.  Enable jackdbus
         Setup -\> Settings -\> Server Path: jackdbus
         [![Qjackctl-settings.png](/w/images/3/38/Qjackctl-settings.png)](//File:Qjackctl-settings.png)
