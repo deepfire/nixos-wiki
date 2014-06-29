@@ -3,7 +3,8 @@ This is useful if you want to install NixOS on a machine that doesn't
 have a CD-ROM drive (such as most netbooks), or if you don't want to
 waste a blank CD. Here is how to do it:
 
-1.  Download a [NixOS ISO image](http://nixos.org/nixos/download.html).
+1.  Download a [NixOS ISO image](http://nixos.org/nixos/download.html)
+    or [create a custom ISO](//Creating a Nix OS live CD).
 2.  Obtain a USB stick formatted with the VFAT/FAT32 filesystem with
     enough free disk space to hold the contents of the ISO image. Note
     that it's not necessary to erase the USB stick.
