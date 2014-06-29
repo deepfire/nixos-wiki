@@ -8,3 +8,7 @@
      Shall the new role be allowed to create more new roles? (y/n) n
 
      $ sudo -u postgres createdb -O hydra hydra
+
+     $ nix-channel --add http://hydra.nixos.org/jobset/hydra/trunk/channel/latest
+     $ nix-channel --update
+     $ nix-env -i hydra
