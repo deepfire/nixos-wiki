@@ -46,7 +46,8 @@ mounted partition we actually want it installed on.
     config.system.build.nixosOption -A
     config.system.build.nixosHardwareScan -f "\<nixos\>"
 23. e2label /dev/xvdc nixos
-24. Edit your configuration.nix, below are the minimal number of changes
+24. nixos-option --install
+25. Edit your configuration.nix, below are the minimal number of changes
     you'll have to make, you probably also want to turn sshd on, and
     perhaps create a user.
     vi /mnt/etc/nixos/configuration.nix
@@ -66,13 +67,13 @@ mounted partition we actually want it installed on.
     swapDevices =
     [ { device = "/dev/xvdb"; }
     ];
-25. nixos-install
-26. mkdir -p /mnt/boot/boot/grub
-27. Because of how Linode will try to load grub on the /boot partition,
+26. nixos-install
+27. mkdir -p /mnt/boot/boot/grub
+28. Because of how Linode will try to load grub on the /boot partition,
     we need to make this symlink so it can find it:
     ln -sv ../../grub/menu.lst /mnt/boot/boot/grub
-28. You can now reboot, and you should boot into your NixOS install
-29. nix-channel --update
+29. You can now reboot, and you should boot into your NixOS install
+30. nix-channel --update
 
 You now should have a fully functional NixOS install on Linode, enjoy!
 
