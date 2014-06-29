@@ -63,7 +63,7 @@ new feature of stdenv-updates stdenv: *userHook*. You have to set it up
 to introduce an impurity in your nixpkgs like this:
 
     {
-      stdenv.userHook = "test -f /niximpure/impure.sh && . /niximpure/impure.sh";
+      stdenv.userHook = "if [ -f /niximpure/impure.sh ]; then . /niximpure/impure.sh; fi";
     }
 
 In case you build nixos, remember to set the userHook also in nixos'
