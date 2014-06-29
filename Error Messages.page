@@ -3,22 +3,47 @@ Error Messages
 
 If you are stumped by an error message, add it here.
 
-Error Message
+  --------------------------------------------------------------------------
+  Error Message
+  Occurs When
+  Meaning
+  Suggested
+  Solution
+  Related Links
+  -------------- -------------- -------------- -------------- --------------
+  `` error: cann
+  ot auto-call a
+   function that
+   has an argume
+  nt without a d
+  efault value (
+  `stdenv') ``
+  Trying to
+  build an
+  individual
+  package with:
+  `nix-build --d
+  ry-run ./defau
+  lt.nix`
+  A Nix function
+  was called
+  without a
+  required
+  argument.
+  Use `--arg` or
+  `--argstr` to
+  specify
+  arguments.
+  [Nix Manual:
+  Common
+  Options](http:
+  //nixos.org/ni
+  x/manual/#sec-
+  common-options
+  )\
+   Also in
+  `man nix-build
+  `.
+  --------------------------------------------------------------------------
 
-Occurs When
-
-Meaning
-
-Suggested Solution
-
-Related Links
-
-`` error: cannot auto-call a function that has an argument without a default value (`stdenv') ``
-
-Trying to build individual package with:
-`nix-build --dry-run --show-trace ./default.nix`
-
-A Nix function was called, but it wasn't given a parameter.
-
-Please help.
 
