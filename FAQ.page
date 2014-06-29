@@ -77,3 +77,11 @@ The warning can be ignored for profiles that are listed/linked in
 Consult man pages of nix-store and nix-instantiate for further
 information.
 
+how to add a custom udev rule in nixos
+--------------------------------------
+
+add something like this to your `/etc/nixos/configuration.nix` file:
+
+     services.udev.extraRules = 
+       ATTRS{idVendor}=="0665", ATTRS{idProduct}=="5161", MODE="666", SYMLINK+="hidraw_protecthome"
+     ;
