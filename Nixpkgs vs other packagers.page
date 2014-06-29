@@ -69,6 +69,8 @@ mention some:
     program
 3.  no side effects to other users (if desired), when installing
     programs
+4.  no effects for the own user (have the program installed in the
+    store, but not referenced in the profile)
 
 That can be achieved only following the nix style. So, letting nix build
 your program from source, instead of doing that on your own in your
