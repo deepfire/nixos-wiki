@@ -72,5 +72,5 @@ merged into by the means of UnionFS). So if empty password is not
 working, try your old root password.
 
 Thats it. Now follow the manual (Alt-F8), mount /dev/sda3 as /mnt, do
-nixos-config and so on.
+nixos-option and so on.
 
