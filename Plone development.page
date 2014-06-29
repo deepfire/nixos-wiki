@@ -126,14 +126,14 @@ Conclusion
 Above example should work cross-platform on Darwin(OSX)/Linux/FreeBSD.
 I(garbas) tested Linux and OSX 10.8.
 
-How to use myEnvFun and buildout-nix to create a python development environment
-===============================================================================
+How to use myEnvFun and buildout-nix to create a plone development environment
+==============================================================================
 
-For example, let's set up an environment we can use for plone
-development. All binaries such as lxml and PIL will be provided by nix,
-and you can still use buildout for installing extra packages,
-development and testing. Eventually, it will be possible to install and
-configure plone as a NixOS module.
+A similar procedure could be used for any python program. All binaries
+such as lxml and PIL will be provided by nix, and you can still use
+buildout for installing extra packages, development and testing.
+Eventually, it will be possible to install and configure plone as a
+NixOS module.
 
 When you've set it up and installed it, you can then load the
 environment and hack away. Think of virtualenv, except way more awesome!
