@@ -297,7 +297,7 @@ dependencies) installed for the selected version of GHC. As always, by
 using `haskellPackages.ghcWithPackages`, we refer to the current version
 of GHC. You can explicitly select another version of GHC, too. For
 example, to use GHC 7.4.2, you would say
-`haskellPackages.ghcWithPackages_ghc742`.
+`haskellPackages_ghc742.ghcWithPackages`.
 
 The configuration above defines a *new* attribute called `hsEnv` that
 you can subsequently install into an environment by saying
