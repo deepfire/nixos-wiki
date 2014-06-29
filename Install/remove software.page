@@ -32,7 +32,8 @@ also depending on where the software was installed:
 
 ### system environment installation
 
-    remove the entry in environment.systemPackages = [  ];
+remove the entry in environment.systemPackages = [ ];
+
     nixos-rebuild switch
     nix-env --delete-generations old
     nix-collect-garbage
