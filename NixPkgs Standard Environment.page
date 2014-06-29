@@ -288,7 +288,7 @@ scripts defined in the packages specified by the `$buildInputs`,
 either by calling the function with that name or by evaluating the
 variable with that name.
 
-`exitHandler()` - Defines commands to execute when the build shell
+**`exitHandler()`** - Defines commands to execute when the build shell
 exits.
 
 -   Clear nesting level
@@ -298,47 +298,48 @@ exits.
         `$out/nix-support/failed` failure and change failure to success
 -   Run the `exitHook` if the build did not fail
 
-`addToSearchPathWithCustomDelimiter(String delimiter, String envVarName, String path)`
+**`addToSearchPathWithCustomDelimiter(String delimiter, String envVarName, String path)`**
 - Convenience function. Prepend the specified path to the specified
 environment variable, followed by the specified delimiter.
 
-`addToSearchPath(String envVarName, String path)` -Convenience function.
-Prepend the specified path to the specified environment variable,
-followed by the default delimiter, ":". The default delimiter can be
-changed by changing the value of the `PATH_DELIMITER` environment
+**`addToSearchPath(String envVarName, String path)`** -Convenience
+function. Prepend the specified path to the specified environment
+variable, followed by the default delimiter, ":". The default delimiter
+can be changed by changing the value of the `PATH_DELIMITER` environment
 variable.
 
-`ensureDir(List<String> paths)` - Ensure that the specified paths exist.
+**`ensureDir(List<String> paths)`** - Ensure that the specified paths
+exist.
 
-`installBin(List<String> paths)` - Copy the specified paths to
+**`installBin(List<String> paths)`** - Copy the specified paths to
 `$out/bin`.
 
-`findInputs(String pkg, String var, String propogatedBuildInputs)` -
+**`findInputs(String pkg, String var, String propogatedBuildInputs)`** -
 Recursively find all build inputs. Executes the specified package's
 `nix-support/setup-hook` file and the `setup-hook` file of all packages
 specified in its `nix-support/$propagatedBuildInputsFile` file, if it
 exists. The expected behavior of the `setup-hook` file is not defined.
 This seems to be used primarily with `crossPkgs` and `nativePkgs`.
 
-`addToNativeEnv(String pkg)` - Add the `/bin` directory of the specified
-package to the `_PATH` environment variable, then executes each script
-defined in the `envHooks` environment variable with the specified
-package as an argument.
+**`addToNativeEnv(String pkg)`** - Add the `/bin` directory of the
+specified package to the `_PATH` environment variable, then executes
+each script defined in the `envHooks` environment variable with the
+specified package as an argument.
 
-`addToCrossEnv(String pkg)` - Add the `/bin` directory of the specified
-package to the `_PATH` environment variable, then executes each script
-defined in the `crossEnvHook` environment variable with the specified
-package as an argument.
+**`addToCrossEnv(String pkg)`** - Add the `/bin` directory of the
+specified package to the `_PATH` environment variable, then executes
+each script defined in the `crossEnvHook` environment variable with the
+specified package as an argument.
 
-`stripDirs(List<String> dirs, String stripFlags)` - Execute the `strip`
-program with the specified flags on all files in the specified
+**`stripDirs(List<String> dirs, String stripFlags)`** - Execute the
+`strip` program with the specified flags on all files in the specified
 directories, recursively, in the root directory, specified by the
 `$prefix` environment variable. In Unix systems, the `strip` program is
 used to reduce an executable file's size by removing debug symbols
 and/or symbol tables. [Examples of
 `strip`](http://www.thegeekstuff.com/2012/09/strip-command-examples/)
 
-`substitute(String input, String output, String operation, String pattern, String replacement)`
+**`substitute(String input, String output, String operation, String pattern, String replacement)`**
 
 *Operations*:
 
@@ -352,7 +353,7 @@ and/or symbol tables. [Examples of
     output file while modifying its contents to replace the specified
     environment variable with the specified value.
 
-`substituteInPlace(String file, String operation, String pattern, String replacement)`
+**`substituteInPlace(String file, String operation, String pattern, String replacement)`**
 
 *Operations*:
 
@@ -363,57 +364,57 @@ and/or symbol tables. [Examples of
 -   *`--subst-var-by`*: Modify the specified file by replacing the
     specified environment variable with the specified value.
 
-`substituteAll(String input, String output)` - Copy the specified input
-file to the specified output file while modifying its contents to
+**`substituteAll(String input, String output)`** - Copy the specified
+input file to the specified output file while modifying its contents to
 replace all lowercase environment variables with their values.
 
-`substituteAllInPlace(String input, String output)` - Modify the
+**`substituteAllInPlace(String input, String output)`** - Modify the
 specified file by replacing all lowercase environment variables with
 their values.
 
-`startNest()` - Increment the `nestingLevel`.
+**`startNest()`** - Increment the `nestingLevel`.
 
-`stopNest()` - Decrement the `nestingLevel`.
+**`stopNest()`** - Decrement the `nestingLevel`.
 
-`header(String msg)` - Print the specified `msg` after starting a new
-nesting level.
+**`header(String msg)`** - Print the specified `msg` after starting a
+new nesting level.
 
-`closeNest()` - Stop every nesting level. Used when abnormally exiting a
-build.
+**`closeNest()`** - Stop every nesting level. Used when abnormally
+exiting a build.
 
-`dumpVars()` - Log all environment variables to the
+**`dumpVars()`** - Log all environment variables to the
 `$NIX_BUILD_TOP/env-vars` file, unless the `$noDumpEnvVars` value is 1.
 This environment variable can be controlled from Nix's command line
 programs by using the `-K` option.
 
-`stripHash(String path)` - Strips the path of all parent directories and
-the base file name's hash, if it has one.
+**`stripHash(String path)`** - Strips the path of all parent directories
+and the base file name's hash, if it has one.
 
-`unpackFile(String filePath)` - Unpacks the specified file by choosing
-and using the appropriate unpacking program with default options. If the
-file's extension is not "tar" or "zip", this function simply copies the
-specified file to the build directory. If there is no specified file,
-this function will run the `unpackCmd` hook, which is expected to place
-the software's source code in the build directory.
+**`unpackFile(String filePath)`** - Unpacks the specified file by
+choosing and using the appropriate unpacking program with default
+options. If the file's extension is not "tar" or "zip", this function
+simply copies the specified file to the build directory. If there is no
+specified file, this function will run the `unpackCmd` hook, which is
+expected to place the software's source code in the build directory.
 
-`fixLibtool(String filePath)` - Modifies the specified file by running
-the `sed` program with the `'s^eval sys_lib_.*search_path=.*^^'` regular
-expression as an operand.
+**`fixLibtool(String filePath)`** - Modifies the specified file by
+running the `sed` program with the `'s^eval sys_lib_.*search_path=.*^^'`
+regular expression as an operand.
 
-`patchELF()` - Execute the `patchelf` program on all executable files in
-the build directory, or have an ".so\*" extension, to removes unused
-paths from the file's "RPATH".
+**`patchELF()`** - Execute the `patchelf` program on all executable
+files in the build directory, or have an ".so\*" extension, to removes
+unused paths from the file's "RPATH".
 
-`patchShebangs(String dir)` - Modify all executable files in the
+**`patchShebangs(String dir)`** - Modify all executable files in the
 specified directory by replacing the `#!`-prefixed path on the first
 line with the equivalent path in the Nix store. The program's path in
 the Nix store is stored in an environment variable, whose name is the
 program's name. These environment variables are defined as a package's
 dependent packages are added to the environment.
 
-`showPhaseHeader(String phaseName)` - Show the current phase to the user
-and start a new level of nesting by passing the specified phase to the
-`header` function.
+**`showPhaseHeader(String phaseName)`** - Show the current phase to the
+user and start a new level of nesting by passing the specified phase to
+the `header` function.
 
 ### Following a Nix Package Build
 
