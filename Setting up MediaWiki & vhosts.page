@@ -29,3 +29,6 @@ command line. For instance:
 
 ` $ mediawiki-main-changePassword --user alice --password foobar`
 
+See also:
+/etc/nixos/nixos/modules/services/web-servers/apache-httpd/mediawiki.nix
+
