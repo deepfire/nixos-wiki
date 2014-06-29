@@ -10,7 +10,7 @@ update a package, add a new package etc. First you need to clone the
 NixOS repositories:
 
      $ cd $HOME/code/
-     $ mkdir code; cd code
+     $ mkdir -p code
      $ git clone https://github.com/NixOS/nixpkgs
      $ git clone https://github.com/NixOS/nixos
 
