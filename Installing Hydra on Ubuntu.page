@@ -31,3 +31,7 @@ into
 and restart the postgresql service
 
      sudo -u postgres /etc/init.d/postgresql restart
+
+Initialize the database:
+
+     cat $HOME/.nix-profile/share/hydra/sql/hydra-postgresql.sql | psql -U hydra -W hydra
