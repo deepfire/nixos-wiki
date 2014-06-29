@@ -15,5 +15,7 @@ update the system based on your local \`\`\`\~/code/nixos\`\`\` and
 
      $ nix-build --run-env -A irssi --add-root
 
-<https://github.com/diaspora/diaspora/wiki/Git-Workflow>
+### links
+
+-   [1] <https://github.com/diaspora/diaspora/wiki/Git-Workflow>
 
