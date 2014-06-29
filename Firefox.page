@@ -1,6 +1,14 @@
 Firefox uses the correct java plugin when you add
 
-    nixpkgs.config.firefox.jre = true;
+    {
+      firefox = {
+        jre = true;
+      };
+    }
 
 to your \~/.nixpkgs/config.nix.
+
+To comply with the license you will need to perform some manual steps to
+download and install the JRE. These steps are described in the output
+when you try to install Firefox.
 
