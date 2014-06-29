@@ -111,11 +111,118 @@ then run:
 note: the first number (769b74) is nixos revision, the second number is
 the nixpkgs (f430032) revision which is
 
+note: requires version nix-1.6.x
+
 then run:
 
       cd $NIXREPOS/nixpkgs
       git pull
       git checkout -b nixpkgschannel f430032
+      nix-shell $NIXREPOS/nixpkgs  -A bc
+      mkdir -p /tmp/foo/out
+      cd /tmp/foo
+      export out=/tmp/foo/out
+
+list all functions which are declared in **set**:
+
+      typeset -F
+      declare -f addCVars
+      declare -f addToCrossEnv
+      declare -f addToNativeEnv
+      declare -f addToSearchPath
+      declare -f addToSearchPathWithCustomDelimiter
+      declare -f buildPhase
+      declare -f checkPhase
+      declare -f closeNest
+      declare -f command_not_found_handle
+      declare -f configurePhase
+      declare -f distPhase
+      declare -f dumpVars
+      declare -f ensureDir
+      declare -f exitHandler
+      declare -f findInputs
+      declare -f fixLibtool
+      declare -f fixupPhase
+      declare -f genericBuild
+      declare -f header
+      declare -f installBin
+      declare -f installCheckPhase
+      declare -f installPhase
+      declare -f patchELF
+      declare -f patchPhase
+      declare -f patchShebangs
+      declare -f runHook
+      declare -f showPhaseHeader
+      declare -f startNest
+      declare -f stopNest
+      declare -f stripDirs
+      declare -f stripHash
+      declare -f substitute
+      declare -f substituteAll
+      declare -f substituteAllInPlace
+      declare -f substituteInPlace
+      declare -f unpackFile
+      declare -f unpackPhase
+
+list a particular function type:
+
+      typeset -f unpackPhase
+      
+      unpackPhase () 
+      { 
+          runHook preUnpack;
+          if [ -z "$srcs" ]; then
+              if [ -z "$src" ]; then
+                  echo 'variable $src or $srcs should point to the source';
+                  exit 1;
+              fi;
+              srcs="$src";
+          fi;
+          local dirsBefore="";
+          for i in *;
+          do
+              if [ -d "$i" ]; then
+                  dirsBefore="$dirsBefore $i ";
+              fi;
+          done;
+          for i in $srcs;
+          do
+              unpackFile $i;
+          done;
+          if [ -n "$setSourceRoot" ]; then
+              runHook setSourceRoot;
+          else
+              if [ -z "$sourceRoot" ]; then
+                  sourceRoot=;
+                  for i in *;
+                  do
+                      if [ -d "$i" ]; then
+                          case $dirsBefore in 
+                              *\ $i\ *)
+      
+                              ;;
+                              *)
+                                  if [ -n "$sourceRoot" ]; then
+                                      echo "unpacker produced multiple directories";
+                                      exit 1;
+                                  fi;
+                                  sourceRoot="$i"
+                              ;;
+                          esac;
+                      fi;
+                  done;
+              fi;
+          fi;
+          if [ -z "$sourceRoot" ]; then
+              echo "unpacker appears to have produced no directories";
+              exit 1;
+          fi;
+          echo "source root is $sourceRoot";
+          if [ "$dontMakeSourcesWritable" != 1 ]; then
+              chmod -R u+w "$sourceRoot";
+          fi;
+          runHook postUnpack
+      }
 
 nix channels
 ------------
