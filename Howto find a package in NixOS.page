@@ -35,3 +35,10 @@ it would match something like:
       # of course you would use this notation instead:
       attr.subattr.subattr.package = mkDerivation ...;
     }
+
+You can also use ctags to find attr names fast. Install ctagsWrapped
+which tells ctags about the nix filetype by passing:
+
+    --langdef=NIX
+    --langmap=NIX:.nix
+    --regex-NIX=/([^ \t*]*)[ \t]*=/\1/f/
