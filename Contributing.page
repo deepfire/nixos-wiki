@@ -1,17 +1,17 @@
-Contributing to this wiki
--------------------------
+[[edit](/w/index.php?title=Contributing&action=edit&section=1 "Edit section: Contributing to this wiki")] Contributing to this wiki
+-----------------------------------------------------------------------------------------------------------------------------------
 
 Make sure your articles are linked from any existing nix related wiki
 page otherwise your page might be considered spam and deleted
 
-Contribute to nixpkgs
-=====================
+[[edit](/w/index.php?title=Contributing&action=edit&section=2 "Edit section: Contribute to nixpkgs")] Contribute to nixpkgs
+===========================================================================================================================
 
 A more elaborate guide can be found here [Contributing to
 nixpkgs](//Contributing to nixpkgs).
 
-Getting started
----------------
+[[edit](/w/index.php?title=Contributing&action=edit&section=3 "Edit section: Getting started")] Getting started
+---------------------------------------------------------------------------------------------------------------
 
 See the official documentation which describes how the Nix expression
 language works so that you can update existing packages and add new
@@ -26,8 +26,8 @@ ones.
 -   [NixOS
     manual](http://hydra.nixos.org/job/nixos/trunk/manual/latest/download)
 
-I have a patch
---------------
+[[edit](/w/index.php?title=Contributing&action=edit&section=4 "Edit section: I have a patch")] I have a patch
+-------------------------------------------------------------------------------------------------------------
 
 Thanks. Open a [pull request](//Pull request) on github.
 
@@ -36,8 +36,8 @@ happens. The best thing to do is to fix your patch. Try to check first
 if it will cause a lot of rebuilds and add a note to your pull request
 if you have already tested everything.
 
-What meta attributes are important
-----------------------------------
+[[edit](/w/index.php?title=Contributing&action=edit&section=5 "Edit section: What meta attributes are important")] What meta attributes are important
+-----------------------------------------------------------------------------------------------------------------------------------------------------
 
 -   \*meta.platforms\* will tell hydra to build binaries for specific
     platform targets. By default hydra doesn't build anything.
@@ -58,13 +58,13 @@ Example:
       platforms = platforms.linux;
     };
 
-Check if there are any evaluation errors with your distribution
----------------------------------------------------------------
+[[edit](/w/index.php?title=Contributing&action=edit&section=6 "Edit section: Check if there are any evaluation errors with your distribution")] Check if there are any evaluation errors with your distribution
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     nix-instantiate --eval-only --strict --xml -A <packagename>
 
-How to verify that you didn't break a dependency or the evaluation by accident ?
---------------------------------------------------------------------------------
+[[edit](/w/index.php?title=Contributing&action=edit&section=7 "Edit section: How to verify that you didn't break a dependency or the evaluation by accident ?")] How to verify that you didn't break a dependency or the evaluation by accident ?
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 To find out which packages are effected by your change:
 
@@ -93,12 +93,15 @@ To find out which packages are effected by your change:
 
 TODO: explain what is done exactly
 
+TODO: see if this is useful:
+<https://github.com/NixOS/nixpkgs/blob/master/maintainers/scripts/rebuild-amount.sh>
+
  The nixpkgs-dev-utilities referenced on [Nix(OS) related repositories
 and work](//Nix(OS) related repositories and work) tries to implement
 this for your convinience
 
-Merging git pull requests
--------------------------
+[[edit](/w/index.php?title=Contributing&action=edit&section=8 "Edit section: Merging git pull requests")] Merging git pull requests
+-----------------------------------------------------------------------------------------------------------------------------------
 
 hitting the "merge" button on github is fine, however doing
 
@@ -106,8 +109,8 @@ hitting the "merge" button on github is fine, however doing
 
 is finer, because history will be cleaner.
 
-Contributing to the nixpkgs manual
-----------------------------------
+[[edit](/w/index.php?title=Contributing&action=edit&section=9 "Edit section: Contributing to the nixpkgs manual")] Contributing to the nixpkgs manual
+-----------------------------------------------------------------------------------------------------------------------------------------------------
 
 The documentation for nixpkgs is in the nixpkgs/docs directory. To build
 it locally you need to install libxslt and docbook-xslt and then run
