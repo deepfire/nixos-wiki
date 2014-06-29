@@ -12,18 +12,24 @@ This page was created by the Nix community to help others understand and
 use the Nix package manager. Please help by adding pages for missing
 topics and updating information in existing pages.
 
-How to Use
-==========
+[[edit](/w/index.php?title=Main_Page_Package_Manager&action=edit&section=1 "Edit section: About")] About
+========================================================================================================
 
-Basics
-------
+-   [What is a Nix
+    Package?](/w/index.php?title=Nix_Package&action=edit&redlink=1 "Nix Package (page does not exist)")
+
+[[edit](/w/index.php?title=Main_Page_Package_Manager&action=edit&section=2 "Edit section: How to Use")] How to Use
+==================================================================================================================
+
+[[edit](/w/index.php?title=Main_Page_Package_Manager&action=edit&section=3 "Edit section: Basics")] Basics
+----------------------------------------------------------------------------------------------------------
 
 -   [Installing Packages](//Nix Installing Packages)
 -   [Creating Packages](//Nix Creating Packages)
 -   [Modifying Packages](//Nix Modifying Packages)
 
-Advanced
---------
+[[edit](/w/index.php?title=Main_Page_Package_Manager&action=edit&section=4 "Edit section: Advanced")] Advanced
+--------------------------------------------------------------------------------------------------------------
 
 -   [Advanced Package Management](//Install/remove software)
 -   [Advanced Package Searching](//Howto find a package in NixOS)
@@ -36,14 +42,14 @@ Advanced
     nix-store](//How to add large files to the nix-store)
 -   [Modifying Software](//Modify software)
 
-Platforms
-=========
+[[edit](/w/index.php?title=Main_Page_Package_Manager&action=edit&section=5 "Edit section: Platforms")] Platforms
+================================================================================================================
 
 -   [CrossCompiling](//CrossCompiling)
 -   [Nix on Windows](//Nix on Windows)
 
-Languages
-=========
+[[edit](/w/index.php?title=Main_Page_Package_Manager&action=edit&section=6 "Edit section: Languages")] Languages
+================================================================================================================
 
 -   [How to develop on NixOS](//Howto develop software on nixos) - (NOT
     how to develop \*for\* NixOS or Nix)
@@ -53,8 +59,8 @@ Languages
 -   [Android](//Android)
 -   [Plone development](//Plone development)
 
-Issues
-======
+[[edit](/w/index.php?title=Main_Page_Package_Manager&action=edit&section=7 "Edit section: Issues")] Issues
+==========================================================================================================
 
 -   [Terms and Definitions in Nix
     Project](//Terms and Definitions in Nix Project)
