@@ -41,7 +41,7 @@ All packages below you can find on <http://www.perzl.org/aix/>
     info-4.6-1.aix5.1.ppc.rpm
     sed-4.2.1-2.aix5.1.ppc.rpm
 
-To install I can use command in the folder with all rpms
+To install in the folder with all rpms
 
     rpm -i *.rpm
 
