@@ -2,7 +2,8 @@ Frequently asked questions and common newcomer trouble should be put
 here so that we can point to this page intsead of answering the same
 question over and over again.
 
--   NixOS segfaults when running on VirtualPC:
+NixOS segfaults when running on VirtualPC:
+------------------------------------------
 
 You may have hit
 <http://jagbarcelo.blogspot.com/2009/11/segmentation-fault-ubuntu-virtual-pc.html>
@@ -10,18 +11,14 @@ There may be a different cause (out of memory) You can check
 /var/log/messages to see if there is something about the OOM killer
 kicking in
 
--   Nix(OS) substitutes break on older
-    [Btrfs](http://en.wikipedia.org/Btrfs) implementation since the
-    merge of SQLite support (feb 2011 in trunk).
+Nix(OS) substitutes break on older [Btrfs](http://en.wikipedia.org/Btrfs) implementation since the merge of SQLite support (feb 2011 in trunk)
+----------------------------------------------------------------------------------------------------------------------------------------------
 
 Subtituted files are padded by zero bytes, which makes them unusable.
 Upgrading Btrfs to 2.6.37+ kernel resolves the issue.
 
--   Using nix to install new software requires to download the source
-    from upstream and sometimes that source has moved and therefore the
-    download won't work but after some google search with:
-    'myfile-0.1.2.tar.gz "index of"' one usually can find the file an
-    download it either:
+Using nix to install new software requires to download the source from upstream and sometimes that source has moved and therefore the download won't work but after some google search with: 'myfile-0.1.2.tar.gz "index of"' one usually can find the file an download it either:
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -   download manually and copy into /tmp, then:
 
@@ -33,7 +30,11 @@ file:///tmp/myfile-0.1.2.tar.gz if the file is in the /tmp directory
 nix-prefetch-url
 "<http://myfoohost.com/programs/foo/myfile-0.1.2.tar.gz>"
 
--   How to restart an UPSTART service
+How to restart an UPSTART service
+---------------------------------
 
-either: 'restart sshd' or 'initctl restart sshd'
+either:
+
+-   **restart sshd** or
+-   **initctl restart sshd**
 
