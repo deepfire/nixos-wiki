@@ -1,0 +1,13 @@
+changing package versions transitively
+--------------------------------------
+
+You want a package which requires a more recent version of gtkLibs? You
+can't just pass a newer gtkLib version because your package depends on
+other packages which also depend on gtkLibs? Use pkgsFunDeepOverride to
+replace a package (eg selecting a newer version) within the dependency
+graph: [mailinglist
+thread](http://thread.gmane.org/gmane.linux.distributions.nixos.scm/382/focus=4468)
+
+I'm sure we'll hit cases where this doesn't help either without further
+adjustments. But for now it does.
+
