@@ -221,6 +221,7 @@ Here is a simple yet complete example of how to use `ghcWithPackages` in
              self.haskellPlatform
              # add more packages here
          ]);
+       };
      }
 
 If you now the Nix attribute name of a particular package (you only need
