@@ -28,17 +28,13 @@ as possible (or to be *verbose*).
 
 ### Filtering Commands
 
-#### *Cut* [[1]](http://man.he.net/?topic=cut&section=all)
+ *Cut* [[1]](http://man.he.net/?topic=cut&section=all) 
+:   Cut allows you to cut out certain bytes, characters and fields
+    provided by output.
 
-**Cut** allows you to cut out certain bytes, characters and fields
-provided by output.
+ *To cut away the rest of the characters in a line after **32** characters* 
+:   `ls /nix/store/ |cut -c -32`
 
-*To cut away the rest of the characters in a line after **32**
-characters*
-
-**ls /nix/store/ |cut -c -32**
-
-*To cut away the first **34** characters of a line:*
-
-**ls /nix/store/ |cut -c 34-**
+ *To cut away the first **34** characters of a line:* 
+:   `ls /nix/store/ |cut -c 34-`
 
