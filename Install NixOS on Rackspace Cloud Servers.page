@@ -4,8 +4,8 @@ This is not the ideal way to install NixOS, but it is a way to get
 things done since bootstrapping NixOS from within a Linux distribution
 is currently broken.
 
-Prerequisites
--------------
+[[edit](/w/index.php?title=Install_NixOS_on_Rackspace_Cloud_Servers&action=edit&section=1 "Edit section: Prerequisites")] Prerequisites
+---------------------------------------------------------------------------------------------------------------------------------------
 
 We are going need the contents of the following files, so it might be a
 good idea to write them down or download those files to your local
@@ -31,8 +31,8 @@ machine.
     proc        /proc        proc     defaults                      0 0
     shm         /dev/shm     tmpfs    nodev,nosuid,noexec           0 0
 
-Installation
-------------
+[[edit](/w/index.php?title=Install_NixOS_on_Rackspace_Cloud_Servers&action=edit&section=2 "Edit section: Installation")] Installation
+-------------------------------------------------------------------------------------------------------------------------------------
 
 I am assuming that you are starting from a fresh Gentoo installation.
 This might not be necessary. Just be aware that this procedure will
@@ -104,7 +104,7 @@ reference to get things started. Be sure to replace networking
 information according to /etc/resolv.conf and /etc/net from the original
 Cloud Server.
 
-    # (chroot) nixos-option --install
+    # (chroot) nixos-generate-config --root /mnt
     # (chroot) $EDITOR /etc/nixos/configuration.nix
 
     {config, pkgs, modulesPath, ...}:
