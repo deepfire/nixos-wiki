@@ -91,17 +91,13 @@ Esound is deprecated upstream (GNOME) in favour of pulseaudio.
   Maintainer
   Plan
   ------------------------ ------------------------ ------------------------
-  cinelerra                zapping                  space-orbit
-  Marc Weber               No meta.maintainers; all No meta.maintainers
-  Upgrade to               commits made by Eelco    (Michael Raskin?)
-  CinerellaCV-2.2 or       Dolstra                  Let's just remove esound
-  CinerellaHV-4.3, check   Remove?                  support from the
-  if esound is still                                package. Committed - it
-  required                                          still works without any
-                                                    sound support, and it's
-                                                    not like multimedia in
-                                                    this game has much
-                                                    value.
+  cinelerra                zapping
+  Marc Weber               No meta.maintainers; all
+  Upgrade to               commits made by Eelco
+  CinerellaCV-2.2 or       Dolstra
+  CinerellaHV-4.3, check   Remove?
+  if esound is still       
+  required                 
   --------------------------------------------------------------------------
 
 Qt3/KDE3
