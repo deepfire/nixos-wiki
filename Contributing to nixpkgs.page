@@ -1,0 +1,145 @@
+Overview
+--------
+
+This is the easiest and more straightforward way I know to modify and
+expand [nixpkgs](https://nixos.org/nixpkgs/). I have annoyed many
+people, specially [Viric](//User:Viric), to get to this point. I hope
+this article will help future newbies so the experts can focus on other
+stuff.
+
+This document is not intended as a formal approach to learn
+[nix](https://nixos.org/nix/), [nixpkgs](https://nixos.org/nixpkgs/),
+[NixOS](https://nixos.org/nixos/) or *systems administration*. It is
+just a sort of tutorial for newbies to be able to easily fix and
+contribute trivial improvements. I believe this approach will help
+newbies such as myself to get (slowly and inefficiently) educated on the
+*nix language*, the *nix package manager* and *NixOS*.
+
+The official nixpkgs sources are managed on a [git](http://git-scm.com/)
+repository at [GitHub](https://github.com). And GitHub implements most
+of the tools for the nixpkgs development workflow.
+
+*All operations explained on this document, if tested, have been tested
+on a [NixOS](https://nixos.org/nixos/) system.*
+
+Cloning the "NixOS/nixpkgs" repository on GitHub
+------------------------------------------------
+
+-   I had to sign up at GitHub. This is free (as in beer) as of
+    2013-03-20.
+-   Then I visited [the official nixpkgs
+    repository](https://github.com/NixOS/nixpkgs) and hit the *fork*
+    button.
+-   This results in your own somewhat-independent repository:
+    `https://github.com/your_username/nixpkgs`
+
+Retrieving a working copy of your repository
+--------------------------------------------
+
+-   Now you can clone your repository somewhere on your system:
+
+        mkdir ~/devel/ && cd ~/devel/ && git clone https://github.com/your_username/nixpkgs.git
+
+-   You should get a git repository with the whole nixpkgs tree under
+    `~/devel/nixpkgs/`
+-   Unless explicitly stated, for the rest of the document we are
+    working from this directory:
+
+        cd ~/devel/nixpkgs/
+
+-   Just to ensure everything is clear, on this directory there should
+    be two main entries: the `default.nix` file and the `pkgs/`
+    directory.
+-   From now on, `pkgs/` will refer to this `nixpkgs/pkgs/` so if you
+    keep the equivalent of `~/devel/nixpkgs/` as your CWD (current
+    working directory), most commands and pathnames can be copied and
+    pasted in real life.
+-   So for example, on this document `pkgs/top-level/` refers to
+    `~/devel/nixpkgs/pkgs/top-level/`
+-   This looks perhaps too verbose, but I feel this extra context would
+    have clarified many ambiguous explanations to me.
+-   Also, when talking about directories I will try to always include
+    the trailing slash.
+
+Following the white rabbit
+--------------------------
+
+-   I will center this tutorial on the nix expression that packages the
+    [i3 window manager](http://i3wm.org/), as this expression is quite
+    simple and it was contributing to this expression that I got to
+    understand this whole workflow I am documenting.
+-   In `~/devel/nixpkgs/default.nix` there is an *import* statement that
+    reads `import ./pkgs/top-level/all-packages.nix`
+-   I have the feeling that most references between nix sources (*nix
+    expressions*) in *nixpkgs* are stated as relative paths pointing up
+    and down the `nixpkgs/` directory hierarchy.
+-   Please have a look at this `pkgs/top-level/all-packages.nix`. There
+    are many more or less complex definitions at the beginning, and then
+    a shitload of declarations such as:
+
+<!-- -->
+
+    i3       = callPackage ../applications/window-managers/i3 { };
+    i3lock   = callPackage ../applications/window-managers/i3/lock.nix { };
+    i3status = callPackage ../applications/window-managers/i3/status.nix { };
+
+-   Now let's have a look at the contents of
+    `pkgs/applications/window-managers/i3/`:
+
+<!-- -->
+
+    $ ls -1 pkgs/applications/window-managers/i3/
+    default.nix
+    lock.nix
+    status.nix
+
+-   The first assignment `i3 = callPackage ...` refers implicitly to
+    `default.nix` on the `pkgs/applications/window-managers/i3/`
+    directory.
+-   The second and third assignments are explicitly referring to
+    `lock.nix` and `status.nix` files on this
+    `pkgs/applications/window-managers/i3/` directory.
+-   Each of these three files contain somewhat equivalent *nix
+    expressions* that the *nix package manager* will consider as
+    *packages* thanks to the `callPackage` on
+    `pkgs/top-level/all-packages.nix`.
+
+The actual package "recipe"
+---------------------------
+
+-   We will dive (not too deep, though) on
+    `pkgs/applications/window-managers/i3/default.nix` which is the nix
+    expression that corresponds to the package for the i3 window
+    manager:
+
+<!-- -->
+
+    { fetchurl, stdenv, which, pkgconfig, libxcb, xcbutilkeysyms, xcbutil,
+      xcbutilwm, libstartup_notification, libX11, pcre, libev, yajl,
+      libXcursor, coreutils, perl, pango }:
+
+    stdenv.mkDerivation rec {
+      name = "i3-${version}";
+      version = "4.5.1";
+
+      src = fetchurl {
+        url = "http://i3wm.org/downloads/${name}.tar.bz2";
+        sha256 = "bae55f1c7c4a21d71aae182e4fab6038ba65ba4be5d1ceff9e269f4f74b823f2";
+      };
+
+      buildInputs = [ which pkgconfig libxcb xcbutilkeysyms xcbutil xcbutilwm
+        libstartup_notification libX11 pcre libev yajl libXcursor perl pango ];
+
+      patchPhase = ''
+        patchShebangs
+      '';
+
+      configurePhase = "makeFlags=PREFIX=$out";
+
+      meta = {
+        description = "i3 is a tiling window manager";
+        homepage = "http://i3wm.org";
+        maintainers = [ stdenv.lib.maintainers.garbas ];
+        license = stdenv.lib.licenses.bsd3;
+      };
+    }
