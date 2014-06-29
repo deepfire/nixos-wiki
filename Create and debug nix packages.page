@@ -20,17 +20,18 @@ glimpse there as well:
 
      https://github.com/diaspora/diaspora/wiki/Git-Workflow
 
-how to install from the local overlay
--------------------------------------
+how to install from the local repository
+----------------------------------------
 
 this section tells you how to apply changes to your current system based
 on your local repositories:
 
-list all available software from the **local overlay \~/code/nixpkgs**
+list all available software from the **local repository
+\~/code/nixpkgs**
 
      $ NIX_PATH="nixos=$HOME/code/nixpkgs" nix-env -f '<nixos>' -qa '*'
 
-install python-urlgrabber from the local overlay
+install python-urlgrabber from the local repository
 
      $ NIX_PATH="nixos=$HOME/code/nixpkgs" nix-env -f '<nixos>' -i python-urlgrabber
 
