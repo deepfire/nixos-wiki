@@ -1,0 +1,67 @@
+Set convenience variables:
+
+    export veid=777
+    export mountPoint=/mnt
+
+Download [NixOS minimal install
+archive](http://hydra.nixos.org/job/nixos/trunk/minimal_install_archive/).
+
+Extract the archive:
+
+    mkdir /vz/private/$veid
+    tar -xjf nixos-install-archive.tar.bz2 -C /vz/private/$veid
+
+Prepare for installation:
+
+    mount -o bind /vz/private/$veid $mountPoint
+    bash $mountPoint/nix/store/nixos-prepare-install checkout-sources copy-nix
+
+Configure NixOS:
+
+    nano $mountPoint/etc/nixos/configuration.nix
+
+This is the minimal working nixos config(don't forget to replace \$IP
+with the IP you're going to assign to the guest):
+
+    {pkgs, config, ...}:
+    {
+      boot.loader.initScript.enable = true;
+
+    # fake root since nixos requires this to be set
+      fileSystems = [ {
+        mountPoint = "/";
+        label = "nixos";
+        options ="noauto";
+      } ];
+
+      networking = {
+        defaultGateway = "$IP";
+        interfaces = [ {
+          name = "venet0";
+          ipAddress = "$IP";
+        } ];
+      };
+    }
+
+Install:
+
+    bash $mountPoint/nix/store/run-in-chroot "/nix/store/nixos-bootstrap --install --no-grub"
+
+Configure OpenVZ:
+
+    vzctl set $veid --applyconfig vps.basic --save
+    vzctl set $veid --ipadd $IP --save
+
+Edit /etc/vz/conf/\$veid.conf to increase ram and disk space available.
+NixOs occasionally needs more than 256M of RAM for nixos-rebuild.
+
+Known issues:
+
+-   df is broken unless you symlink /proc/mounts to /etc/mtab, it is
+    overwritten on every reboot.
+-   stopping container takes a lot of time
+-   openvz can't change the IP of the container, you need to change it
+    by hand in nixos config in addition to openvz settings.
+-   Sometimes tty services keep restarting over and over. They can
+    safely be stopped by "stop ttyX", X = 1 to 6.
+
