@@ -10,13 +10,20 @@ The following expression allows all plone42Packages available:
         envPythonPlonedev = pkgs.buildEnv {
           name = "env-python-plonedev-1.0";
           ignoreCollisions = true;
-          paths = with pkgs; (
+          paths = with pkgs; [
+            python27Packages.buildout
+            python27Packages.distutils2
+            python27Packages.ipython
+            python27Packages.lxml
+            python27Packages.recursivePthLoader
+            python27Packages.setuptools
+          ] ++ (
             lib.filter (v: (v.type or null) == "derivation")
                        (lib.attrValues plone42Packages)
           );
         };
       };
-    } 
+    }
 
  These can be then be installed into a profile:
 
