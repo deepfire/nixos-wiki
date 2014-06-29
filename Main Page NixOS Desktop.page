@@ -1,0 +1,68 @@
+NixOS is a Linux distribution which is based on using the Nix language
+as its package manager and for OS configuration. Because the entire
+environment is managed by Nix, modifying the OS is an atomic operation
+which can be "undone" if unintended side-effects are discovered.
+
+This page was created by the Nix community to help others understand and
+use the Nix package manager. Please help by adding pages for missing
+topics and updating information in existing pages.
+
+[[edit](/w/index.php?title=Main_Page_NixOS_Desktop&action=edit&section=1 "Edit section: How to Use")] How to Use
+================================================================================================================
+
+-   [Real World NixOS Dotfiles](//Real World NixOS Dotfiles) - (Learn by
+    seeing different configurations.)
+-   [NixOS Filesystem Notes](//NixOS Filesystem Notes)
+-   [Module Syntax](//NixOS:Modules)
+-   [Extending NixOS](//NixOS:extend NixOS)
+
+[[edit](/w/index.php?title=Main_Page_NixOS_Desktop&action=edit&section=2 "Edit section: On Physical Machine")] On Physical Machine
+==================================================================================================================================
+
+-   [Creating a Nix OS live CD](//Creating a Nix OS live CD) - Live CD
+    or USB boot stick
+-   [How to install NixOS from a USB
+    stick](//Installing NixOS from a USB stick)
+-   [How to install NixOS from Linux](//How to install NixOS from Linux)
+-   [Multiplatform NixOS](//Multiplatform NixOS) - (PC, QEMU ARM
+    Versatile, SheevaPlug, Fuloong Mini-PC, Raspberry Pi)
+
+[[edit](/w/index.php?title=Main_Page_NixOS_Desktop&action=edit&section=3 "Edit section: Configuration Files for Hardware")] Configuration Files for Hardware
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-   [Acer 4810T](//Acer 4810T)
+-   [ASUS M60J-JX041V](//ASUS M60J-JX041V)
+-   [ASUS
+    N53JN-SZ074V](/w/index.php?title=ASUS_N53JN-SZ074V&action=edit&redlink=1 "ASUS N53JN-SZ074V (page does not exist)")
+-   [Airis N990](//Airis N990)
+-   [Compaq Presario
+    2144EA](/w/index.php?title=Compaq_Presario_2144EA&action=edit&redlink=1 "Compaq Presario 2144EA (page does not exist)")
+-   [Lenovo Thinkpad x200](//Lenovo Thinkpad x200)
+-   [Lenovo Thinkpad Helix](//Lenovo Thinkpad Helix)
+-   [Samsung NP900X3c](//Samsung NP900X3c)
+
+[[edit](/w/index.php?title=Main_Page_NixOS_Desktop&action=edit&section=4 "Edit section: Advanced Configuration")] Advanced Configuration
+----------------------------------------------------------------------------------------------------------------------------------------
+
+-   [Hardened NixOS (More Secure)](//Hardened NixOS)
+
+[[edit](/w/index.php?title=Main_Page_NixOS_Desktop&action=edit&section=5 "Edit section: On Virtual Machine")] On Virtual Machine
+================================================================================================================================
+
+-   [How to install NixOS on VirtualBox](//InstallingOnVirtualBox)
+-   [NixOS and Xen](//NixOS and Xen)
+-   [NixOS and OpenStack Compute](//NixOS and OpenStack Compute)
+-   [NixOS and libvirt](//NixOS and libvirt)
+-   [How to install NixOS as OpenVZ
+    guest](//Install NixOS as OpenVZ guest)
+
+[[edit](/w/index.php?title=Main_Page_NixOS_Desktop&action=edit&section=6 "Edit section: On Hosting Provider")] On Hosting Provider
+==================================================================================================================================
+
+-   [Hosting providers & NixOS](//Hosting providers & NixOS)
+-   [How to install NixOS on Amazon EC2](//NixOS on Amazon EC2)
+-   [How to install Nix OS on a hetzner rootserver](//NixOS on Hetzner)
+-   [How to install NixOS on linode.com](//Install NixOS on Linode)
+-   [How to install NixOS on
+    Rackspace](//Install NixOS on Rackspace Cloud Servers)
+
