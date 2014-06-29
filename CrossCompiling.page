@@ -119,3 +119,58 @@ Actual problems to be solved
         reported](http://marc.info/?l=util-linux-ng&m=125983442420782&w=2)
         [Fixed in their git master]
 
+History
+=======
+
+Motivation
+----------
+
+I wanted to cross-build uboot for the sheevaplug, in order to debug it.
+
+The stdenv hack
+---------------
+
+When I had a working cross compiler to build uboot, Nicolas Pierron
+insisted on trying to get the whole relationships between packages in
+nixpkgs to be usable also for cross-compilation. He came in with a
+stdenv adapter that I used to bring cross-compilation capabilities to
+nixpkgs stdenv.
+
+Bootstrap of the compiler
+-------------------------
+
+1.  Build binutils for the target (binutilsCross)
+2.  Build a bare-metal gcc (gcc without libc), using the binutils built
+3.  I wrote a gcc-cross-wrapper to allow the proper wrapping of the
+    cross-gcc, cross-binutils, and cross-libc (gccCrossStageStatic (from
+    gcc44\_realCross or gcc43\_realCross))
+4.  Build a glibc with the bare-metal gcc wrapped and the binutils
+    (libcCross = glibc211Cross or uclibcCross)
+5.  Build a normal gcc + g++ with the libc just built
+6.  Wrap the last gcc + g++ with the proper libc, for then cross-build
+    whatever program (gccCrossStageFinal (from gcc44\_realCross or
+    gcc43\_realCross))
+
+gcc-cross-wrapper, the stdenv adapter
+-------------------------------------
+
+The stdenv adapter brings into the builder PATH the gcc-cross-wrapper
+(it includes the cross-compiler and cross-libc). The gcc-cross-wrapper
+has a setup-hook that modifies the configureFlags, so the calls to the
+autotools configure script are attempted for a cross build.
+
+Also cmake has an adaptation for crossbuilding.
+
+Final stdenv
+------------
+
+The stdenv in nixpkgs is aware of the nixpkgs parameter "crossSystem",
+explained above, and according to it, brings into the stdenv generic
+builder PATH the final gcc-cross-wrapper, and the gcc-cross-wrapper
+setup-hook sets up the configure scripts properly for a cross-build.
+
+It needs some help from the user, defining for each stdenv.mkDerivation
+the attributes buildInputs and buildNativeInputs properly, as explained
+above. That will determine what is cross built, what not, what gets into
+CFLAGS/LDFLAGS for the cross compiler, and what for the native compiler.
+
