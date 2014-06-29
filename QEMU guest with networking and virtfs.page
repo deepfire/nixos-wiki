@@ -40,8 +40,8 @@ Prepare host network
 --------------------
 
 There are a number of options to enable access to the guest OS from the
-host, using [[[1]](http://vde.sourceforge.net/%7CVDE)] (Virtual
-Distributed Ethernet) is probably the easiest and most versatile.
+host, using [[VDE](http://vde.sourceforge.net/)] (Virtual Distributed
+Ethernet) is probably the easiest and most versatile.
 
 As root add a "kvm" group so that you only have to do the networking
 setup as root:
@@ -67,6 +67,6 @@ Forward traffic:
 
  References:
 
--   [[| Building a Virtual
+-   [[Building a Virtual
     Army](http://blog.falconindy.com/articles/build-a-virtual-army.html)]
 
