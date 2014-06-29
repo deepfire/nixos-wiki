@@ -1,5 +1,5 @@
-How to install NixOS from Linux
--------------------------------
+[[edit](/w/index.php?title=How_to_install_NixOS_from_Linux&action=edit&section=1 "Edit section: How to install NixOS from Linux")] How to install NixOS from Linux
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 You already have a running linux and a functional grub on your primary
 partition and you don't want to waste a CD-R as you feel that you really
@@ -22,7 +22,7 @@ the\_iso  : the nixos livecd iso
 /boot  : the boot directory, where grub is installed (/dev/sda1 and
 /dev/sda2 \*can\* be the same partition!)
 
-### Unpacking the ISO image
+### [[edit](/w/index.php?title=How_to_install_NixOS_from_Linux&action=edit&section=2 "Edit section: Unpacking the ISO image")] Unpacking the ISO image
 
 -   obtain the ISO "the\_iso"
 -   mount -o loop "the\_iso" "\~/some\_dir"
@@ -31,7 +31,7 @@ the\_iso  : the nixos livecd iso
 -   cp some\_dir/boot/initrd /boot/nixos-livecd-initrd
 -   cp some\_dir/nix-store.squashfs /nix-store.squashfs
 
-### Modifying your bootloader's config
+### [[edit](/w/index.php?title=How_to_install_NixOS_from_Linux&action=edit&section=3 "Edit section: Modifying your bootloader's config")] Modifying your bootloader's config
 
 Look at some\_dir/boot/grub/grub.cfg. This is Grub-2 main config file of
 the ISO. Locate the NixOS menuentry section:
@@ -44,7 +44,7 @@ the ISO. Locate the NixOS menuentry section:
 The goal is to tell your bootloader to boot /nixos-livecd-bzImage with
 correct init argument.
 
-#### Grub \< 2
+#### [[edit](/w/index.php?title=How_to_install_NixOS_from_Linux&action=edit&section=4 "Edit section: Grub < 2")] Grub \< 2
 
 To setup grub-1, edit your /boot/grub/menu.lst (or equivalent). Add
 following lines to the config:
@@ -58,20 +58,20 @@ some\_dir/grub/grub.cfg
 
 Go to the reboot section
 
-#### GRUB 2
+#### [[edit](/w/index.php?title=How_to_install_NixOS_from_Linux&action=edit&section=5 "Edit section: GRUB 2")] GRUB 2
 
 A grub entry for ubuntu might look like this:
 
     menuentry "NixOS Installer / Rescue" {
-      linux /bzImage init=/nix/store/p5n72ay1c1wx4wry90zabr8jnljpdzgx-nixos-0.2pre4601_1def5ba-48a4e91/init root=/dev/sda2
-      initrd /initrd
+      linux /nixos-livecd-bzImage init=/nix/store/p5n72ay1c1wx4wry90zabr8jnljpdzgx-nixos-0.2pre4601_1def5ba-48a4e91/init root=/dev/sda2
+      initrd /nixos-lived-initrd
     }
 
-#### Other bootloaders
+#### [[edit](/w/index.php?title=How_to_install_NixOS_from_Linux&action=edit&section=6 "Edit section: Other bootloaders")] Other bootloaders
 
 Should also work. Please add instructions here.
 
-### Booting into LiveCD
+### [[edit](/w/index.php?title=How_to_install_NixOS_from_Linux&action=edit&section=7 "Edit section: Booting into LiveCD")] Booting into LiveCD
 
 Reboot. Select "NixOS LiveCD" from the bootloader menu. If everything is
 OK, you will see Login prompt asking you to login as root with empty
