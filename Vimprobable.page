@@ -1,5 +1,5 @@
-Vimprobable
-===========
+[[edit](/w/index.php?title=Vimprobable&action=edit&section=1 "Edit section: Vimprobable")] Vimprobable
+======================================================================================================
 
 Vimprobable is a web browser that behaves like the [Vimperator
 plugin](http://www.vimperator.org/) available for Mozilla Firefox. It is
@@ -12,13 +12,13 @@ Vimprobable is available in two versions, that is vimprobable and
 vimprobable2. As of now only vimprobable2 is available and vimprobable
 will be used synonymously with vimprobable2 from now on.
 
-Installation
-------------
+[[edit](/w/index.php?title=Vimprobable&action=edit&section=2 "Edit section: Installation")] Installation
+--------------------------------------------------------------------------------------------------------
 
     $ nix-env -i vimprobable2
 
-Usage
------
+[[edit](/w/index.php?title=Vimprobable&action=edit&section=3 "Edit section: Usage")] Usage
+------------------------------------------------------------------------------------------
 
 vimprobable is able -- and intended -- to be completely keyboard-driven.
 Citing from vimprobable's manual page here are a few basic commands that
@@ -38,8 +38,8 @@ should keep you going.
 Be sure to read `man vimprobable2` eventually to learn all the other
 important commands.
 
-Configuration
--------------
+[[edit](/w/index.php?title=Vimprobable&action=edit&section=4 "Edit section: Configuration")] Configuration
+----------------------------------------------------------------------------------------------------------
 
 vimprobable looks for configuration files in
 `$HOME/.config/vimprobable`. The basic configuration is done in
@@ -50,7 +50,7 @@ vimprobable looks for configuration files in
 
 See `man vimprobablerc` for configuration options.
 
-### Search engines
+### [[edit](/w/index.php?title=Vimprobable&action=edit&section=5 "Edit section: Search engines")] Search engines
 
 vimprobable can be configured to use a variety of search engines. A
 benefit from configuring a search engine is that you can use them for
@@ -68,7 +68,7 @@ Google. The following example sets up the search engines Google
 See `man vimprobable2` for default search engines that come with
 vimprobable.
 
-### Tab support
+### [[edit](/w/index.php?title=Vimprobable&action=edit&section=6 "Edit section: Tab support")] Tab support
 
 vimprobable doesn't offer tab support. However, you can use
 [tabbed](http://tools.suckless.org/tabbed) for that. Install tabbed and
@@ -80,8 +80,8 @@ create an alias to vimprobable2 as following.
 
 You can switch tabs by pressing `gt` or `gT`.
 
-References
-----------
+[[edit](/w/index.php?title=Vimprobable&action=edit&section=7 "Edit section: References")] References
+----------------------------------------------------------------------------------------------------
 
 -   [Official website](http://sourceforge.net/apps/trac/vimprobable/)
 
