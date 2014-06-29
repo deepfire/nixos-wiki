@@ -346,7 +346,8 @@ We can exit these environments as one would exit any shell session, by
 using the `CTRL+D` shortcut or the `exit` command.
 
 What's the main benefit of using this technique? We don't pollute our
-main profile with many development tools, which may have conflicts.
-Also, we can use different versions of a library on the same system,
-selecting them by selecting a development environment.
+main profile with many development tools and [custom software
+development services](http://www.qulix.com/services), which may have
+conflicts. Also, we can use different versions of a library on the same
+system, selecting them by selecting a development environment.
 
