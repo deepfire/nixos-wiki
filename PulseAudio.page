@@ -3,9 +3,9 @@ mplayer
 
      $ cat <<EOF
      let
-       pkgs = <nixpkgs> {};
+       pkgs = (import <nixpkgs>) {};
      in
-       pkgs.MPlayer.override { pulseaudioSupport = true; }
+       pkgs.MPlayer.override { pulseSupport = true; }
      EOF > ~/.nix-defexpr/mplayer.nix
 
      $ nix-env -iA mplayer
