@@ -65,3 +65,15 @@ Reasons for not committing it to trunk: Proof of concept, still
 experimenting, trying to find a good way to cope with findlib and other
 OCaml-specific practices.
 
+nanonixos
+---------
+
+<http://viric.name/cgi-bin/nanonixos/> cross compiled nixos by Lluis
+Batlle i Rossell
+
+guix
+----
+
+A nixos version using guile scheme as scripting language instead of nix
+initiated by Ludovic Courtes <http://www.gnu.org/software/guix/>
+
