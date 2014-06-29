@@ -3,6 +3,18 @@ steps I had to go through:
 
 ### Find the hardware
 
-    $ lsusb
+`$ lsusb `
 
     Bus 002 Device 003: ID 2040:7060 Hauppauge Nova-T Stick 2
+
+However, `$ dmesg ` said:
+
+    [54625.430024] usb 2-2: new high speed USB device using ehci_hcd and address 6
+    [54625.545573] usb 2-2: New USB device found, idVendor=2040, idProduct=7060
+    [54625.545577] usb 2-2: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+    [54625.545579] usb 2-2: Product: Nova-T Stick
+    [54625.545581] usb 2-2: Manufacturer: Hauppauge
+    [54625.545583] usb 2-2: SerialNumber: 4028664348
+    [54625.546073] dvb-usb: found a 'Hauppauge Nova-T Stick' in cold state, will try to load a firmware
+    [54625.562868] dvb-usb: did not find the firmware file.
+    (dvb-usb-dib0700-1.20.fw) Please see linux/Documentation/dvb/ for more details on firmware-problems. (-2)
