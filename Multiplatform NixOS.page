@@ -160,9 +160,8 @@ You will also need that nixpkgs config option in your user nixpkgs
 configuration, like \~/.nixpkgs/config.nix, to get nix-env and such
 commands working fine:
 
-    pkgs:
     {
-      platform = pkgs.platforms.fuloong2f_n32;
+      platform = (import /etc/nixos/nixpkgs).platforms.fuloong2f_n32;
     }
 
 MANIFEST
