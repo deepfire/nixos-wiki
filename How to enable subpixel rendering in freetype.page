@@ -1,5 +1,5 @@
-Why
-===
+[[edit](/w/index.php?title=How_to_enable_subpixel_rendering_in_freetype&action=edit&section=1 "Edit section: Why")] Why
+=======================================================================================================================
 
 Nixos doesn't enable subpixel rendering by default because it is covered
 by patents. From the FreeType source code:
@@ -8,92 +8,47 @@ by patents. From the FreeType source code:
     patents and should not be activated in any default
     build of the library.
 
-How to enable
-=============
+[[edit](/w/index.php?title=How_to_enable_subpixel_rendering_in_freetype&action=edit&section=2 "Edit section: How to enable")] How to enable
+===========================================================================================================================================
 
-Let's see the definition of freetype in top-level.nix:
+The expression for FreeType in Nixpkgs takes an option
+`useEncumberedCode` which enables subpixel rendering. It is disabled by
+default because of patent issues. We could use `packageOverrides` to
+override the FreeType package with a version that has subpixel rendering
+enable, but we would have to locally rebuild almost all GUI packages.
+Instead, we will use a trick:
 
-      freetype = callpackage ../development/libraries/freetype {
-         useEncumberedCode = getconfig [ "freetype" "useencumberedcode" ] false;
+1.  Build most of the system normally using the default FreeType.
+2.  Build a version of FreeType with subpixel rendering enabled.
+3.  Set LD\_LIBRARY\_PATH so the subpixel-enabled FreeType is preferred.
+
+The code snippets below all belong in `/etc/nixos/configuration.nix`.
+
+We use `packageOverrides` to define a new FreeType expression with a
+unique name and subpixel rendering enabled:
+
+      nixpkgs.config.packageOverrides = pkgs: {
+        freetype_subpixel = pkgs.freetype.override {
+          useEncumberedCode = true;
+        };
       };
 
-(NOTE: nowdays it looks a bit different due to changes in config AP)
+To ensure that our new freetype package is built and isn't garbage
+collected, we add it to the system environment:
 
-it says that freetype has useEncumberedCode option set to false by
-default. Enabling it blindly leads to mass local rebuilding of almost
-all GUI packages. Probably, it is not what user expects so we need a
-trick:
+      environment.systemPackages = [ pkgs.freetype_subpixel ];
 
-1.  Let Nixos build all the stuff using default version of freetype
-2.  Build our own version of freetype with subpixel rendering enabled
-3.  Modify LD\_LIBRARRY\_PATH variable to tell the linker which freetype
-    is better
+Finally, we add the subpixel-enabled FreeType to `LD_LIBRARY_PATH`:
 
-### Overrides
+      environment.variables.LD_LIBRARY_PATH = [ "${pkgs.freetype_subpixel}/lib" ];
 
-Define new instance of freetype expression (with another and uniq name)
-and include it in the config. Here are new parts of configuration.nix:
-
-      nixpkgs.config = {
-        packageOverrides = pkgs: {
-
-          freetype_subpixel = pkgs.freetype.override {
-            useEncumberedCode = true;
-          };
-
-        }
-      }
-
-### SystemPackages
-
-we should add it to the list of system packages to force building and
-linking into /run/current-system/sw/:
-
-      environment.systemPackages = with pkgs ; [
-        ...
-        freetype_subpixel
-      ];
-
-### LD\_LIBRARY\_PATH
-
-freetype\_subpixel is our new version of freetype, with subpixel
-rendering enabled. We should tell others to link with it instead of
-system default.
-
-Basically, user has to insert following lines into right place:
-
-    FREETYPE=$(dirname $(readlink /run/current-system/sw/lib/libfreetype.so))
-    export LD_LIBRARY_PATH="$FREETYPE:$LD_LIBRARY_PATH"
-
-Some DEs, like KDE, read special .files to make trics like that
-possible. AFAIK, there is no such option for xfce, so I've patched the
-session startup:
-
-    -------------- modules/services/x11/display-managers/default.nix --------------
-    index cdfd271..4805eb5 100644
-    @@ -91,6 +91,10 @@ let
-               fi
-           fi
-     
-    +      if test -f ~/.xprofile; then
-    +          . ~/.xprofile
-    +      fi
-    +
-           # The session type is "<desktop-manager> + <window-manager>", so
-           # extract those.
-           windowManager="''${sessionType##* + }"
-
-Now my nixos sources .xprofile each time before logging in. So I put the
-snippet there.
-
-### That's it
-
-Rebuild the system and reboot. env should look like this:
+Rebuild the system and reboot. Your environment should look like this:
 
     $ env | grep LD_LIBR
     LD_LIBRARY_PATH=/nix/store/jxss54j52paqwns8zvm6mwr7f89ck7ya-freetype-2.4.4/lib:/run/opengl-driver/lib:/run/opengl-driver-32/lib
 
-Here are some usfull links:
+[[edit](/w/index.php?title=How_to_enable_subpixel_rendering_in_freetype&action=edit&section=3 "Edit section: Links")] Links
+===========================================================================================================================
 
 -   [Subpixel layout](http://www.lagom.nl/lcd-test/subpixel.php)
 -   [Font testing page](http://www.infinality.net/files/font.html)
