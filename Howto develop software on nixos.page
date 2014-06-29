@@ -33,13 +33,13 @@ there are two ways archiving this:
 AAA changing into an environment using the package manager
 ----------------------------------------------------------
 
-at the time of writing this article this nix-env feature was not yet
-available, see:
+     nix-build --run-env [--command /bin/sh] nvi
 
-     https://github.com/NixOS/nix/commit/7f38087f35e6f74a73bfdb28da8acd8930565d51
+to get the build environment of the package nvi running code in an
+interactive shell.
 
-but when this feature is available it will be a very mighty tool, just
-see comments and examples in the link above.
+Additional info
+<https://github.com/NixOS/nix/commit/7f38087f35e6f74a73bfdb28da8acd8930565d51>
 
 BBB manual cloning of an environment not using the package manager
 ------------------------------------------------------------------
