@@ -16,28 +16,12 @@ the `nix-env --install` command to install the "hello" package. The
 [`nix-env`](http://nixos.org/nix/manual/#sec-nix-env) command installs
 or removes software in our environment.
 
-Besides the "hello" package, what else can we install? For more options,
-see the other attributes in the
-[`all-packages.nix`](https://github.com/NixOS/nixpkgs/blob/master/pkgs/top-level/all-packages.nix#L8107)
-file. Most of these attributes, those which are defined by the
-`callPackage` or `mkDerivation` functions, creates a "Nix package".
-These functions produce a package by being passed a "Nix expression"
-which defines the package. These Nix expressions are stored elsewhere in
-the `pkgs` directory to keep the package list easy to read.
-
-Let's install some other packages we found in the `all-packages.nix`
-file.
-
-       $ nix-env --install firefox
-       $ nix-env --install dropbox bitcoin
-       $ nix-env -i dropbox bitcoin
-
 How to query available software packages?
 -----------------------------------------
 
-Rather than looking at the `all-packages.nix` file to find packages, we
-can also use the `nix-env --query --available` command on the command
-line.
+Besides the "hello" package, what else can we install? We can use the
+`nix-env --query --available` command on the command line, or its
+aliases.
 
        $ nix-env --query --available firefox
        $ nix-env --query --available
@@ -50,6 +34,21 @@ We can also see which packages we currently have installed by using the
 
        $ nix-env --query --installed
        $ nix-env -q
+
+Another way to see available packages is to look at the attributes in
+the
+[`all-packages.nix`](https://github.com/NixOS/nixpkgs/blob/master/pkgs/top-level/all-packages.nix#L8107)
+file. Most of these attributes, those which are defined by the
+`callPackage` or `mkDerivation` functions, define a "Nix package". The
+implementation of these Nix packages are stored elsewhere in the `pkgs`
+directory to keep the package list easy to read.
+
+Let's install some other packages we found in the `all-packages.nix`
+file.
+
+       $ nix-env --install firefox
+       $ nix-env --install dropbox bitcoin
+       $ nix-env -i dropbox bitcoin
 
 How to uninstall software packages?
 -----------------------------------
