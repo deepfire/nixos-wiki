@@ -1,7 +1,7 @@
 [Template:Note](/w/index.php?title=Template:Note&action=edit&redlink=1 "Template:Note (page does not exist)")
 
-Installation
-------------
+[[edit](/w/index.php?title=Network_Manager&action=edit&section=1 "Edit section: Installation")] Installation
+------------------------------------------------------------------------------------------------------------
 
 To enable NetworkManager service in NixOS:
 
@@ -10,12 +10,12 @@ To enable NetworkManager service in NixOS:
 User needs to be in **networkmanager** group in order to control
 networkmanager configuration.
 
-### GTK applet
+### [[edit](/w/index.php?title=Network_Manager&action=edit&section=2 "Edit section: GTK applet")] GTK applet
 
 To use **nm-applet**, you have to install **networkmanagerapplet**.
 
-### KDE applet
+### [[edit](/w/index.php?title=Network_Manager&action=edit&section=3 "Edit section: KDE applet")] KDE applet
 
-The Network Manager applet for KDE is in nixpkgs as
-**networkmanagement**.
+The Network Manager widget for KDE is available in nixpkgs as
+**kde4.networkmanagement**.
 
