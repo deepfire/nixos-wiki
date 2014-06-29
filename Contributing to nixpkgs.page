@@ -655,6 +655,30 @@ Pushing the local changes to GitHub
 Sending a pull request to the official nixpkgs repository
 ---------------------------------------------------------
 
+-   Now there are 3 commits on the `example` branch of out nixpkgs
+    repository at GitHub.
+-   The idea is to propose the official *NixOS/nixpkgs* maintainers to
+    include our changes on the official repository, so all the *nixpkgs*
+    users can eventually benefit of our improvements.
+-   We should probably get in touch with the *nixpkgs* maintainers at
+    [\#nixos](irc://irc.freenode.net/#nixos) or
+    [nix-dev](http://lists.science.uu.nl/mailman/listinfo/nix-dev) to
+    figure out the appropriate branch (e.g. `master`, `x-updates` or
+    whatever) where the changes would be welcome.
+-   So now we have to formally *request* them to *pull* our changes,
+    from our branch to the appropriate branch in *NixOS/nixpkgs*. Hence
+    the name "*pull request*" which I don't feel so intuitive.
+-   There is a "Pull Request" button in GitHub. Push it. Go ahead.
+-   Now you will be asked to choose the origin repository and branch
+    (branch `example` from our repository) and the destination
+    repository and branch (e.g. branch `master`) on NixOS/nixpkgs).
+-   You should also enter a subject and a small abstract.
+-   And you have a last chance to review the commits that will be
+    included on the pull request and the affected files.
+-   If you're ready to go, there is a green button that reads "send pull
+    request".
+-   That's it :)
+
 Waiting for your changes to appear on the *nix channel*
 -------------------------------------------------------
 
