@@ -28,7 +28,7 @@ script.
 
     # Fetches the tarball into a store
     fetch () {
-    	nix-build $NIXPKGS_ALL -A $1.src --show-trace
+    	nix-build "<nixpkgs>" -A $1.src --show-trace
     }
 
     unpack `fetch $1` $1
