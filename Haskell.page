@@ -189,6 +189,10 @@ use one or the other.
 
 [To be written.]
 
+#### Keeping Haskell packages up-to-date
+
+[To be written.]
+
 ### Customized GHC environment
 
 As indicated above, using a wrapped GHC can be somewhat uncomfortable at
