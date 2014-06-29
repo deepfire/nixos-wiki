@@ -3,7 +3,6 @@ Install NixOS on Rackspace Cloud Servers
 
 This are just a few notes I took down while performing a NixOS
 installation on a freshly created Rackspace Cloud Server running Gentoo.
-This document will be updated once I got everything running.
 
 Disclaimer
 ----------
@@ -11,22 +10,87 @@ Disclaimer
 Prerequisites
 -------------
 
-    cat /etc/resolve.conf
-    ...
+We are going need the contents of the following files, so it might be a
+good idea to write them down or download those files to your local
+machine.
 
-    cat /etc/conf.d/net
-    ...
+    # cat /etc/resolve.conf | tail -n 2
+    nameserver 72.3.128.240
+    nameserver 72.3.128.241
 
-    cat /etc/fstab
-    ...
+    # cat /etc/conf.d/net | tail -n 9
+    modules="ifconfig"
+
+    config_eth0="209.61.142.12 netmask 255.255.255.0"
+    routes_eth0="default via 209.61.142.1"
+    dns_servers_eth0="72.3.128.240
+    72.3.128.241"
+    config_eth1="10.180.133.23 netmask 255.255.128.0"
+    routes_eth1="10.176.0.0/12 via 10.180.128.1
+    10.191.192.0/18 via 10.180.128.1"
+
+    # cat /etc/fstab | tail -n 4
+    /dev/xvda1  /            ext3     defaults,noatime,barrier=0    1 2
+    /dev/xvdc1  swap         swap     defaults                      0 0
+    proc        /proc        proc     defaults                      0 0
+    shm         /dev/shm     tmpfs    nodev,nosuid,noexec           0 0
 
 Installation
 ------------
 
-1\) get installation image 2) unsquashfs nix store 3) locate and edit
-init 3.a) remove upstart 3.b) locate and start bash from init 3.c) copy
-/etc/resolve.conf to installation medium 4) chroot into installation
-medium 5) follow NixOS installation manual 6) edit configuratio.nix
-(howto incorporate information above) 8) nixos-checkout 7) perform
-nixos-install ...
+Put your Cloud Server into Rescue Mode from the Rackspace Cloud control
+panel.
+
+First thing we want to do is formatting our root partition and mount it
+to /mnt.
+
+1.  mkfs.ext3 /dev/xvdb1
+2.  mount /dev/xvdb1 /mnt
+
+Next we need to download the minimal installation CD and mount it some
+place.
+
+1.  cd \~
+2.  mkdir inst host
+3.  wget
+    <http://nixos.org/releases/nixos/latest-iso-minimal-x86_64-linux>
+4.  modprobe loop
+5.  mount -o loop latest-iso-minimal-x86\_64-linux ./inst
+6.  unsquashfs inst/nix-store.squashfs '\*' -d host/nix/store
+
+We also need the unsquashfs binary from squashfs-tools. You can install
+it by the following commands.
+
+1.  emerge --sync
+2.  emerge squashfs-tools
+
+Next, we extract nix-store.squashfs from the installation medium to
+yield a NixOS system we can chroot into.
+
+1.  cp /etc/resolve.conf host/nix/etc/
+2.  mkdir host/dev host/proc host/sys
+3.  for fn in dev proc sys; do mount --bind /\$fn host/fn; done
+
+1.  find host -type f -name init | grep nixos
+
+host/nix/store/abwlkvzyjd2i39b1l1wfv7v9ilx88fwi-nixos-0.1pre34067-34077/init
+
+1.  find host -type f -name bash | tail -n 1
+
+host/nix/store/bmgq2jrn6719r6j55gs4rzfp0azcbazy-bash-4.2-p24/bin/bash
+
+(edit init, add bash call, remove upstart)
+
+1.  chroot host
+    /nix/store/abwlkvzyjd2i39b1l1wfv7v9ilx88fwi-nixos-0.1pre34067-34077/init
+
+1.  (chroot) nixos-option --install
+2.  (chroot) \$EDITOR /etc/nixos/configuration.nix
+
+(example configuration file)
+
+1.  (chroot) nixos-checkout
+2.  (chroot) nixos-install
+
+(set root password)
 
