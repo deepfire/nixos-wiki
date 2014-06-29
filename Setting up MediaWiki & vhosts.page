@@ -32,3 +32,6 @@ command line. For instance:
 See also:
 /etc/nixos/nixos/modules/services/web-servers/apache-httpd/mediawiki.nix
 
+For virtual hosts:
+<https://svn.nixos.org/repos/nix/configurations/trunk/tud/cartman.nix>
+
