@@ -31,6 +31,32 @@ usual result comming from a usual native build, with two additional
 attributes: - hostDrv - the derivation cross-built - buildDrv - the
 derivation built in for the build system (a usual native build).
 
+In the attribute set mkDerivation expect as parameters, the usual
+buildInputs got a new meaning when building hostDrv derivations, and a
+new buildNativeInputs got introduced, making a total of:
+
+-   buildNativeInputs: derivations built for the build system (native
+    builds), needed for the actual cross-build.
+-   buildInputs: derivations built for the host-system (to be run in the
+    target), needed for the actual cross-build.
+-   propagatedBuildInputs: in addition to being a dependency of the
+    current built, this derivation built for the host-system will be an
+    input for any derivation requiring the actual host derivation being
+    built.
+-   propagatedBuildNativeInputs: in addition to being a dependency of
+    the current built, this derivation built for the build-system
+    (native build) will be an input for any derivation requiring the
+    actual host derivation being built.
+
+For usual derivations in the native build, buildInputs and
+buildNativeInputs get merged and built for the native system, and
+analogous for propagatedBuildInputs and propagatedBuildNativeInputs.
+
+In the *environment variables* the derivation builder will receive when
+asking for the hostDrv to be built, there will be the new variable
+**\$crossConfig** defined to the GNU Configuration triplet set in the
+crossSystem nixpkgs parameter.
+
 Thus, these calls equivalently build the native derivation for 'bison'
 (mentioning the 'arm.nix' above):
 
