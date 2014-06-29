@@ -2,6 +2,11 @@ Frequently asked questions and common newcomer trouble should be put
 here so that we can point to this page intsead of answering the same
 question over and over again.
 
+Why is Nix written in C++ and Perl rather than a functional language like Haskell or OCaml, given the strong influence that functional programming has obviously had on Nix
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Mainly because Nix is intended to be lightweight and portable
+
 NixOS segfaults when running on VirtualPC:
 ------------------------------------------
 
