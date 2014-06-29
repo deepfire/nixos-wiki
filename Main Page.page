@@ -34,7 +34,7 @@ HOWTOs
 -   [How to write a NixOS module](//NixOS:Modules)
 -   [How to install NixOS from a USB
     stick](//Installing NixOS from a USB stick)
--   [How to install NixOS from linux](//How to install NixOS from linux)
+-   [How to install NixOS from Linux](//How to install NixOS from Linux)
 -   [How to escape from dependency hell when compiling recent
     packages](//Escape from dependency hell)
 -   [How to write patches using TopGit in a collaborative
