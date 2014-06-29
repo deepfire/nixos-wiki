@@ -55,7 +55,7 @@ file.
 
 This setting makes Google the default search engine.
 
-### tabbed
+### Tab support
 
 vimprobable doesn't offer tab support. However, you can use
 [tabbed](http://tools.suckless.org/tabbed) for that. Install tabbed and
