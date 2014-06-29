@@ -1,0 +1,8 @@
+The Nix Expression Language
+---------------------------
+
+Documentation:
+<http://hydra.nixos.org/build/1726694/download/1/manual/#id494989>
+
+ \$ nix-instantiate --eval-only - rec {x = 123;}.x [Ctrl-D] 123
+
