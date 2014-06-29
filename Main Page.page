@@ -39,7 +39,7 @@ HOWTOs
     packages](//Escape from dependency hell)
 -   [How to write patches using TopGit in a collaborative
     manner](//Nixpkgs and TopGit)
--   [How to install Firefox with Java plugin](//Java in Firefox)
+-   [How to install Firefox with Java plugin](//Firefox)
 -   [Encrypted root(home, swap) on NixOS](//Encrypted Root on NixOS)
     luks
 -   [Audio Howto](//Audio HOWTO)
