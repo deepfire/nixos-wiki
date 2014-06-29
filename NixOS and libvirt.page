@@ -17,8 +17,9 @@ For testing proposes it's advised to use systemd.containers instead.
 Take a look at
 <https://github.com/NixOS/nixpkgs/commit/9ee30cd9b51c46cea7193993d006bb4301588001>
 
-Libvirt lxc is not secure if you don't have user namespaces enabled and idmap in libvirt configuration file, but this does not work yet with nixos as linux container!
-======================================================================================================================================================================
+**Libvirt lxc is not secure if you don't have user namespaces enabled
+and idmap in libvirt configuration file, but this does not work yet with
+nixos as linux container!**
 
 -   Create configuration file:
 
