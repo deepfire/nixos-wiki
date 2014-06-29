@@ -128,3 +128,11 @@ Next you can use instructions for simple verification of nix-env
     nix-channel --add http://nixos.org/releases/nixpkgs/channels/nixpkgs-unstable
     nix-channel --update
     nix-env -qa \*
+
+compile nix-trunk
+=================
+
+You will need two more packages
+
+    readline-6.2-2.aix5.1.ppc.rpm
+    sqlite-3.7.5-1.aix5.1.ppc.rpm
