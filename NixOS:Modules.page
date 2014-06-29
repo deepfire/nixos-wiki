@@ -103,8 +103,7 @@ References
 Related Work
 ------------
 
--   Debian
-    [[1]](http://wiki.debian.org/PackageConfigUpgrade%7CConfig::Model):
+-   Debian [Config::Model](http://wiki.debian.org/PackageConfigUpgrade):
 
 target configuration upgrades by abstracting the option of the
 configuration. Each file is a tree structure where leaves are values
