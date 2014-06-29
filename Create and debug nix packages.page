@@ -27,30 +27,30 @@ how to install from the local repository
 this section tells you how to apply changes to your current system based
 on your local repositories:
 
-**example:** list all available software from the **local repository
-\~/code/nixpkgs**
+**example: list all available software** from the local repository
+\~/code/nixpkgs
 
      $ NIX_PATH="nixos=$HOME/code/nixpkgs" nix-env -f '<nixos>' -qa '*'
 
-**example:** install python-urlgrabber from the local repository
+**example: install software from local repository**
 
      $ NIX_PATH="nixos=$HOME/code/nixpkgs" nix-env -f '<nixos>' -i python-urlgrabber
 
-**example:** update the system based on your local **\~/code/nixos** and
+**example: update the system** based on your local **\~/code/nixos** and
 **\~/code/nixpkgs**
 
      $ nixos-rebuild -I nixos=~/code/nixos -I nixpkgs=~/code/nixpkgs switch
 
-**example:** build an expression and put the output in to
-\`pwd\`/results
+**example: build an expression and put the output in to
+\`pwd\`/results**
 
      $ nix-build ~/code/nixpkgs -A irssi
 
-**example:** get an environment which is used to build irssi
+**example: get an environment which is used to build irssi**
 
      $ nix-build ~/code/nixpkgs --run-env -A irssi
 
-**example:** get an persistent environment which is used to build irssi
+**example: get an persistent environment which is used to build irssi**
 
      $ nix-build ~/code/nixpkgs --run-env -A irssi --add-root
 
