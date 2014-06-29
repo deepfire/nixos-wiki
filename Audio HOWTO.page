@@ -22,9 +22,9 @@ Getting ALSA to work
 
 ### Make your audio card the default ALSA card
 
-Sometimes the pc-speaker because the default audio card for ALSA. You
-can make your real sound card default instead. For example, if your
-sound card is "hda-intel" then add
+Sometimes the pc-speaker is the default audio card for ALSA. You can
+make your real sound card default instead. For example, if your sound
+card is "hda-intel" then add
 
       boot.extraModprobeConfig = ''
         options snd slots=snd-hda-intel
