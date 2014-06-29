@@ -53,6 +53,8 @@ HOWTOs
 -   [Installing VirtualBox on NixOS](//Installing VirtualBox on NixOS)
 -   [Writing and running NixOS VM tests](//NixOS VM tests)
 -   [How to install Nix OS on a hetzner rootserver](//NixOS on Hetzner)
+-   [QEMU guest with networking and
+    virtfs](//QEMU guest with networking and virtfs)
 
 Development
 -----------
