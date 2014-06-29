@@ -1,5 +1,19 @@
- \$ nixos-rebuild -I nixos=\~/code/nixos -I nixpkgs=\~/code/nixpkgs
-build
+update the system based on your local \`\`\`\~/code/nixos\`\`\` and
+\`\`\`\~/code/nixpkgs\`\`\`
+
+     $ nixos-rebuild -I nixos=~/code/nixos -I nixpkgs=~/code/nixpkgs build
+
+\`\`\`build an expression\`\`\` and put the output in to \`pwd\`/results
+
+     $ nix-build ~/code/nixpkgs -A irssi
+
+\`\`\`get an environment which is used to build irssi\`\`\`
+
+     $ nix-build --run-env -A irssi
+
+\`\`\`get an persistent environment which is used to build irssi\`\`\`
+
+     $ nix-build --run-env -A irssi --add-root
 
 <https://github.com/diaspora/diaspora/wiki/Git-Workflow>
 
