@@ -87,7 +87,7 @@ and install NixOS on them: (thanks to Danny Wilson for the instructions)
     sfdisk --dump /dev/sda | sfdisk /dev/sdd
 
     # Create a RAID-10 ZFS pool. Use "-o ashift=12" to create your ZFS pool with 4K sectors
-    zpool create -o ashift=12 -o altroot=/mnt rpool mirror /dev/sd[a,b]2 mirror /dev/sda[c,d]2
+    zpool create -o ashift=12 -o altroot=/mnt rpool mirror /dev/sda2 /dev/sdb2 mirror /dev/sdc2 /dev/sdd2
 
     # Create the filesystems
     zfs create -o mountpoint=none rpool/ROOT
