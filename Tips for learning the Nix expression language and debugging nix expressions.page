@@ -3,8 +3,7 @@ the Nix expression language in addition to practical tips and advice for
 writing and debugging Nix expressions. The canonical documentation is
 the [Nix Users
 Manual](http://hydra.nixos.org/job/nix/trunk/tarball/latest/download-by-type/doc/manual%7C).
-Please refer to \*5.2. The Nix expression language\* for further
-details.
+Please refer to *5.2. The Nix expression language* for further details.
 
 The Nix Expression Language
 ---------------------------
