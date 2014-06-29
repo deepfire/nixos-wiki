@@ -3,15 +3,8 @@ State of nixpkgs
 
 The [stdenv-updates
 branch](https://github.com/NixOS/nixpkgs/tree/stdenv-updates) at
-[0bf70832](https://github.com/NixOS/nixpkgs/commit/0bf70832f49993d2f957840b5a41c43b74452594)
-can bootstrap properly an armhf nixpkgs for the raspberrypi
-
-The biggest requirement is setting the platform in nixpkgs, through
-\~/.nixpkgs/config.nix:
-
-    {
-      platform = (import <nixpkgs/pkgs/top-level/platforms.nix>).raspberrypi;
-    }
+[ea6b1d808c559](https://github.com/NixOS/nixpkgs/commit/ea6b1d808c55954e7446f469b976d258165c8632)
+can bootstrap properly an armhf nixpkgs for the raspberrypi.
 
 State of NixOS
 --------------
@@ -61,11 +54,7 @@ example configuration.nix:
       services.openssh = {
         enable = true;
         permitRootLogin = "yes";
-      };
-
-      nixpkgs.config = {
-        platform = pkgs.platforms.raspberrypi;
-      };
+      }; 
     }
 
 Using distcc
