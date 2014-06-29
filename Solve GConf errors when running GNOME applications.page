@@ -12,13 +12,17 @@ accomplish that, follow these steps:
 
 <!-- -->
 
+       xml:readwrite:$(HOME)/.gconf
        xml:readonly:$(HOME)/.nix-profile/etc/gconf/gconf.xml.defaults/
+       xml:readonly:/root/.nix-profile/etc/gconf/gconf.xml.defaults/
+       xml:readonly:/run/current-system/sw/etc/gconf/gconf.xml.defaults
 
 -   Add the following line to **/etc/nixos/configuration.nix**:
 
 <!-- -->
 
        services.dbus.packages = [ pkgs.gnome.GConf ];
+       environment.pathsToLink = [ "/etc/gconf" ];
 
 -   Run **nixos-rebuild switch**. It may also be necessary to run
     **gconftool-2 --shutdown**, in case there already is an active
