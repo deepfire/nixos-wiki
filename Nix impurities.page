@@ -10,6 +10,9 @@ What can theoretically cause different build results?
 -   timing behaviour of any component in use (fs, ..) (causing timeouts
     and such)
 
+-   parallel building if you enable it. Eg make -jN sometimes fails
+    randomly for some projects
+
 [1] quoting Lluis Batlle:
 
 We have the kernelHeaders. Programs should respect kernelHeaders for the
@@ -22,8 +25,8 @@ kernel API, and not talk to the running kernel.
 
      "Cannot mix incompatible Qt library (version 0x40800) with this library (version 0x40801)"
 
-runtime impurities
-------------------
+[[edit](/w/index.php?title=Nix_impurities&action=edit&section=1 "Edit section: runtime impurities")] runtime impurities
+-----------------------------------------------------------------------------------------------------------------------
 
 Stateful directories in NixOS: /etc, /var, /home can cause packages to
 do what they usually do. In case of trouble make a backup, delete and
