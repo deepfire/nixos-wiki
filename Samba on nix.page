@@ -1,3 +1,6 @@
+this guide will help you on how to use samba on nixos. as assumed it's
+quite trivial ;-)
+
 /etc/nixos/configuration.nix
 ----------------------------
 
@@ -20,3 +23,16 @@
          public = yes
      ;
      ...
+
+afterwards apply the changes made to configuration.nix
+------------------------------------------------------
+
+nixos-rebuild switch
+
+samba should startup afterwards
+
+links
+-----
+
+-   <http://hydra.nixos.org/build/1457802/download/1/nixos/manual.html>
+
