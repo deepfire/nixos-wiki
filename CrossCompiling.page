@@ -109,11 +109,13 @@ Actual problems to be solved
 
 -   gcc 4.4.2 cannot be bootstrapped, because building the bare-metal
     (without libc or os) first gcc fails. This does not happen in 4.4.1
-    or 4.4.3(svn)
+    or 4.4.3(svn) [SOLVED in nixpkgs]
 -   Adding other libc than glibc:
     -   For uclibc, gcc 4.3.4 needed a patch on libmudflap running a the
-        host CPP instead of the target, on "configure". [SOLVED]
+        host CPP instead of the target, on "configure". [SOLVED in
+        nixpkgs]
     -   util-linux-ng fails detecting the lack of TLS support in uclibc.
         [Bug
         reported](http://marc.info/?l=util-linux-ng&m=125983442420782&w=2)
+        [Fixed in their git master]
 
