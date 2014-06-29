@@ -21,6 +21,26 @@ here.
 
 -   vim and .nix files. (Marc Weber is going to write this?)
 
+<!-- -->
+
+    mkdir -p ~/.vim/ftdetect/
+    find / -name syntax/lisp.vim
+
+Then use the found file an copy it to nix.vim
+
+    cp /nix/store/jz5hjc8a8cl5x9pm40ib42bk13b4vazz-vim-7.3/share/vim/vim73/syntax/lisp.vim ~/.vim/ftdetect/nix.vim
+    echo "syntax on" >> ~/.vimrc
+
+**Note:** this is not exactly NIX syntax but looks much better than S/W
+anyway!
+
+Test your new setup:
+
+    vi /etc/nixos/configuration.nix # should be highlighted
+
+--[Invalidmagic](/w/index.php?title=User:Invalidmagic&action=edit&redlink=1 "User:Invalidmagic (page does not exist)")
+10:31, 21 May 2011 (UTC)
+
 -   contributor guide and workflows?
 
 -   python on Nix (Marc Weber is going to contribute writing down how it
