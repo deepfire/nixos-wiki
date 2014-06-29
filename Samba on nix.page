@@ -11,7 +11,7 @@
        security = share 
        #use sendfile = yes
        #max protocol = smb2
-
+     
        [rw-files]
          comment = Temporary rw files 
          path = /storage
