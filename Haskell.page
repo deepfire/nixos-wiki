@@ -237,7 +237,12 @@ you can subsequently install into an environment by saying
      $ nix-env -iA nixos.pkgs.hsEnv
 
 It is trivial to keep this environment up-to-date. You can just
-reinstall the package from time to time.
+reinstall the package from time to time. If you want to add or remove
+packages, you edit the packages list and reinstall.
+
+Note that you can easily declare several Haskell environments in your
+configuration file, and switch between them, or even better, install
+them to different profiles and switch between the profiles.
 
 #### System-wide use via NixOS config
 
