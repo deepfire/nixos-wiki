@@ -1,3 +1,14 @@
+[[edit](/w/index.php?title=Docker&action=edit&section=1 "Edit section: running docker")] running docker
+-------------------------------------------------------------------------------------------------------
+
+Run this command as root:
+
+       nix-docker -p
+
+On a different shell:
+
+       nix-docker images
+
 This page needs to be created and designed. For now, it's just notes.
 Sorry :-(
 
