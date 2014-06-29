@@ -20,6 +20,16 @@ Public NixOS AMIs
 
 Currently the following public NixOS AMIs are available:
 
+  --------------------------------------------------------------------------
+  Type
+  Region
+  AMI
+  ------------------------ ------------------------ ------------------------
+  x86\_64-linux            x86\_64-linux            x86\_64-linux
+  eu-west-1                us-east-1                us-west-1
+  ami-65dae711             ami-95bb72fc             ami-0b0c534e
+  --------------------------------------------------------------------------
+
 -   In `eu-west-1`: **`ami-c9f2d8bd`** - 32-bit, NixOS r22609, Linux
     2.6.32.
 -   In `eu-west-1`: **`ami-c34c71b7`** - 64-bit, NixOS r30013, Linux
