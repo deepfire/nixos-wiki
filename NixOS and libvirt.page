@@ -64,7 +64,7 @@ Libvirt lxc is not secure if you don't have user namespaces enabled and idmap in
 
     $ mkdir rootfs
     $ tar -xvf result/tarball/nixos-system-x86_64-linux.tar.xz -C rootfs
-    $ sudo -R chown root:root rootfs/
+    $ sudo chown -R root:root rootfs/
     $ cat container.xml
     <domain type='lxc'>
       <name>container</name>
