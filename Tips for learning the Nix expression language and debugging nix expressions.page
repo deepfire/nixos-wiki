@@ -3,9 +3,16 @@ the Nix expression language in addition to practical tips and advice for
 writing and debugging Nix expressions. The canonical documentation is
 the [Nix Users
 Manual](http://hydra.nixos.org/job/nix/trunk/tarball/latest/download-by-type/doc/manual%7C).
+Please refer to \*5.2. The Nix expression language\* for further
+details.
 
 The Nix Expression Language
 ---------------------------
 
-\$ nix-instantiate --eval-only - rec {x = 123;}.x [Ctrl-D] 123
+There isn't an interactive interpreter for Nix, but \`nix-instantiate
+--eval-only -\` can be used to quickly test an expression:
 
+    $ nix-instantiate --eval-only -
+    rec {x = 123;}.x
+    <Ctrl-D>
+    123
