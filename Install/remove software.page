@@ -13,7 +13,7 @@ there are multiple possibilities, as there is:
 
 <!-- -->
 
-     environment.systemPackages = [ config.boot.kernelPackages.virtualbox ];
+     environment.systemPackages = [ pkgs.links2 ]; # need to find a better use-case for this
 
 -   afterwards do: nixos-rebuild switch
 
