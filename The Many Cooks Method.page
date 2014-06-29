@@ -1,5 +1,5 @@
-Introduction
-------------
+[[edit](/w/index.php?title=The_Many_Cooks_Method&action=edit&section=1 "Edit section: Introduction")] Introduction
+------------------------------------------------------------------------------------------------------------------
 
 Nix is a package manager which manages software installation on behalf
 of more than one party. System administrators as well as end users may
@@ -17,8 +17,8 @@ This page is about outlining the scenario where end users, institutions,
 "special interests", and an OS distribution collaborate to meet the
 needs of all parties while minimizing or eliminating duplicate work.
 
-The Scenario
-------------
+[[edit](/w/index.php?title=The_Many_Cooks_Method&action=edit&section=2 "Edit section: The Scenario")] The Scenario
+------------------------------------------------------------------------------------------------------------------
 
 The following figure defines a desired future condition where the
 *sources* of nix expressions have become modular. This is in contrast to
@@ -46,15 +46,10 @@ designed to integrate a computer into the local environment. The
 institution may also have licenses for commercial software, which must
 be treated separately from open source software. Lastly, the bulk of the
 packaging is expected to come from the centralized repository, labeled
-"NixOS exprs". [Sewa mobil jakarta](http://www.awanirentcar.com),
-[Konsultan
-pajak](http://www.pbtaxand.com/our-services/tax-advisory-services),
-[Aksesoris mobil](http://kiosauto.com), [Sewa mobil jakarta
-barat](http://www.awanirentcar.com/pricelist), [Cotton
-bud](http://www.mitracatur.com/product/cotton-bud)
+"NixOS exprs".
 
-Stakeholders
-------------
+[[edit](/w/index.php?title=The_Many_Cooks_Method&action=edit&section=3 "Edit section: Stakeholders")] Stakeholders
+------------------------------------------------------------------------------------------------------------------
 
 In this section, the various stakeholders are explicitly called out.
 
@@ -95,8 +90,8 @@ In this section, the various stakeholders are explicitly called out.
     them (i.e., someone else detects if a future change to Nix
     expressions breaks the package, and fixes it).
 
-A modular community
--------------------
+[[edit](/w/index.php?title=The_Many_Cooks_Method&action=edit&section=4 "Edit section: A modular community")] A modular community
+--------------------------------------------------------------------------------------------------------------------------------
 
 No stakeholder has infinite resources, whether those resources are time,
 money, bandwidth or compute power. The arrows in the above figure are
@@ -145,8 +140,8 @@ be to separate chatter on email list, provide resources specific to the
 thematic area, remove OS-dependencies from the baseline, or simply to
 make the baseline smaller.
 
-Summary
--------
+[[edit](/w/index.php?title=The_Many_Cooks_Method&action=edit&section=5 "Edit section: Summary")] Summary
+--------------------------------------------------------------------------------------------------------
 
 While the specifics of this page are certainly amenable to change, the
 idea is to ensure that the community can grow without placing undue
