@@ -1,12 +1,12 @@
-background
-----------
+[[edit](/w/index.php?title=Hosting_providers_%26_NixOS&action=edit&section=1 "Edit section: Background")] Background
+--------------------------------------------------------------------------------------------------------------------
 
 NixOS is using very recent software & kernels by default. If you try to
 install NixOS on virtualizing systems be prepared that you have to patch
 some libraries to make them work with older kernels.
 
-Hosting providers known to run NixOS
-------------------------------------
+[[edit](/w/index.php?title=Hosting_providers_%26_NixOS&action=edit&section=2 "Edit section: Hosting providers known to run NixOS")] Hosting providers known to run NixOS
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 www.linode.com:
 
@@ -15,17 +15,16 @@ www.linode.com:
 
 netcup.de:
 
--   Starting from january 2013 netcup provides KVM servers. Installing
-    NixOS works without problems, since you are able able to run your
-    own kernel and upload ISOs to boot from.
+-   Starting from January 2013 netcup provides KVM servers with support
+    for custom ISO images.
 
 supremebytes.com:
 
 -   KVM hosting with custom ISO images on
     <http://www.supremebytes.com/business-virtual-servers.php>
 
-NixOs experiences about other providers
----------------------------------------
+[[edit](/w/index.php?title=Hosting_providers_%26_NixOS&action=edit&section=3 "Edit section: NixOs experiences about other providers")] NixOs experiences about other providers
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 I tried:
 
