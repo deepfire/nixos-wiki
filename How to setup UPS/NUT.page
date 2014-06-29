@@ -5,10 +5,10 @@ the integration of nut in nixos works but:
 
 but it works with my setup here at least
 
-example setup
--------------
+[[edit](/w/index.php?title=How_to_setup_UPS/NUT&action=edit&section=1 "Edit section: example setup")] example setup
+-------------------------------------------------------------------------------------------------------------------
 
-### /etc/nixos/configuration.nix
+### [[edit](/w/index.php?title=How_to_setup_UPS/NUT&action=edit&section=2 "Edit section: /etc/nixos/configuration.nix")] /etc/nixos/configuration.nix
 
      # 1. create:
      #   - /etc/nut/upsd.conf
@@ -41,11 +41,11 @@ note: afterwards run **nixos-rebuild switch** and check that both:
 **upsd** and **upsmon** is running, **upsdrv** seems to be started
 automatically.
 
-### upsd.conf
+### [[edit](/w/index.php?title=How_to_setup_UPS/NUT&action=edit&section=3 "Edit section: upsd.conf")] upsd.conf
 
      LISTEN 127.0.0.1 3493
 
-### upsmon.conf
+### [[edit](/w/index.php?title=How_to_setup_UPS/NUT&action=edit&section=4 "Edit section: upsmon.conf")] upsmon.conf
 
      MONITOR ProtectHome@localhost 1 local_mon MYSECRETPASSWD master
      RUN_AS_USER root
@@ -68,13 +68,13 @@ automatically.
      NOTIFYFLAG REPLBATT SYSLOG+WALL
      NOTIFYFLAG FSD SYSLOG+WALL+EXEC
 
-### upsd.users
+### [[edit](/w/index.php?title=How_to_setup_UPS/NUT&action=edit&section=5 "Edit section: upsd.users")] upsd.users
 
      [local_mon]
          password = MYSECRETPASSWD 
          upsmon master
 
-### myupssched.conf
+### [[edit](/w/index.php?title=How_to_setup_UPS/NUT&action=edit&section=6 "Edit section: myupssched.conf")] myupssched.conf
 
      CMDSCRIPT /etc/nut/upssched/upssched-cmd
      
@@ -85,7 +85,7 @@ automatically.
      AT ONLINE * CANCEL-TIMER onbatt
      AT LOWBATT * EXEC battleer
 
-### upssched/upssched-cmd
+### [[edit](/w/index.php?title=How_to_setup_UPS/NUT&action=edit&section=7 "Edit section: upssched/upssched-cmd")] upssched/upssched-cmd
 
      #!/bin/sh
      case $1 in
@@ -95,14 +95,14 @@ automatically.
          echo "wrong parameter";;
      esac
 
-how to use this
----------------
+[[edit](/w/index.php?title=How_to_setup_UPS/NUT&action=edit&section=8 "Edit section: how to use this")] how to use this
+-----------------------------------------------------------------------------------------------------------------------
 
 to see what is going on:
 
      tail -f /var/log/upstart/ups* /var/log/messages
 
-### example log, when unplugging the UPS from power
+### [[edit](/w/index.php?title=How_to_setup_UPS/NUT&action=edit&section=9 "Edit section: example log, when unplugging the UPS from power")] example log, when unplugging the UPS from power
 
      ==> /var/log/upstart/upsd <==
      listening on 127.0.0.1 port 3493
@@ -183,7 +183,7 @@ to see what is going on:
      3497.333612     parse_status: [OB]
      3497.333632     parsing: [OB]
 
-### upsc ProtectHome@localhost
+### [[edit](/w/index.php?title=How_to_setup_UPS/NUT&action=edit&section=10 "Edit section: upsc ProtectHome@localhost")] upsc ProtectHome@localhost
 
      battery.voltage: 13.50
      battery.voltage.nominal: 12.0
@@ -210,8 +210,21 @@ to see what is going on:
      ups.type: offline / line interactive
      ups.vendorid: 0665
 
-links
------
+[[edit](/w/index.php?title=How_to_setup_UPS/NUT&action=edit&section=11 "Edit section: security")] security
+----------------------------------------------------------------------------------------------------------
+
+it would be a good idea to implement these security advises from Arnaud
+Quette
+
+    for the root user, check existing packages.
+    you'll see that you just need to:
+    - compile with "--with-user=nut --with-group=nut"
+    - "chgrp nut" on /etc/nut and /var/lib/nut/
+    - modify your udev rule
+    ATTRS{idVendor}=="0665", ATTRS{idProduct}=="5161", MODE="664", GROUP="nut",  SYMLINK+="hidraw_protecthome"
+
+[[edit](/w/index.php?title=How_to_setup_UPS/NUT&action=edit&section=12 "Edit section: links")] links
+----------------------------------------------------------------------------------------------------
 
 -   <http://www.techrepublic.com/article/customize-ups-related-alerts-in-nut/6040972>
 -   <http://wiki.ubuntuusers.de/USV/NUT>
