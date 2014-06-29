@@ -21,6 +21,13 @@ here.
 
 ### vim and .nix files. (Marc Weber is going to write this?)
 
+#### use what is coming with nix (nix os)
+
+    # add .nix filetype detection and minimal syntax highlighting support
+    ftNixSupport     = getConfig [ "vim" "ftNix" ] true;
+
+#### use the lisp syntax or what kosmikus provided
+
     mkdir -p ~/.vim/ftdetect/
     NEW NEW NEW
     http://people.cs.uu.nl/andres/nix.vim
