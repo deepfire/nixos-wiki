@@ -73,7 +73,7 @@ You can try them out interactively as follows:
         \$ mkdir -P \~/.pulse && echo "autospawn=no" \>\>
         \~/.pulse/client.conf
         you can then stop pulseaudio with:
-        pulseaudio -k \# or kill it by process id
+        \$ pulseaudio -k \# or kill it by process id
 
 2.  Unload the snd-hda-intel module
     rmmod snd-hda-intel
