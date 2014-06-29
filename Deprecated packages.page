@@ -12,11 +12,11 @@ Why package needs HAL
 
 Plan
 
-nut
+[nut](http://www.networkupstools.org/)
 
 Pierron
 
-vlc
+[vlc](http://videolan.org/)
 
 No meta.maintainer
 
@@ -63,6 +63,8 @@ pam\_usb
 No meta.maintainer
 
 Hotplug, needs both HAL and pmount
+
+Try version from [github](https://github.com/aluzzardi/pam_usb)
 
 Policykit (not polkit!)
 -----------------------
