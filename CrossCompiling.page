@@ -26,10 +26,28 @@ example, we can use this 'arm.nix':
 New stdenv.mkDerivation
 =======================
 
+New derivations
+---------------
+
 The attribute set resulting from a stdenv.mkDerivation call returns the
 usual result comming from a usual native build, with two additional
 attributes: - hostDrv - the derivation cross-built - buildDrv - the
 derivation built in for the build system (a usual native build).
+
+Thus, these calls equivalently build the native derivation for 'bison'
+(mentioning the 'arm.nix' above):
+
+    nix-build -A bison default.nix
+    nix-build -A bison arm.nix
+    nix-build -A bison.buildDrv arm.nix
+
+If we want to cross-build bison for the arm target described above, we
+can run:
+
+    nix-build -A bison.hostDrv arm.nix
+
+New buildInputs
+---------------
 
 In the attribute set mkDerivation expect as parameters, the usual
 buildInputs got a new meaning when building hostDrv derivations, and a
@@ -52,22 +70,13 @@ For usual derivations in the native build, buildInputs and
 buildNativeInputs get merged and built for the native system, and
 analogous for propagatedBuildInputs and propagatedBuildNativeInputs.
 
+New variables in the builder
+----------------------------
+
 In the *environment variables* the derivation builder will receive when
 asking for the hostDrv to be built, there will be the new variable
 **\$crossConfig** defined to the GNU Configuration triplet set in the
 crossSystem nixpkgs parameter.
-
-Thus, these calls equivalently build the native derivation for 'bison'
-(mentioning the 'arm.nix' above):
-
-    nix-build -A bison default.nix
-    nix-build -A bison arm.nix
-    nix-build -A bison.buildDrv arm.nix
-
-If we want to cross-build bison for the arm target described above, we
-can run:
-
-    nix-build -A bison.hostDrv arm.nix
 
 What are we testing
 ===================
