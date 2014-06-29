@@ -47,10 +47,20 @@ called after the LVM initialisation for /dev/sda2 to the name
 You can extend the list, if you have for example a ciphered swap
 partition too, or any else:
 
-      boot.initrd.luks.enable = true;
       boot.initrd.luks.devices = [
         { name = "luksroot"; device = "/dev/sda2"; }
         { name = "swap"; device = "/dev/sda3"; }
+      ];
+
+Notice that you will have to set the root filesystem to be mounted from
+the device /dev/mapper/luksroot, and the swap enabled for the device
+/dev/mapper/swap. Or, if you set labels, you can use the labels.
+
+In case you had luks \*over\* LVM, you want to luksOpen the device
+\*before\* lvm vgscan gets called:
+
+      boot.initrd.luks.devices = [
+        { name = "luksroot"; device = "/dev/sda2"; preLVM = true; }
       ];
 
 ### creating encrypted swap
