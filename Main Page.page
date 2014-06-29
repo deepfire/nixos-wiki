@@ -21,6 +21,8 @@ HOWTOs
 -   [How to keep multiple packages up to date at once (example for
     pkgs.misc.collection)](//Howto keep multiple packages up to date at once)
 -   [How to find any text in code fast (gnu idutils)](//HOWTO:idutils)
+-   [Howto develop software on nixos](//Howto develop software on nixos)
+    (NOT how to develop for nixos or nix)
 -   [How to set up MediaWiki in NixOS with
     vhosts](//Setting up MediaWiki & vhosts)
 -   [How to write a NixOS module](//NixOS:Modules)
