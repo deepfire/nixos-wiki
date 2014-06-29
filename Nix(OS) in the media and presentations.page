@@ -1,20 +1,25 @@
 Articles
 ========
 
--   [French] La naissance d'une distribution: NixOS [Programmez! 128,
-    page 42](http://www.programmez.com/magazine.php?num_magazine=128)
+-   [French] La naissance d'une distribution: NixOS (by Nicolas Pierron)
+    [Programmez! 128, page
+    42](http://www.programmez.com/magazine.php?num_magazine=128)
 
 Videos
 ======
 
--   NixOS' Configuration system [FOSDEM 2010
-    videos](http://meetings-archive.debian.net/pub/debian-meetings/2010/fosdem10/)
--   nix/nixos/hydra presented to GHM'09 by Eelco Dolstra [GMH'09
-    videos](http://www.gnu.org/ghm/2009/)
+-   Using NixOS for declarative deployment and testing (by Sander van
+    der Burg) [FOSDEM
+    2011](http://blip.tv/opensuse/using-nixos-for-declarative-deployment-and-testing-sander-van-der-burg-4744810)
+-   NixOS' Configuration system (by Nicolas Pierron) [FOSDEM
+    2010](http://meetings-archive.debian.net/pub/debian-meetings/2010/fosdem10/)
+-   nix/nixos/hydra presented to GHM'09 (by Eelco Dolstra)
+    [GMH'09](http://www.gnu.org/ghm/2009/)
 -   [Catalan] Presentacio de nix/nixpkgs/nixos/hydra a la SummerCamp'09
-    Garrotxa: [1a
-    part](http://www.channels.com/episodes/show/7086930/Lluis-Nixos-1a-part)
-    [2a
-    part](http://www.channels.com/episodes/show/7077438/Lluis-Nixos-2a-part)
-    [diapositives](http://www.associacio-aoe.org/scg/charlas/scg09/nixos/)
+    Garrotxa (by Llu�s Batlle):
+    [h[tp://www.channels.com/episodes/show/7086930/Lluis-Nixos-1a-part
+    1a part]
+    [h[tp://www.channels.com/episodes/show/7077438/Lluis-Nixos-2a-part
+    2a part] [h[tp://www.associacio-aoe.org/scg/charlas/scg09/nixos/
+    diapositives]
 
