@@ -86,10 +86,16 @@ libraries, only a single version is available in Nixpkgs, but for some
 packages, there are several.
 
 Both the attribute paths and the names can be used to install packages
-from this list, using `nix-env -i` or `nix-env -iA`, respectively. Note
-that when you install packages, you have to explicitly select the
-compiler version you want to use. If you use the attribute path, you can
-use `haskellPackages` (without `_ghc` suffix) as a synonym for what is
+from this list, using `nix-env -i` or `nix-env -iA`, respectively.
+However, using the attribute path is *recommended*. The reason is that
+when using the attribute path, you'll usually get the *preferred*
+version of the package for the compiler version you select (in cases
+where several versions are available), whereas when using the name,
+you'll get the *latest* version of the package available, even if it is
+not going to work with the selected GHC version. Note that when you
+install packages, you have to explicitly select the compiler version you
+want to use. If you use the attribute path, you can use
+`haskellPackages` (without `_ghc` suffix) as a synonym for what is
 considered to be the *current* version of GHC in Nixpkgs (usually the
 GHC version of the latest Haskell Platform release).
 
