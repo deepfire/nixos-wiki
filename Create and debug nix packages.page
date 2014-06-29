@@ -107,6 +107,13 @@ verify that the nix-channel is called nixos, looks like this:
      $ (cd nixos && git pull --rebase)
      $ (cd nixpkgs && git pull --rebase)
      $ create_tags_from_nixos_channel.sh
+       Using revision file:
+         /nix/var/nix/profiles/per-user/root/channels/nixos/nixos/svn-revision
+       nixos revision:   b609ff4
+       nixpkgs revision: a780984
+        
+       nixos: git tag nixos-channel-2012-07-21-19-09 b609ff4
+       nixpkgs: git tag nixos-channel-2012-07-21-19-09 a780984
 
  dev/nixos contains nixos and nixpkgs as subdirs
 
