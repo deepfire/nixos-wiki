@@ -7,15 +7,17 @@ Dotfiles
 
 ### Sergey
 
-Lenovo s10-3t netbook, Wicd, Xfce, few custom packages.
-[[2]](https://github.com/ierton/dotfiles/tree/master/nixos)
+-   Lenovo s10-3t netbook, Wicd, Xfce, few custom packages.
+    [[2]](https://github.com/ierton/nixrc/blob/master/intel-ideapad.nix)
+-   Samsung NP900X3c
+    [[3]](https://github.com/ierton/nixrc/blob/master/samsung-np900x3c.nix)
 
 ### Chaoflow
 
-[[3]](https://github.com/chaoflow/nixos-configurations), has a good
+[[4]](https://github.com/chaoflow/nixos-configurations), has a good
 readme!
 
 ### garbas
 
-[[4]](https://github.com/garbas/nixos-configuration) lenovo x220, i3
+[[5]](https://github.com/garbas/nixos-configuration) lenovo x220, i3
 
