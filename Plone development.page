@@ -1,5 +1,5 @@
 How to use Nix to create Plone development environment
-------------------------------------------------------
+======================================================
 
 All files can also be downloaded from following gist:
 <https://gist.github.com/garbas/5293558>
@@ -125,4 +125,78 @@ Conclusion
 
 Above example should work cross-platform on Darwin(OSX)/Linux/FreeBSD.
 I(garbas) tested Linux and OSX 10.8.
+
+How to use myEnvFun and buildout-nix to create a plone development environment
+==============================================================================
+
+1\. Add a myEnvFun expression for plone development to
+\~/.nixpkgs/config.nix:
+
+    {
+     packageOverrides = pkgs: {
+        plone43 = pkgs.myEnvFun {
+          name = "plone43";
+          buildInputs = with pkgs; [
+            python27Packages."Plone-4.3.1"
+            pythonFull # provides python standard library, readline etc.
+            python27Packages.zc_buildout_nix
+            stdenv # provides gcc for building python c extensions
+         ];
+        };
+
+      };
+    }
+
+2\. Initialize the environment:
+
+    $ load-env-plone43
+    env-plone43 loaded
+
+    plone43:[goibhniu@macha:~/Projects/Plone/plone.chat]$
+
+3\. Create a buildout.cfg:
+
+    [buildout]
+    extends = http://dist.plone.org/release/4.3/versions.cfg
+    eggs-directory = eggs
+    versions = versions
+    unzip = true
+    parts = instance
+
+    [instance]
+    recipe = plone.recipe.zope2instance
+    user = admin:admin
+    debug-mode = on
+    verbose-security = on
+    eggs =
+        Plone
+
+    [versions]
+    distribute = 0.6.34
+    # If you get any version conflict errors when running buildout, pin the version here
+    zc.buildout = 2.2.0
+    Zope2 = 2.13.20
+    setuptools = 0.9.8
+    ZConfig = 2.9.1
+    zc.lockfile = 1.0.2
+    zope.tales = 3.5.3
+    pytz = 2013b
+    docutils = 0.8.1
+    Products.ZCTextIndex = 2.13.4
+
+4\. Run buildout-nix
+
+    $ buildout-nix
+
+You should now be able to start an instance as normal:
+
+    ./bin/instance fg
+
+NOTE: buildout-nix is a patched version of buildout 2.2.0, which
+symlinks to required eggs in the nix store instead of copying them to
+./eggs. Eggs which aren't found in the environment will be downloaded
+and installed to ./eggs as you would expect. If you wish to debug an egg
+in the store e.g. by adding a pdb statement, you can simply replace the
+symlink with a copy of the egg and change the permissions so that it is
+writable.
 
