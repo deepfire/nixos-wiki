@@ -1,10 +1,3 @@
-Articles
-========
-
--   [French] La naissance d'une distribution: NixOS (by Nicolas Pierron)
-    [Programmez! 128, page
-    42](http://www.programmez.com/magazine.php?num_magazine=128)
-
 Videos
 ======
 
@@ -17,9 +10,18 @@ Videos
     [GMH'09](http://www.gnu.org/ghm/2009/)
 -   [Catalan] Presentacio de nix/nixpkgs/nixos/hydra a la SummerCamp'09
     Garrotxa (by Llu�s Batlle):
-    [h[tp://www.channels.com/episodes/show/7086930/Lluis-Nixos-1a-part
+    [h[t[://www.channels.com/episodes/show/7086930/Lluis-Nixos-1a-part
     1a part]
-    [h[tp://www.channels.com/episodes/show/7077438/Lluis-Nixos-2a-part
-    2a part] [h[tp://www.associacio-aoe.org/scg/charlas/scg09/nixos/
+    [h[t[://www.channels.com/episodes/show/7077438/Lluis-Nixos-2a-part
+    2a part] [h[t[://www.associacio-aoe.org/scg/charlas/scg09/nixos/
     diapositives]
+
+rticles
+=======
+
+-   
+
+[F[ench] La naissance d'une distribution: NixOS (by Nicolas Pierron)
+[h[tp://www.programmez.com/magazine.php?num\_magazine=128 Programmez!
+128, page 42]
 
