@@ -9,7 +9,8 @@ browsing-experience. Its featureset might be considered "minimalistic",
 but not as minimalistic as being completely featureless.
 
 Vimprobable is available in two versions, that is vimprobable and
-vimprobable2. As of now only vimprobable2 is available.
+vimprobable2. As of now only vimprobable2 is available and vimprobable
+will be used synonymously with vimprobable2 from now on.
 
 Installation
 ------------
@@ -19,41 +20,32 @@ Installation
 Configuration
 -------------
 
-While vimprobable2 offers some configuration through the vimprobablerc
-file some configuration can solely be done in config.h before
-compilation. However, some of config.h's configuration options are made
-available to Nix making it easy to configure vimprobable without having
-to touch config.h.
+vimprobable looks for configuration files in
+`$HOME/.config/vimprobable`. The basic configuration is done in
+`vimprobablerc`. To create this file issue the following commands.
+
+    $ mkdir -p $HOME/.config/vimprobable
+    $ touch $HOME/.config/vimprobable/vimprobablerc
+
+See \`man vimprobablerc' for configuration options.
 
 ### Search engines
 
-You can override the default search engines using Nix.
+vimprobable can be configured to use a variety of search engines. A
+benefit from configuring a search engine is that you can use them for
+URLs. For example you can just type `g NixOS` to search for *NixOS* on
+Google. The following example sets up the search engines Google
+(shortcut `g`), Wikipedia (shortcut `w`) and NixOS wiki (shortcut `wn`).
 
-[Describe how you do this.]
+    $ touch $HOME/.config/vimprobable/searchengines
+    $ cat << EOF
+    g  "https://google.com/search?q=%s"
+    nw "https://nixos.org/wiki/Special:Search?search=%s"
+    w  "https://secure.wikimedia.org/wikipedia/en/w/index.php?search=%s"
+    $ EOF > $HOME/.config/vimprobable/searchengines
 
-By default vimprobable offers the following search engines.
-
-  -------------------------------------------------------------------------
-  Search engine
-  Shortcut
-  ------------------------------------ ------------------------------------
-  Google                               Wikipedia
-  g                                    w
-  -------------------------------------------------------------------------
-
-You can use search engine shortcuts for a URL in vimprobable. For
-example to search for \`NixOS' in Google open the following URL.
-
-    g NixOS
-
-You can define a default search engine which lets you omit the shortcut
-for this search engine by setting \`defaultsearch' in the vimprobablerc
-file.
-
-    $ mkdir -p $HOME/.config/vimprobable
-    $ echo "defaultsearch=g" >> $HOME/.config/vimprobable/vimprobablerc
-
-This setting makes Google the default search engine.
+See `man vimprobable2` for default search engines that come with
+vimprobable.
 
 ### Tab support
 
@@ -65,7 +57,7 @@ create an alias to vimprobable2 as following.
 
     $ alias vimprobable2="vimprobable2 -e \"\$(tabbed -d)\""
 
-You can switch tabs by pressing \`gt' or \`gT'.
+You can switch tabs by pressing `gt` or `gT`.
 
 References
 ----------
