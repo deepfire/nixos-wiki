@@ -1,5 +1,5 @@
-box configuration
-=================
+[[edit](/w/index.php?title=Compile_Nix_on_AIX&action=edit&section=1 "Edit section: box configuration")] box configuration
+=========================================================================================================================
 
     > /usr/sbin/prtconf
     Processor Type: PowerPC_POWER5
@@ -10,23 +10,23 @@ box configuration
     CPU Type: 64-bit
     Kernel Type: 64-bit
 
-Requirements
-============
+[[edit](/w/index.php?title=Compile_Nix_on_AIX&action=edit&section=2 "Edit section: Requirements")] Requirements
+===============================================================================================================
 
 My box had very minimal configuration. So I discovered that need to
 install some additional software to compile nix. Some packages I have
 downloaded from ibm.com, but most from <http://www.perzl.org/aix/>
 
-AIX packages
-------------
+[[edit](/w/index.php?title=Compile_Nix_on_AIX&action=edit&section=3 "Edit section: AIX packages")] AIX packages
+---------------------------------------------------------------------------------------------------------------
 
 <http://www-03.ibm.com/systems/power/software/aix/linux/toolbox/alpha.html>
 
     #this requires for sed. I could not install latest gettext-0.17-1.aix5.1.ppc.rpm because it required to install too many others
     rpm -i gettext-0.10.40-8.aix5.2.ppc.rpm 
 
-perzl.org
----------
+[[edit](/w/index.php?title=Compile_Nix_on_AIX&action=edit&section=4 "Edit section: perzl.org")] perzl.org
+---------------------------------------------------------------------------------------------------------
 
 All packages below you can find on <http://www.perzl.org/aix/>
 
@@ -51,8 +51,8 @@ nixexprs.tar.bz2
 
     tar-1.26-1.aix5.1.ppc.rpm
 
-coreutils
----------
+[[edit](/w/index.php?title=Compile_Nix_on_AIX&action=edit&section=5 "Edit section: coreutils")] coreutils
+---------------------------------------------------------------------------------------------------------
 
 coreutils was compiled and installed separately, just because I had to
 upgrade too many packages to install rpm You can find core utils here
@@ -70,8 +70,8 @@ go rpm
 If you noticed I have used /opt/qib/app/ folder to install my own
 packages. You can use your own location
 
-compilation of nix
-==================
+[[edit](/w/index.php?title=Compile_Nix_on_AIX&action=edit&section=6 "Edit section: compilation of nix")] compilation of nix
+===========================================================================================================================
 
 I downloaded the latest nix-0.16 from
 <http://nixos.org/nix/download.html>
@@ -113,14 +113,15 @@ correct user-envs.sh and remote-store.sh failure
     && make check \
     && make install
 
-Run nix-env
-===========
+[[edit](/w/index.php?title=Compile_Nix_on_AIX&action=edit&section=7 "Edit section: Run nix-env")] Run nix-env
+=============================================================================================================
 
 I discovered that nix-env requires memory in data segment I had to use
 <http://publib.boulder.ibm.com/tividd/td/ITAME/GC32-0846-00/en_US/HTML/am39_perftune11.htm>
 Make sure that you have 7 zeros. Original document has some mistakes
 
     export LDR_CNTRL=MAXDATA=0x20000000
+    #Add on 02/08/2012 about LDR_CNTRL. You may use ldedit to modify compiled executable to set MAXDATA or use -   qmaxdata:0x20000000 during compilation. Can not verify this right now
 
 Next you can use instructions for simple verification of nix-env
 <http://nixos.org/nixpkgs/download.html>
@@ -129,8 +130,8 @@ Next you can use instructions for simple verification of nix-env
     nix-channel --update
     nix-env -qa \*
 
-compile nix-trunk
-=================
+[[edit](/w/index.php?title=Compile_Nix_on_AIX&action=edit&section=8 "Edit section: compile nix-trunk")] compile nix-trunk
+=========================================================================================================================
 
 You will need two more packages
 
