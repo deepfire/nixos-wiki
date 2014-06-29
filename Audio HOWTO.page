@@ -120,14 +120,15 @@ Multimedia
 
 Test the audio and enjoy the relaxing KDE's arpeggio.
 
-### Making PulseAudio work for most of apps [OBSOLETE]
+### Making PulseAudio work for most of apps *OBSOLETE*
 
 The following can now be achieved with:
 
     hardware.pulseaudio.enable = true
 
-[The rest of this section will be removed shortly] This routes default
-ALSA sound streams via PulseAudio
+***The rest of this section will be removed shortly***
+
+This routes default ALSA sound streams via PulseAudio
 
 -   Install alsa-plugins(pkgs.alsaPlugins)
 -   Put this into \~/.asoundrc:
