@@ -74,6 +74,7 @@ Batlle i Rossell
 guix
 ----
 
-A nixos version using guile scheme as scripting language instead of nix
-initiated by Ludovic Courtes <http://www.gnu.org/software/guix/>
+GNU Guix is a purely functional package manager, and associated free
+software distribution, for the GNU system based on nix initiated by
+Ludovic Courtes <http://www.gnu.org/software/guix/>
 
