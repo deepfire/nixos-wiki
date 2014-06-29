@@ -10,11 +10,8 @@ Hosting providers known to run NixOS
 
 www.linode.com:
 
--   Rob Vermaas and Marc Weber are running NixOS on linode.com.
-
-<!-- -->
-
-     See Howto
+-   Rob Vermaas and Marc Weber are running NixOS on linode.com - see
+    [Install NixOS on Linode](//Install NixOS on Linode).
 
 NixOs experiences about other providers
 ---------------------------------------
