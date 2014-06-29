@@ -22,6 +22,7 @@ Using NixOS with VirtualBox on OS X.
 
 (add the fileSystems. this is what my final config looks like:)
 
+     {pkgs, ...}:
      {
        boot.initrd.extraKernelModules = [  "ata_piix" ];
        boot.kernelModules = [  ];
@@ -34,8 +35,11 @@ Using NixOS with VirtualBox on OS X.
        nix.maxJobs = 1;
        services = {
          sshd = { enable = true; };
-         xserver.videoDriver = "vesa";
+         xserver.videoDriver = "virtualbox";
        };
+       environment.kdePackages = [
+         pkgs.kernelPackages.virtualboxGuestAdditions
+       ];
      }
 
 Now we're ready to install!
