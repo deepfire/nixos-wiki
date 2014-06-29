@@ -1,0 +1,21 @@
+### Installation
+
+There are two steps to installing fonts globally on NixOS - building the
+font, and registering it with Fontconfig so that applications can
+discover it. The `configuration.nix` snippet below installs and
+registers a single font, "inconsolata".
+
+     {
+       environment.systemPackages = with pkgs; [
+         inconsolata
+       ];
+     
+       fonts.fonts = [ pkgs.inconsolata ];
+     }
+
+### Debugging
+
+The global Fontconfig configuration is kept in `/etc/fonts/fonts.conf`.
+This file is generated automatically, and should not be edited directly,
+but it can be useful to see what is actually written there.
+
