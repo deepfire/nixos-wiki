@@ -8,8 +8,6 @@ by patents. From the FreeType source code:
     patents and should not be activated in any default
     build of the library.
 
-Still, activating this option is possible and is not so hard.
-
 How to enable
 =============
 
