@@ -69,6 +69,7 @@ Next we'll get a small VM images so that we can run a VM.
 
     $ cd /var/lib/nova/images
     $ curl http://images.ansolabs.com/tty.tgz | tar xvfzo -
+    $ nova-manage image convert /var/lib/nova/images
 
 Check that Nova can see the images:
 
