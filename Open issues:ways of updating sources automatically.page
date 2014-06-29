@@ -104,3 +104,33 @@ ideas?](http://thread.gmane.org/gmane.linux.distributions.nixos/5594/focus=5597)
 Marc Weber's comments: None. I haven't had time to look into it. v2 also
 uses evaluation so it also suffers from the configuration issue.
 
+Tobias Hunger's comments: The script extracts the following attributes
+from the XML:
+
+-   name (for name and version information)
+-   watchfile (for a debian/watch file to use for the actual updating
+    process as well as the .nix file name to update)
+-   src/url[s] (in case we want to update the URL)
+-   src/hash value and type (to replace the hash later)
+
+There is no extra update information is needed inside the nix
+expressions. It seems to work reasonably well with the files I treid to
+convert so far (about 15 or so).
+
+The watch file is an extra small file of course, but having it enables
+me to use debian's uscan utility to actually figure out all the update
+information instead of reinventing the wheel. Uscan is widely used
+inside debian and has special magic to support sites like sourceforge,
+etc. and even can be used to extract package information from download
+pages meant for humans (e.g. bzip2 or zlib).
+
+Status so far:
+
+-   Extracting information from the nix expressions works great
+-   Finding updates is very solid
+-   Updating the nix expression is still not perfect, especially with
+    files wile the one found in pkgs/server/x11/xorg which has lots of
+    derivations defined in it. There still is a chance that my script
+    ends up replacing the wrong things there. I need to find a way to
+    improve that.
+
