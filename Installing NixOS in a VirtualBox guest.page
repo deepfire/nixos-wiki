@@ -50,6 +50,12 @@ Now we're ready to install!
      $ nixos-install
      $ reboot
 
+In order to access the host's clipboard and automatically resize the
+screen add this line to a script which runs once after login (I use
+xmonad/xterm and .bash\_login seems early enough):
+
+     VBoxClient-all
+
 Now you got a working nixos system. However, you can't conveniently log
 in to ssh this way, so you'll need to set up port-forwarding. Doing that
 is explained on this site, all you have to do is create a script named
