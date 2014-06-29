@@ -91,7 +91,7 @@ nixos/nixpkgs) if you type **nix-env -i firefox**
 
 #### how does this work
 
-you need this script:
+you need this script, edit for your own paths and branches:
 
      https://raw.github.com/chaoflow/skel/master/bin/update-nixos-channel-branches.sh
 
