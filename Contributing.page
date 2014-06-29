@@ -77,3 +77,72 @@ The nixpkgs-dev-utilities referenced on [Nix(OS) related repositories
 and work](//Nix(OS) related repositories and work) tries to implement
 this for your convinience
 
+Upgrade the version of a package already in nixpkgs\_unstable
+-------------------------------------------------------------
+
+    svn co https://svn.nixos.org/repos/nix/nixpkgs/trunk ./nixpkgs_svn
+
+Find the package you want to upgrade:
+nixpkgs\_svn/pkgs/servers/http/couchdb/src-for-default.nix
+
+    rec {
+       version="0.11.0";
+       name="couchdb-0.11.0";
+       hash="0jdh9h6kzay02fpcjvhpwgvpwy9s8yl0hjc5j67lyw504wn2d441";
+       url="mirror://apache/couchdb/0.11.0/apache-couchdb-${version}.tar.gz";
+       advertisedUrl="http://www.apache.org/dist/couchdb/0.11.0/apache-couchdb-0.11.0.tar.gz";
+    }
+
+Get the correct hash:
+
+    $ nix-prefetch-url http://www.apache.org/dist/couchdb/1.0.0/apache-couchdb-1.0.0.tar.gz
+
+Update nixpkgs\_svn/pkgs/servers/http/couchdb/src-for-default.nix with
+the new details:
+
+    rec {
+       version="1.0.0";
+       name="couchdb-1.0.0";
+       hash="0mrg7jw29bg1y6m0gj3qbr0amwsz7dl8jl7n46jvy7d54dldwf6a";
+       url="mirror://apache/couchdb/1.0.0/apache-couchdb-${version}.tar.gz";
+       advertisedUrl="http://www.apache.org/dist/couchdb/1.0.0/apache-couchdb-1.0.0.tar.gz";
+    }
+
+To test that it works, copy it into your current channel and install it
+
+    $ cp nixpkgs_svn/pkgs/servers/http/couchdb/src-for-default.nix /nix/var/nix/gcroots/per-user/root/channels/nixpkgs_unstable/pkgs/servers/http/couchdb/src-for-default.nix
+    $ nix-env -i couchdb
+
+Test that the new version of the application is working correctly. If it
+looks good you can submit the patch by sending it to the mailing list.
+First create the patch file:
+
+    $ cd nixpkgs_svn
+    $ svn diff > couchdb-1.0.0.patch
+
+Which will look something like this:
+
+    Index: pkgs/servers/http/couchdb/src-for-default.nix
+    ===================================================================
+    --- pkgs/servers/http/couchdb/src-for-default.nix	(revision 22713)
+    +++ pkgs/servers/http/couchdb/src-for-default.nix	(working copy)
+    @@ -1,9 +1,8 @@
+     rec {
+    -   version="0.11.0";
+    -   name="couchdb-0.11.0";
+    -   hash="0jdh9h6kzay02fpcjvhpwgvpwy9s8yl0hjc5j67lyw504wn2d441";
+    -   url="mirror://apache/couchdb/0.11.0/apache-couchdb-${version}.tar.gz";
+    -   advertisedUrl="http://www.apache.org/dist/couchdb/0.11.0/apache-couchdb-0.11.0.tar.gz";
+    -  
+    -  
+    +   version="1.0.0";
+    +   name="couchdb-1.0.0";
+    +   hash="0mrg7jw29bg1y6m0gj3qbr0amwsz7dl8jl7n46jvy7d54dldwf6a";
+    +   url="mirror://apache/couchdb/1.0.0/apache-couchdb-${version}.tar.gz";
+    +   advertisedUrl="http://www.apache.org/dist/couchdb/1.0.0/apache-couchdb-1.0.0.tar.gz";
+    +
+     }
+
+Then you can send your patch to the mailing list, where someone can
+review it, give you feedback or simply add it to nixpkgs.
+
