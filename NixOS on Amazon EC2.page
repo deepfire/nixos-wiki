@@ -22,6 +22,8 @@ Currently the following public NixOS AMIs are available:
 
 -   In `eu-west-1`: **`ami-c9f2d8bd`** - 32-bit, NixOS r22609, Linux
     2.6.32.
+-   In `eu-west-1`: **`ami-bbf2d8cf`** - 64-bit, NixOS r22609, Linux
+    2.6.32.
 
 Running NixOS instances
 -----------------------
@@ -74,7 +76,9 @@ upload it to S3, and start an instance.
             nix-build /path/to/nixos -A config.system.build.amazonImage \
             --argstr system i686-linux
 
-    This will produce an `ext3` disk image in `./result/nixos.img`:
+    (Use
+    `--argstr system x86_64-linux to build a 64-bit image.) This will produce an <tt>ext3`
+    disk image in `./result/nixos.img`:
 
         $ ls -l ./result/nixos.img 
         -r--r--r-- 1 root nixbld 4294967296 Jan  1  1970 ./result/nixos.img
@@ -94,7 +98,7 @@ upload it to S3, and start an instance.
         ec2-bundle-image complete.
 
     The resulting bundle is stored in `/tmp/nixos.img.manifest.xml` and
-    `/tmp/nixos.img.part.*`.
+    `/tmp/nixos.img.part.*`. Use `--arch x86_64` for 64-bit images.
 
 4.  Upload the bundle:
 
@@ -118,6 +122,6 @@ upload it to S3, and start an instance.
         IMAGE   ami-efffd59b
 
     Note that `aki-c34d67b7` is an Ubuntu Linux 2.6.32 kernel known to
-    work with NixOS.
+    work with NixOS. For 64-bit images, use `aki-cb4d67bf`.
 
 
