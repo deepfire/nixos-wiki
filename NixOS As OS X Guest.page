@@ -18,7 +18,7 @@ TODO Setup VM
 VirtualBox is available from <http://www.virtualbox.org/>. Installing it
 should be more or less straightforward.
 
-### Create VM
+### STARTED Create VM
 
 Open the VirtualBox application and create a new VM, which will bring up
 the "New Virtual Machine Wizard".
