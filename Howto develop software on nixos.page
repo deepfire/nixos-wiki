@@ -44,10 +44,10 @@ Additional info
 BBB manual cloning of an environment not using the package manager
 ------------------------------------------------------------------
 
-the nix expression, `/etc/nixos/nixpkgs/pkgs/misc/my-env/default.nix`,
-is intended to be used by a normal user. just open the mentioned file
-with the text editor of choice and look at the comments (which should
-basically the same described here in this wiki page), so read on.
+the nix expression, `nixpkgs/pkgs/misc/my-env/default.nix`, is intended
+to be used by a normal user. just open the mentioned file with the text
+editor of choice and look at the comments (which should basically the
+same described here in this wiki page), so read on.
 
 ### a simple example \~/.nixpkgs/config.nix
 
