@@ -3,8 +3,8 @@ Find elisp modules in standard profiles (outdated)
 
      (setq load-path (append (list "~/.nix-profile/share/emacs/site-lisp" "/var/run/current-system/sw/share/emacs/site-lisp") load-path))
 
-The emacs expression installs a site-start.el that uses NIX\_PROFILES as
-base for extending the load-path
+For a while, the emacs expression installs a site-start.el that uses
+NIX\_PROFILES as base for extending the load-path
 
 Tramp
 -----
