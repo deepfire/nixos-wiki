@@ -49,7 +49,7 @@ and linking into /run/current-system/sw/:
 
 ### LD\_LIBRARY\_PATH
 
-So, freetype\_subpixel is our new version of freetype, with subpixel
+freetype\_subpixel is our new version of freetype, with subpixel
 rendering enabled. Now we should tell others to link with it instead of
 system default.
 
