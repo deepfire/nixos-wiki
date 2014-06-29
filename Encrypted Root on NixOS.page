@@ -65,7 +65,7 @@ In case you had luks \*over\* LVM, you want to luksOpen the device
 
 ### creating encrypted swap
 
-If you don't use lvm2 then you have a problem with creating and using an
+If you don't use LVM then you have a problem with creating and using an
 encrypted swap. One approach would be to unlock the swap partition with
 a keyfile instead of a random key:
 
