@@ -67,7 +67,9 @@ Install Prerequisites
     } 
     EOF
 
-    export NIX_PATH=nixos=/root/nixpkgs/nixos:nixpkgs=/root/nixpkgs
+    nix-channel --add http://nixos.org/channels/nixos-13.10 nixos
+    nix-channel --update
+    export NIX_PATH=/root/.nix-defexpr/channels/nixos:nixos=/root/.nix-defexpr/channels/nixos/nixos
     export NIXOS_CONFIG=/root/configuration.nix
     nix-env -i -A config.system.build.nixos-install -A config.system.build.nixos-option -A config.system.build.nixos-generate-config -f "<nixos>"
 
