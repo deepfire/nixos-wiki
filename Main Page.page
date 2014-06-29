@@ -34,6 +34,9 @@ HOWTOs
 
 -   [How to install NixOS on linode.com](//Install NixOS on Linode)
 
+-   [How to wrie patches using topigit in a collaborative
+    manner](/w/index.php?title=Nixpkgs_and_topgit&action=edit&redlink=1 "Nixpkgs and topgit (page does not exist)")
+
 Development
 -----------
 
