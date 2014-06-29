@@ -84,9 +84,8 @@ upload it to S3, and start an instance.
             nix-build /path/to/nixos -A config.system.build.amazonImage \
             --argstr system i686-linux
 
-    (Use
-    `--argstr system x86_64-linux to build a 64-bit image.) This will produce an <tt>ext3`
-    disk image in `./result/nixos.img`:
+    (Use `--argstr system x86_64-linux` to build a 64-bit image.) This
+    will produce an `ext3` disk image in `./result/nixos.img`:
 
         $ ls -l ./result/nixos.img 
         -r--r--r-- 1 root nixbld 4294967296 Jan  1  1970 ./result/nixos.img
