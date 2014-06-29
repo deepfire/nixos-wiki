@@ -75,10 +75,10 @@ environment.systemPackages is already set):
 the "let myTexLive =" will introduce a new nix-expression using
 texLiveAggregationFun { paths = [ all\_your\_texLive\_components\_here
 ]; }. the (let myTexLive = ... in myTexLive) will actually evaluate the
-function and, as it is in environment.systemPackages, next time the
-nixos-rebuild switch command is issued, all the specified texLive
-components will be built and their texmf-dist// scanned, resulting in an
-environment with a full working texlive + optional components setup.
+function upon the a nixos-rebuild switch command. After a nixos-rebuild
+switch, all the specified texLive components will be built and their
+texmf-dist// scanned, resulting in an environment with a full working
+texlive + optional components setup.
 
 -   nix-env way
 
