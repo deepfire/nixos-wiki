@@ -69,7 +69,8 @@ argument added on top:
 
 The following arguments can be retrieved from this attribute set:
 
--   `config`: The configuration of the entire system.
+-   [`config`](//NixOS:config argument): The configuration of the entire
+    system.
 -   `options`: All option declarations refined with all definition and
     declaration references.
 -   `pkgs`: The attribute set extracted from the Nix package collection
