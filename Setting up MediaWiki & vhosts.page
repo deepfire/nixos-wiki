@@ -3,19 +3,23 @@ instance:
 
 ### mediawiki but NO vhosts yet
 
-    services.postgresql.enable = true;
-    services.postgresql.package = pkgs.postgresql92;
-    services.postgresql.authentication = pkgs.lib.mkOverride 10 ''
-     local mediawiki all ident map=mwusers
-     local all all ident
-    '';
-    services.postgresql.identMap = ''
-      mwusers root mediawiki
-      mwusers wwwrun mediawiki
-    ';
-    services.httpd.enable = true;
-    services.httpd.adminAddr = "admin@example.org";
-    services.httpd.extraSubservices =
+    services.postgresql = {
+      enable = true;
+      package = pkgs.postgresql92;
+      authentication = pkgs.lib.mkOverride 10 ''
+        local mediawiki all ident map=mwusers
+        local all all ident
+      '';
+      identMap = ''
+        mwusers root mediawiki
+        mwusers wwwrun mediawiki
+      '';
+    };
+
+    services.httpd = {
+      enable = true;
+      adminAddr = "admin@example.org";
+      extraSubservices =
       [ { serviceType = "mediawiki";
           siteName = "My Wiki";
           logo = "http://www.example.org/wiki-logo.png"; # should be 135x135px
@@ -26,6 +30,7 @@ instance:
             '';
         }
       ];
+    };
 
 Then run `nixos-rebuild switch`. The MediaWiki database will be created
 automatically.
@@ -53,16 +58,19 @@ this example features two vhost entries:
 
 <!-- -->
 
-      services.postgresql.enable = true;
-      services.postgresql.package = pkgs.postgresql92;
-      services.postgresql.authentication = pkgs.lib.mkOverride 10 ''
-       local mediawiki all ident map=mwusers
-       local all all ident
-      '';
-      services.postgresql.identMap = ''
-        mwusers root mediawiki
-        mwusers wwwrun mediawiki
-      ';
+      services.postgresql = {
+        enable = true;
+        package = pkgs.postgresql92;
+        authentication = pkgs.lib.mkOverride 10 ''
+          local mediawiki all ident map=mwusers
+          local all all ident
+        '';
+        identMap = ''
+          mwusers root mediawiki
+          mwusers wwwrun mediawiki
+        '';
+      };
+
       services.httpd = {
         enable = true;
         logPerVirtualHost = true;
