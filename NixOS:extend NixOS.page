@@ -24,10 +24,11 @@ Lets start the irc session with irssi inside a screen daemon. The user's
       jobs.ircSession = {
         description = "Start the irc client of username."
         startOn = "started network-interfaces";
-        exec = ''su -c "${pkgs.screen}/bin/screen -m -d -S irc ${pkgs.irssi}/bin/irssi" username'';
+        exec = ''/var/setuid-wrappers/sudo -u username -- ${pkgs.screen}/bin/screen -m -d -S irc ${pkgs.irssi}/bin/irssi'';
       };
 
       environment.systemPackages = [ pkgs.screen ];
+      security.sudo.enable = true;
 
       # ... usual configuration ...
     }
@@ -55,11 +56,12 @@ computer to enable or disable services. He rewrites his
         ircSession = {
           description = "Start the irc client of username."
           startOn = "started network-interfaces";
-          exec = ''su -c "${pkgs.screen}/bin/screen -m -d -S irc ${pkgs.irssi}/bin/irssi" username'';
+          exec = ''/var/setuid-wrappers/sudo -u username -- ${pkgs.screen}/bin/screen -m -d -S irc ${pkgs.irssi}/bin/irssi'';
         };
       };
 
       environment.systemPackages = pkgs.lib.mkIf (config.networking.hostname == "my-server") [ pkgs.screen ];
+      security.sudo.enable = (config.networking.hostname == "my-server");
 
       # ... usual configuration ...
     }
@@ -95,10 +97,11 @@ and the contents of the `irc-client.nix` file becomes:
       jobs.ircSession = {
         description = "Start the irc client of username."
         startOn = "started network-interfaces";
-        exec = ''su -c "${pkgs.screen}/bin/screen -m -d -S irc ${pkgs.irssi}/bin/irssi" username'';
+        exec = ''/var/setuid-wrappers/sudo -u username -- ${pkgs.screen}/bin/screen -m -d -S irc ${pkgs.irssi}/bin/irssi'';
       };
 
       environment.systemPackages = [ pkgs.screen ];
+      security.sudo.enable = true;
     }
 
 This way, the complexity of changing the condition is reduced. In
@@ -146,12 +149,13 @@ He modifies irc-client.nix to look like this:
 
       config = mkIf cfg.enable {
         jobs.ircSession = {
-          description = "Start the irc client of ${cfg.username}."
+          description = "Start the irc client of ${cfg.user}."
           startOn = "started network-interfaces";
-          exec = ''su -c "${pkgs.screen}/bin/screen -m -d -S irc ${pkgs.irssi}/bin/irssi" ${cfg.user}'';
+          exec = ''/var/setuid-wrappers/sudo -u ${cfg.user} -- ${pkgs.screen}/bin/screen -m -d -S irc ${pkgs.irssi}/bin/irssi'';
         };
 
         environment.systemPackages = [ pkgs.screen ];
+        security.sudo.enable = true;
       };
     }
 
@@ -214,15 +218,16 @@ irc client options. This will extend the options available inside
           };
 
           config = mkIf cfg.enable {
-            description = "Start the irc client of ${cfg.username}."
+            description = "Start the irc client of ${cfg.user}."
             startOn = "started network-interfaces";
-            exec = ''su -c "${pkgs.screen}/bin/screen -m -d -S irc ${pkgs.irssi}/bin/irssi" ${cfg.user}'';
+            exec = ''/var/setuid-wrappers/sudo -u ${cfg.user} -- ${pkgs.screen}/bin/screen -m -d -S irc ${pkgs.irssi}/bin/irssi'';
           };
         };
       };
 
       config = mkIf anyIrcClient {
         environment.systemPackages = [ pkgs.screen ];
+        security.sudo.enable = true;
       };
     }
 
