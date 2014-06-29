@@ -16,8 +16,13 @@
 
     }
 
-Now you can update ghc and its libraries using \<ple\> nix-env -iA
-myHaskellCollection or nix-env -i my-haskell-collection \</pre\>
+Now you can update ghc and its libraries using
+
+    nix-env -iA myHaskellCollection
+
+or
+
+    nix-env -i my-haskell-collection
 
 The all attribute name illustrates that you can reuse your new
 collection in yet another collection. Keeping such a big collection
