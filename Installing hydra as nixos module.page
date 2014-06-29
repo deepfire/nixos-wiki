@@ -44,6 +44,53 @@ services.postgresql.package = pkgs.postgresql;
 
 }
 
+Letting nix handle the git repository
+-------------------------------------
+
+Alternatively, you can reference the hydra repository directly from
+/etc/nixos/configuration.nix:
+
+{ config, pkgs, ... }:
+
+let hydra = pkgs.fetchgit { url = <https://github.com/NixOS/hydra>; rev
+= "refs/heads/master"; :: };
+
+in {
+
+require = [ ... "\${hydra}/hydra-module.nix" ];
+
+...
+
+\# Hydra:
+
+services.hydra = {
+
+enable = true;
+
+hydra = (import "\${hydra}/release.nix" {}).build.x86\_64-linux; \# or
+i686-linux if appropriate.
+
+hydraURL = "<http://>\<your listening ip goes here\>:3000";
+
+notificationSender = "hydra@my-buildserver.domain";
+
+};
+
+\# Hydra requires postgresql to run
+
+services.postgresql.enable = true;
+
+services.postgresql.package = pkgs.postgresql;
+
+}
+
+This will include the hydra repository in the nix store. The repository
+will be kept there until garbage collected, at which time
+nixos-rebuilding will refetch the (possibly updated) repository.
+
+Building the configuration
+--------------------------
+
 Then, running 'nixos-rebuild switch' and rebooting, hydra initialises
 itself through systemd scripts, enabled as part of the installation.
 
