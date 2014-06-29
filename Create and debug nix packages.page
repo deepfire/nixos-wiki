@@ -111,6 +111,12 @@ then run:
 note: the first number (769b74) is nixos revision, the second number is
 the nixpkgs (f430032) revision which is
 
+then run:
+
+      cd $NIXREPOS/nixpkgs
+      git pull
+      git checkout -b nixpkgschannel f430032
+
 nix channels
 ------------
 
