@@ -111,7 +111,7 @@ verify that the nix-channel is called nixos, looks like this:
  how to use the script:
 
      $ nix-channel --update
-     $ cd ~/code
+     $ cd $NIXREPOS
      $ (cd nixos && git pull --rebase)
      $ (cd nixpkgs && git pull --rebase)
      $ create_tags_from_nixos_channel.sh
@@ -123,9 +123,9 @@ verify that the nix-channel is called nixos, looks like this:
        nixos: git tag nixos-channel-2012-07-21-19-09 b609ff4
        nixpkgs: git tag nixos-channel-2012-07-21-19-09 a780984
 
- \~/code contains nixos and nixpkgs as subdirs
+ \$NIXREPOS contains nixos and nixpkgs as subdirs
 
-     $ ls -l ~/code
+     $ ls -l $NIXREPOS
      total 8K
      drwxr-xr-x 9 cfl cfl 4096 Jul 15 07:02 nixos/
      drwxr-xr-x 6 cfl cfl 4096 Jul 15 04:01 nixpkgs/
