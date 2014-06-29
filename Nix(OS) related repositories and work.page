@@ -28,8 +28,8 @@ ocamlPackages
 -------------
 
 A small collections of [OCaml](http://caml.inria.fr/)-related packages:
-[browse](http://www.math.unifi.it/~maggesi/ocamlPackages/), [download
-tgz](http://www.math.unifi.it/~maggesi/ocamlPackages-2010-08-17.tar.gz).
+[browse](http://www.math.unifi.it/~maggesi/ocamlPackages/src),
+[download](http://www.math.unifi.it/~maggesi/ocamlPackages/dists).
 
 Reasons for not committing it to trunk: Proof of concept, still
 experimenting, trying to find a good way to cope with findlib and other
