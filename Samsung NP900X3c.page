@@ -72,6 +72,9 @@ Corresponding config settings:
 Problems
 ========
 
+There are some. See [Ubuntu
+thread](https://bugzilla.kernel.org/show_bug.cgi?id=44161)
+
 ### Battery
 
 Battery charging/discharging indicator doesn't work good.
