@@ -1,3 +1,18 @@
+general python integration into nixos
+-------------------------------------
+
+### requirements
+
+-   mix python 2.x and 3.x in the same profile
+-   pyLibA (python wrapper for a library) is used by pyLibB: nix
+    expressions must be able to use either
+
+### environment variables
+
+-   PYTHONPATH
+-   PYTHONUSERBASE
+-   NIX\_PYTHON\_SITES
+
 qknight's problems
 ------------------
 
