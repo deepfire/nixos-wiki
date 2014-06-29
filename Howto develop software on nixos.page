@@ -17,10 +17,10 @@ environment and we type `make` in a shell, an error will be displayed,
 telling us that "make" does not exist.
 
 How can we use Nix to obtain an environment which contains all tools
-required to work on a project?
-
-Two solutions: A) Rely on app's package B) Manually define build
-environment
+required to work on a project? Well, one solution is to use the same
+tools defined as dependencies of an app's Nix package. If we need more
+than those, we can manually define more tools in a custom environment
+definition.
 
 ### Obtaining an Environment from an App's Nix Package
 
