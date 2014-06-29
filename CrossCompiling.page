@@ -1,4 +1,4 @@
-News in allpackages.nix
+New in all-packages.nix
 =======================
 
 The main nix packages expression has a parameter setting the information
