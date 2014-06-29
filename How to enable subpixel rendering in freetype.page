@@ -17,30 +17,37 @@ Let's see the definition of freetype in top-level.nix:
          useEncumberedCode = getconfig [ "freetype" "useencumberedcode" ] false;
       };
 
-it shows that freetype has useEncumberedCode option set to false by
-default. Enabling it in config does the job, but leads to mass local
-rebuilding of packages which are depend on freetype. Probably, it is not
-what user expects so we need a trick.
+(NOTE: nowdays it looks a bit different due to changes in config AP)
 
-### Configuration.nix
+it says that freetype has useEncumberedCode option set to false by
+default. Enabling it blindly leads to mass local rebuilding of almost
+all GUI packages. Probably, it is not what user expects so we need a
+trick:
+
+1.  Let Nixos build all the stuff using default version of freetype
+2.  Build our own version of freetype with subpixel rendering enabled
+3.  Modify LD\_LIBRARRY\_PATH variable to tell the linker which freetype
+    is better
+
+### Overrides
 
 Define new instance of freetype expression (with another and uniq name)
-and include it in the config. Here are parts of configuration.nix:
+and include it in the config. Here are new parts of configuration.nix:
 
       nixpkgs.config = {
         packageOverrides = pkgs: {
-          ...
 
           freetype_subpixel = pkgs.freetype.override {
             useEncumberedCode = true;
           };
 
-          ...
         }
       }
 
-Next, we should add it to the list of system packages to force building
-and linking into /run/current-system/sw/:
+### SystemPackages
+
+we should add it to the list of system packages to force building and
+linking into /run/current-system/sw/:
 
       environment.systemPackages = with pkgs ; [
         ...
@@ -50,7 +57,7 @@ and linking into /run/current-system/sw/:
 ### LD\_LIBRARY\_PATH
 
 freetype\_subpixel is our new version of freetype, with subpixel
-rendering enabled. Now we should tell others to link with it instead of
+rendering enabled. We should tell others to link with it instead of
 system default.
 
 Basically, user has to insert following lines into right place:
