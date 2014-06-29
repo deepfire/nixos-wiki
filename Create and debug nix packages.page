@@ -64,26 +64,31 @@ nix-shell)**
 
      $ nix-build $NIXREPOS/nixpkgs --run-env -A irssi --add-root
 
-**NOTE:** it would be awesome if there was a bash/zsh extension which
-would export NIX\_PATH=$NIXREPOS, when entering the directory $NIXREPOS/
-in a shell.
+Preparing to open a pull request
+--------------------------------
 
-git
----
+You have cloned the relevant nix repository, but you will want to track
+changes in the upstream nix repo too. You can add a remote, and a
+corresponding branch for this.
 
-### git rebase
+     git remote add upstream https://github.com/NixOS/nixpkgs.git
 
-     git pull upstream master
-
-now after some modifications ...
+After making some changes you can commit them into your local repo:
 
      git add foo
      git commit
-     git fetch upstream master
-     git pull --rebase upstream master
-     git push upstream
 
-### theory: keeping in sync with hydra builds
+You can create a branch to track the upstream master branch:
+
+     git checkout -b upstream-master upstream/master
+
+If some time has passed since you have created your fork, you will want
+to merge your changes with upstream and test that it still works.
+
+     git fetch upstream
+     git merge upstream
+
+### Take advantage of available binaries from Hydra
 
 problem: if you use a local git checkout of nixos/nixpkgs's **upstream
 master** to develop software with, you might end up in compiling a lot
@@ -103,27 +108,27 @@ nixos/nixpkgs) if you type **nix-env -i firefox**
     * you might get an older binary substitute if the hydra build of the new expression hasn't finished yet
     * you might get an older binary substitute if the hydra build of a newer version failed
 
-#### how does this work
-
-then run:
+#### nixos-version
 
       nixos-version
       0.2pre-769b74c-f430032
 
-note: the first number (769b74) is nixos revision, the second number is
-the nixpkgs (f430032) revision which is
-
-note: requires version nix-1.6.x
-
-then run:
+The last strings at the end indicate the git short revision hash of
+nixos and nixpkgs. The first one (769b74) is nixos revision, the second
+one is the nixpkgs (f430032) revision.
 
       cd $NIXREPOS/nixpkgs
+
+You can create a
+
       git pull
       git checkout -b nixpkgschannel f430032
       nix-shell $NIXREPOS/nixpkgs  -A bc
       mkdir -p /tmp/foo/out
       cd /tmp/foo
       export out=/tmp/foo/out
+
+note: nix-shell requires version nix-1.6.x
 
 also modify the configureFlags prefix:
 
