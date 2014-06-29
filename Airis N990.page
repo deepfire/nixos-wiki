@@ -1,5 +1,5 @@
-Overview
-========
+[[edit](/w/index.php?title=Airis_N990&action=edit&section=1 "Edit section: Overview")] Overview
+===============================================================================================
 
 -   Processor: AMD Sempron 2600, 1600MHz, only 32-bit.
 -   HD: IDE 2,5"
@@ -7,8 +7,8 @@ Overview
 
 Manufacturer Website: [Airis](http://www.airis.es)
 
-Configuration
-=============
+[[edit](/w/index.php?title=Airis_N990&action=edit&section=2 "Edit section: Configuration")] Configuration
+=========================================================================================================
 
 Minimal configuration:
 
@@ -42,8 +42,8 @@ Minimal configuration:
     # Wifi card
     networking.enableIntel2200BGFirmware = true;
 
-lspci
-=====
+[[edit](/w/index.php?title=Airis_N990&action=edit&section=3 "Edit section: lspci")] lspci
+=========================================================================================
 
     00:00.0 Host bridge: VIA Technologies, Inc. K8M800 Host Bridge
     00:00.1 Host bridge: VIA Technologies, Inc. K8M800 Host Bridge
