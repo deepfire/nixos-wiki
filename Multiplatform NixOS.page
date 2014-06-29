@@ -1,15 +1,93 @@
 Overview
 ========
 
-All the development happens in the stdenv-updates branch.
-
 The current supported platforms are:
 
 -   PC (i686-linux, x86\_64-linux)
 -   Sheevaplug (armv5tel-linux)
+-   Fuloong Mini-PC (mips64, with mips n32 binaries) - Only in
+    stdenv-updastes
+
+Fuloong Mini-PC
+===============
+
+Installation
+------------
+
+I will describe the procedure to install NixOS through the network,
+although a bootable USB could work.
+
+Requirements:
+
+-   A TFTP server
+-   An NFS server
+-   Download the [system
+    tarball](http://vicerveza.homeunix.net/~viric/tmp/nix/nixos-system-mips64-linux.tar.xz)
+    and unpack it somewhere accessible by the NFS client you will have
+    in your Fuloong Mini-PC
+
+Procedure:
+
+In the PC, lets prepare the files you will serve by NFS
+
+-   Read the kernel-parameters.txt. Notice there is a mention to an
+    init-stage2.sh file and a system directory, both in the store path.
+-   Make symbolic links to those paths in /boot/init and
+    /boot/init-stage2.sh. Something like this:
+
+<!-- -->
+
+    ln -s /nix/store/41x8chz5mwf3nwxd7460skz291fyvml7-stage-2-init.sh boot/init
+    ln -s /nix/store/rmc2a3w0c10rwhad7493scqcrh5b0dkc-system boot/system
+
+-   Disable the start of dhclient, editing
+    nix/store/\*upstart-dhclient.conf and commenting the line starting
+    with "start on"
+-   Copy the file boot/vmlinux to your TFTP server root
+
+In the Fuloong2f:
+
+-   Boot PMON (turn on the computer), and enter its command line mode
+    using a USB keyboard and pressing at boot time the DELETE key. You
+    will get a prompt.
+-   Give your system an IP (use 'devls' to know about your NIC device
+    name)
+
+<!-- -->
+
+    ifaddr rtk0 192.168.1.223
+
+-   Get the kernel through tftp, where TFTPIP is your tftp server ip
+
+<!-- -->
+
+    load tftp://TFTPIP/vmlinux
+
+-   Boot the kernel, where NFSIP:NFSPATH is your nfsroot mount point,
+    and IP is the ip of your computer
+
+<!-- -->
+
+    g console=tty nfsroot=NFSIP:NFSPATH root=/dev/nfs ip=IP init=/boot/init systemConfig=/boot/system
+
+After this, you will have a running NixOS, where you can use the usual
+nixos-install procedures as described in the NixOS manual installing
+from a bootable CD.
+
+Configuration details
+---------------------
+
+In your configuration.nix, you have to pay attention to these basics to
+get a bootable system. We are going to use the 'generationsDir' boot
+method, that simply puts the necessary files to load into known paths.
+You will have to configure your usual PMON /boot/boot.cfg pointing to
+the proper config.
+
+Sheevaplug
+==========
 
 Sheevaplug configuration
-========================
+------------------------
 
      boot = {
        initrd = {
