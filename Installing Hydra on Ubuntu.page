@@ -19,3 +19,15 @@ Add to the .profile of the user running hydra:
 
      export HYDRA_DBI="dbi:Pg:dbname=hydra;host=localhost;user=hydra;"
      export HYDRA_DATA=$HOME/hydra
+
+Change the line in /etc/postgresql/8.4/main/pg\_hba.conf
+
+     local   all         all                               ident
+
+into
+
+     local   all         all                               md5
+
+and restart the postgresql service
+
+     sudo -u postgres /etc/init.d/postgresql restart
