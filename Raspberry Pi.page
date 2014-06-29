@@ -16,8 +16,8 @@ State of nixpkgs
 
 The [stdenv-updates
 branch](https://github.com/NixOS/nixpkgs/tree/stdenv-updates) at
-[ea6b1d808c559](https://github.com/NixOS/nixpkgs/commit/ea6b1d808c55954e7446f469b976d258165c8632)
-can bootstrap properly an armhf nixpkgs for the raspberrypi.
+[0236cc5d8826](https://github.com/NixOS/nixpkgs/commit/0236cc5d8826) can
+bootstrap properly an armhf nixpkgs for the raspberrypi.
 
 State of NixOS
 --------------
