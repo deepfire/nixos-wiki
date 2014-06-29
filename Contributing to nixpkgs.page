@@ -666,6 +666,8 @@ Pushing the local changes to GitHub
 Sending a pull request to the official nixpkgs repository
 ---------------------------------------------------------
 
+step by step guide: [pull request](//Pull request)
+
 -   Now there are 3 commits on the `example` branch of out nixpkgs
     repository at GitHub.
 -   The idea is to propose the official *NixOS/nixpkgs* maintainers to
