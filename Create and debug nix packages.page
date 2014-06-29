@@ -99,45 +99,17 @@ nixos/nixpkgs) if you type **nix-env -i firefox**
 
 #### how does this work
 
-you need to run nixos-version
+run:
 
+      nix-channel --update
+
+then run:
+
+      nixos-version
       0.2pre-769b74c-f430032
 
-note: the first number (769b74) is nixos revision, the second nummber is
-the nixpkgs (f430032) revision
-
-in your nixpkgs directory do:
-
-     git log | grep f430032
-     commit f43003237a497a56c8e74d51e138d009475ea0be
-     ...
-
-verify that the nix-channel is called nixos, looks like this:
-
-     # nix-channel --list
-     nixos http://nixos.org/releases/nixos/channels/nixos-unstable
-
- how to use the script:
-
-     $ nix-channel --update
-     $ cd $NIXREPOS
-     $ (cd nixos && git pull --rebase)
-     $ (cd nixpkgs && git pull --rebase)
-     $ create_tags_from_nixos_channel.sh
-       Using revision file:
-         /nix/var/nix/profiles/per-user/root/channels/nixos/nixos/svn-revision
-       nixos revision:   b609ff4
-       nixpkgs revision: a780984
-        
-       nixos: git tag nixos-channel-2012-07-21-19-09 b609ff4
-       nixpkgs: git tag nixos-channel-2012-07-21-19-09 a780984
-
- \$NIXREPOS contains nixos and nixpkgs as subdirs
-
-     $ ls -l $NIXREPOS
-     total 8K
-     drwxr-xr-x 9 cfl cfl 4096 Jul 15 07:02 nixos/
-     drwxr-xr-x 6 cfl cfl 4096 Jul 15 04:01 nixpkgs/
+note: the first number (769b74) is nixos revision, the second number is
+the nixpkgs (f430032) revision which is
 
 nix channels
 ------------
