@@ -1,0 +1,59 @@
+[[edit](/w/index.php?title=Anatomy_of_Nix_Package_Management&action=edit&section=1 "Edit section: Introduction")] Introduction
+------------------------------------------------------------------------------------------------------------------------------
+
+Package management using Nix involves two major collections of objects:
+
+1.  Nix expressions
+2.  Items in the Nix store.
+
+Processing Nix expressions causes *derivations* and *assets* to be
+present in the Nix store. Building a derivation causes a *build* to be
+present in the Nix store. Items are removed from the Nix store when they
+are no longer deemed to be necessary. On individual, end-users'
+computers, items are no longer necessary if they are no longer needed by
+any of the installed software. On repositories from which end users may
+download precompiled artifacts, items are no longer necessary if they
+are no longer needed by any "supported builds".
+
+The Nix store usually contains artifacts which have accumulated over
+time. It may contain more than one version of any particular software
+package. It may contain more than one variant of a software package.
+
+A "release channel" represents a snapshot of a set of packages at an
+instant in time. It pairs a set of nix expressions with a set of Nix
+store artifacts identified in a manifest. The Nix store artifacts
+represent what is necessary to build a supported set of packages, in
+addition to the final built artifacts.
+
+[[edit](/w/index.php?title=Anatomy_of_Nix_Package_Management&action=edit&section=2 "Edit section: Package Identification")] Package Identification
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+As shown below, software packages are identified by different means
+within different namespaces. Early in the process, nix expressions
+represent a software package. Nix expressions are identified in two
+different namespaces. They have a human-readable name, which must be
+unique within the collection of packages. The human readable name may be
+used to specify which packages to install or remove, and typically
+includes an indication of the package version. Nix expressions are also
+identified by an attribute name, which is specified when the package is
+*composed* into a set. This is used when one nix expression needs to
+specify a dependency on another (such as on `fetchurl`.) Both namespaces
+are "flat".
+
+[![NixDependencies.png](/w/images/7/75/NixDependencies.png)](//File:NixDependencies.png)
+
+As Nix expressions are processed, artifacts are introduced to the Nix
+store. Items in the Nix store are identified by a third namespace. In
+contrast to the to the very non-specific names typically specified in
+Nix expressions, and the generic identifiers used when Nix expressions
+are composed, the highly structured identifiers used in the Nix store
+capture detailed information about the contents (and dependencies) of
+each item.
+
+As shown above, a single Nix expression can produce many derivations
+where different variants or versions are selected. Derivations typically
+produce only one build. However, it may soon be possible for a
+derivation to produce multiple builds in order to split large packages
+into smaller pieces. Subsequent builds may then depend on those portions
+of the package they require, rather than the whole thing.
+
