@@ -171,23 +171,24 @@ above.
 
 #### Using several versions of GHC at once
 
-You can without problems use several versions of GHC at once, even
-within a single profile. You may have to invoke the versioned binaries
-then in order to get the correct instance, i.e., say
+It is not possible to install multiple versions of GHC into the same
+profile. However, you can create a separate profile for each version of
+GHC, for instance:
 
-     ghci-7.0.4
+     $ nix-env -p ~/ghc-6.10.4 -iA nixpkgs.haskellPackages_ghc6104.ghc
+     $ nix-env -p ~/ghc-7.6.2  -iA nixpkgs.haskellPackages_ghc762.ghc
 
-rather than just
+And add both profiles to your command search path:
 
-     ghci
+    export PATH="$HOME/ghc-7.6.2/bin:$HOME/ghc-6.10.4/bin:$PATH"
+
+Unversioned commands like 'ghc' will refer to GHC 7.6.2. If you want to
+run an older version, you have to invoke it explicitly (e.g.,
+'ghc-6.10.4').
 
 Obviously, libraries are GHC-version-specific, so you might have to
 install the libraries you want to use in each of these versions several
 times.
-
-It may be even more convenient to install different instances of GHC
-into separate profiles and switch between these profiles if you want to
-use one or the other.
 
 #### Using **cabal** in the direct installation scenario
 
