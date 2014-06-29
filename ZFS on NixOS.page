@@ -61,8 +61,9 @@ filesystems for NixOS to mount during boot, e.g.:
 How to install NixOS on a ZFS root filesystem
 ---------------------------------------------
 
-Here's an example of how to create a ZFS root filesystem and install
-NixOS on it: (thanks to Danny Wilson for the instructions)
+Here's an example of how to create a ZFS root pool using 4 disks in
+RAID-10 mode (striping+mirroring), create a ZFS root+home filesystems
+and install NixOS on them: (thanks to Danny Wilson for the instructions)
 
     # Add the zfs filesystem to the install environment:
     nano /etc/nixos/configuration.nix
@@ -88,10 +89,15 @@ NixOS on it: (thanks to Danny Wilson for the instructions)
     # Create a RAID-10 ZFS pool. Use "-o ashift=12" to create your ZFS pool with 4K sectors
     zpool create -o ashift=12 -o altroot=/mnt rpool mirror /dev/sd[a,b]2 mirror /dev/sda[c,d]2
 
+    # Create the filesystems
     zfs create -o mountpoint=none rpool/ROOT
     zfs create -o mountpoint=legacy rpool/ROOT/nixos
     zfs create -o mountpoint=legacy rpool/HOME
+    zfs set compression=lz4 rpool/HOME    # compress the home directories automatically
+
+    # Mount the filesystems manually
     mount -t zfs rpool/ROOT/nixos /mnt
+
     mkdir /mnt/home
     mount -t zfs rpool/HOME /mnt/home
 
@@ -102,6 +108,7 @@ NixOS on it: (thanks to Danny Wilson for the instructions)
     mkdir /mnt/boot
     mount /dev/md127 /mnt/boot
 
+    # Generate the NixOS configuration, as per the NixOS manual
     nixos-generate-config --root /mnt
 
     # Now edit the generated hardware config:
@@ -123,11 +130,10 @@ NixOS on it: (thanks to Danny Wilson for the instructions)
       fileSystems."/boot" =
         { device = "/dev/md127";
           fsType = "ext4";
-          options = "rw,data=ordered,relatime";
         };
     ## ---8<-------------------------8<---
 
-    # configuration.nix needs some adjustment:
+    # configuration.nix needs an adjustment:
     nano /mnt/etc/nixos/configuration.nix
 
     ## ---8<-------------------------8<---
