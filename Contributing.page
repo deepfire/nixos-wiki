@@ -21,38 +21,13 @@ I have a patch
 Thanks. Send it to the mailinglist so that we can discuss and apply it,
 or open a pull request on github.
 
-Howto get access to SVN ?
--------------------------
+If your change breaks things don't scream if someone reverts it. It
+happens. The best thing to do is to fix your patch. Try to check first
+if it will cause a lot of rebuilds and add a note to your pull request
+if you have already tested everything.
 
-DRAFT:
-
-Run for an SVN account by writing to the mailinglist. Eelco Dolstra (irc
-nick: niksnut) is responsible. In the past everyone got access who
-proofed that he / she has been interested in the project for some time.
-Proofing this can be done by
-
--   reading the documentation and the mailinglist
--   participating in discussions on irc
--   asking and replying to questions on the mailinglist
--   send patches to the mailinglist and read the feedback you get
-
-PATCHES
--------
-
-DRAFT: If you break things don't scream if someone reverts it. This
-happened some times in the past. The best thing to do then is fixing
-your patch. If it causes a lot of rebuilds commit it to the
-stdenv-updates branch
-
-If you break things ask on the mailinglist and or contact the author of
-the code you break before comitting. Eg you can use svn annotate to get
-to know who comitted a line.
-
-Sander: Suggestion: maybe someone should verify what the impact is of a
-change by checking the build job status on [[1]](http://hydra.nixos.org)
-
-HOW to verify that you didn't break evaluation by accident ?
-------------------------------------------------------------
+How to verify that you didn't break a dependency or the evaluation by accident ?
+--------------------------------------------------------------------------------
 
 To find out which packages are effected by your change:
 
