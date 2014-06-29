@@ -1,0 +1,37 @@
+Eelco Dolstra wrote a patch which is applied to the qemu\_kvm derivation
+by default.
+
+The commit message says all so I just copy paste it here:
+
+      * qemu-kvm: a quick hack to support connecting a Unix domain socket on   the host to a TCP port on the guest.  This will be useful for   automated testing using QEMU virtual machines.  Using TCP ports on   the host is insecure and hard to manage (since you need to pick an   available host port).
+        
+          For example:
+        
+            $ qemu-system-x86_64 ... -redir tcp:65535::514
+        
+          creates a Unix domain socket `./65535.socket' on the host.  (There
+          is no proper syntax yet, so as a hack all host "ports" above 0xff00
+          are treated in this way.)  Connections to that socket are then
+          forwarded to TCP port 514 on the guest.  So the guest can do
+        
+            $ nc -l -p 514 -e /bin/sh
+        
+          to execute a shell for incoming connections on port 514, and then
+          the host can do
+        
+            $ socat stdio ./65535.socket
+        
+          to run a shell on the guest.
+
+The vm connects to the internet using slirp mode by default. You can
+offer access to /nix/store using samba / cifs. There will be an example
+in nixos/tests/test-nixos-install-from-cd.nix testing the nixos
+installation soon (to be finished and committed). Don't miss the other
+scripts in nixos/tests/\* testing that kde4 is starting etc.
+
+Also have a look at the paper "Declarative Testing and Deployment of
+Distributed Systems" by Sander van der Burg and Eelco Dolstra.
+[[1]](http://nixos.org/docs/papers.html)
+
+TODO: add all information which is of value and clean up this page
+
