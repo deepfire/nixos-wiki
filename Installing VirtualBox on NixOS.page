@@ -59,6 +59,9 @@ Just do:
 
     $ VirtualBox
 
+Note since there is no setuid root you can not ping from the guest
+machines!!
+
 Error messages
 --------------
 
