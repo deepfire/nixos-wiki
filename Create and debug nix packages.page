@@ -32,7 +32,7 @@ on your local repositories:
      $ export NIXREPOS=/some/path/nixrepos # example: export NIXREPOS=/home/user/nixrepos
 
 **example: list all available software** from the local repository
-\~/code/nixpkgs
+\$NIXREPOS/nixpkgs
 
      $ NIX_PATH="nixos=$NIXREPOS/nixpkgs" nix-env -f '<nixos>' -qa '*'
 
@@ -40,8 +40,8 @@ on your local repositories:
 
      $ NIX_PATH="nixos=$NIXREPOS/nixpkgs" nix-env -f '<nixos>' -i python-urlgrabber
 
-**example: update the system** based on your local **\~/code/nixos** and
-**\~/code/nixpkgs**
+**example: update the system** based on your local **\$NIXREPOS/nixos**
+and **\$NIXREPOS/nixpkgs**
 
      $ nixos-rebuild -I nixos=$NIXREPOS/nixos -I nixpkgs=$NIXREPOS/nixpkgs switch
 
@@ -59,8 +59,8 @@ on your local repositories:
      $ nix-build $NIXREPOS/nixpkgs --run-env -A irssi --add-root
 
 **NOTE:** it would be awesome if there was a bash/zsh extension which
-would export NIX\_PATH=\~/code, when entering the directory \~/code/ in
-a shell.
+would export NIX\_PATH=$NIXREPOS, when entering the directory $NIXREPOS/
+in a shell.
 
 git
 ---
