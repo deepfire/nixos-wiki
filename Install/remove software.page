@@ -124,6 +124,19 @@ For per-user packages.
 Also see nix-env --list-generations, which will list out the number of
 previous generations and the time stamp of their creation.
 
+repair your installation
+------------------------
+
+Fix corrupted or missing store paths by redownloading or rebuilding
+them. Note that this is slow because it requires computing a
+cryptographic hash of the contents of every path in the closure of the
+build.
+
+     $ export NIX_REMOTE="" 
+     $ nix-store --verify --check-contents --repair 
+
+Note: both commands need to be run as root
+
 nix-channels
 ------------
 
