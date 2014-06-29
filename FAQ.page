@@ -42,3 +42,30 @@ either:
 or
 
      initctl restart sshd
+
+How to keep build-time dependencies around / be able to rebuild while being offline
+-----------------------------------------------------------------------------------
+
+configuration.nix:
+
+     nix.extraOptions = 
+       gc-keep-outputs = true
+       gc-keep-derivations = true
+     ;
+
+Check 'man configuration.nix' for these options. Rebuild for these
+options to take effect:
+
+     # nixos-rebuild switch
+
+List all store paths that form the system closure and realise them:
+
+     $ nix-store -qR $(nix-instantiate /etc/nixos/nixos -A system) | xargs nix-store -r
+
+Same for your user profile:
+
+     $ nix-store -qR ~/.nix-profile |xargs nix-store -r
+
+Repeat for further profiles you might have. Consult man pages of
+nix-store and nix-instantiate for further information.
+
