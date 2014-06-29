@@ -1,10 +1,10 @@
-contributing to this wiki
+Contributing to this wiki
 -------------------------
 
 Make sure your articles are linked from any existing nix related wiki
 page otherwise your page might be considered spam and deleted
 
-contribute to nixpkgs
+Contribute to nixpkgs
 =====================
 
 A more elaborate guide can be found here [Contributing to
@@ -36,7 +36,7 @@ happens. The best thing to do is to fix your patch. Try to check first
 if it will cause a lot of rebuilds and add a note to your pull request
 if you have already tested everything.
 
-what meta attributes are important
+What meta attributes are important
 ----------------------------------
 
 -   \*meta.platforms\* will tell hydra to build binaries for specific
@@ -58,7 +58,7 @@ Example:
       platforms = platforms.linux;
     };
 
-check if there are any evaluation errors with your distribution
+Check if there are any evaluation errors with your distribution
 ---------------------------------------------------------------
 
     nix-instantiate --eval-only --strict --xml -A <packagename>
@@ -97,7 +97,7 @@ TODO: explain what is done exactly
 and work](//Nix(OS) related repositories and work) tries to implement
 this for your convinience
 
-merging git pull requests
+Merging git pull requests
 -------------------------
 
 hitting the "merge" button on github is fine, however doing
@@ -106,7 +106,7 @@ hitting the "merge" button on github is fine, however doing
 
 is finer, because history will be cleaner.
 
-contributing to the nixpkgs manual
+Contributing to the nixpkgs manual
 ----------------------------------
 
 The documentation for nixpkgs is in the nixpkgs/docs directory. To build
