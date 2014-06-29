@@ -105,10 +105,10 @@ At the time of writing this, the kernel provides /dev/hd\* devices for
 the hard disk, while we don't have udev rules to create them. So, I you
 will need to create the devices at initrd time:
 
-    boot.initrd.postDeviceCommands = 
-      mknod /dev/hda1 b 3 1
-      mknod /dev/hda2 b 3 2
-    ;
+     boot.initrd.postDeviceCommands = ''
+       mknod /dev/hda1 b 3 1
+       mknod /dev/hda2 b 3 2
+     '';
 
 You have to tell nixpkgs that you have a fuloong mini-pc system. So you
 need:
