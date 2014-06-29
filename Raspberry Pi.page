@@ -82,9 +82,9 @@ NixOS on Raspberry Pi.
 
 How do we inject `distcc` into the Nix build system? We can use a new
 feature of stdenv-updates stdenv, called `userHook`. Nix wants to avoid
-changing the compiler, so by moving using distcc to compile, we are
-introducing an "impurity". To introduce this impurity into our NixPkgs,
-we can call a shell script like this:
+changing the compiler, so by using distcc to compile, we are introducing
+an "impurity". To introduce this impurity into our NixPkgs, we can call
+a shell script like this:
 
     {
       stdenv.userHook = "if [ -f /niximpure/impure.sh ]; then . /niximpure/impure.sh; fi";
