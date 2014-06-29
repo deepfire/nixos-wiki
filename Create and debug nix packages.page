@@ -1,44 +1,49 @@
-this wiki page describes **how to work with nixos/nixpkgs/...**:
+This article describes how to work with the nix related repositories to
+add new packages, edit and debug existing packages and also how to
+create and edit configuration options and services for NixOS.
 
-     https://github.com/nixos
+The nix repositories are hosted here: <https://github.com/nixos>
 
-basics
+Basics
 ------
 
-say you are running nixos using nixpkgs and you want to make a change,
-update a package, add a new package etc. First you need to clone the
-NixOS repositories:
+The code for nix packages is managed in the nixpkgs repository. NixOS
+services, and other system configuration options are managed in the
+nixos repository.
 
-     $ mkdir -p nixrepos
-     $ cd nixrepos
-     $ git clone https://github.com/NixOS/nixpkgs
-     $ git clone https://github.com/NixOS/nixos
+The steps to take for your first change should look something like this:
 
-Now you have two local repositories: nixpkgs and nixos
+1.  Fork the repo (e.g. click the fork button on
+    <https://github.com/nixos/nixpkgs>).
+2.  Clone your fork `git clone git@github.com:nixnoob/nix-ray.git`
+3.  Hack hack hack
+4.  Push your changes to your fork
+5.  Open a pull request
+6.  Profit!
 
-Our workflow is similar to the diaspora documented one, so have a
-glimpse there as well:
+This is pretty much the standard way to use github, so if you have
+trouble using git or github any general guide on these should get you
+going, or just ask on the NixOS IRC channel. The rest of this guide
+deals with the "Hack hack hack" step :)
 
-     https://github.com/diaspora/diaspora/wiki/Git-Workflow
-
-how to install from the local repository
+How to install from the local repository
 ----------------------------------------
 
-this section tells you how to apply changes to your current system based
-on your local repositories:
+For the sake of this article, let's set an environment variable which
+points to the directory where we've cloned our repos.
 
-**first do this**
+     $ export NIXREPOS=/home/nixnoob/nixrepos
 
-     $ export NIXREPOS=/some/path/nixrepos # example: export NIXREPOS=/home/user/nixrepos
+make some changes ...
 
 **example: list all available software** from the local repository
 \$NIXREPOS/nixpkgs
 
-     $ NIX_PATH="nixos=$NIXREPOS/nixpkgs" nix-env -f '<nixos>' -qa '*'
+     $ nix-env -f $NIXREPOS/nixpkgs -qaP '*'
 
 **example: install software from local repository**
 
-     $ NIX_PATH="nixos=$NIXREPOS/nixpkgs" nix-env -f '<nixos>' -i python-urlgrabber
+     $ nix-env -f $NIXREPOS/nixpkgs -i python-urlgrabber
 
 **example: update the system** based on your local **\$NIXREPOS/nixos**
 and **\$NIXREPOS/nixpkgs**
@@ -50,7 +55,8 @@ and **\$NIXREPOS/nixpkgs**
 
      $ nix-build $NIXREPOS/nixpkgs -A irssi
 
-**example: get an environment which is used to build irssi**
+**example: get an environment which is used to build irssi (also see
+nix-shell)**
 
      $ nix-build $NIXREPOS/nixpkgs --run-env -A irssi
 
