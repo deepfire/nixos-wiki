@@ -6,9 +6,8 @@ Getting started
 -   Nix
     [manual](http://hydra.nixos.org/job/nix/trunk/tarball/latest/download-by-type/doc/manual)
     [source code](https://github.com/NixOS/nix)
--   NixOS
-    [manual](http://hydra.nixos.org/job/nixos/trunk/manual/latest/download-by-type/doc/manual)
-    [source code](https://github.com/NixOS/nixos)
+-   NixOS [manual](http://nixos.org/nixos/manual/) [source
+    code](https://github.com/NixOS/nixos)
 -   Nixpkgs
     [manual](http://hydra.nixos.org/job/nixpkgs/trunk/tarball/latest/download-by-type/doc/manual)
     [source code](https://github.com/NixOS/nixpkgs)
