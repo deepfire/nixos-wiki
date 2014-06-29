@@ -33,6 +33,7 @@ HOWTOs
     manner](//Nixpkgs and TopGit)
 -   [How to install Firefox with Java plugin](//Java in Firefox)
 -   [Encrypted root(home, swap) on NixOS](//Encrypted Root on NixOS)
+    luks
 -   [Audio Howto](//Audio HOWTO)
 -   [TexLive Howto](//TexLive HOWTO)
 -   [Mercurial and Nix repositories](//Mercurial and Nix repositories)
