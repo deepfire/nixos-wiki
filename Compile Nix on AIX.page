@@ -118,8 +118,9 @@ Run nix-env
 
 I discovered that nix-env requires memory in data segment I had to use
 <http://publib.boulder.ibm.com/tividd/td/ITAME/GC32-0846-00/en_US/HTML/am39_perftune11.htm>
+Make sure that you have 7 zeros. Original document has some mistakes
 
-    export LDR_CNTRL=MAXDATA=0x2000000
+    export LDR_CNTRL=MAXDATA=0x20000000
 
 Next you can use instructions for simple verification of nix-env
 <http://nixos.org/nixpkgs/download.html>
