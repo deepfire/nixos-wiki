@@ -1,14 +1,14 @@
-hydra.nixos.org
----------------
+[[edit](/w/index.php?title=Hydra&action=edit&section=1 "Edit section: hydra.nixos.org")] hydra.nixos.org
+--------------------------------------------------------------------------------------------------------
 
-### Documentation
+### [[edit](/w/index.php?title=Hydra&action=edit&section=2 "Edit section: Documentation")] Documentation
 
 -   [Installing Hydra on Ubuntu](//Installing Hydra on Ubuntu)
 -   [Manual](http://hydra.nixos.org/job/hydra/trunk/tarball/latest/download-by-type/doc-pdf/manual)
 
-### Build machines
+### [[edit](/w/index.php?title=Hydra&action=edit&section=3 "Edit section: Build machines")] Build machines
 
-#### Linux
+#### [[edit](/w/index.php?title=Hydra&action=edit&section=4 "Edit section: Linux")] Linux
 
 -   hydra1
 -   kyle
@@ -19,7 +19,7 @@ hydra.nixos.org
 -   timmy 32
     -   Intel Core 2 6700 2.66GHz, 2GB, 220GB disk
 
-#### Mac OS X
+#### [[edit](/w/index.php?title=Hydra&action=edit&section=5 "Edit section: Mac OS X")] Mac OS X
 
 -   black
     -   Mac Mini, Intel Core Duo 1.83 GHz, 1GB, 74GB disk
@@ -29,27 +29,18 @@ hydra.nixos.org
     -   Apple XServe, 2x Quad-Core Intel Xeon 2.26 GHz, 24 GB, 1 TB
         RAID1
 
-#### Windows
+#### [[edit](/w/index.php?title=Hydra&action=edit&section=6 "Edit section: Windows")] Windows
 
 -   garrison
     -   Intel Core 2 6700 2.66GHz, 2GB, 220GB disk
 
-#### FreeBSD
+#### [[edit](/w/index.php?title=Hydra&action=edit&section=7 "Edit section: FreeBSD")] FreeBSD
 
 -   phillip
     -   Intel Core 2 6700 2.66GHz, 2GB, 220GB disk
 
-#### Solaris
+#### [[edit](/w/index.php?title=Hydra&action=edit&section=8 "Edit section: Solaris")] Solaris
 
 -   tweek
     -   Xen VM
-
-### Tips, Random NOtes
-
--   The menu at the top of the page is not always visible in a narrow
-    window, including the sign in option. Currently the menu button does
-    not work on all platforms as well making it nearly impossible to
-    navigate the web interface in a narrow width
-    window.[Davorak](/w/index.php?title=User:Davorak&action=edit&redlink=1 "User:Davorak (page does not exist)")
-    03:11, 13 December 2012 (UTC)
 
