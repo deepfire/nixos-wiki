@@ -2,10 +2,8 @@ Intro
 -----
 
 This is the easiest and more straightforward way I know to modify and
-expand [nixpkgs](https://nixos.org/nixpkgs/). I have annoyed many
-people, specially [Viric](//User:Viric), to get to this point. I hope
-this article will help future newbies so the experts can focus on other
-stuff.
+expand [nixpkgs](https://nixos.org/nixpkgs/). I hope this article will
+help future newbies so the experts can focus on other stuff.
 
 This document is not intended as a formal approach to learn
 [nix](https://nixos.org/nix/), [nixpkgs](https://nixos.org/nixpkgs/),
