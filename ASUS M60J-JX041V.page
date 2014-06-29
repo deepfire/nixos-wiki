@@ -23,45 +23,15 @@ No Ethernet
             Kernel modules: atl1c
 
 While searching on the web you find that this ethernet device need the
-kernel module `atl1e` instead of `atl1c`. The following sources explain
-how to unpack & compile & install such module on usual distributions. As
-we are on a NixOS, things are a bit different.
+kernel module `atl1e` instead of `atl1c`.
 
-To follow the instruction you need to find a way to copy the module
-sources of AR81Family-linux-v1.0.0.10.tar.gz
-(<http://www.backtrack.it/~emgent/hackstuff/Attansic/>) on the targeted
-device.
-
-    # avoid messing up your term
-    [root@nixos:]# initctl stop dhclient
-    # add dependencies in the environment
-    [root@nixos:]# nix-env -i gcc gnumake
-    [root@nixos:]# ln -s /nix/store/*-linux-$(uname -r)/lib /lib
-    # unpack & compile
-    [root@nixos:]# mkdir /tmp/AR81Family-linux
-    [root@nixos:]# cp .../AR81Family-linux-v1.0.0.10.tar.gz .
-    [root@nixos:]# yes y | tar xzf AR81Family-linux-v1.0.0.10.tar.gz
-    [root@nixos:]# cd src
-    [root@nixos:]# make
-    # Replace the current module
     [root@nixos:]# rmmod atl1c
-    [root@nixos:]# modprobe /tmp/AR81Family-linux/src/alt1e.ko
-    # start fetching an IP address.
-    [root@nixos:]# initctl start dhclient
+    [root@nixos:]# modprobe alt1e
 
-At the end, you end up with a working interface and the following
-result:
+Grub entries & BIOS boot order
+------------------------------
 
-    [root@nixos:]# lspci -v | sed -n '/Ethernet/ { :loop p; n; s/^$//; T loop; q}'
-    07:00.0 Ethernet controller: Attansic Technology Corp. Device 1063 (rev c0)
-            ...
-            Kernel driver in use: atheros_eth
-            Kernel modules: atl1c
-
-Many reference to AR81Family-linux-v1.0.1.0.tar.gz can be found on the
-web, but the manufacturer links are broken.
-
-Sources:
-
--   <http://platonic.techfiz.info/2009/10/25/ethernet-controller-attansic-technology-corp-device-1063-on-ubuntu/>
+Be aware that changing the BBS (?) order of hard drive is changing the
+apparent mapping of partitions. Thus `hd0` and `hd1` are inverted. I
+assume that this is also true for devices like /dev/sda and /dev/sdb.
 
