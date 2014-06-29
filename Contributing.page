@@ -1,0 +1,32 @@
+I have a patch
+--------------
+
+Thanks. Send it to the mailinglist so that we can discuss and apply it.
+
+Howto get access to SVN ?
+-------------------------
+
+DRAFT:
+
+Run for an SVN account by writing to the mailinglist. Eelco Dolstra (irc
+nick: niksnut) is responsible. In the past everyone got access who
+proofed that he / she has been interested in the project for some time.
+Proofing this can be done by
+
+-   reading the documentation and the mailinglist
+-   participating in discussions on irc
+-   asking and replying to questions on the mailinglist
+-   send patches to the mailinglist and read the feedback you get
+
+PATCHES
+-------
+
+DRAFT: If you break things don't scream if someone reverts it. This
+happened some times in the past. The best thing to do then is fixing
+your patch. If it causes a lot of rebuilds commit it to the
+stdenv-updates branch
+
+If you break things ask on the mailinglist and or contact the author of
+the code you break before comitting. Eg you can use svn annotate to get
+to know who comitted a line.
+
