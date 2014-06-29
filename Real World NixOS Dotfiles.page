@@ -23,9 +23,14 @@ readme!
 
 [[6]](https://github.com/garbas/nixos-configuration) lenovo x220, i3
 
+### goibhniu
+
+[[7]](https://gitorious.org/goibhnix/) A collection of configs with
+shared components and an update script for end users
+
 Other stuff
 -----------
 
-[[7]](https://nixos.org/websvn/nix/configurations/trunk/) (some up to
+[[8]](https://nixos.org/websvn/nix/configurations/trunk/) (some up to
 date, some outdated)
 
