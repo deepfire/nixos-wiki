@@ -66,6 +66,13 @@ packages. You can use your own location
 compilation of nix
 ==================
 
+I downloaded the latest nix-0.16 from
+<http://nixos.org/nix/download.html>
+
+user-envs.builder.sh had small issue. AIX does not have
+$shell environment variable, but has $SHELL. This small change helped to
+correct user-envs.sh and remote-store.sh failure
+
     #
     #
     # --enable-static - otherwise nix-env coredumps
@@ -80,10 +87,10 @@ compilation of nix
     #
     #fallocate function does not work correctly on AIX
     #
+    export PATH=/opt/freeware/bin:$PATH
     INSTALL_DIR=/opt/qib/app/nix-0.16 \
     && rm -rf ${INSTALL_DIR} \
-    && CFLAGS=-g CXXFLAGS=-g \
-     ./configure \
+    && ./configure \
      --prefix=${INSTALL_DIR} \
      --localstatedir=/home/lowes/nix/var \
      --with-store-dir=/home/lowes/nix/store \
@@ -92,4 +99,7 @@ compilation of nix
      --disable-largefile \
      --with-system=powerpc-aix \
      --with-coreutils-bin=/opt/qib/app/coreutils-8.4/bin \
-    && perl -p -i -e 's/#define HAVE_POSIX_FALLOCATE 1/\/\*#define HAVE_POSIX_FALLOCATE 1\*\//g' config.h
+    && perl -p -i -e 's/#define HAVE_POSIX_FALLOCATE 1/\/\*#define HAVE_POSIX_FALLOCATE 1\*\//g' config.h \
+    && gmake \
+    && gmake check \
+    && gmake install
