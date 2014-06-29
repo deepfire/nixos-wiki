@@ -72,6 +72,11 @@ Multimedia
 
 Test the audio and enjoy the relaxing KDE's arpeggio.
 
+### MP3 support in Amarok
+
+If you are using GStreamer, you need to install gst-ffmpeg to get mp3
+playback.
+
 ### Making PulseAudio work for most of apps
 
 This routes default ALSA sound streams via PulseAudio
