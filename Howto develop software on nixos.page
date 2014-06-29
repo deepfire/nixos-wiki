@@ -47,77 +47,6 @@ a child shell.
  Additional info:
 <https://github.com/NixOS/nix/commit/7f38087f35e6f74a73bfdb28da8acd8930565d51>
 
-### Example 1: Using nix-shell to Initialize a Development Shell
-
-This example shows a Nix expression which packages an application that
-uses the Clang compiler.
-
-       # clang.nix
-       
-       let
-         pkgs = import <nixpkgs> {};
-         stdenv = pkgs.stdenv;
-       in rec {
-         clangEnv = stdenv.mkDerivation rec {
-           name = "clang-env";
-           version = "1.1.1.1";
-           src = ./.;
-           buildInputs = [ pkgs.clang ];
-         };
-       }
-
-This `clang-env` package can be used with `nix-shell` by using the
-following command.
-
-       $ nix-shell clang.nix -A clangEnv
-
-### Example 2: Using myEnvFun to Create a Persistent Development Environment
-
-The main difference between `myEnvFun` and `nix-shell` is the separation
-between building a development environment and activating it. If we use
-`myEnvFun`, we can individually perform these two steps. This allows us
-to control when that environment gets updated. Also, if we use a Nix
-user profile, we can roll back to an earlier environment.
-
-To illustrate, suppose we have defined a development environment which
-contains Clang, as defined by the following Nix expression.
-
-       # clangenv.nix
-       
-       let
-          pkgs = import <nixpkgs> {};
-          stdenv = pkgs.stdenv;
-       in rec {
-           clangEnv = pkgs.myEnvFun {
-             name = "clang-env";
-             buildInputs = with pkgs; [ clang ];
-           };
-       }
-
-We can build this environment and activate it in two separate steps.
-
-       # Build the environment.
-       $ nix-build -A clangEnv clangenv.nix
-       
-       # Activate the environment.
-       $ ./result/bin/load-env-clang
-
-To lock this development environment, we can use a user profile. The
-following commands install our Clang environment into the `clang` user
-profile and makes a convenience link to that profile's Clang environment
-into the current directory.
-
-       $ nix-env -iA clangEnv -f envfun.nix -p /nix/var/nix/gcroots/per-user/clang
-       
-       # Make a convenience link.
-       $ ln -sf /nix/var/nix/gcroots/per-user/clang/bin/load-env-clang .
-       
-       # Activate the environment.
-       $ ./load-env-clang
-       
-       # Optionally, rollback to an earlier generation of this profile.
-       $ nix-env --list-generations -p /nix/var/nix/gcroots/per-user/clang
-
 ### Obtaining an Environment from a Custom Definition
 
 The first solution, to rely on the Nix package, will give us a single
@@ -324,3 +253,73 @@ main profile with many development tools, which may have conflicts.
 Also, we can use different versions of a library on the same system,
 selecting them by selecting a development environment.
 
+### Example 1: Using nix-shell to Initialize a Development Shell
+
+This example shows a Nix expression which packages an application that
+uses the Clang compiler.
+
+       # clang.nix
+       
+       let
+         pkgs = import <nixpkgs> {};
+         stdenv = pkgs.stdenv;
+       in rec {
+         clangEnv = stdenv.mkDerivation rec {
+           name = "clang-env";
+           version = "1.1.1.1";
+           src = ./.;
+           buildInputs = [ pkgs.clang ];
+         };
+       }
+
+This `clang-env` package can be used with `nix-shell` by using the
+following command.
+
+       $ nix-shell clang.nix -A clangEnv
+
+### Example 2: Using myEnvFun to Create a Persistent Development Environment
+
+The main difference between `myEnvFun` and `nix-shell` is the separation
+between building a development environment and activating it. If we use
+`myEnvFun`, we can individually perform these two steps. This allows us
+to control when that environment gets updated. Also, if we use a Nix
+user profile, we can roll back to an earlier environment.
+
+To illustrate, suppose we have defined a development environment which
+contains Clang, as defined by the following Nix expression.
+
+       # clangenv.nix
+       
+       let
+          pkgs = import <nixpkgs> {};
+          stdenv = pkgs.stdenv;
+       in rec {
+           clangEnv = pkgs.myEnvFun {
+             name = "clang-env";
+             buildInputs = with pkgs; [ clang ];
+           };
+       }
+
+We can build this environment and activate it in two separate steps.
+
+       # Build the environment.
+       $ nix-build -A clangEnv clangenv.nix
+       
+       # Activate the environment.
+       $ ./result/bin/load-env-clang
+
+To lock this development environment, we can use a user profile. The
+following commands install our Clang environment into the `clang` user
+profile and makes a convenience link to that profile's Clang environment
+into the current directory.
+
+       $ nix-env -iA clangEnv -f envfun.nix -p /nix/var/nix/gcroots/per-user/clang
+       
+       # Make a convenience link.
+       $ ln -sf /nix/var/nix/gcroots/per-user/clang/bin/load-env-clang .
+       
+       # Activate the environment.
+       $ ./load-env-clang
+       
+       # Optionally, rollback to an earlier generation of this profile.
+       $ nix-env --list-generations -p /nix/var/nix/gcroots/per-user/clang
