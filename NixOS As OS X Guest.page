@@ -2,6 +2,11 @@
 
 * * * * *
 
+This tutorial (will) describe how to install NixOS as a guest OS via
+Virtualbox, and specifically on getting a GUI up and running. Many parts
+of it are likely not specific to Macs, but nevertheless that is the
+focus of this article.
+
 TODO Create VM
 --------------
 
