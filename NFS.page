@@ -1,5 +1,5 @@
-Server
-------
+[[edit](/w/index.php?title=NFS&action=edit&section=1 "Edit section: Server")] Server
+------------------------------------------------------------------------------------
 
 The setup is very similar as it would be done in regular config file. I
 will use my setup as an example.
@@ -14,25 +14,25 @@ First I created a separate directory for NFS shares:
 Then I mount (bind) the locations inside of /export from my config.
 Normally one would put it in /etc/fstab but nix generates that for us:
 
-      fileSystems."/export/mafuyu" = { 
-        device = "/mnt/mafuyu";
-        options = "bind";
-      };
+    fileSystems."/export/mafuyu" = { 
+      device = "/mnt/mafuyu";
+      options = "bind";
+    };
 
-      fileSystems."/export/sen" = { 
-        device = "/mnt/sen";
-        options = "bind";
-      };
+    fileSystems."/export/sen" = { 
+      device = "/mnt/sen";
+      options = "bind";
+    };
 
-      fileSystems."/export/tomoyo" = { 
-        device = "/mnt/tomoyo";
-        options = "bind";
-      };
+    fileSystems."/export/tomoyo" = { 
+      device = "/mnt/tomoyo";
+      options = "bind";
+    };
 
-      fileSystems."/export/kotomi" = { 
-        device = "/mnt/kotomi";
-        options = "bind";
-      };
+    fileSystems."/export/kotomi" = { 
+      device = "/mnt/kotomi";
+      options = "bind";
+    };
 
 Next we have to tell nix how we want to export these and to whom:
 
@@ -67,9 +67,21 @@ to check what's available.
 Please remember that NixOS by default has a firewall turned on! Add
 rules to allow NFS traffic or switch it off if you don't need it.
 
-Client
-------
+[[edit](/w/index.php?title=NFS&action=edit&section=2 "Edit section: Client")] Client
+------------------------------------------------------------------------------------
 
-TODO, if someone has set this up already then please fill this section
-up.
+Setting up the client is very easy. To follow from the server example,
+say I want to mount the now exposed *tomoyo* share on another box, call
+it *server*, to */mnt/tomoyo*.
+
+All I have to do is to put
+
+    fileSystems."/mnt/tomoyo" = {
+      device = "server:/tomoyo";
+      fsType = "nfs";
+    };
+
+Note that clients see the exposed shares as if they were exposed at the
+root level: */export/foo* becomes */foo* when client is concerned with
+mounting it. Regular **fileSystems** options apply.
 
