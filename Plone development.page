@@ -1,5 +1,5 @@
-How to use Nix to create Plone development environment
-======================================================
+[[edit](/w/index.php?title=Plone_development&action=edit&section=1 "Edit section: How to use Nix to create Plone development environment")] How to use Nix to create Plone development environment
+==================================================================================================================================================================================================
 
 <https://github.com/garbas/plone-nix>
 
@@ -9,8 +9,8 @@ might help you with setting up Nix.
 For rest of the steps It is assumed you already installed Nix on your
 system.
 
-Quickstart
-----------
+[[edit](/w/index.php?title=Plone_development&action=edit&section=2 "Edit section: Quickstart")] Quickstart
+----------------------------------------------------------------------------------------------------------
 
 1\. Download/Clone above git repository
 
@@ -23,8 +23,8 @@ Quickstart
 (at the time of writing this HowTo) will be installed. Start Plone with
 "bin/instance fg".
 
-What actually happened above?
------------------------------
+[[edit](/w/index.php?title=Plone_development&action=edit&section=3 "Edit section: What actually happened above?")] What actually happened above?
+------------------------------------------------------------------------------------------------------------------------------------------------
 
 Gist from above contains few files:
 
@@ -111,14 +111,14 @@ foreground mode.
 
        bin/instance fg
 
-Conclusion
-----------
+[[edit](/w/index.php?title=Plone_development&action=edit&section=4 "Edit section: Conclusion")] Conclusion
+----------------------------------------------------------------------------------------------------------
 
 Above example should work cross-platform on Darwin(OSX)/Linux/FreeBSD.
 I(garbas) tested Linux and OSX 10.8.
 
-How to use myEnvFun and buildout-nix to create a plone development environment
-==============================================================================
+[[edit](/w/index.php?title=Plone_development&action=edit&section=5 "Edit section: How to use myEnvFun and buildout-nix to create a plone development environment")] How to use myEnvFun and buildout-nix to create a plone development environment
+==================================================================================================================================================================================================================================================
 
 A similar procedure could be used for any python program. All binaries
 such as lxml and PIL will be provided by nix, and you can still use
@@ -179,32 +179,13 @@ build tools.
 4\. Create a buildout.cfg:
 
     [buildout]
-    extends = http://dist.plone.org/release/4.3/versions.cfg
-    eggs-directory = eggs
-    versions = versions
-    unzip = true
+    extends = http://dist.plone.org/release/4.3.2/versions.cfg
     parts = instance
 
     [instance]
     recipe = plone.recipe.zope2instance
     user = admin:admin
-    debug-mode = on
-    verbose-security = on
-    eggs =
-        Plone
-
-    [versions]
-    distribute = 0.6.34
-    # If you get any version conflict errors when running buildout, pin the version here
-    zc.buildout = 2.2.0
-    Zope2 = 2.13.20
-    setuptools = 0.9.8
-    ZConfig = 2.9.1
-    zc.lockfile = 1.0.2
-    zope.tales = 3.5.3
-    pytz = 2013b
-    docutils = 0.8.1
-    Products.ZCTextIndex = 2.13.4
+    eggs = Plone
 
 4\. Run buildout-nix
 
