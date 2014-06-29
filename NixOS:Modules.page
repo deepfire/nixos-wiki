@@ -15,7 +15,7 @@ Vocabulary
 -   [Declaration](//NixOS:Declaration): All options which are used with
     the `mkOption` function are declared. Declared options should at
     least have a `description` attribute which contains a multiple-line
-    text of describing the effect of the option.
+    text for describing the effect of the option.
 -   [Definition](/w/index.php?title=NixOS:Definition&action=edit&redlink=1 "NixOS:Definition (page does not exist)"):
     All options which are set to plain values are considered as
     definitions. The plain value may vary depending on the expected type
