@@ -3,6 +3,8 @@ repeated build producing bit-for-bit different outputs?
 
 ### System time
 
+Additional problem: ctime on files, if build creates any archives
+
 #### Ways to fix the problem
 
 ##### LD\_PRELOAD
@@ -14,3 +16,17 @@ Works only for dynamically-linked programs
 Slower?
 
 ### System CPU model/features
+
+### Order of directory entries
+
+ls -u giving different order may lead to things like jars being not
+bit-for-bit identical
+
+### Deliberate randomness
+
+Example: package generating a andom seed during build. It is a problem
+from many points of view.
+
+==Allegedely fixed (at least in Nix on NixOS)
+
+### Builder PIDs
