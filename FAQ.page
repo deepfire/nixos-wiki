@@ -2,14 +2,14 @@ Frequently asked questions and common newcomer trouble should be put
 here so that we can point to this page intsead of answering the same
 question over and over again.
 
-Why is Nix written in C++ and Perl rather than a functional language like Haskell or OCaml, given the strong influence that functional programming has obviously had on Nix
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[[edit](/w/index.php?title=FAQ&action=edit&section=1 "Edit section: Why is Nix written in C++ and Perl rather than a functional language like Haskell or OCaml, given the strong influence that functional programming has obviously had on Nix")] Why is Nix written in C++ and Perl rather than a functional language like Haskell or OCaml, given the strong influence that functional programming has obviously had on Nix
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Mainly because Nix is intended to be lightweight, easy to learn and
 portable (zero dependencies).
 
-NixOS segfaults when running on VirtualPC:
-------------------------------------------
+[[edit](/w/index.php?title=FAQ&action=edit&section=2 "Edit section: NixOS segfaults when running on VirtualPC:")] NixOS segfaults when running on VirtualPC:
+------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 You may have hit
 <http://jagbarcelo.blogspot.com/2009/11/segmentation-fault-ubuntu-virtual-pc.html>
@@ -17,14 +17,14 @@ There may be a different cause (out of memory) You can check
 /var/log/messages to see if there is something about the OOM killer
 kicking in
 
-Nix(OS) substitutes break on older [Btrfs](http://en.wikipedia.org/Btrfs) implementation since the merge of SQLite support (feb 2011 in trunk)
-----------------------------------------------------------------------------------------------------------------------------------------------
+[[edit](/w/index.php?title=FAQ&action=edit&section=3 "Edit section: Nix(OS) substitutes break on older Btrfs implementation since the merge of SQLite support (feb 2011 in trunk)")] Nix(OS) substitutes break on older [Btrfs](http://en.wikipedia.org/Btrfs) implementation since the merge of SQLite support (feb 2011 in trunk)
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Subtituted files are padded by zero bytes, which makes them unusable.
 Upgrading Btrfs to 2.6.37+ kernel resolves the issue.
 
-Using nix to install new software requires to download the source from upstream and sometimes that source has moved and therefore the download won't work but after some google search with: 'myfile-0.1.2.tar.gz "index of"' one usually can find the file an download it either:
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+[[edit](/w/index.php?title=FAQ&action=edit&section=4 "Edit section: Using nix to install new software requires to download the source from upstream and sometimes that source has moved and therefore the download won't work but after some google search with: 'myfile-0.1.2.tar.gz "index of"' one usually can find the file an download it either:")] Using nix to install new software requires to download the source from upstream and sometimes that source has moved and therefore the download won't work but after some google search with: 'myfile-0.1.2.tar.gz "index of"' one usually can find the file an download it either:
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -   download manually and copy into /tmp, then:
 
@@ -38,8 +38,8 @@ to move that file into the store one can use:
 
      nix-prefetch-url "http://myfoohost.com/programs/foo/myfile-0.1.2.tar.gz"
 
-How to restart a systemd service?
----------------------------------
+[[edit](/w/index.php?title=FAQ&action=edit&section=5 "Edit section: How to restart a systemd service?")] How to restart a systemd service?
+------------------------------------------------------------------------------------------------------------------------------------------
 
      systemctl restart unit
 
@@ -47,8 +47,8 @@ A list of services can be found with:
 
      systemctl list-units
 
-How to keep build-time dependencies around / be able to rebuild while being offline?
-------------------------------------------------------------------------------------
+[[edit](/w/index.php?title=FAQ&action=edit&section=6 "Edit section: How to keep build-time dependencies around / be able to rebuild while being offline?")] How to keep build-time dependencies around / be able to rebuild while being offline?
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 configuration.nix:
 
@@ -79,8 +79,8 @@ The warning can be ignored for profiles that are listed/linked in
 Consult man pages of nix-store and nix-instantiate for further
 information.
 
-how to add a custom udev rule in nixos?
----------------------------------------
+[[edit](/w/index.php?title=FAQ&action=edit&section=7 "Edit section: how to add a custom udev rule in nixos?")] how to add a custom udev rule in nixos?
+------------------------------------------------------------------------------------------------------------------------------------------------------
 
 add something like this to your `/etc/nixos/configuration.nix` file:
 
@@ -88,13 +88,13 @@ add something like this to your `/etc/nixos/configuration.nix` file:
         ATTRS{idVendor}=="0665", ATTRS{idProduct}=="5161", MODE="666", SYMLINK+="hidraw_protecthome"
       '';
 
-Why \<hash\>-\<name\> instead of \<name\>-\<hash\>?
----------------------------------------------------
+[[edit](/w/index.php?title=FAQ&action=edit&section=8 "Edit section: Why <hash>-<name> instead of <name>-<hash>?")] Why \<hash\>-\<name\> instead of \<name\>-\<hash\>?
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 For the rare cases where we have to dig into the /nix/store it is more
 practical to keep in mind the first few letters at the beginning than
 finding a package by name. In addition, the hash is printed by Nix
-commands. I you still wonder why, run
+commands. If you still wonder why, run
 "`ls -1 /nix/store | sort -R -t - -k 2 | less`" in your shell.
 
 This is what might happen if you don't garbage collect frequently, or if
