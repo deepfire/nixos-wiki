@@ -41,9 +41,14 @@ If you are stumped by an error message, add it here.
   x/manual/#sec-
   common-options
   )\
-   Also in
-  `man nix-build
-  `.
+   [Explanation
+  in email
+  thread](http:/
+  /lists.science
+  .uu.nl/piperma
+  il/nix-dev/200
+  9-July/002671.
+  html)
   --------------------------------------------------------------------------
 
 
