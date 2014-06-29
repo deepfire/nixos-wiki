@@ -1,3 +1,16 @@
+[Xen](http://www.xen.org/) is a virtualisation system: it allows you to
+run multiple virtual ("guest") machines concurrently on a single
+physical ("host") machine. It supports both unmodified guest operating
+systems on hosts with hardware virtualisation support, and
+*paravirtualised* guest operating systems that communicate more
+efficiently with the host system.
+
+Virtual machines running on Xen are called *domains*. There always is a
+special, privileged domain called Domain 0 (Dom0), which is responsible
+for managing and accessing the host hardware (as the Xen kernel itself
+has no disk or network drivers). The other, unprivileged domains are
+called DomU. NixOS can run both in Dom0 and DomU.
+
 Enabling Xen
 ------------
 
