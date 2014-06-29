@@ -66,14 +66,12 @@ I want to play
 Ok, now for the fun part. This is the procedure that should allow you to
 play:
 
-1.  Checkout <https://github.com/cpages/nixpkgs/tree/steam>
-2.  Install steam (nix-env -i steam -f path/to/repo). Might take some
-    time
-3.  Launch steam: the first run will install stuff to your home, and end
+1.  Install steam (nix-env -i steam). Might take some time
+2.  Launch steam: the first run will install stuff to your home, and end
     up failing with wrong interpreter bla bla bla...
-4.  Launch steam again: if all went well, you should end up with steam
+3.  Launch steam again: if all went well, you should end up with steam
     auto-updating itself. When it finishes, it won't automatically start
-5.  Launch steam once more: this should present you with the login
+4.  Launch steam once more: this should present you with the login
     screen, and from here to a working steam
 
 ### But what about the games?
