@@ -19,3 +19,9 @@ Step Through Build Phases
 
 We can use the `nix-shell` command. To do: Show how to use it.
 
+Notes
+-----
+
+For more information, see the [Create and Debug Nix
+Packages](//Create and debug nix packages) wiki page.
+
