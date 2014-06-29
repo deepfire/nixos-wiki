@@ -54,6 +54,10 @@ on your local repositories:
 
      $ nix-build ~/code/nixpkgs --run-env -A irssi --add-root
 
+**NOTE:** it would be awesome if there was a bash/zsh extension which
+would export NIX\_PATH=\~/code, when entering the directory \~/code/ in
+a shell.
+
 git
 ---
 
