@@ -1,10 +1,106 @@
+Enable libvirtd
+---------------
+
+-   Edit your /etc/nixos/configuration.nix and add :
+
+<!-- -->
+
+    virtualisation.libvirtd.enable = true;
+
 To use tools such as virt-manager or virsh in a standard user mode, your
 user must be in the group libvirtd.
 
-    sudo gpasswd -a myuser libvirtd 
-    su myuser
-    newgrp libvirtd
+Nixos as libvirt linux container guest:
+---------------------------------------
 
-Edit your /etc/nixos/configuration.nix and add :
+For testing proposes it's advised to use systemd.containers instead.
+Take a look at
+<https://github.com/NixOS/nixpkgs/commit/9ee30cd9b51c46cea7193993d006bb4301588001>
 
-    virtualisation.libvirtd.enable = true;
+Libvirt lxc is not secure if you don't have user namespaces enabled and idmap in libvirt configuration file, but this does not work yet with nixos as linux container!
+======================================================================================================================================================================
+
+-   Create configuration file:
+
+<!-- -->
+
+    $ cat configuration.nix
+    { config, pkgs, ... }:
+    with pkgs.lib;
+    {
+        boot.isContainer = true;
+        fileSystems = [ ];
+
+        # Create the tarball
+        system.build.tarball = import <nixpkgs/nixos/lib/make-system-tarball.nix> {
+          inherit (pkgs) stdenv perl xz pathsFromGraph;
+
+          contents = [];
+          storeContents = [
+            { object = config.system.build.toplevel + "/init";
+              symlink = "/bin/init";
+            }
+            { object = config.system.build.toplevel;
+              symlink = "/run/current-system";
+            }
+          ];
+        };
+
+        services.openssh.enable = true;
+        users.extraUsers.root.openssh.authorizedKeys.keys = [ "<your_public_ssh_key>" ];
+
+        networking.hostName = "container";
+    }
+
+-   Build the container:
+
+<!-- -->
+
+    $ NIXOS_CONFIG=$(pwd)/configuration.nix nix-build '<nixos>' -A config.system.build.tarball --argstr system x86_64-linux
+
+-   Unpack created container and create libvirt configuration:
+
+<!-- -->
+
+    $ mkdir rootfs
+    $ tar -xvf result/tarball/nixos-system-x86_64-linux.tar.xz -C rootfs
+    $ sudo -R chown root:root rootfs/
+    $ cat container.xml
+    <domain type='lxc'>
+      <name>container</name>
+      <memory>102400</memory>
+      <os>
+        <type>exe</type>
+        <init>/bin/init</init>
+      </os>
+      <vcpu>1</vcpu>
+      <clock offset='utc'/>
+      <on_poweroff>destroy</on_poweroff>
+      <on_reboot>restart</on_reboot>
+      <on_crash>destroy</on_crash>
+      <devices>
+        <console type='pty'>
+          <target type='serial' port='0'/>
+        </console>
+        <console type='pty'>
+          <target type='serial' port='1'/>
+        </console>
+        <filesystem type='mount'>
+          <source dir='<path_to_your_rootfs>'/>
+          <target dir='/'/>
+        </filesystem>
+        <interface type='network'>
+          <source network='default'/>
+        </interface>
+      </devices>
+    </domain>
+
+-   Start your container:
+
+<!-- -->
+
+    $ virsh -c lxc:/// create container.xml
+
+If everything went succesfully you will be able to ssh to your newly
+created container.
+
