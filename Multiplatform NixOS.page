@@ -70,9 +70,28 @@ In the Fuloong2f:
 
     g console=tty nfsroot=NFSIP:NFSPATH root=/dev/nfs ip=IP init=/boot/init systemConfig=/boot/system
 
-After this, you will have a running NixOS, where you can use the usual
-nixos-install procedures as described in the NixOS manual installing
-from a bootable CD.
+After this, you will have a running NixOS. Nevertheless, here are some
+details you will still need:
+
+In order to use nix-env in that nfsroot, you will need to setup your
+\~/.nixpkgs/config.nix file to set the platform you want the packages
+for:
+
+    pkgs:
+    {
+      platform = pkgs.platforms.fuloong2f_n32;
+    }
+
+Additionally, you will need to checkout the following nixos and nixpkgs
+to work properly in the fuloong:
+
+    cd /etc/nixos
+    svn co https://svn.nixos.org/repos/nix/nixos/branches/stdenv-updates nixos
+    svn co https://svn.nixos.org/repos/nix/nixpkgs/branches/stdenv-updates nixpkgs
+
+After this you can proceed installing programs or installing NixOS with
+the usual nixos-install procedures as described in the NixOS manual
+installing from a bootable CD.
 
 Configuration details
 ---------------------
