@@ -137,3 +137,15 @@ distributions.
 
 **TODO find a nice way to deal with this problem.**
 
+possible solution:
+
+-   find the required include path in this environment variables:
+
+-   CMAKE\_PREFIX\_PATH
+-   NIX\_CFLAGS\_COMPILE
+-   NIX\_LDFLAGS
+
+then add them to kdevelop manually
+
+-   patch kdevelop to make it search these paths automatically
+
