@@ -1,11 +1,13 @@
 This article describes how to work with the nix related repositories to
-add new packages, edit and debug existing packages and also how to
-create and edit configuration options and services for NixOS.
+add new packages, edit and debug existing packages. For details on the
+NixOS module system see [NixOS:Modules](//NixOS:Modules).
+[NixOS:extend\_NixOS](//NixOS:extend NixOS) explains how to write, test
+and debug your own modules.
 
 The nix repositories are hosted here: <https://github.com/nixos>
 
-Basics
-------
+[[edit](/w/index.php?title=Create_and_debug_nix_packages&action=edit&section=1 "Edit section: Basics")] Basics
+--------------------------------------------------------------------------------------------------------------
 
 The code for nix packages is managed in the nixpkgs repository. NixOS
 services, and other system configuration options are managed in the
@@ -26,8 +28,8 @@ trouble using git or github any general guide on these should get you
 going, or just ask on the NixOS IRC channel. The rest of this guide
 deals with the "Hack hack hack" step :)
 
-How to install from the local repository
-----------------------------------------
+[[edit](/w/index.php?title=Create_and_debug_nix_packages&action=edit&section=2 "Edit section: How to install from the local repository")] How to install from the local repository
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 For the sake of this article, let's set an environment variable which
 points to the directory where we've cloned our repos.
@@ -64,8 +66,8 @@ nix-shell)**
 
      $ nix-build $NIXREPOS/nixpkgs --run-env -A irssi --add-root
 
-Tracking upstream changes and avoiding extra rebuilding
--------------------------------------------------------
+[[edit](/w/index.php?title=Create_and_debug_nix_packages&action=edit&section=3 "Edit section: Tracking upstream changes and avoiding extra rebuilding")] Tracking upstream changes and avoiding extra rebuilding
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 You have forked the relevant nix repository, but you will want to track
 changes in the upstream nix repo too. You can add a remote, and a
@@ -119,8 +121,8 @@ to merge your changes with upstream and test that it still works.
      git fetch upstream
      git merge upstream
 
-Using nix-shell for package development
----------------------------------------
+[[edit](/w/index.php?title=Create_and_debug_nix_packages&action=edit&section=4 "Edit section: Using nix-shell for package development")] Using nix-shell for package development
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 nix-shell is a command which drops you into the build environment for a
 package. This is convenient for writing and debugging nix expressions.
@@ -262,8 +264,8 @@ Tip: A git repository can be used for snapshotting attempts at building
 the package. This also makes it easy to generate patches, should you
 need to.
 
-nix channels
-------------
+[[edit](/w/index.php?title=Create_and_debug_nix_packages&action=edit&section=5 "Edit section: nix channels")] nix channels
+--------------------------------------------------------------------------------------------------------------------------
 
 nix channels can be used in parallel with your new local repositories,
 see its
