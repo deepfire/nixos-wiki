@@ -102,17 +102,29 @@ installing from a bootable CD.
 Configuration details
 ---------------------
 
-In your configuration.nix, you have to pay attention to these basics to
-get a bootable system. We are going to use the 'generationsDir' boot
-method, that simply puts the necessary files to load into known paths.
-You will have to configure your usual PMON /boot/boot.cfg pointing to
-the proper config.
+In your `configuration.nix`, you have to pay attention to these basics
+to get a bootable system.
 
-I will type the attributes involved in the shortest form. If I write
-boot.loader, it does not mean 'loader' should be the only attribute of
-boot. It's up to your configuration.
+We are going to use the *generationsDir* boot method, that simply puts
+the necessary files to load into known paths inside `/boot`. You will
+have to configure your usual PMON `/boot/boot.cfg` pointing to those
+paths. Here is an excerpt of my manually written `/boot/boot.cfg` (which
+resides in *hda1*, while my nixos is in *hda2*):
 
-Switch on the generationsDir bootloader.
+    timeout 3
+    default 0
+    showmenu 1
+
+    title nixos
+            kernel /dev/fs/ext2@wd0b/boot/nixos-kernel
+            initrd /dev/fs/ext2@wd0b/boot/nixos-initrd
+            args console=tty root=/dev/hda2 init=/boot/default/init selinux=0 systemConfig=/boot/default/system
+
+I will type the `configuration.nix` attributes involved in the shortest
+form. If I write boot.loader, it does not mean 'loader' should be the
+only attribute of boot. It's up to your configuration.
+
+Switch on the *generationsDir* bootloader:
 
     boot.loader = {
       grub.enable = false;
@@ -126,7 +138,7 @@ Use a recent kernel:
 
     boot.kernelPackages = pkgs.linuxPackages_2_6_35;
 
-At the time of writing this, the kernel provides /dev/hd\* devices for
+At the time of writing this, the kernel provides `/dev/hd*` devices for
 the hard disk, while we don't have udev rules to create them. So, I you
 will need to create the devices at initrd time:
 
