@@ -28,80 +28,49 @@ a source install. But never the less it is simple.
 
  <http://releases.nixos.org/nix/latest/>
 
-cd \~ mkdir .nix\_test cd .nix\_test/ wget
-<http://releases.nixos.org/nix/latest/nix-1.6.1.tar.gz> ls tar xvzf
-nix-1.6.1.tar.gz cd nix-1.6.1
+     cd ~
+     mkdir .nix_test
+     cd .nix_test/
+     wget http://releases.nixos.org/nix/latest/nix-1.6.1.tar.gz
+     ls
+     tar xvzf nix-1.6.1.tar.gz 
+     cd nix-1.6.1
 
  curl is needed
 
- configure: error: Nix requires libbz2, which is part of bzip2. See
-<http://www.bzip.org/>. brodul@personal:\~/.nix\_test/nix-1.6.1\$ locate
-libbz2.so /lib/libbz2.so.1 /lib/libbz2.so.1.0 /lib/libbz2.so.1.0.4
+     configure: error: Nix requires libbz2, which is part of bzip2.  See http://www.bzip.org/.
 
- brodul@personal:\~/.nix\_test/nix-1.6.1\$ sudo rm /usr/lib/libbz2.so
-rm: cannot remove \`/usr/lib/libbz2.so': No such file or directory
-brodul@personal:\~/.nix\_test/nix-1.6.1\$ sudo rm /lib/libbz2.so
-
- libbz2-dev musti be installed to have
+libbz2-dev musti be installed to have
 
 bzlib.h
 
- checking for SQLITE3... configure: error: Package requirements (sqlite3
-\>= 3.6.19) were not met:
+     checking for SQLITE3... configure: error: Package requirements (sqlite3 >= 3.6.19) were not met:
+     No package 'sqlite3' found
 
-No package 'sqlite3' found
+     Consider adjusting the PKG_CONFIG_PATH environment variable if you
+     installed software in a non-standard prefix.
 
-Consider adjusting the PKG\_CONFIG\_PATH environment variable if you
-installed software in a non-standard prefix.
-
-Alternatively, you may set the environment variables SQLITE3\_CFLAGS and
-SQLITE3\_LIBS to avoid the need to call pkg-config. See the pkg-config
-man page for more details.
+     Alternatively, you may set the environment variables SQLITE3_CFLAGS
+     and SQLITE3_LIBS to avoid the need to call pkg-config.
+     See the pkg-config man page for more details.
 
 install sqlite
 
-Use 'apt-get autoremove' to remove them. The following extra packages
-will be installed:
-
-     libsqlite0
-
-Suggested packages:
-
-     sqlite-doc
-
-The following NEW packages will be installed:
-
-     libsqlite0 sqlite
-
 package to old
 
-checking for SQLITE3... configure: error: Package requirements (sqlite3
-\>= 3.6.19) were not met:
+     checking for SQLITE3... configure: error: Package requirements (sqlite3 >= 3.6.19) were not met:
 
- brodul@personal:\~/.nix\_test/nix-1.6.1\$ apt-cache show sqlite
-Package: sqlite Priority: optional Section: misc Installed-Size: 88
-Maintainer: Ubuntu Developers \<ubuntu-devel-discuss@lists.ubuntu.com\>
-Original-Maintainer: Laszlo Boszormenyi (GCS) \<gcs@debian.hu\>
-Architecture: i386 Version: 2.8.17-6build2 Depends: libc6 (\>= 2.4),
-libreadline6 (\>= 6.0), libsqlite0 (\>= 2.8.17) Suggests: sqlite-doc
-Filename: pool/main/s/sqlite/sqlite\_2.8.17-6build2\_i386.deb Size:
-16388 MD5sum: 1e47f6e98d0e50caadd4afbc9feb0033 SHA1:
-1195602c06c784f38cabff390a9f34d859906094 SHA256:
-58f6522db404635e6c152be5bd53c42b7e091ba7be8ecdeab58c4134dd7ef7af
-Description: command line interface for SQLite
+ On ubuntu 10.04 Version: 2.8.17-6build2
 
-    SQLite is a C library that implements an SQL database engine.
-    Programs that link with the SQLite library can have SQL database
-    access without running a separate RDBMS process.
+     wget "http://www.sqlite.org/2013/sqlite-amalgamation-3080200.zip"
+     unzip sqlite-amalgamation-3080200.zip 
+     cd sqlite-amalgamation-3080200
+     gcc shell.c sqlite3.c -lpthread -ldl
+     mv a.out sqlite
 
-Bugs: <https://bugs.launchpad.net/ubuntu/+filebug> Origin: Ubuntu
-Supported: 18m
-
- wget "<http://www.sqlite.org/2013/sqlite-amalgamation-3080200.zip>"
-unzip sqlite-amalgamation-3080200.zip cd sqlite-amalgamation-3080200 gcc
-shell.c sqlite3.c -lpthread -ldl mv a.out sqlite
-
- sudo apt-get install libdbi-perl
+./configure --with-store-dir=/home/brodul/.nix\_prefix/
+SQLITE3\_CFLAGS="-I /home/brodul/.nix\_test/sqlite-amalgamation-3080200"
+SQLITE3\_LIBS="-L /home/brodul/.nix\_test/sqlite-amalgamation-3080200"
 
  checking for openssl... /usr/bin/openssl checking for pkg-config...
 /usr/bin/pkg-config checking pkg-config is at least version 0.9.0... yes
@@ -112,7 +81,9 @@ DBD::SQLite works... no configure: error: in
 \`/home/brodul/.nix\_test/nix-1.6.1': configure: error: The Perl modules
 DBI and/or DBD::SQLite are missing. See \`config.log' for more details
 
-./configure --with-store-dir=/home/brodul/.nix\_prefix/
+sudo apt-get install libdbi-perl
+
+ ./configure --with-store-dir=/home/brodul/.nix\_prefix/
 SQLITE3\_CFLAGS="-I /home/brodul/.nix\_test/sqlite-amalgamation-3080200"
 SQLITE3\_LIBS="-L /home/brodul/.nix\_test/sqlite-amalgamation-3080200"
 
