@@ -5,11 +5,10 @@ Haskell overlay
 ---------------
 
 Let's you install nearly all hackage packages easily.
-[hack-nix](/w/index.php?title=Http://haskell.org/haskellwiki/Hack-Nix&action=edit&redlink=1 "Http://haskell.org/haskellwiki/Hack-Nix (page does not exist)")
-also provide a convinient way to setup multiple build environments for a
-project
-[haskell-nix-overlay](/w/index.php?title=Http://github.com/MarcWeber/haskell-nix-overlay&action=edit&redlink=1 "Http://github.com/MarcWeber/haskell-nix-overlay (page does not exist)")
+[hack-nix](http://haskell.org/haskellwiki/Hack-Nix) also provides a
+convenient way to setup multiple build environments for a project
+[haskell-nix-overlay](http://github.com/MarcWeber/haskell-nix-overlay)
 
-Reasons for not committing it to trunk: The solver is quite low. There
+Reasons for not committing it to trunk: The solver is quite ?low. There
 are many updates.
 
