@@ -17,7 +17,11 @@ there are multiple possibilities, as there is:
        zsh wget
      ];
 
--   afterwards do: nixos-rebuild switch
+-   afterwards do:
+
+<!-- -->
+
+     nixos-rebuild switch
 
 ### normal user installation
 
@@ -31,6 +35,12 @@ how to remove installed software
 --------------------------------
 
 also depending on where the software was installed:
+
+**WARNIG: when you call 'nix-collect-garbage' or 'nix-store --gc' you
+might get problems with software which is installed 'per user' as the
+garbage collector will check all roots and remove software which is not
+enlisted in that roots. but i guess that the 'per user' software is not
+included as a root.**
 
 ### system environment installation
 
@@ -67,14 +77,125 @@ but there is this workaround (tnx to niksnut!):
 
      nix-store -q --references /var/run/current-system/sw
 
-how to roll back software
--------------------------
+how to update installed software
+--------------------------------
 
 ### software per user
 
-    nix-env --rollback
+     nix-env -u '*'
+
+### software in the environment.systemPackages
+
+     nixos-rebuild switch
+
+how to roll back software
+-------------------------
+
+     nix-env --rollback
 
 Also see nix-env --list-generations.
+
+nix-channels
+------------
+
+Since a few weeks (05/17/12 time of adding this to the wiki) there is a
+NixOS channel, which is now the default mechanism for keeping NixOS up
+to date. (A channel is a Nix mechanism for distributing a consistent set
+of Nix expressions and binaries.)
+
+A quick summary on how to use it:
+
+     $ nix-channel --add http://nixos.org/releases/nixos/channels/nixos-unstable
+     $ nix-channel --update
+     $ nixos-rebuild switch
+
+The NixOS channel contains a copy of Nixpkgs (but only the binaries for
+i686-linux and x86\_64-linux), so after "nix-channel --update" you can
+install packages via nix-env:
+
+     $ nix-env -i thunderbird
+
+or, if you prefer the "-A" option:
+
+     $ nix-env -iA nixos.pkgs.thunderbird
+
+The advantages of using a channel over the previous way (doing "svn up
+
+     /etc/nixos/*" a.k.a. nixos-checkout) are:
+
+-   Correctness: The channel is only updated to a new revision of
+    NixOS/Nixpkgs if it passes certain tests - specifically, if all jobs
+    in the "nixos:tested" view succeed
+    (<http://hydra.nixos.org/view/nixos/tested>). So you have a
+    reasonable certainty that the new version will actually work. By
+    contrast, if you update to the latest revision using nixos-checkout,
+    it's quite possible that somebody just committed something that
+    broke the entire system.
+
+-   Efficiency: The channel is only updated after all Hydra builds in
+    that revision have finished, \*and\* all binaries have been
+    mirrored. (Binary patches are generated asynchronously, however,
+    since they can take much longer to produce.) So you don't have to
+    worry about somebody just having committed something that causes a
+    huge recompilation.
+
+This makes keeping NixOS up to date a rather more pleasant activity,
+IMHO (Eelco Dolstra).
+
+Some things to note:
+
+-   The downloaded channel sources are stored in
+    /nix/var/nix/profiles/per-user/root/channels/nixos (which is
+    actually in the Nix store). The \$NIX\_PATH environment variable
+    contains this directory, so \<nixos\> and \<nixpkgs\> in Nix
+    expressions resolve there unless overriden through
+
+<!-- -->
+
+     $NIX_PATH or the "-I" flag.
+
+-   In principle, you can do rollbacks on the channels profile ("nix-env
+    -p /nix/var/nix/profiles/per-user/root/channels --rollback") if you
+    don't like the result of a "nix-channel --update". However, this
+    doesn't roll back the corresponding binaries manifest in
+    /nix/var/nix/manifest so its utility is limited [1].
+
+-   The NixOS installation CD no longer contains or installs
+    /etc/nixos/{nixos,nixpkgs} but instead uses the NixOS channel. You
+    can of course run "nixos-checkout" if you want a working tree for
+    development. (In other news, "nixos-checkout" now accepts a argument
+    to specify the desired location of the working trees, e.g.
+    "nixos-checkout /home/eelco/Dev". The
+
+default location /etc/nixos may eventually go away since it's a weird
+location for keeping large source trees.)
+
+-   To use a development tree in nixos-rebuild, just use the -I flag,
+    e.g. "nixos-rebuild switch -I /home/eelco/Dev".
+
+-   The "nixpkgs\_sys" link in \~/.nix-defexpr is no longer created.
+    Instead you can use "nixos.pkgs" in "nix-env -iA" calls, as shown
+    above. "nixos.pkgs" is the Nixpkgs in the NixOS channel, so it's
+    guaranteed to have binaries available.
+
+-   The command "nixos-version" prints out the NixOS version you're
+    currently running, e.g. "0.1pre34067-34075". The version string
+    include the NixOS and Nixpkgs revisions, respectively. If you
+    install from SVN it just prints "0.1pre-svn".
+
+-   Old versions can be installed from
+    <http://nixos.org/releases/nixos/>. These are periodically deleted
+    because they take up a lot of space. (Note that the nixos-unstable
+    channel is really just a link to the latest NixOS release.)
+
+[1] In the future we may get rid of manifests, in which case the Right
+Thing would happen magically.
+
+nix-channels vs nixos-checkout
+------------------------------
+
+using nix-channels and nixos-checkout in parallel can lead to duplicated
+entries using nix-\* tools.
 
 how to change the used kernel version
 -------------------------------------
