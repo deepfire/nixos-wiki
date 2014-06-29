@@ -104,11 +104,52 @@ So we can now log in using the SSH key generated above:
     # uname -a
     Linux ttylinux_host 2.6.35-22-virtual #35-Ubuntu SMP Sat Oct 16 23:19:29 UTC 2010 x86_64 GNU/Linux
 
+Running NixOS
+-------------
+
+Of course you'll want to run NixOS VMs in your private cloud. This
+requires building a NixOS disk image.
+
+    $ NIXOS_CONFIG=/etc/nixos/nixos/modules/virtualisation/nova-config.nix \
+        nix-build /etc/nixos/nixos/ -A config.system.build.novaImage
+
+You can (sort of) test whether the VM works by running
+`qemu-img create ./image -b ./result/image -f qcow2; qemu-kvm -nographic ./image`.
+Note however that the VM doesn't have any consoles (because they're not
+needed in a headless cloud environment), so you can't actually log in.
+
+Now make the image available:
+
+    $ mkdir /var/lib/nova/images/ami-nixos
+    $ cp ./result/image /var/lib/nova/images/ami-nixos/
+
+and create a file `/var/lib/nova/images/ami-nixos/info.json` with the
+following contents:
+
+    {
+        "imageId": "ami-nixos",
+        "imageLocation": "nixos/nixos",
+        "imageOwnerId": "eelco",
+        "imageState": "available",
+        "type": "machine",
+        "isPublic": true,
+        "architecture": "x86_64"
+    }
+
+You can then start a NixOS VM as follows:
+
+    $ euca-run-instances -k my_key ami-nixos
+
+Once the VM is running, you should be able to log in via SSH. For
+information on using the VM, see [NixOS on Amazon
+EC2](//NixOS on Amazon EC2).
+
 To Do
 -----
 
 -   Support running Nova components on multiple machines (especially
     `nova-compute`).
+-   Use MySQL instead of SQLite.
 -   Don't use RabbitMQ's guest user.
 -   Don't run everything as root.
 
