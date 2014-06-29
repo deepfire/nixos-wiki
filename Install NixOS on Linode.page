@@ -35,10 +35,7 @@
      boot.loader.initScript.enable = true;
      
      networking = {
-       useDHCP = false;
-       interfaces = [ { ipAddress = "XXX.XXX.XXX.XXX" ; name = "eth0";
-                        subnetMask = "255.255.255.0"; } ];
-       defaultGateway = "YYY.YYY.YYY.YYY";
+       useDHCP = true;
      };
 
 -   7\) Create a configuration profile assigning your NixOS disk image to
