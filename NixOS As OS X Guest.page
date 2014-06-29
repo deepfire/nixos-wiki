@@ -7,6 +7,9 @@ Virtualbox, and specifically on getting a GUI up and running. Many parts
 of it are likely not specific to Macs, but nevertheless that is the
 focus of this article.
 
+I am on a 64-bit MacBook Pro, so on 32-bit systems modifications may be
+neccesary.
+
 TODO Setup VM
 -------------
 
@@ -19,6 +22,11 @@ should be more or less straightforward.
 
 Open the VirtualBox application and create a new VM, which will bring up
 the "New Virtual Machine Wizard".
+
+ Name 
+:   XNix
+ OS Type 
+:   Linux 2.6 (64bit)
 
 TODO Install NixOS
 ------------------
