@@ -1,3 +1,11 @@
+list all available software from the local overlay
+
+     $ NIX_PATH="nixos=$HOME/Desktop/projects/nixos/nixpkgs" nix-env -f '<nixos>' -qa '*'
+
+install python-urlgrabber from the local overlay
+
+     $NIX_PATH="nixos=$HOME/Desktop/projects/nixos/nixpkgs" nix-env -f '<nixos>' -i python-urlgrabber
+
 update the system based on your local \`\`\`\~/code/nixos\`\`\` and
 \`\`\`\~/code/nixpkgs\`\`\`
 
