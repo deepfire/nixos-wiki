@@ -142,15 +142,6 @@ Use a recent kernel:
 
     boot.kernelPackages = pkgs.linuxPackages_2_6_35;
 
-At the time of writing this, the kernel provides `/dev/hd*` devices for
-the hard disk, while we don't have udev rules to create them. So, I you
-will need to create the devices at initrd time:
-
-     boot.initrd.postDeviceCommands = ''
-       mknod /dev/hda1 b 3 1
-       mknod /dev/hda2 b 3 2
-     '';
-
 You have to tell nixpkgs that you have a fuloong mini-pc system. So you
 need:
 
@@ -163,6 +154,17 @@ commands working fine:
     {
       platform = (import /etc/nixos/nixpkgs).platforms.fuloong2f_n32;
     }
+
+To run the X server at boot time with the slim display manager, set this
+in configuration.nix:
+
+     xserver = {
+       enable = true;
+       videoDriver = "sis";
+       moduleSection = ''
+         Load "vbe"
+       '';
+     };
 
 MANIFEST
 --------
