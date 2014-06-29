@@ -26,6 +26,13 @@ Before proceeding make sure to check wheather your wireless network card
 has properly been recognized. You can check this by issuing `iwconfig`
 and you should see a wireless extension being reported for `wlan0`.
 
+### Scan for wireless networks
+
+To scan for wireless networks in range you can use the following
+command.
+
+    iwlist wlan0 scan
+
 Wirless networks
 ----------------
 
