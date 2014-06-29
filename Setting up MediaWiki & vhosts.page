@@ -1,0 +1,31 @@
+Here is the NixOS configuration that you need to get a MediaWiki
+instance:
+
+    services.postgresql.enable = true;
+    services.httpd.enable = true;
+    services.httpd.adminAddr = "admin@example.org";
+    services.httpd.extraSubservices =
+      [ { serviceType = "mediawiki";
+          siteName = "My Wiki";
+          logo = "http://www.example.org/wiki-logo.png"; # should be 135x135px
+          extraConfig =
+            ''
+              # See http://www.mediawiki.org/wiki/Manual:Configuration_settings
+              $wgEmailConfirmToEdit = true;
+            '';
+        }
+      ];
+
+Then run `nixos-rebuild switch`. The MediaWiki database will be created
+automatically.
+
+You should also set up a user account for the administrator. This can be
+done from the command line:
+
+` $ mediawiki-main-createAndPromote --bureaucrat God foobar`
+
+Note that various other MediaWiki commands are also accessible from the
+command line. For instance:
+
+` $ mediawiki-main-changePassword --user alice --password foobar`
+
