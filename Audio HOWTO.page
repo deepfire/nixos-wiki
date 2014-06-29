@@ -182,7 +182,7 @@ same time as using JACK applications (e.g. Ardour).
 
     In your configuration file:
 
-        environment.systemPackages = [ (pkgs.pulseaudio.override {jackaudioSupport = true;}) ];
+        hardware.pulseaudio.package = pkgs.pulseaudio.override { jackaudioSupport = true; };
 
 2.  Ensure that the JACK enabled pulseaudio is being used
 
