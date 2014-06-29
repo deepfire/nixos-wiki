@@ -44,7 +44,9 @@ boot.blacklistedKernelModules option:
 Now reboot and retry from the beginning (i.e. check that your real card
 is shown by alsamixer without using the 'S' key).
 
-### alsamixer shows my audio card by default, but i get no sound in KDE
+### Fixing sound in KDE
+
+(alsamixer shows my audio card by default, but i get no sound in KDE)
 
 -   be sure to explicitly install pkgs.kde4.phonon in
     /etc/nixos/configuration.nix (environment.kdePackages option) or via
