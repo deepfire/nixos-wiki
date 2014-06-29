@@ -5,7 +5,8 @@ Using NixOS with VirtualBox on OS X.
 
 -   Download the NixOs iso for 32 bit from <http://nixos.org>
 -   Add a New Machine in VirtualBox with OS Type "Ubuntu"
--   Base Memory Size: 768 MB (or more)
+-   Base Memory Size: 768 MB or first \`export
+    GC\_INITIAL\_HEAP\_SIZE=1\` before installing
 -   New Hard Disk of 8 GB
 -   Mount the CD-Rom with the NixOs iso (by clicking on CD/DVD-ROM)
 -   Click on Settings / Advanced (or possibly System / Processor) and
