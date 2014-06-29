@@ -5,7 +5,7 @@ The following expression allows all plone42Packages available:
 
 /root/.nixpkgs/config.nix
 
-` { `
+\<syntaxhighlight\> {
 
      packageOverrides = pkgs: {
        envPythonPlonedev = pkgs.buildEnv {
@@ -18,9 +18,9 @@ The following expression allows all plone42Packages available:
        };
      };
 
-}
+} \</syntaxhighlight\>
 
-These can be then be installed into a profile:
+ These can be then be installed into a profile:
 
 ` `
 
