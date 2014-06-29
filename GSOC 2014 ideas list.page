@@ -37,14 +37,16 @@ done.
 
 Improvements:
 
-- add modules support for python 3 and PyPy - write documentation
-(packaging for python currently almost doesn't have any) - convert
-buildPythonPackage to python.mkDerivation - produce usable pypi2nix
-script <https://github.com/garbas/pypi2nix> - split out usable functions
-for software having python bindings but not using distutils/setuptools -
-make \`python-packages.nix\` self referential and being able to use
-\`pythonPackages.pyramid.override\` function - make python software
-developemnt usable with nix-shell
+-   add modules support for python 3 and PyPy
+-   write documentation (packaging for python currently almost doesn't
+    have any)
+-   convert buildPythonPackage to python.mkDerivation
+-   produce usable pypi2nix script <https://github.com/garbas/pypi2nix>
+-   split out usable functions for software having python bindings but
+    not using distutils/setuptools
+-   make \`python-packages.nix\` self referential and being able to use
+    \`pythonPackages.pyramid.override\` function
+-   make python software developemnt usable with nix-shell
 
 Contact: Domen Kožar (domen@dev.si)
 
