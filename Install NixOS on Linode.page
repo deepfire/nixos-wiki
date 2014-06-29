@@ -16,6 +16,9 @@ You will need:
     'nixos' this will be */dev/xvdc*
 -   And of course, the swap disk this will be */dev/xvdb*
 
+Additionally, be sure to choose the "pv\_grub-\<arch\>" kernel to
+actually use the kernel supplied from the nixos installation.
+
 ### Boot into Rescue Mode and use LISH to connect to your machine
 
 What will become /boot needs to be ext2, I make my main partition ext4:
