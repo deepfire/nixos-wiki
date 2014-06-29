@@ -68,3 +68,10 @@ Now execute the script:
 You should be able to log in to Nix now by running
 `ssh -p2222 localhost` in your OS X Terminal. Enjoy!
 
+Alternative (independent of virtual network card chosen for the guest):
+
+     VBoxManage modifyvm "Nix" --natpf1 "sshtunnel,tcp,,2222,,22"
+
+As before, you are now able to log in to Nix by running
+`ssh -p2222 localhost` in your terminal.
+
