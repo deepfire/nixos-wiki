@@ -55,6 +55,23 @@ Install Prerequisites
     nix-channel --add http://nixos.org/channels/nixos-13.10 nixos
     nix-channel --update
 
+This does not seem to be working any more (probably because things moved
+around in newer versions of nix). I have an awkward workaround, but it
+would be great if someone who understands this better than me could fix
+this:
+
+    cd /
+    wget http://hydra.nixos.org/build/10845785/download/1/nix-1.8pre3598_aa9b1cf-x86_64-linux.tar.bz2
+    tar xjvf nix-1.8pre3598_aa9b1cf-x86_64-linux.tar.bz2
+    groupadd nixbld
+    useradd bld1
+    usermod -G nixbld bld1
+    ./nix-1.8pre3598_aa9b1cf-x86_64-linux/install
+    source /root/.nix-profile/etc/profile.d/nix.sh
+    nix-channel --remove nixpkgs
+    nix-channel --add http://nixos.org/channels/nixos-14.04 nixos
+    nix-channel --update
+
 ### Checkout Nixpkgs from Git
 
     cd ~
