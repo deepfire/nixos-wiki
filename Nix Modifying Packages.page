@@ -104,21 +104,35 @@ What does Nix expect the `config.nix` file to look like? To modify
 existing packages, it must accept `pkgs` as a parameter and have an
 attribute named `packageOverrides`.
 
-Here are some examples (yet to be tested by author).
+Here are some examples (all yet to be tested by author).
+
+Override normal package:
 
        pkgs : {
          packageOverrides = pkgs : rec {
-          myHaskellPackages =
-            let callPackage = pkgs.lib.callPackageWith myHaskellPackages; in
-              pkgs.recurseIntoAttrs (pkgs.haskellPackages.override {
-                extraPrefs = self : {
-                  boomerang = callPackage ./haskell/boomerang.nix {};
-                };
-              });
+           xbmc.override {
+             python = python26;
+           };
          };
        }
 
-Or
+Override Haskell library package:
+
+       pkgs : {
+         packageOverrides = pkgs : rec {
+           myHaskellPackages =
+             let callPackage = pkgs.lib.callPackageWith myHaskellPackages; in
+               pkgs.recurseIntoAttrs (pkgs.haskellPackages.override {
+                 extraPrefs = self : {
+                   boomerang = callPackage ./haskell/boomerang.nix {};
+                 };
+               });
+         };
+       }
+
+Create shell which has a custom environment by using the
+[`myEnvFun`](//Howto develop software on nixos#Introducing myEnvFun)
+function:
 
        {
          packageOverrides = pkgs : with pkgs; {
