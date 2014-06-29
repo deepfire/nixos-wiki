@@ -8,11 +8,11 @@ Check that your wireless adapter is working
 
     [root@pokemon:~]# ifconfig -a | grep -A 5 wlan
     wlan0     Link encap:Ethernet  HWaddr 00:16:EB:19:DC:A0  
-              inet addr:192.168.1.100  Bcast:192.168.1.255  Mask:255.255.255.0
-              inet6 addr: fe80::216:ebff:fe19:dca0/64 Scope:Link
-              UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
-              RX packets:21265 errors:0 dropped:0 overruns:0 frame:0
-              TX packets:18615 errors:0 dropped:0 overruns:0 carrier:0
+              BROADCAST MULTICAST  MTU:1500  Metric:1
+              RX packets:25756 errors:0 dropped:0 overruns:0 frame:0
+              TX packets:22685 errors:0 dropped:0 overruns:0 carrier:0
+              collisions:0 txqueuelen:1000 
+              RX bytes:7196191 (6.8 Mb)  TX bytes:7611727 (7.2 Mb)
 
 If not, consult dmesg. One possible reason is missing firmware. Some
 firmware types should be enabled explicitly, see
