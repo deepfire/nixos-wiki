@@ -2,8 +2,24 @@ python basics
 -------------
 
 -   **\*.pth** files
+
+Python supports \*.pth files which contain the paths to the parent
+directories of your python modules one per line. Those files should be
+placed in site-packages and can be called whatever you want them to
+call.
+
 -   PYTHONPATH
+
+The other way is to set additional paths for python just before running
+the externally kept modules. This is done by setting the python paths to
+the environment variable PYTHONPATH. Note again that python paths point
+not to the modules themselves, but to their parent directories!
+
 -   PYTHONUSERBASE
+
+?
+
+in general see [6]
 
 general python integration into nixos
 -------------------------------------
@@ -75,4 +91,6 @@ discussions
     <https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/python-modules/python-gudev/default.nix>
 -   [5]
     <http://permalink.gmane.org/gmane.linux.distributions.nixos/8732>
+-   [6]
+    <http://djangotricks.blogspot.de/2008/09/note-on-python-paths.html>
 
