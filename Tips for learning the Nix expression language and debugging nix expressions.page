@@ -48,3 +48,13 @@ example.nix:
         </attrspat>
       </function>
     </expr>
+
+example.nix
+
+    rec {
+    x = import (/etc/nixos/nixpkgs/pkgs/tools/graphics/graphviz);
+    y = builtins.isFunction x;
+    }.y
+
+    $ nix-instantiate --eval-only example.nix
+    true
