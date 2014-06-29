@@ -13,8 +13,8 @@ specific inputs and outputs.
     "output paths". A database also maintains the validity of each path
     (valid or not) and its dependencies on other paths.
 
-The nix store
-=============
+[[edit](/w/index.php?title=Crash_Course&action=edit&section=1 "Edit section: The nix store")] The nix store
+===========================================================================================================
 
 Here go all the outputs of the nix interpreters, and this is the only
 way it is filled; all the files in the nix store are meant to be created
@@ -38,8 +38,8 @@ As the nix stored is filled and filled while we create output store
 paths with nix, the nix user usually manually requests for "garbage
 collection", and that means: remove all dead paths in the store.
 
-The stages building using nix
-=============================
+[[edit](/w/index.php?title=Crash_Course&action=edit&section=2 "Edit section: The stages building using nix")] The stages building using nix
+===========================================================================================================================================
 
 The nix language allows defining how to build a specific output store
 path. For example, we can write in nix the rules to build a store path
@@ -59,8 +59,8 @@ nevertheless, only to files in the nix store.
 A second stage takes those .drv files, and 'builds' them (as with
 nix-store --realise).
 
-Writing your own nix packages
-=============================
+[[edit](/w/index.php?title=Crash_Course&action=edit&section=3 "Edit section: Writing your own nix packages")] Writing your own nix packages
+===========================================================================================================================================
 
 If you want to share the expressions you are going to write, get a VCS
 copy of nixpkgs and prepare patches that you will later send to the
