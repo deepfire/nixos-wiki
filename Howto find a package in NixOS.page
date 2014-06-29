@@ -57,3 +57,18 @@ have written this script which is caching the result (quick & dirty):
     }
     grep -i $1 $tmp
 
+ You've found a package and it doesn't show up? If a package is defined
+as sub attribute set it is only shown of the function
+
+    recurseIntoAttrs
+
+has been used. I think it was introduced for performance reasons (?).
+You can either add this function if its missing or you can install by
+path using nix-env -iA attr.subattr.subattr.package or such. this
+corresponds to
+
+    {
+      attr = { subattr = { subattr = { package = mkDerivation ... } } }
+      # of course you would use this notation instead:
+      attr.subattr.subattr.package = mkDerivation ...;
+    }
