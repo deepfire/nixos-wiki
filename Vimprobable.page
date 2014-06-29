@@ -17,6 +17,27 @@ Installation
 
     $ nix-env -i vimprobable2
 
+Usage
+-----
+
+vimprobable is able (and intended to be) completely keyboard-driven.
+Citing from vimprobable's manual page here are a few basic commands that
+should keep you going.
+
+  -------------------------------------------------------------------------
+  Key
+  Action
+  ------------------------------------ ------------------------------------
+  o                                    t
+  Insert URL from keyboard and load it Insert URL from keyboard and load it
+                                       into new window
+  -------------------------------------------------------------------------
+
+  :  Basic commands
+
+Be sure to read `man vimprobable2` eventually to learn all the other
+important commands.
+
 Configuration
 -------------
 
