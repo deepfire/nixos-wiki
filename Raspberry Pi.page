@@ -1,0 +1,124 @@
+State of nixpkgs
+----------------
+
+The [stdenv-updates
+branch](https://github.com/NixOS/nixpkgs/tree/stdenv-updates) at
+[0bf70832](https://github.com/NixOS/nixpkgs/commit/0bf70832f49993d2f957840b5a41c43b74452594)
+can bootstrap properly an armhf nixpkgs for the raspberrypi
+
+The biggest requirement is setting the platform in nixpkgs, through
+\~/.nixpkgs/config.nix:
+
+    {
+      platform = (import <nixpkgs/pkgs/top-level/platforms.nix>).raspberrypi;
+    }
+
+State of NixOS
+--------------
+
+The [viric raspberry
+branch](https://github.com/viric/nixpkgs/tree/stdenv-updates) at
+[2c27a416864](https://github.com/viric/nixos/commit/2c27a416864916db3c8e7ed4c6c8a4cf00f47990)
+can prepare a proper bootloader (vfat at /boot).
+
+Having the SD vfat that the dumb loader will read at /boot, this is an
+example configuration.nix:
+
+    {pkgs, config, ...}:
+
+    {
+      boot.loader.grub.enable = false;
+      boot.loader.generationsDir.enable = false;
+      boot.loader.raspberryPi.enable = true;
+      boot.kernelPackages = pkgs.linuxPackages_3_6_rpi;
+      boot.kernelParams = [
+        "coherent_pool=6M"
+        "smsc95xx.turbo_mode=N"
+        "dwc_otg.lpm_enable=0"
+        "root=/dev/sda5"
+        "rootwait"
+        "console=tty1"
+        "elevator=deadline"
+      ];
+
+      # cpufrequtils doesn't build on ARM
+      powerManagement = false;
+
+      fileSystems = [
+        {
+          device = "/dev/mmcblk0p1";
+          mountPoint = "/boot";
+          fsType = "vfat";
+        }
+        {
+          device = "/dev/sda5";
+          mountPoint = "/";
+          fsType = "ext4";
+        }
+      ];
+
+      services.xserver.enable = false;
+      services.openssh = {
+        enable = true;
+        permitRootLogin = "yes";
+      };
+
+      nixpkgs.config = {
+        platform = pkgs.platforms.raspberrypi;
+      };
+    }
+
+Using distcc
+------------
+
+The Raspberry Pi compiles things very slowly. You can help it with the
+new feature of stdenv-updates stdenv: *userHook*. You have to set it up
+to introduce an impurity in your nixpkgs like this:
+
+    {
+      stdenv.userHook = "test -f /niximpure/impure.sh && . /niximpure/impure.sh";
+    }
+
+The `impure.sh` script will be in charge of loading *distcc*. A
+simplification of what I use:
+
+    case $out in
+      *)
+         case $NIX_GCC in
+           *-gcc-wrapper-4.7* | *-bootstrap-gcc-wrapper*)
+             echo Using distcc for gcc 4.7
+             export DISTCC_HOSTS=192.168.1.35
+             PATH=/niximpure/distcc:$PATH
+             export HOME=/niximpure/home
+             ;;
+           *-gcc-wrapper-4.6*)
+             echo Using distcc for gcc 4.6
+             export DISTCC_HOSTS=192.168.1.35:3633
+             PATH=/niximpure/distcc:$PATH
+             export HOME=/niximpure/home
+             ;;
+         esac
+       ;;
+    esac
+
+The /niximpure tree looks like this. Notice `/usr/bin/distcc`; it can
+point at any distcc you have working, be it in /usr or one nix-built. It
+will call the next gcc in PATH in the builds, not using /usr/bin/gcc.
+
+    # ls -lR /niximpure
+    /niximpure:
+    total 16
+    drwxr-xr-x 2 root root 4096 28 des 00:06 distcc
+    drwxrwxr-x 4 root 1002 4096  4 gen 14:32 home
+    -rw-r--r-- 1 root root 1351 26 gen 13:06 impure.sh
+    drwxr-xr-x 3 root root 4096 29 des 18:57 pump
+
+    /niximpure/distcc:
+    total 0
+    lrwxrwxrwx 1 root root 15 23 des 21:09 c++ -> /usr/bin/distcc
+    lrwxrwxrwx 1 root root 15 23 des 21:08 cc -> /usr/bin/distcc
+    lrwxrwxrwx 1 root root 15 23 des 21:08 g++ -> /usr/bin/distcc
+    lrwxrwxrwx 1 root root 15 23 des 21:08 gcc -> /usr/bin/distcc
+
+    /niximpure/home:
+    total 0
