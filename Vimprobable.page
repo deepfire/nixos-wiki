@@ -39,9 +39,9 @@ Google. The following example sets up the search engines Google
 
     $ touch $HOME/.config/vimprobable/searchengines
     $ cat << EOF
-    g  "https://google.com/search?q=%s"
-    nw "https://nixos.org/wiki/Special:Search?search=%s"
-    w  "https://secure.wikimedia.org/wikipedia/en/w/index.php?search=%s"
+    g  https://google.com/search?q=%s
+    nw https://nixos.org/wiki/Special:Search?search=%s
+    w  https://secure.wikimedia.org/wikipedia/en/w/index.php?search=%s
     $ EOF > $HOME/.config/vimprobable/searchengines
 
 See `man vimprobable2` for default search engines that come with
