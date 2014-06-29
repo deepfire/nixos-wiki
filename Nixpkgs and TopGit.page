@@ -183,7 +183,7 @@ creating new ones: ` `
              local prefix=export/
              local exported=${prefix}$branch
              git branch -D $exported
-             tg export $exported
+             tg export "$@" $exported
      }
 
 How to try this? Doesn't Nix\* use SVN?
