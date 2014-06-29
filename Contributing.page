@@ -73,3 +73,7 @@ Run a script like this: (TODO: improve it and add more documentation)
 
 TODO: explain what is done exactly
 
+The nixpkgs-dev-utilities referenced on [Nix(OS) related repositories
+and work](//Nix(OS) related repositories and work) tries to implement
+this for your convinience
+
