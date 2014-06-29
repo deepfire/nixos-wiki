@@ -1,0 +1,2 @@
+nix-build -A iso\_minimal /etc/nixos/nixos/release.nix
+
