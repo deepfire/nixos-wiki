@@ -1,4 +1,23 @@
 hydra.nixos.org
 ---------------
 
-### Machines
+### Build machines
+
+-   Linux
+    -   hydra
+    -   kyle
+    -   stan
+    -   kenny
+    -   jimmy 32
+    -   timmy 32
+-   Mac OS X
+    -   black
+    -   token
+    -   butters
+-   Windows
+    -   garrison
+-   FreeBSD
+    -   phillip
+-   Solaris
+    -   tweek
+
