@@ -18,3 +18,6 @@ However, `$ dmesg ` said:
     [54625.546073] dvb-usb: found a 'Hauppauge Nova-T Stick' in cold state, will try to load a firmware
     [54625.562868] dvb-usb: did not find the firmware file.
     (dvb-usb-dib0700-1.20.fw) Please see linux/Documentation/dvb/ for more details on firmware-problems. (-2)
+
+...todo
+
