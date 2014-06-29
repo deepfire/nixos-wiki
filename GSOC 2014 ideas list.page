@@ -97,3 +97,32 @@ This has already been done in the multiple-outputs branch.
 ([talk](/w/index.php?title=User_talk:EelcoDolstra&action=edit&redlink=1 "User talk:EelcoDolstra (page does not exist)"))
 11:24, 14 February 2014 (CET)
 
+### Lightweight NixOS containers
+
+NixOS has some very basic support for running other NixOS configurations
+as lightweight containers via systemd-nspawn (see
+[here](https://github.com/NixOS/nixpkgs/commit/9ee30cd9b51c46cea7193993d006bb4301588001)
+for details). However, it lacks many features, such as setting up proper
+networking (each container should have its own private network
+interface). Also, containers created via systemd-nspawn [are not really
+secure](http://lists.freedesktop.org/archives/systemd-devel/2011-April/002077.html).
+And changing the configuration of a container is currently realised by
+rebooting the entire container (rather than running
+switch-to-configuration inside the container). So there is much to be
+improved to make this production-ready.
+
+Another application of lightweight containers is to run NixOS services
+in private mount namespace where they can only see those parts of the
+filesystem that they really need. For instance, PostgreSQL should only
+have access to (say) /var/db/postgresql and the closure of PostgreSQL in
+the Nix store. If we have this, then we know exactly where the state of
+a service is stored (since it cannot touch anything else). This would
+allow tools like NixOps to migrate services \*with\* their state between
+machines. So if you changed the region of an EC2 machine in a NixOps
+specification from us-east-1 to eu-west-1, NixOps would actually be able
+to create a new machine in eu-west-1, copy all state, and kill the
+us-east-1 machine. This would be awesome, as finally getting a good
+handle on mutable state is something of a holy grail :-)
+
+Contact: Eelco Dolstra (eelco.dolstra@logicblox.com)
+
