@@ -71,12 +71,9 @@ yield a NixOS system we can chroot into.
     # for fn in dev proc sys; do mount --bind /$fn host/fn; done
 
     # find host -type f -name init | grep nixos
-
-host/nix/store/abwlkvzyjd2i39b1l1wfv7v9ilx88fwi-nixos-0.1pre34067-34077/init
-
+    host/nix/store/abwlkvzyjd2i39b1l1wfv7v9ilx88fwi-nixos-0.1pre34067-34077/init
     # find host -type f -name bash | tail -n 1
-
-host/nix/store/bmgq2jrn6719r6j55gs4rzfp0azcbazy-bash-4.2-p24/bin/bash
+    host/nix/store/bmgq2jrn6719r6j55gs4rzfp0azcbazy-bash-4.2-p24/bin/bash
 
 (edit init, add bash call, remove upstart)
 
