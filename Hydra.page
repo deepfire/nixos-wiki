@@ -3,21 +3,32 @@ hydra.nixos.org
 
 ### Build machines
 
--   Linux
-    -   hydra
-    -   kyle
-    -   stan
-    -   kenny
-    -   jimmy 32
-    -   timmy 32
--   Mac OS X
-    -   black
-    -   token
-    -   butters
--   Windows
-    -   garrison
--   FreeBSD
-    -   phillip
--   Solaris
-    -   tweek
+#### Linux
+
+-   hydra
+-   kyle
+-   stan
+-   kenny
+-   jimmy 32
+-   timmy 32
+
+#### Mac OS X
+
+-   black
+-   token
+-   butters
+    -   Apple XServe, 2x Quad-Core Intel Xeon 2.26 GHz, 24 GB, 1 TB
+        RAID1
+
+#### Windows
+
+-   garrison
+
+#### FreeBSD
+
+-   phillip
+
+#### Solaris
+
+-   tweek
 
