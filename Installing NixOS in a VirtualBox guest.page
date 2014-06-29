@@ -44,8 +44,8 @@ Now we're ready to install!
 
 Now you got a working nixos system.
 
-SSH-ing into the box
---------------------
+[[edit](/w/index.php?title=Installing_NixOS_in_a_VirtualBox_guest&action=edit&section=1 "Edit section: SSH-ing into the box")] SSH-ing into the box
+---------------------------------------------------------------------------------------------------------------------------------------------------
 
 However, you can't conveniently log in to ssh this way, so you'll need
 to set up port-forwarding. Doing that is explained on this site, all you
@@ -71,4 +71,14 @@ Alternative (independent of virtual network card chosen for the guest):
 
 As before, you are now able to log in to Nix by running
 `ssh -p2222 localhost` in your terminal.
+
+[[edit](/w/index.php?title=Installing_NixOS_in_a_VirtualBox_guest&action=edit&section=2 "Edit section: Vagrant boxes")] Vagrant boxes
+-------------------------------------------------------------------------------------------------------------------------------------
+
+Alternatively you can also use packer to generate vagrant boxes. Both
+packer and vagrant aren't available in the nixpkgs repo yet but it can
+be a good way to test out NixOS on another OS.
+
+The build instructions and code are available there:
+<https://github.com/zimbatm/nixbox>
 
