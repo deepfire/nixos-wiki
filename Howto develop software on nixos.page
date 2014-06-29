@@ -21,6 +21,10 @@ versions of a single library on the same system.
 **this guide describes how to build an environment for development which
 contains all the tools needed!**
 
+**note:** since svn revision 33421 the naming scheme has changed, for
+newly installed environments this means you have to type:
+**load-env-sdl** instead of load-sdl-env
+
 there are two ways archiving this:
 
 -   AAA with support of the package manager
