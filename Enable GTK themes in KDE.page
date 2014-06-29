@@ -1,3 +1,18 @@
+[[edit](/w/index.php?title=Enable_GTK_themes_in_KDE&action=edit&section=1 "Edit section: KDE System Settings")] KDE System Settings
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Nixpkgs now provides the GTK configuration module for KDE system
+settings, which you can install with:
+
+    $ nix-env -i kde-gtk-config
+
+You should also install any GTK themes you like. You can choose a GTK
+theme and set related options in
+`System Settings > Application Appearance > GTK`.
+
+[[edit](/w/index.php?title=Enable_GTK_themes_in_KDE&action=edit&section=2 "Edit section: Manually")] Manually
+-------------------------------------------------------------------------------------------------------------
+
 As a normal nix user you can install the Oxygen GTK theme:
 
     $ nix-env -i oxygen-gtk
