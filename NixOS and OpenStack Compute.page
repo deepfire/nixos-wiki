@@ -116,8 +116,6 @@ requires building a NixOS disk image.
 
 You can (sort of) test whether the VM works by running
 `qemu-img create ./image -b ./result/image -f qcow2; qemu-kvm -nographic ./image`.
-Note however that the VM doesn't have any consoles (because they're not
-needed in a headless cloud environment), so you can't actually log in.
 
 Now make the image available:
 
