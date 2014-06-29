@@ -1,7 +1,7 @@
 Here is the NixOS configuration that you need to get a MediaWiki
 instance:
 
-### mediawiki but NO vhosts yet
+### [[edit](/w/index.php?title=Setting_up_MediaWiki_%26_vhosts&action=edit&section=1 "Edit section: mediawiki but NO vhosts yet")] mediawiki but NO vhosts yet
 
     services.postgresql = {
       enable = true;
@@ -48,7 +48,7 @@ command line. For instance:
 See also:
 /etc/nixos/nixos/modules/services/web-servers/apache-httpd/mediawiki.nix
 
-### mediawiki and vhosts
+### [[edit](/w/index.php?title=Setting_up_MediaWiki_%26_vhosts&action=edit&section=2 "Edit section: mediawiki and vhosts")] mediawiki and vhosts
 
 this example features two vhost entries:
 
@@ -109,9 +109,9 @@ this example features two vhost entries:
       };
 
 For virtual hosts:
-<https://svn.nixos.org/repos/nix/configurations/trunk/tud/cartman.nix>
+<https://github.com/NixOS/nixos-org-configurations/blob/master/nixos-org/webserver.nix>
 
-### or more mediawiki instances using vhosts
+### [[edit](/w/index.php?title=Setting_up_MediaWiki_%26_vhosts&action=edit&section=3 "Edit section: 2 or more mediawiki instances using vhosts")] 2 or more mediawiki instances using vhosts
 
 notice the added new attributes:
 
