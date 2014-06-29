@@ -32,6 +32,10 @@ and restart the postgresql service
 
      $ sudo -u postgres /etc/init.d/postgresql restart
 
+Gives user hydra all rights to the database:
+
+     $ echo "GRANT ALL ON DATABASE hydra TO hydra;" | sudo -u postgres psql hydra
+
 Initialize the database:
 
      $ cat $HOME/.nix-profile/share/hydra/sql/hydra-postgresql.sql | psql -U hydra -W hydra
