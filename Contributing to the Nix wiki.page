@@ -1,3 +1,12 @@
+O(1)
+----
+
+On the haskell mailinglist there was some discussion about their
+[haskell.org wiki]. If you visit it it looks very crowded. However there
+is a good reason for it. You can access all content by O(1) access no
+matter whether you're an advanced user or a new user. I'd vote for O(1)
+access on the main wiki page as well - Marc Weber
+
 WISH LIST
 ---------
 
