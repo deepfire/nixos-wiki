@@ -1,0 +1,27 @@
+-   create disk images (partitions)
+-   create a configuration profile starting their Finnix rescue system
+-   select Finnix Kernel, iso image as /dev/xvda, Finnix initrd, your
+    disk image as /dev/xvdb
+-   create a configuration assigning your disk image to /dev/xvda
+    (/sbin/init will be started), choose a kernel.
+-   boot into Finnix, connect to linshell, mount xvdb
+-   install following the archive installation README. Force creating a
+    init script and get networking options from the configuration
+    profile editing page:
+
+<!-- -->
+
+     boot.loader.initScript.enable = true;
+     
+     networking = {
+       useDHCP = false;
+       interfaces = [ { ipAddress = "XXX.XXX.XXX.XXX" ; name = "eth0";
+                        subnetMask = "255.255.255.0"; } ];
+       defaultGateway = "YYY.YYY.YYY.YYY";
+     };
+
+-   Reboot. Have fun.
+
+Until the bootstrap archives can be downloaded from nixos.org you can
+download mine: <http://mawercer.de/~marc/bootstrap-archive-i686.tar.bz2>
+
