@@ -12,20 +12,20 @@ Getting started
 -   [Nixops
     manual](http://hydra.nixos.org/job/nixops/master/tarball/latest/download-by-type/doc/manual)
 
-TROUBLE?
---------
-
 -   [Getting Help](//Getting Help)
 -   [FAQ](//FAQ)
--   [install/remove software](//Install/remove software) - also list
-    installed software
--   [modify software](//Modify software)
--   [xorg/xserver
-    settings](/w/index.php?title=Xorg/xserver_settings&action=edit&redlink=1 "Xorg/xserver settings (page does not exist)")
+
+Contributing
+------------
+
+-   [Contributing to NixOS or Nix related projects](//Contributing)
 
 HOWTOs
 ------
 
+-   [install/remove software](//Install/remove software) - also list
+    installed software
+-   [modify software](//Modify software)
 -   [How to find the package you're looking for in
     Nix](//Howto find a package in NixOS)
 -   [How to keep multiple packages up to date at once (example for
@@ -97,7 +97,6 @@ Networking setup
 Development
 -----------
 
--   [Contributing to NixOS or Nix related projects](//Contributing)
 -   [CrossCompiling](//CrossCompiling)
 -   [Multiplatform NixOS](//Multiplatform NixOS) - PC, qemu arm
     versatile, sheevaplug, fuloong 2f minipc, raspberry pi
@@ -137,6 +136,8 @@ Misc
 -   [TODO - What is missing in the nix
     community?](//TODO - What is missing in the nix community)
 -   [Steam](//Steam)
+-   [xorg/xserver example
+    settings](/w/index.php?title=Xorg/xserver_example_settings&action=edit&redlink=1 "Xorg/xserver example settings (page does not exist)")
 
 ### Laptops
 
