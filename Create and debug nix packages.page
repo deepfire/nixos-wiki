@@ -100,17 +100,17 @@ verify that the nix-channel is called nixos, looks like this:
      # nix-channel --list
      nixos http://nixos.org/releases/nixos/channels/nixos-unstable
 
- I use it:
+ how to use the script:
 
-     % sudo -H nix-channel --update
-     % cd dev/nixos
-     % (cd nixos && git pull --rebase)
-     % (cd nixpkgs && git pull --rebase)
-     % create_tags_from_nixos_channel.sh
+     $ nix-channel --update
+     $ cd ~code
+     $ (cd nixos && git pull --rebase)
+     $ (cd nixpkgs && git pull --rebase)
+     $ create_tags_from_nixos_channel.sh
 
  dev/nixos contains nixos and nixpkgs as subdirs
 
-     % ls -l dev/nixos
+     $ ls -l dev/nixos
      total 8K
      drwxr-xr-x 9 cfl cfl 4096 Jul 15 07:02 nixos/
      drwxr-xr-x 6 cfl cfl 4096 Jul 15 04:01 nixpkgs/
