@@ -26,9 +26,9 @@ Sometimes the pc-speaker because the default audio card for ALSA. You
 can make your real sound card default instead. For example, if your
 sound card is "hda-intel" then add
 
-     boot.extraModprobeConfig = 
-       options snd slots=snd-hda-intel
-     ;
+      boot.extraModprobeConfig = ''
+        options snd slots=snd-hda-intel
+      '';
 
 to your /etc/nixos/configuration.nix.
 
