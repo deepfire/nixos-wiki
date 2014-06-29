@@ -17,8 +17,7 @@ ones.
 I have a patch
 --------------
 
-Thanks. Send it to the mailinglist so that we can discuss and apply it,
-or open a [pull request](//Pull request) on github.
+Thanks. Open a [pull request](//Pull request) on github.
 
 If your change breaks things don't scream if someone reverts it. It
 happens. The best thing to do is to fix your patch. Try to check first
@@ -46,6 +45,11 @@ Example:
       maintainers = [ maintainers.iElectric ];
       platforms = platforms.linux;
     };
+
+check if there are any evaluation errors with your distribution
+---------------------------------------------------------------
+
+    nix-instantiate --eval-only --strict --xml -A <packagename>
 
 How to verify that you didn't break a dependency or the evaluation by accident ?
 --------------------------------------------------------------------------------
@@ -91,7 +95,3 @@ hitting the "merge" button on github is fine, however doing
 
 is finer, because history will be cleaner.
 
-check if there are any evaluation errors with your distribution
----------------------------------------------------------------
-
-    nix-instantiate --eval-only --strict --xml -A <packagename>
