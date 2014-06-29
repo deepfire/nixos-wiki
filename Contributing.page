@@ -111,7 +111,7 @@ contributing to the nixpkgs manual
 
 The documentation for nixpkgs is in the nixpkgs/docs directory. To build
 it locally you need to install libxslt and docbook-xslt and then run
-\`make\`.
+`make`.
 
     $ nix-env -i docbook-xslt libxslt
     $ cd $NIXPKGS_ALL/docs
