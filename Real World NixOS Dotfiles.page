@@ -30,9 +30,9 @@ shared components and an update script for end users
 
 ### pSub
 
--   [[8]](https://github.com/pSub/configs/tree/master/x220)
+-   [[8]](https://github.com/pSub/configs/tree/master/nixos/x220)
     Configuration of my lenovo x220.
--   [[9]](https://github.com/pSub/configs/tree/master/server)
+-   [[9]](https://github.com/pSub/configs/tree/master/nixos/server)
     Configuration of my little vServer.
 
 Other stuff
