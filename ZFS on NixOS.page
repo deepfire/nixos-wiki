@@ -27,7 +27,8 @@ Known issues
     before or not. You should be careful not to have any other system
     accessing them at the same time, otherwise it will corrupt your
     pools. Normally (for the common desktop user) this should not be a
-    problem, as a hard disk is usually only connected to one machine.
+    problem, as a hard disk is usually only directly connected to one
+    machine.
 
 How to use it
 -------------
