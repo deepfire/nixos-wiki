@@ -59,3 +59,47 @@ nevertheless, only to files in the nix store.
 A second stage takes those .drv files, and 'builds' them (as with
 nix-store --realise).
 
+Writing your own nix packages
+=============================
+
+If you want to share the expressions you are going to write, get a VCS
+copy of nixpkgs and prepare patches that you will later send to the
+nix-dev list.
+
+If you want to package things for your own, you can write them as
+packageOverrides in your nixpkgs config. You can have a nixpkgs config
+(usually \~/.nixpkgs/config.nix) like this:
+
+    {
+       packageOverrides = pkgs : with pkgs; {
+
+         # If you want to debug linphone and its alsa libraries, let's keep the symbols and use -O0 for them:
+         alsaLibDebug = pkgs.misc.debugVersion pkgs.alsaLib;
+         linphoneDebug = pkgs.misc.debugVersion (pkgs.linphone.override {
+           alsaLib = alsaLibDebug;
+         });
+
+         # A program you may want to be able to build
+         # Due to the 'with pkgs;' above you can directly reference stdenv or readline.
+         myPackage = stdenv.mkDerivation {
+           name = "Mypackage-0.1";
+           src = fetchurl {
+             url = http://blabla.org/file.tar.gz;
+             sha256 = "...";
+           };
+           # Use whatever nixpkgs attribute you want.
+           buildInputs = [ readline ];
+         };
+
+         # Another program, this time with maybe a more complex expression
+         # that you prefer to keep in a file apart.
+         myOtherPackage = callPackage ./myotherpackage.nix {};
+
+         # A derivation of a build environment that you may later 'source' in your bash
+         # to build programs linked with alsa.
+         alsaEnv = pkgs.myEnvFun {
+             name = "alsa";
+             buildInputs = [ stdenv alsaLib ];
+         };
+       }
+    }
