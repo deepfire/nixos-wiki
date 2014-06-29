@@ -1,7 +1,7 @@
-TexLive HOWTO
--------------
+[[edit](/w/index.php?title=TexLive_HOWTO&action=edit&section=1 "Edit section: TexLive HOWTO")] TexLive HOWTO
+------------------------------------------------------------------------------------------------------------
 
-### TexLive components
+### [[edit](/w/index.php?title=TexLive_HOWTO&action=edit&section=2 "Edit section: TexLive components")] TexLive components
 
 There is a "core" texlive component and some additional components:
 
@@ -20,7 +20,7 @@ There is a "core" texlive component and some additional components:
 is the "core" component, other components add fonts/styles and extra
 functionalities.
 
-### The problem
+### [[edit](/w/index.php?title=TexLive_HOWTO&action=edit&section=3 "Edit section: The problem")] The problem
 
 -   Extra tex components install extra functionalities in locations that
     are unknown to the core component (as the core component obviously
@@ -43,7 +43,7 @@ would just solve the issue without much hassle. However, each time you
 upgrade/add an optional texlive component, you should update the
 TEXINPUTS environment variable, and this is bad.
 
-### The Solution
+### [[edit](/w/index.php?title=TexLive_HOWTO&action=edit&section=4 "Edit section: The Solution ...")] The Solution ...
 
 Instead of explicitly install texLive components via
 /etc/nixos/configuration.nix (environment.systemPackages) or nix-env -i,
@@ -54,20 +54,16 @@ one should write a nix-expression using the following function:
 cfr. <http://www.mail-archive.com/nix-dev@cs.uu.nl/msg00996.html> and
 <http://www.mail-archive.com/nix-dev@cs.uu.nl/msg00998.html>
 
--   nixos-rebuild way
+#### [[edit](/w/index.php?title=TexLive_HOWTO&action=edit&section=5 "Edit section: ... using /etc/nixos/configuration.nix")] ... using /etc/nixos/configuration.nix
 
-edit /etc/nixos/configuration.nix and add (or edit, if
+Edit /etc/nixos/configuration.nix and add (or edit, if
 environment.systemPackages is already set):
 
      environment = {
        systemPackages = [
          ...
-         (let myTexLive = 
-            pkgs.texLiveAggregationFun {
-               paths = [ pkgs.texLive pkgs.texLiveExtra pkgs.texLiveBeamer ];
-            };
-          in myTexLive)
-          ...
+         (pkgs.texLiveAggregationFun { paths = [ pkgs.texLive pkgs.texLiveExtra pkgs.texLiveBeamer ]; })
+         ...
        ];
        ...
      };
@@ -80,21 +76,20 @@ switch, all the specified texLive components will be built and their
 texmf-dist// scanned, resulting in an environment with a full working
 texlive + optional components setup.
 
--   nix-env way
+#### [[edit](/w/index.php?title=TexLive_HOWTO&action=edit&section=6 "Edit section: ... using ~/.nixpkgs/config.nix")] ... using \~/.nixpkgs/config.nix
 
-create a file \~/.nix-defexpr/texlive.nix:
+Create (or edit) the file \~/.nixpkgs/config.nix to contain the
+following code:
 
-     let
-       nixpkgs = (import ./nixpkgs_sys) {};
-     in
-     with nixpkgs; {
-       myTexLive = texLiveAggregationFun {
-         paths = [
-           texLive texLiveExtra texLiveBeamer
-         ];
-       } // { name = "mytexlive"; };
+     {
+       packageOverrides = pkgs:
+       {
+         myTexLive = with pkgs; texLiveAggregationFun {
+           paths = [ texLive texLiveExtra texLiveBeamer ];
+         };
+       };
      }
 
-and install with
+ and install with
 
-     nix-env -i -A texlive
+     nix-env -i -A myTexLive
