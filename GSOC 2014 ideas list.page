@@ -113,16 +113,17 @@ improved to make this production-ready.
 
 Another application of lightweight containers is to run NixOS services
 in private mount namespace where they can only see those parts of the
-filesystem that they really need. For instance, PostgreSQL should only
-have access to (say) /var/db/postgresql and the closure of PostgreSQL in
-the Nix store. If we have this, then we know exactly where the state of
-a service is stored (since it cannot touch anything else). This would
-allow tools like NixOps to migrate services \*with\* their state between
-machines. So if you changed the region of an EC2 machine in a NixOps
-specification from us-east-1 to eu-west-1, NixOps would actually be able
-to create a new machine in eu-west-1, copy all state, and kill the
-us-east-1 machine. This would be awesome, as finally getting a good
-handle on mutable state is something of a holy grail :-)
+filesystem that they really need. (Systemd almost but not quite supports
+this via InaccessibleDirectories and friends.) For instance, PostgreSQL
+should only have access to (say) /var/db/postgresql and the closure of
+PostgreSQL in the Nix store. If we have this, then we know exactly where
+the state of a service is stored (since it cannot touch anything else).
+This would allow tools like NixOps to migrate services \*with\* their
+state between machines. So if you changed the region of an EC2 machine
+in a NixOps specification from us-east-1 to eu-west-1, NixOps would
+actually be able to create a new machine in eu-west-1, copy all state,
+and kill the us-east-1 machine. This would be awesome, as finally
+getting a good handle on mutable state is something of a holy grail :-)
 
 Contact: Eelco Dolstra (eelco.dolstra@logicblox.com)
 
