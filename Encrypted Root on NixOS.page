@@ -34,6 +34,9 @@ This is what needs to be put into /etc/nixos/configuration.nix:
 
 Question: do we also need to set boot.loader.grub.copyKernels = true;?
 
+Question: do we also need to set boot.extraModulePackages = [
+pkgs.cryptsetup ];?
+
 ### Extra modules you might need
 
 Depending on the encryption algorithm you have chosen for your Luks
