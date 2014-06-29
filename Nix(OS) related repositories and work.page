@@ -12,3 +12,15 @@ convenient way to setup multiple build environments for a project
 Reasons for not committing it to trunk: The solver is quite ?low. There
 are many updates.
 
+nixpkgs-utilities
+-----------------
+
+a very small collection of scripts you can run to verify that you don't
+break too much when comitting. This is work in progress
+[nixpkgs-dev-utilities](http://gitorious.org/nixpkgs-dev-utilities/).
+Current goals:
+
+-   verify that everything still evaluates
+-   verify that most important things build on your system
+-   preview of what will be rebuild if you change something
+
