@@ -9,28 +9,38 @@ If you come across a term or word you don't know, add it here.
   Meaning
   Related Links
   ------------------ ------------------ ------------------ ------------------
-  `rec { }`          `evaluator`\
-  Nix expressions     or\
-  The `{ }` block    
-  contains "mutually `expression evalua
-  recursive"         tor`
-  attributes, which  Nix Manual
-  means they can     The part of the
-  refer to each      Nix program which
-  other.             reads and
-  [Composing the     evaluates a Nix
-  Hello              expression.
-  Package](http://ni [Nix Manual:
-  xos.org/nix/manual Common
-  /#ex-hello-composi Options](http://ni
-  tion)              xos.org/nix/manual
-                     /#sec-common-optio
-                     ns) `--arg`\
-                      [Nix Manual:
-                     Built-in
-                     Functions](http://
-                     nixos.org/nix/manu
-                     al/#ssec-builtins)
+  `rec { }`          `expression evalua Derivation         `stdenv`
+  Nix expressions    tor`               Nix Manual         Nix Manual
+  The `{ }` block    Nix Manual         A Nix expression   An attribute which
+  contains "mutually The part of the    which describes a  contains things
+  recursive"         Nix program which  build action. When expected in the
+  attributes, which  reads and          evaluated, it      most basic Unix
+  means they can     evaluates a Nix    creates one or     environment. (e.g.
+  refer to each      expression.        more entries in    Bash shell, `gcc`,
+  other.             [Nix Manual:       the Nix Store. The `cp`, `tar`,
+  [Composing the     Common             `nix-instantiate`  `grep`, etc.)
+  Hello              Options](http://ni command is the     [all-packages.nix:
+  Package](http://ni xos.org/nix/manual command which      `stdenv =`](https:
+  xos.org/nix/manual /#sec-common-optio creates entries in //github.com/NixOS
+  /#ex-hello-composi ns) `--arg`\       the Nix Store,     /nixpkgs/blob/mast
+  tion)               [Nix Manual:      while the          er/pkgs/top-level/
+                     Built-in           `nix-env` and      all-packages.nix#L
+                     Functions](http:// `nix-build`        224)]
+                     nixos.org/nix/manu commands are its   
+                     al/#ssec-builtins) user-friendly      
+                                        interface.         
+                                        [Nix Manual:       
+                                        Glossary -\>       
+                                        Derivation](http:/ 
+                                        /nixos.org/nix/man 
+                                        ual/#gloss-derivat 
+                                        ion)\              
+                                                           
+                                        [<http://nixos.org 
+                                        /nix/manual/#ssec- 
+                                        derivation>        
+                                        Nix Manual:        
+                                        Derivation         
   ---------------------------------------------------------------------------
 
 
