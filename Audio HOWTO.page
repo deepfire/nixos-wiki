@@ -150,4 +150,5 @@ same time as using JACK applications (e.g. Ardour).
 You should now be able to start JACK with QjackCtl, you will notice a
 new playback and capture device in your sound mixer along with your
 normal devices.
+[![Kmix-pulseaudio-with-jack.png](/w/images/f/f4/Kmix-pulseaudio-with-jack.png)](//File:Kmix-pulseaudio-with-jack.png)
 
