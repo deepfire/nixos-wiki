@@ -36,7 +36,7 @@ Alternatively you can ...
 
 ### Disable PC Speaker "audio card"
 
-edit /etc/nixos/configuration.nix and "snd\_pcsp" to
+edit /etc/nixos/configuration.nix and add "snd\_pcsp" to
 boot.blacklistedKernelModules option:
 
      boot.blacklistedKernelModules = [ "snd_pcsp" ];
