@@ -70,6 +70,8 @@ Using Nix
 -   [FAQ](//FAQ)
 -   [NixOS Project on GitHub](https://github.com/NixOS): Search for or
     create issues
+-   [How to update when nix is too old to evaluate
+    nixpkgs](//How to update when nix is too old to evaluate nixpkgs)
 
 Using NixOS
 -----------
