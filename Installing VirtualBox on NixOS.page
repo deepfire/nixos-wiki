@@ -35,9 +35,22 @@ type:
 
      VirtualBox
 
+error messages
+--------------
+
+### missing kernel modules
+
 if you get this error message (like this), something went wrong:
 
      "/dev/vboxdrv does not exist. Load the kernel module then try again."
+
+### kvm kernel module is loaded
+
+     VirtualBox can't operate in VMX root mode. Please disable the KVM kernel extension, recompile your kernel and reboot (VERR_VMX_IN_VMX_ROOT_MODE). 
+
+solution:
+
+     rmmod kvm-intel
 
 
 <https://svn.nixos.org/repos/nix/configurations/trunk/misc/nicolas.b.pierron/vinon.nix>
