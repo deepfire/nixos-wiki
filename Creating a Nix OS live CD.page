@@ -9,6 +9,6 @@ Without NixOS you need to supply the
 [source](https://svn.nixos.org/repos/nix/nixos/trunk/) instead of
 /etc/nixos/nixos.
 
-see also:
+See also section "Building your own NixOS CD" of the [NixOS
+manual](http://hydra.nixos.org/job/nixos/trunk/manual/latest/download).
 
-     http://hydra.nixos.org/build/1106908/download/1/nixos/manual.html#id358603
