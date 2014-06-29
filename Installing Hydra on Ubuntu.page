@@ -20,6 +20,7 @@ Add to the .profile of the user running hydra:
      export HYDRA_DBI="dbi:Pg:dbname=hydra;host=localhost;user=hydra;"
      export HYDRA_DATA=$HOME/hydra
      export HYDRA_BUILD_BASEURL="http://hydra.nixos.org/build"
+     export HYDRA_CONFIG="$HOME/hydra/hydra.conf"
 
 Change the line in /etc/postgresql/8.4/main/pg\_hba.conf
 
