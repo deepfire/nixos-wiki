@@ -1,0 +1,36 @@
+Properties are used to scope option definitions with control flow
+statements which do not break
+([example](//NixOS:config argument#Conditional Statements)) the highly
+recursive process of merging modules. All properties are defined in
+[`pkgs/lib/properties.nix`](https://svn.nixos.org/repos/nix/nixpkgs/trunk/pkgs/lib/properties.nix%7C).
+
+-   `mkNotdef`: Invalidate a definition. Any attribute which has this
+    value is considered as not defined in the current module.
+-   `mkIf condition definitions`: Create a conditional statements around
+    multiple definitions. The definitions are considered only if the
+    condition is verified.
+-   `mkThenElse { thenPart = definitions; elsePart = definitions; }`:
+    Create two different evaluations based on the result of all previous
+    `mkIf` conditions.
+-   `mkAlways`: Ignore all previous `mkIf` conditions.
+-   `mkOverrideTemplate priority template definitions`: Set a priority
+    level to all definitions which are enumerated inside the template.
+    Only definitions with the lower priority level are kept. The default
+    priority level is 100. An empty template is considered as all
+    definitions.
+-   `mkOverride priority template definitions`: Currently the same as
+    `mkOverrideTemplate`.
+-   `mkDefaultValue definitions`: A shortcut notation to define default
+    values (priority level of 1000) inside the configuration. This is
+    extremely useful to avoid references to properties inside the user
+    configuration while overriding the default value of the option. Any
+    option define without this property will take precedence over it.
+-   `mkOrder rank definitions`: Add a rank value to definitions. This is
+    useful for options where some dependences between definitions exist.
+    A lower rank will add the definitions among the first definitions.
+    The default rank is 100.
+-   `mkHeader definitions`: A shortcut notation to define a rank of 10
+    with `mkOrder`.
+-   `mkFooter definitions`: A shortcut notation to define a rank of 1000
+    with `mkOrder`.
+
