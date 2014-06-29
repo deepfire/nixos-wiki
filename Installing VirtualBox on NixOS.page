@@ -16,6 +16,36 @@ enable VirtualBox for user `alice`, do:
 
     $ usermod -a -G vboxusers alice
 
+### Enabling VirtualBox Extension Pack
+
+This is necessary for the USB subsystem and remote desktop access.
+Unfortunately, the extension pack is behind a license agrreement, you
+have to download it manually:
+
+Get *Oracle\_VM\_VirtualBox\_Extension\_Pack-4.2.12-84980.vbox-extpack*
+from <https://www.virtualbox.org/wiki/Downloads>.
+
+Then add it to the Nix store:
+
+    nix-prefetch-url file://Oracle_VM_VirtualBox_Extension_Pack-4.2.12-84980.vbox-extpack
+
+ Override the VirtualBox package to enable the extension pack:
+
+    kernelPackages = pkgs.linuxPackages // {
+      virtualbox = pkgs.linuxPackages.virtualbox.override {
+        enableExtensionPack = true;
+      };
+    };
+
+(Replace *pkgs.linuxPackages* with the package set you want to use)
+
+ Switch to the new system configuration:
+
+    nixos-rebuild switch
+
+This will take a long time because Nix will compile VirtualBox from
+source.
+
 Running VirtualBox
 ------------------
 
