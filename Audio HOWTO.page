@@ -1,5 +1,5 @@
-Getting ALSA to work
---------------------
+[[edit](/w/index.php?title=Audio_HOWTO&action=edit&section=1 "Edit section: Getting ALSA to work")] Getting ALSA to work
+------------------------------------------------------------------------------------------------------------------------
 
 -   on a console fire up alsamixer
 
@@ -20,7 +20,7 @@ Getting ALSA to work
         -   first thing to do is to disable pc speaker (kernel module
             "snd-pcsp", see below.
 
-### Make your audio card the default ALSA card
+### [[edit](/w/index.php?title=Audio_HOWTO&action=edit&section=2 "Edit section: Make your audio card the default ALSA card")] Make your audio card the default ALSA card
 
 Sometimes the pc-speaker is the default audio card for ALSA. You can
 make your real sound card default instead. For example, if your sound
@@ -41,7 +41,7 @@ disable first card, but enable the second one.
 
 Alternatively you can ...
 
-### Disable PC Speaker "audio card"
+### [[edit](/w/index.php?title=Audio_HOWTO&action=edit&section=3 "Edit section: Disable PC Speaker "audio card"")] Disable PC Speaker "audio card"
 
 edit /etc/nixos/configuration.nix and add "snd\_pcsp" to
 boot.blacklistedKernelModules option:
@@ -51,7 +51,7 @@ boot.blacklistedKernelModules option:
 Now reboot and retry from the beginning (i.e. check that your real card
 is shown by alsamixer without using the 'S' key).
 
-### Other hardware specific problems
+### [[edit](/w/index.php?title=Audio_HOWTO&action=edit&section=4 "Edit section: Other hardware specific problems")] Other hardware specific problems
 
 Some hardware specific problems can be resolved by adjusting the options
 for the sound module. For example, the microphone may be stuck on an
@@ -109,7 +109,7 @@ Much of this is taken from
 <https://help.ubuntu.com/community/HdaIntelSoundHowto> which also has
 additional tips.
 
-### Fixing sound in KDE *(is this now obsolete? 2011/08)'*
+### [[edit](/w/index.php?title=Audio_HOWTO&action=edit&section=5 "Edit section: Fixing sound in KDE (is this now obsolete? 2011/08)'")] Fixing sound in KDE *(is this now obsolete? 2011/08)'*
 
 (alsamixer shows my audio card by default, but i get no sound in KDE)
 
@@ -137,7 +137,7 @@ Multimedia
 
 Test the audio and enjoy the relaxing KDE's arpeggio.
 
-### Enabling PulseAudio
+### [[edit](/w/index.php?title=Audio_HOWTO&action=edit&section=6 "Edit section: Enabling PulseAudio")] Enabling PulseAudio
 
 In your config file:
 
@@ -164,7 +164,7 @@ global alsa settings?.
       pulseaudi 14080 goibhniu   30u   CHR  116,7      0t0 5169 /dev/snd/controlC0
       pulseaudi 14080 goibhniu   37u   CHR  116,7      0t0 5169 /dev/snd/controlC0
 
-### Using JACK with PulseAudio
+### [[edit](/w/index.php?title=Audio_HOWTO&action=edit&section=7 "Edit section: Using JACK with PulseAudio")] Using JACK with PulseAudio
 
 [Jack Audio Connection Kit](http://jackaudio.org:The) is used by most of
 the serious audio applications on Linux. It provides real-time, low
@@ -216,7 +216,7 @@ normal devices.
 
 [![Kmix-pulseaudio-with-jack.png](/w/images/f/f4/Kmix-pulseaudio-with-jack.png)](//File:Kmix-pulseaudio-with-jack.png)
 
-#### Troubleshooting JACK and PulseAudio
+#### [[edit](/w/index.php?title=Audio_HOWTO&action=edit&section=8 "Edit section: Troubleshooting JACK and PulseAudio")] Troubleshooting JACK and PulseAudio
 
     $ pactl load-module module-jack-sink channels=2
     Failure: Module initalization failed
@@ -229,11 +229,12 @@ Otherwise, you may get further info by disabling PulseAudio respawning
 
     $ pulseaudio -vvv
 
-### System optimizations for low latency audio with JACK
+### [[edit](/w/index.php?title=Audio_HOWTO&action=edit&section=9 "Edit section: System optimizations for low latency audio with JACK")] System optimizations for low latency audio with JACK
 
 Some of the following settings, documented in
 <http://wiki.linuxmusicians.com/doku.php?id=system_configuration> can be
-very helpful to reduce xruns and improve responsiveness:
+very helpful to reduce xruns and improve responsiveness and are required
+for certain programs to run at all e.g. Ardour:
 
       boot.postBootCommands = "${pkgs.procps}/sbin/sysctl -w vm.swappiness=10";
 
