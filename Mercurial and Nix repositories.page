@@ -52,18 +52,17 @@ This \*WILL\* take a \*LONG\* time (about 10-20 minutes)
      $ hg clone https://svn.nixos.org/repos/nix/nixpkgs/trunk nixpkgs-hg
 
 -   Once done you \*MUST\* ensure that all file permissions are the same
-    (mercurial will apply commits from the beginning of the history to
-    the latest revision to rebuild the tree, "forgetting" about file
-    permissions in the way).
--   Failing to do so will result in binaries incompatibilities between
-    derivations from your tree and derivations from official
-    nixpkgs/trunk (and by consequence the inability to use binaries
-    built by hydra, i.e. you'll need to re-bootstrap your nixos
-    entierely). Worst to \*inability\* to bootstrap the system, because
-    the files in question should really have the executable flag
-    activated.
+    as in /etc/nixos/nixpkgs (mercurial will apply commits from the
+    beginning of the history to the latest revision to rebuild the tree,
+    "forgetting" about file permissions in the way).
+-   Failing to do so will result in your tree producing derivations with
+    different hashes than the official nixpkgs/trunk (and by consequence
+    the inability to use binaries built by hydra, i.e. you'll need to
+    re-bootstrap your nixos entierely). Worst the inability to bootstrap
+    the system, as the files in question should really have the
+    executable flag activated (see below).
 -   In my case the only files with wrong permissions were those
-    executable needed for bootstrapping the system (sic!).
+    executable needed for bootstrapping the system, very bad.
 -   Make sure that at least those files have these permissions (notice
     the executable flag).
 
