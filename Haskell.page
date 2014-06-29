@@ -479,8 +479,8 @@ structure:
      {
        packageOverrides = pkgs : {
          myHaskellPackages = pkgs.recurseIntoAttrs (pkgs.haskellPackages.override {
-           extraPrefs = hsPkgs : {
-             haskellpackage = hsPkgs.callPackage ./haskell/haskellpackage.nix {};
+           extension = self : {
+             haskellpackage = self.callPackage ./haskell/haskellpackage.nix {};
            };
          });
        };
