@@ -10,8 +10,8 @@ If you come across a term or word you don't know, add it here.
   Related Links
   ------------------ ------------------ ------------------ ------------------
   `rec { }`          `expression evalua Derivation         `stdenv`
-  Nix expressions    tor`               Nix Manual         Nix Manual
-  The `{ }` block    Nix Manual         A Nix expression   An attribute which
+  Nix expressions    tor`               Nix                Nix expressions
+  The `{ }` block    Nix                A Nix expression   An attribute which
   contains "mutually The part of the    which describes a  contains things
   recursive"         Nix program which  build action. When expected in the
   attributes, which  reads and          evaluated, it      most basic Unix
