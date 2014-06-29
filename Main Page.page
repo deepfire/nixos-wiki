@@ -69,6 +69,8 @@ HOWTOs
 
 -   [Writing and running NixOS VM tests](//NixOS VM tests)
 
+-   [How to install Nix OS on a hetzner rootserver](//NixOS on Hetzner)
+
 Development
 -----------
 
