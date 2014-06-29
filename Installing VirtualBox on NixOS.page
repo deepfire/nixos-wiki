@@ -26,6 +26,9 @@ Just do:
 Error messages
 --------------
 
+Since this expression implements the open source VirtualBox it **does
+not include VirtualBox Extension Pack(s)**.
+
 ### Failed to access the USB subsystem
 
 The message:
