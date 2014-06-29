@@ -1,0 +1,171 @@
+### Hack-nix & nixpkgs-haskell-overlay
+
+TODO: This page should be merged with [Haskell](//Haskell).
+
+Hack-nix is an alternative way packaging most of hackage for Nix.
+
+Introduction
+------------
+
+Hackage and cabal files are the standard to define build dependencies of
+Haskell packages. There are almost no exceptions left using different
+build systems (configure make or the like). Because version constraints
+defined in such cabal files can become quite complex its very annoying
+to build many haskell dependencies then to see that you did something
+very wrong because cabal of the target package fails to resolve
+dependencies because you choose wrong versions. (Things got better due
+to the Haskell platform - hack-nix was started before it existed.)
+Hack-nix tries to solve these kind of issues by making Nix choose the
+correct versions from a pool of hackage packages - doing almost the same
+analysis cabal would do.
+
+How does hack-nix work?
+-----------------------
+
+It's best explained by the workflow:
+
+1)
+
+       hack-nix # no args
+
+loads the hackage package dump and applies some
+[patches](https://github.com/MarcWeber/nixpkgs-haskell-overlay/tree/master/patches).
+This pool of packages is written in a
+[hack-nix-db.nix](https://github.com/MarcWeber/nixpkgs-haskell-overlay/blob/master/hackage/hack-nix-db.nix)
+readable by Nix.
+
+Examples like darcs (having more than 8 flags) illustrate easily why
+there are too many possibilities to judge which is why the default flag
+settings are used but can be overridden easily. See darcs example
+forcing cabal flags curl, http etc to be true: [default.nix of
+nixpkgs-haskell-overlay](https://github.com/MarcWeber/nixpkgs-haskell-overlay/blob/master/default.nix).
+
+Its also easy to imagine how many different dependency graphs could be
+evaluated. Think about the dependency tree:
+
+      A -  C .
+        `- B  -  TARGET
+
+TARGET is the executable you want to build, and C, B are libraries like
+"curl" or "bytestring".
+
+Now imagine that there are 3 versions (1.0, 1.1, 1.2) on hackage for C
+and B and TARGET can be build with all 9 combinations. You can easily
+imagine how many ways there exists to build a package.
+
+The simple prototype brute force solver can't cope with it. it would
+require too much time and memory. (NAT solvers might solve this. Eclipse
+equinox p2 does this - but it would be a lot more work to implement)
+That's why only the latest package versions and some manually selected
+older package versions found on hackage are used to make up the default
+pool (hack-nix-db.nix).
+
+Creating this dump requires hashes of all source archives. Contact me
+(see bottom) to get a file with most hashes.
+
+2)
+
+The brute force solver written in Nix reads the pool. While doing so
+additional packages such as dev versions can be added, too. Then the
+solver either fails early telling you that some constraints couldn't be
+satisfied or nix builds your packages. If dependencies are missing very
+often its enough to rebuild the dump adding some additional older
+versions.
+
+INSTALLATION
+------------
+
+      mkdir hack-nix; cd hack-nix
+      git clone --depth=1 git://github.com/MarcWeber/nixpkgs -b experimental/hack-nix
+      get clone --depth=1  git://github.com/MarcWeber/nixpkgs-haskell-overlay.git
+
+Way 1 to run the solver: See exeByName definitions in the [default.nix
+of the
+overlay](https://github.com/MarcWeber/nixpkgs-haskell-overlay/blob/master/default.nix).
+You can build everything easily. Example: Building hack-nix executable
+(which you'll require for way 2 anyway):
+
+     nix-build -A hackNix nixpkgs-haskell-overlay/default.nix
+
+ WAY 2 to run the solver:
+
+      cd YOUR_CABAL_PROJECT # which you want to build
+      hack-nix --build-env
+
+      # or to build a specific configuration:
+      hack-nix --write-hack-nix-cabal-config
+      # adjust to your liking:
+      $EDITOR .hack-nix-cabal-config
+      hack-nix --build-env-name NAME_OF_BUILD_CONFIGURATION
+
+This will create a shell script which if loaded contains everything you
+need to build YOUR\_CABAL\_PROJECT. Editing the .hack-nix-cabal-config
+you can add packages to the pool, change ghc version etc. This way you
+can build the same package in different shells using different shell
+environment settings easily testing different cabal flags or ghc
+versions.
+
+TIPS
+----
+
+TIP 1)
+
+      hack-nix --patch-workflow name-version
+
+can be used to create patches patches for nixpkgs-haskell-overlay easily
+Most of the time they are used to change very tight constraints written
+in cabal files.
+
+TIP 2)
+
+The \~/hack-nix/config file can be edited making hack-nix also generate
+hasktags tag files for you. Eg put this code into your \~/.vimrc file to
+use them:
+
+     fun! AddTagsFromEnv()
+       let tags = split(&tags,',')
+       for i in split(expand('$buildInputs'),'\s\+')
+         call extend(tags, split(glob(i.'/src/*/*_tags'),"\n"))
+       endfor
+       call extend(tags, split($TAG_FILES,":"))
+       call filter(tags, 'filereadable(v:val)')
+       for t in tags
+         if &tags !~ substitute(t, '/','\\/','g')
+           exec "set tags+=".t
+         endif
+       endfor
+     endf
+     " the following two lines are for github.com/MarcWeber/vim-addon-haskell
+     let g:vim_addon_haskell = {}
+     let g:vim_addon_haskell.env_reloaded_hook_fun = 'AddTagsFromEnv'
+     call AddTagsFromEnv()
+
+TIP 3) The README files of the github repositories may contain some
+additional information.
+
+How will the FUTURE look like ?
+-------------------------------
+
+Depends on you. Peter and Andreas Loeh has shown with their traditional
+way that the problems I saw do not happen in practice.
+
+BUGS
+----
+
+Oh, there are many. build tools were not defined by cabal files in the
+past which is why tools like happy have to added as buildinputs manually
+(see default.nix file of the overlay). If you have 2 month of free time
+- what about implementing NAT for finding solutions for the dependency
+trees?
+
+TROUBLE ?
+---------
+
+hack-nix is not very friendly to new users. If you have any questions
+contact Marc Weber on irc or by mail (marco-oweber ATT gmx DOT de)
+
+Related projects
+----------------
+
+I did something similar for rubyforge and PyPi.
+
