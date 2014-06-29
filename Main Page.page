@@ -1,5 +1,11 @@
 Welcome to the Nix wiki!
 
+Wiki meta
+---------
+
+-   [How to contribute to the nix wiki](//Contributing to the Nix wiki)
+    (keep top)
+
 TROUBLE?
 --------
 
@@ -16,8 +22,6 @@ TROUBLE?
 HOWTOs
 ------
 
--   [How to contribute to the nix wiki](//Contributing to the Nix wiki)
-    (keep top)
 -   [How to find the package you're looking for in
     Nix](//Howto find a package in NixOS)
 -   [How to keep multiple packages up to date at once (example for
