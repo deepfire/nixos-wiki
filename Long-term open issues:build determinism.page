@@ -1,6 +1,9 @@
 What are the builder-accessible pieces of information that can lead to
 repeated build producing bit-for-bit different outputs?
 
+Not addressed completely
+------------------------
+
 ### System time
 
 Additional problem: ctime on files, if build creates any archives
