@@ -48,7 +48,12 @@ look at: iso\_minimal which will redirect us to:
       ];
     }
 
-### step 1/2: starting ssh automatically in the image and adding a ssh key to it
+### step 1/3: starting ssh automatically in the image and adding a ssh key to it
+
+setting a default password on the boot cdrom (so that nobody can login
+using the default 'unset' password: TODO
+
+### step 2/3: starting ssh automatically in the image and adding a ssh key to it
 
 this is a hack, however it surely gives you an idea how to modify the
 stuff there:
@@ -64,7 +69,7 @@ at the end of
 
 -   boot.postBootCommands =
 
-### step 2/2: starting ssh automatically in the image and adding a ssh key to it
+### step 3/3: starting ssh automatically in the image and adding a ssh key to it
 
     vi /etc/nixos/nixos/modules/installer/cd-dvd/system-tarball-pc.nix
 
