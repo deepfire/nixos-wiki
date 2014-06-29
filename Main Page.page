@@ -4,12 +4,9 @@ TROUBLE?
 --------
 
 -   [Getting Help](//Getting Help)
-
 -   [FAQ](//FAQ)
-
 -   [install/remove software](//Install/remove software) - also list
     installed software
-
 -   [xorg/xserver
     settings](/w/index.php?title=Xorg/xserver_settings&action=edit&redlink=1 "Xorg/xserver settings (page does not exist)")
 
@@ -18,66 +15,41 @@ HOWTOs
 
 -   [How to contribute to the nix wiki](//Contributing to the Nix wiki)
     (keep top)
-
 -   [How to find the package you're looking for in
     Nix](//Howto find a package in NixOS)
-
 -   [How to keep multiple packages up to date at once (example for
     pkgs.misc.collection)](//Howto keep multiple packages up to date at once)
-
 -   [How to find any text in code fast (gnu idutils)](//HOWTO:idutils)
-
 -   [How to set up MediaWiki in NixOS with
     vhosts](//Setting up MediaWiki & vhosts)
-
 -   [How to write a NixOS module](//NixOS:Modules)
-
 -   [NixOS issue tracker](http://yellowgrass.org/project/NixOS)
-
 -   [How to install NixOS from a USB
     stick](//Installing NixOS from a USB stick)
-
 -   [How to install NixOS from linux](//How to install NixOS from linux)
-
 -   [How to escape from dependency hell when compiling recent
     packages](//Escape from dependency hell)
-
 -   [How to write patches using TopGit in a collaborative
     manner](//Nixpkgs and TopGit)
-
 -   [How to install Firefox with Java plugin](//Java in Firefox)
-
 -   [Encrypted root(home, swap) on NixOS](//Encrypted Root on NixOS)
-
 -   [Audio Howto](//Audio HOWTO)
-
 -   [TexLive Howto](//TexLive HOWTO)
-
 -   [Mercurial and Nix repositories](//Mercurial and Nix repositories)
-
 -   [Emacs configuration](//Emacs configuration)
-
 -   [Enable GTK themes in KDE](//Enable GTK themes in KDE)
 
 ### Virtualisation
 
 -   [NixOS and Xen](//NixOS and Xen)
-
 -   [How to install NixOS on Amazon EC2](//NixOS on Amazon EC2)
-
 -   [NixOS and OpenStack Compute](//NixOS and OpenStack Compute)
-
 -   [How to install NixOS on linode.com](//Install NixOS on Linode)
-
 -   [How to install NixOS as OpenVZ
     guest](//Install NixOS as OpenVZ guest)
-
 -   [Install NixOS on VirtualBox](//InstallingOnVirtualBox)
-
 -   [Installing VirtualBox on NixOS](//Installing VirtualBox on NixOS)
-
 -   [Writing and running NixOS VM tests](//NixOS VM tests)
-
 -   [How to install Nix OS on a hetzner rootserver](//NixOS on Hetzner)
 
 Development
