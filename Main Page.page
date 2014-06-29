@@ -61,6 +61,8 @@ HOWTOs
 -   [How to install NixOS on Amazon EC2](//NixOS on Amazon EC2)
 -   [NixOS and OpenStack Compute](//NixOS and OpenStack Compute)
 -   [How to install NixOS on linode.com](//Install NixOS on Linode)
+-   [How to install NixOS on
+    Rackspace](//Install NixOS on Rackspace Cloud Servers)
 -   [How to install NixOS as OpenVZ
     guest](//Install NixOS as OpenVZ guest)
 -   [Install NixOS on VirtualBox](//InstallingOnVirtualBox)
