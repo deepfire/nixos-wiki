@@ -53,11 +53,10 @@ Install Prerequisites
     source /etc/profile.d/nix.sh
     nix-channel --update
 
-### Checkout NixOS and Nixpkgs from Git
+### Checkout Nixpkgs from Git
 
     cd ~
     nix-env -i git vim
-    git clone git://github.com/NixOS/nixos.git
     git clone git://github.com/NixOS/nixpkgs.git
 
 ### Install *nixos-install*, *nixos-option*, and *nixos-hardware-schan*
@@ -68,8 +67,8 @@ Install Prerequisites
     } 
     EOF
 
-    export NIX_PATH=nixos=/root/nixos:nixpkgs=/root/nixpkgs:nixos-config=/root/configuration.nix
-    nix-env -i -A config.system.build.nixosInstall -A config.system.build.nixosOption -A config.system.build.nixosHardwareScan -f "<nixos>"
+    export NIX_PATH=nixos=/root/nixpkgs/nixos:nixpkgs=/root/nixpkgs:nixos-config=/root/configuration.nix
+    nix-env -i -A config.system.build.nixos-install -A config.system.build.nixos-option -A config.system.build.nixos-generate-config -f "<nixos>"
 
 Configure your system
 ---------------------
