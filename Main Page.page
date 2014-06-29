@@ -195,6 +195,7 @@ How-tos
 -   [Enable GTK themes in KDE](//Enable GTK themes in KDE)
 -   [Encrypted root(home, swap) on NixOS](//Encrypted Root on NixOS) -
     Using luks
+-   [ZFS on NixOS](//ZFS on NixOS)
 
 -   [How to tweak Linux kernel config
     options](//How to tweak Linux kernel config options)
