@@ -10,9 +10,9 @@ Installing Python interpreters
 Installing Packages
 ===================
 
-     nix-env -iA nixos.pkgs.pythonPackages.pyramid (installs pyramid with default python, currently 2.7)
-     nix-env -iA nixos.pkgs.python33Packages.pyramid (installs pyramid with python 3.3)
-     nix-env -iA nixos.pkgs.pythonPackages.requests
+     nix-env -i python2.7-pyramid (installs pyramid with python 2.7 interpreter)
+     nix-env -i python3.3-pyramid (installs pyramid with python 3.3 interpreter)
+     nix-env -i pypy2.1-requests (installs requests with pypy 2.1 interpreter)
 
 Rationale of not polluting global site packages
 ===============================================
