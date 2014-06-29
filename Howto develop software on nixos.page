@@ -90,13 +90,9 @@ a set of Nix packages. The name will be the name of the development
 environment, and the set of Nix packages will be the set of tools we
 need to work on the application.
 
-First, install the `myEnvFun` tool.
-
-     $ nix-env -i myEnvFun
-
-Then, place the Nix expression which defines our development environment
-in `~/.nixpkgs/config.nix`. Using the following code as a template, we
-can create an environment, name it, and add tools to it.
+First, place the Nix expression which defines our development
+environment in `~/.nixpkgs/config.nix`. Using the following code as a
+template, we can create an environment, name it, and add tools to it.
 
      {
        packageOverrides = pkgs : with pkgs; {
