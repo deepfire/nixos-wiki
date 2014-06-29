@@ -46,17 +46,14 @@ is shown by alsamixer without using the 'S' key).
 
 ### Other hardware specific problems
 
-If you're mic is always at a very low volume or you experience other
-oddness and you have already checked the settings in alsamixer to make
-sure nothing is muted, and also any buttons on your computer (I have
-twice overlooked the mute button on laptops!) you may need to specify a
-particular card model when loading snd-hda-intel:
+Some hardware specific problems can be resolved by adjusting the options
+for the sound module. For example, the microphone may be stuck on an
+unusably low volume. First you should be sure that you have already
+checked the settings in alsamixer to make sure nothing is muted, and
+also any physical buttons on your computer (I have twice overlooked the
+mute button on laptops!).
 
-      boot.extraModprobeConfig = ''
-        options snd-hda-intel model=YOUR_MODEL 
-      '';
-
-You should be able to look up the available options for model in
+You should be able to look up the available options for *model* in
 [[1]](http://www.kernel.org/doc/Documentation/sound/alsa/HD-Audio-Models.txt:HD-Audio-Models.txt).
 You can try them out interactively as follows:
 
@@ -91,6 +88,13 @@ You can try them out interactively as follows:
 7.  TIDY UP!
     Don't forget to re-enable pulse autospawning by changing
     "autospawn=no" to "autospawn=yes" in \~/.pulse/client.conf
+
+Once you have found a setting that works, you can add it to your
+configuration file:
+
+      boot.extraModprobeConfig = ''
+        options snd-hda-intel model=YOUR_MODEL 
+      '';
 
 ### Fixing sound in KDE
 
