@@ -18,29 +18,29 @@ If you are stumped by an error message, add it here.
   nt without a d e/*-libtool-2. Using
   efault value ( 4.2/bin/libtoo `rebuild-nixos
   `stdenv') ``   l: preserve_ar `.
-  Trying to      gs+= --tag CC: An option is
+  Trying to      gs+= --tag CC: An option was
   build an        not found`    used in
   individual     Building a     `configuration
   package with:  package which  .nix`
-  `nix-build --d depends on     which isn't
-  ry-run ./defau libtool.       defined in the
+  `nix-build --d depends on     which wasn't
+  ry-run ./defau libtool.       found in the
   lt.nix`        The `--tag CC` NixOS modules.
   A Nix function argument is    Check syntax
   was called     used when      and validity
   without a      libtool is     of all options
   required       called,        in
   argument.      but...somethin `configuration
-  Use `--arg` or g.             .nix`.
-  `--argstr` to  Ensure Bash is [NixOS
-  specify        the shell      Modules](//Nix
-  arguments.     used. Consider OS:Modules)
-  [Nix Manual:   using          
-  Common         `sudo dpkg-rec 
-  Options](http: onfigure dash` 
-  //nixos.org/ni to fix         
-  x/manual/#sec- `/bin/sh`,     
-  common-options which          
-  )\             "libtool"      
+  Use `--arg` or g.             .nix`.\
+  `--argstr` to  Ensure Bash is  If developing
+  specify        the shell      a module,
+  arguments.     used. Consider ensure it is
+  [Nix Manual:   using          added to the
+  Common         `sudo dpkg-rec `module-list.n
+  Options](http: onfigure dash` ix`
+  //nixos.org/ni to fix         file.
+  x/manual/#sec- `/bin/sh`,     [NixOS
+  common-options which          Modules](//Nix
+  )\             "libtool"      OS:Modules)
    [Explanation  references.    
   in email       Nix is heavily 
   thread](http:/ dependent on   
