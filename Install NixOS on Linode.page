@@ -76,7 +76,7 @@ Configure your system
 
 ### Generate configuration.nix template in /mnt/etc/nixos/
 
-    nixos-option --install
+    nixos-generate-config --root /mnt
 
 Edit your */mnt/etc/nixos/configuration.nix*
 --------------------------------------------
