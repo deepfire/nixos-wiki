@@ -90,8 +90,8 @@ correct user-envs.sh and remote-store.sh failure
     #
     export PATH=/opt/freeware/bin:$PATH
     export PATH=/opt/qib/app/coreutils-8.4/bin/:$PATH
-    INSTALL_DIR=/opt/qib/app/nix-0.16 \
-    && rm -rf ${INSTALL_DIR} \
+    export INSTALL_DIR=/opt/qib/app/nix-0.16
+    rm -rf ${INSTALL_DIR} \
     && ./configure \
      --prefix=${INSTALL_DIR} \
      --localstatedir=/home/lowes/nix/var \
