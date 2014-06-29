@@ -61,7 +61,7 @@ handles it well. Corresponding config lines:
 ### Wireless
 
 System requires iwlwifi-6000g2b-6.ucode in order to work. File can be
-found on intellwireless.com I placed this file into /root/firmware and
-specified
+found in debian or redhat package. I've placed it into /root/firmware
+and specified
 
       hardware.firmware = [ "/root/firmware" ];
