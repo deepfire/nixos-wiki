@@ -22,6 +22,10 @@ Using Nix
     Nix](//Howto find a package in NixOS)
 -   [How to keep multiple packages up to date at once (example for
     pkgs.misc.collection)](//Howto keep multiple packages up to date at once)
+-   [How to unpack a package's
+    sourcecode](//How to unpack a package's sourcecode)
+-   [How to add large files to the
+    nix-store](//How to add large files to the nix-store)
 
 ### NixOS
 
@@ -42,11 +46,18 @@ Using Nix
 -   [Python](//Python)
 -   [python discussion](//Python discussion)
 -   [Howto develop software on nixos](//Howto develop software on nixos)
-    (NOT how to develop for nixos or nix)
+    - (NOT how to develop \*for\* nixos or nix)
+-   [Android](//Android)
+-   [Plone development](//Plone development)
 
 ### Issues
 
 -   [Error Messages](//Error Messages)
+
+<!-- -->
+
+       * Solve GConf errors when running GNOME applications (such as GnuCash)
+
 -   [FAQ](//FAQ)
 -   [NixOS Projects on GitHub](https://github.com/NixOS) to search for
     issues
@@ -101,39 +112,46 @@ Documentation
 HOWTOs
 ------
 
--   [How to find any text in code fast (gnu idutils)](//HOWTO:idutils)
+### Installing Software
+
 -   [How to set up MediaWiki in NixOS with
     vhosts](//Setting up MediaWiki & vhosts)
+-   [How to install Firefox with Java plugin](//Firefox)
+-   [Chromium](//Chromium)
+-   [How to setup UPS/NUT](//How to setup UPS/NUT)
+-   [TexLive Howto](//TexLive HOWTO)
+
+### Configuration
+
+-   [Using the ZSH SHELL](//Using the ZSH SHELL)
+-   [Emacs configuration](//Emacs configuration)
+-   [Enable GTK themes in KDE](//Enable GTK themes in KDE)
+-   [Encrypted root(home, swap) on NixOS](//Encrypted Root on NixOS) -
+    Using luks
+
+-   [How to tweak Linux kernel config
+    options](//How to tweak Linux kernel config options)
+
+### Hardware
+
+-   [Audio Howto](//Audio HOWTO)
+-   [Bluetooth](//Bluetooth)
+-   [How to watch digital TV (DVB-T)](//How to watch digital TV (DVB-T))
+-   [Network Manager](//Network Manager) - (recommended)
+-   [wpa\_supplicant](//Wpa supplicant)
+-   [WICD](//WICD)
+
+### Other
+
+-   [Mercurial and Nix repositories](//Mercurial and Nix repositories)
+-   [How to enable subpixel rendering in
+    freetype](//How to enable subpixel rendering in freetype)
+-   [How to find any text in code fast (gnu idutils)](//HOWTO:idutils)
 -   [How to write patches using TopGit in a collaborative
     manner](//Nixpkgs and TopGit)
--   [How to install Firefox with Java plugin](//Firefox)
--   [Encrypted root(home, swap) on NixOS](//Encrypted Root on NixOS)
-    luks
--   [Audio Howto](//Audio HOWTO)
--   [TexLive Howto](//TexLive HOWTO)
--   [Mercurial and Nix repositories](//Mercurial and Nix repositories)
--   [Emacs configuration](//Emacs configuration)
--   [Chromium](//Chromium)
--   [Enable GTK themes in KDE](//Enable GTK themes in KDE)
--   [Solve GConf errors when running GNOME applications (such as
-    GnuCash)](//Solve GConf errors when running GNOME applications)
--   [How to watch digital TV (DVB-T)](//How to watch digital TV (DVB-T))
--   [How to unpack a package's
-    sourcecode](//How to unpack a package's sourcecode)
--   [How to setup UPS/NUT](//How to setup UPS/NUT)
 -   [How to get a chroot close enough to LSB for impure binary packages
     to
     work](//How to get a chroot close enough to LSB for impure binary packages to work)
--   [How to enable subpixel rendering in
-    freetype](//How to enable subpixel rendering in freetype)
--   [How to add large files to the
-    nix-store](//How to add large files to the nix-store)
--   [Using the ZSH SHELL](//Using the ZSH SHELL)
--   [Android](//Android)
--   [Plone development](//Plone development)
--   [How to tweak Linux kernel config
-    options](//How to tweak Linux kernel config options)
--   [Bluetooth](//Bluetooth)
 
 ### Virtualisation
 
@@ -155,21 +173,19 @@ HOWTOs
     (PVs,VGs,LVs)](//Soft-RAID mdadm (/dev/md0), LVM (PVs,VGs,LVs)) and
     booting from LVM on top of a mdadm volume
 
-### Networking setup
-
--   [Network Manager](//Network Manager) (recommended)
--   [wpa\_supplicant](//Wpa supplicant)
--   [WICD](//WICD)
-
-Development
------------
+Developer Chat
+--------------
 
 -   [open issues:derivation styles](//Open issues:derivation styles)
 -   [open issues:ways of updating sources
     automatically](//Open issues:ways of updating sources automatically)
--   [The Many Cooks Method](//The Many Cooks Method)
 -   [long-term open issues:build
     determinism](//Long-term open issues:build determinism)
+-   [TODO - What is missing in the nix
+    community?](//TODO - What is missing in the nix community)
+-   [TODO - Cleaning up wiki
+    spam](/w/index.php?title=TODO_-_Cleaning_up_wiki_spam&action=edit&redlink=1 "TODO - Cleaning up wiki spam (page does not exist)")
+-   [The Many Cooks Method](//The Many Cooks Method)
 
 ### Licenses
 
@@ -186,10 +202,6 @@ Misc
     work](//Nix(OS) related repositories and work)
 -   [Nix impurities](//Nix impurities)
 -   [Compile Nix on AIX](//Compile Nix on AIX)
--   [TODO - What is missing in the nix
-    community?](//TODO - What is missing in the nix community)
--   [TODO - Cleaning up wiki
-    spam](/w/index.php?title=TODO_-_Cleaning_up_wiki_spam&action=edit&redlink=1 "TODO - Cleaning up wiki spam (page does not exist)")
 -   [Steam](//Steam)
 -   [xorg/xserver example
     settings](/w/index.php?title=Xorg/xserver_example_settings&action=edit&redlink=1 "Xorg/xserver example settings (page does not exist)")
