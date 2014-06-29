@@ -7,13 +7,42 @@ virtualization framework)
 
     allows you to mount folders from the host system on the guest system, this is significantly faster than folder sharing over the network e.g. NFS.
 
-Prepare a host image
+Enable kernel modules
+---------------------
+
+The NixOS install process will typically enable the relevant kvm modules
+for your system (kvm-amd or kvm-intel) in hardware-configuration.nix ().
+You can also add "tun" and "virtio" if you wish to use the networking
+setup described below.
+
+    boot.kernelModules = [ "kvm-amd" "tun" "virtio" ];
+
+You can check for the existence of /dev/kvm after rebooting. You may
+also need to enable hardware virtualization on your computer in your
+BIOS or similar.
+
+Prepare a guest image
+---------------------
+
+    qemu-img create -f qcow2 /mnt/OSImages/mint.qcow2 5G
+    qemu-kvm -m 1024 -drive file=/mnt/OSImages/mint.qcow2  -cdrom /mnt/OSImages/mint-livecd.iso -boot d
+
+The default amount of memory available to the guest is 128MB so you will
+probably want to specify something more than that with the "m" flag. By
+default the guest will have access to the network so you can install the
+OS at this stage if you like.
+
+Alternatively you can download a QEMU image with an OS already installed
+e.g. Debian: <http://people.debian.org/~aurel32/qemu/>
+
+    qemu-kvm -m 1024 -drive file=/home/goibhniu/Downloads/debian_squeeze_amd64_standard.qcow2
+
+Prepare host network
 --------------------
 
-    qemu-img create -f qcow2 /mnt/OSImages/my_os.qcow2 5G
-
-Alternatively you may want to download a preinstalled QEMU image e.g.
-Debian images: <http://people.debian.org/~aurel32/qemu/>
+There are a number of options to enable access to the guest OS from the
+host, using VDE (Virtual Distributed Ethernet) is probably the easiest
+and most versatile.
 
 References:
 
