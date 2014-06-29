@@ -1,5 +1,6 @@
 To use tools such as virt-manager or virsh in a standard user mode, your
 user must be in the group libvirtd.
 
-` sudo gpasswd -a myuser libvirtd su myuser newgrp libvirtd`
-
+    sudo gpasswd -a myuser libvirtd 
+    su myuser
+    newgrp libvirtd
