@@ -430,17 +430,15 @@ them separately. If you want to do the latter, then `~/.nixpkgs/haskell`
 or a similar location is suitable. In order to make such expressions
 available in your personal nixpkgs collection, you can use the nixpkgs
 configuration file, which should then have approximately the following
-strucutre:
+structure:
 
-     pkgs : {
-       packageOverrides = pkgs : rec {
-         myHaskellPackages =
-           let callPackage = pkgs.lib.callPackageWith myHaskellPackages; in
-             pkgs.recurseIntoAttrs (pkgs.haskellPackages.override {
-               extraPrefs = self : {
-                 haskellpackage = callPackage ./haskell/haskellpackage.nix {};
-               };
-             });
+     {
+       packageOverrides = pkgs : {
+         myHaskellPackages = pkgs.recurseIntoAttrs (pkgs.haskellPackages.override {
+           extraPrefs = hsPkgs : {
+             haskellpackage = hsPkgs.callPackage ./haskell/haskellpackage.nix {};
+           };
+         });
        };
      }
 
