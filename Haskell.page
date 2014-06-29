@@ -252,19 +252,19 @@ system-wide approach as well. You simply add the `ghcWithPackages` call
 to the `environment.systemPackages` attribute in your
 `/etc/nixos/configuration.nix`:
 
-     {config, pkgs, ...} :
+      {config, pkgs, ...} :
 
-     {
-       # other configuration options
+      {
+        # other configuration options
 
-       environment.systemPackages = [
-         # other system packages
-         pkgs.ghcWithPackages (self : [
-           self.haskellPlatform
-           # add more Haskell packages here
-         ]);
-       ];
-     }
+        environment.systemPackages = [
+          # other system packages
+          pkgs.ghcWithPackages (self : [
+            self.haskellPlatform
+            # add more Haskell packages here
+          ]);
+        ];
+      }
 
 #### Overriding package preferences
 
