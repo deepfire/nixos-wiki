@@ -11,7 +11,7 @@ Hardware
 -   Ethernet: Attansic Technology Corp. Device 1063 (rev c0)
 -   Wireless: Intel Corporation Wifi Link 100 Series
 -   Bluetooth:
--   Sound: nVidia Corporation Device 0be2 (rev a1)
+-   Sound: Realtek ALC269
 -   Video: nVidia GeForce GT 240M
 -   Video RAM: 1GB DDR3
 -   CPU: Core i7 720 QM (4 core, 2 threads per core)
@@ -24,16 +24,18 @@ Support
 -   Ethernet: Yes.
 -   Wireless: Not tested.
 -   Bluetooth: Not tested.
--   Sound: Not tested.
+-   Sound: Yes.
 -   Video: Yes.
--   HDD Raid: Yes.
+-   Software Raid: Yes.
 -   Keyboard: some Function (Fn) keys are not recognized / mapped
     correctly.
 
 Tests
 -----
 
--   Video: Not tested.
+-   Video:
+    -   Maximal Resolution: 1366x768
+    -   glxgears: 1859.8 FPS @ 1366x768
 
 Final Laptop Configuration
 ==========================
