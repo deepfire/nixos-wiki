@@ -682,6 +682,18 @@ Sending a pull request to the official nixpkgs repository
 Waiting for your changes to appear on the *nix channel*
 -------------------------------------------------------
 
+-   *If* your pull request is accepted, your changes will be part of
+    *NixOS/nixpkgs*.
+-   Or else you will have some kind of feedback, probably via GitHub and
+    the *nix-dev* mailing list. You can follow up there or drop by
+    \#nixos to discuss whatever has to be discussed.
+-   Once the changes enter the official repository they are more likely
+    to be seen and probably used by other users.
+-   In addition to that, if they enter the `master` branch,
+    [Hydra](https://nixos.org/hydra/) will eventually build the improved
+    versions or new packages, and then the resulting binaries will be
+    available on the NixOS channel.
+
 Beyond this point (and getting help)
 ------------------------------------
 
