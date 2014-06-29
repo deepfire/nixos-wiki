@@ -1,25 +1,25 @@
-list all available software from the local overlay
+list all available software from the **local overlay \~/code/nixpkgs**
 
-     $ NIX_PATH="nixos=$HOME/Desktop/projects/nixos/nixpkgs" nix-env -f '<nixos>' -qa '*'
+     $ NIX_PATH="nixos=$HOME/code/nixpkgs" nix-env -f '<nixos>' -qa '*'
 
 install python-urlgrabber from the local overlay
 
-     $NIX_PATH="nixos=$HOME/Desktop/projects/nixos/nixpkgs" nix-env -f '<nixos>' -i python-urlgrabber
+     $NIX_PATH="nixos=$HOME/code/nixpkgs" nix-env -f '<nixos>' -i python-urlgrabber
 
-update the system based on your local \`\`\`\~/code/nixos\`\`\` and
-\`\`\`\~/code/nixpkgs\`\`\`
+update the system based on your local **\~/code/nixos** and
+**\~/code/nixpkgs**
 
-     $ nixos-rebuild -I nixos=~/code/nixos -I nixpkgs=~/code/nixpkgs build
+     $ nixos-rebuild -I nixos=~/code/nixos -I nixpkgs=~/code/nixpkgs 
 
-\`\`\`build an expression\`\`\` and put the output in to \`pwd\`/results
+build an expression\`\`\` and put the output in to \`pwd\`/results
 
      $ nix-build ~/code/nixpkgs -A irssi
 
-\`\`\`get an environment which is used to build irssi\`\`\`
+get an environment which is used to build irssi
 
      $ nix-build --run-env -A irssi
 
-\`\`\`get an persistent environment which is used to build irssi\`\`\`
+get an persistent environment which is used to build irssi
 
      $ nix-build --run-env -A irssi --add-root
 
