@@ -1,0 +1,22 @@
+Introduction
+------------
+
+This article describes how to run a QEMU guest with full networking and
+VirtFS support. VirtFS (Plan 9 folder sharing over Virtio - I/O
+virtualization framework)
+
+    allows you to mount folders from the host system on the guest system, this is significantly faster than folder sharing over the network e.g. NFS.
+
+Prepare a host image
+--------------------
+
+    qemu-img create -f qcow2 /mnt/OSImages/my_os.qcow2 5G
+
+Alternatively you may want to download a preinstalled QEMU image e.g.
+Debian images: <http://people.debian.org/~aurel32/qemu/>
+
+References:
+
+-   [[| Building a Virtual
+    Army](http://blog.falconindy.com/articles/build-a-virtual-army.html)]
+
