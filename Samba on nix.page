@@ -1,8 +1,10 @@
-this guide will help you on how to use samba on nixos. as assumed it's
-quite trivial ;-)
+motivation
+----------
 
-/etc/nixos/configuration.nix
-----------------------------
+this guide will help you on how to use samba on nixos.
+
+excerpt of /etc/nixos/configuration.nix
+---------------------------------------
 
      ...
      services.samba.enable = true;
@@ -30,6 +32,13 @@ afterwards apply the changes made to configuration.nix
      nixos-rebuild switch
 
 samba should startup afterwards
+
+stopping/restarting the services
+--------------------------------
+
+     stop samba
+     start samba
+     restart samba
 
 links
 -----
