@@ -224,6 +224,8 @@ How-tos
 -   [How to get a chroot close enough to LSB for impure binary packages
     to
     work](//How to get a chroot close enough to LSB for impure binary packages to work)
+-   [How to download all sources for building a package and its
+    dependencies](//Download all sources)
 
 ### Virtualisation
 
