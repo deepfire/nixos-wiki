@@ -9,33 +9,66 @@ browsing-experience. Its featureset might be considered "minimalistic",
 but not as minimalistic as being completely featureless.
 
 Vimprobable is available in two versions, that is vimprobable and
-vimprobable2. In case you don't already know what you want you should
-follow the instructions below and install vimprobable2. For more
-information see the [official
-homepage](http://sourceforge.net/apps/trac/vimprobable/).
-
-**Note:** This article covers the installation of vimprobable2
-exclusively. However, unless otherwise noted you can apply the same
-procedure to installing vimprobable by just replacing the occurences of
-vimprobable2 accordingly.
+vimprobable2. As of now only vimprobable2 is available.
 
 Installation
 ------------
 
-    nix-env -i vimprobable2
+    $ nix-env -i vimprobable2
 
-Usage
------
+Configuration
+-------------
+
+While vimprobable2 offers some configuration through the vimprobablerc
+file some configuration can solely be done in config.h before
+compilation. However, some of config.h's configuration options are made
+available to Nix making it easy to configure vimprobable without having
+to touch config.h.
+
+### Search engines
+
+You can override the default search engines using Nix.
+
+[Describe how you do this.]
+
+By default vimprobable offers the following search engines.
+
+  -------------------------------------------------------------------------
+  Search engine
+  Shortcut
+  ------------------------------------ ------------------------------------
+  Google                               Wikipedia
+  g                                    w
+  -------------------------------------------------------------------------
+
+You can use search engine shortcuts for a URL in vimprobable. For
+example to search for \`NixOS' in Google open the following URL.
+
+    g NixOS
+
+You can define a default search engine which lets you omit the shortcut
+for this search engine by setting \`defaultsearch' in the vimprobablerc
+file.
+
+    $ mkdir -p $HOME/.config/vimprobable
+    $ echo "defaultsearch=g" >> $HOME/.config/vimprobable/vimprobablerc
+
+This setting makes Google the default search engine.
 
 ### tabbed
 
-Neither vimprobable nor vimprobable2 offer tab support. However, you can
-use [tabbed](http://tools.suckless.org/tabbed) for that. Install tabbed
-and create an alias to vimprobable2 as following.
+vimprobable doesn't offer tab support. However, you can use
+[tabbed](http://tools.suckless.org/tabbed) for that. Install tabbed and
+create an alias to vimprobable2 as following.
 
-    nix-env -i 
+    $ nix-env -i tabbed
 
-    alias vimprobable2="vimprobable2 -e \"\$(tabbed -d)\""
+    $ alias vimprobable2="vimprobable2 -e \"\$(tabbed -d)\""
 
 You can switch tabs by pressing \`gt' or \`gT'.
+
+References
+----------
+
+1.  Official homepage: <http://sourceforge.net/apps/trac/vimprobable/>
 
