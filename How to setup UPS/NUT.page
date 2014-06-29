@@ -93,6 +93,112 @@ to see what is going on:
 
 ### example log, when unplugging the UPS from power
 
+     ==> /var/log/upstart/upsd <==
+     listening on 127.0.0.1 port 3493
+     Can't connect to UPS [ProtectHome] (blazer_usb-ProtectHome): Connection refused
+     
+     ==> /var/log/upstart/upsdrv <==
+     Supported UPS detected with megatec protocol
+     Vendor information unavailable
+     Battery runtime will not be calculated (runtimecal not set)
+     Network UPS Tools - UPS driver controller 2.6.1
+     
+     ==> /var/log/upstart/upsmon <==
+     3487.330801     ups_on_line: ProtectHome@localhost (first time)
+     Network UPS Tools upsmon 2.6.1
+     3488.330888     pollups: ProtectHome@localhost
+     3488.330928     get_var: ProtectHome@localhost / status
+     3488.331044     parse_status: [OL]
+     3488.331058     parsing: [OL]
+     3489.331149     pollups: ProtectHome@localhost
+     3489.331176     get_var: ProtectHome@localhost / status
+     3489.331276     parse_status: [OL]
+     3489.331289     parsing: [OL]
+     
+     ==> /var/log/messages <==
+     Mar 30 19:21:13 nix9000 dhcpcd[2305]: eth0: Router Advertisement from fe80::1
+     Mar 30 19:21:13 nix9000 dhcpcd[2305]: eth0: fe80::1: expired Router Advertisement
+     Mar 30 19:21:23 nix9000 upsd[10422]: listening on 127.0.0.1 port 3493
+     Mar 30 19:21:23 nix9000 upsd[10422]: Can't connect to UPS [ProtectHome] (blazer_usb-ProtectHome): Connection refused
+     Mar 30 19:21:23 nix9000 upsd[10423]: Startup successful
+     Mar 30 19:21:26 nix9000 upsd[10423]: User local_mon@127.0.0.1 logged into UPS [ProtectHome]
+     Mar 30 19:21:27 nix9000 blazer_usb[10434]: Startup successful
+     Mar 30 19:21:28 nix9000 upsd[10423]: Connected to UPS [ProtectHome]: blazer_usb-ProtectHome
+     Mar 30 19:21:33 nix9000 dhcpcd[2305]: eth0: Router Advertisement from fe80::1
+     Mar 30 19:21:33 nix9000 dhcpcd[2305]: eth0: fe80::1: expired Router Advertisement
+     
+     ==> /var/log/upstart/upsmon <==
+     3490.331373     pollups: ProtectHome@localhost
+     3490.331421     get_var: ProtectHome@localhost / status
+     3490.331532     parse_status: [OL]
+     3490.331549     parsing: [OL]
+     3491.331631     pollups: ProtectHome@localhost
+     3491.331679     get_var: ProtectHome@localhost / status
+     3491.331788     parse_status: [OL]
+     3491.331805     parsing: [OL]
+     3492.331893     pollups: ProtectHome@localhost
+     3492.331954     get_var: ProtectHome@localhost / status
+     3492.332080     parse_status: [OL]
+     3492.332100     parsing: [OL]
+     3493.332187     pollups: ProtectHome@localhost
+     3493.332232     get_var: ProtectHome@localhost / status
+     3493.332345     parse_status: [OL]
+     3493.332363     parsing: [OL]
+     3494.332452     pollups: ProtectHome@localhost
+     3494.332502     get_var: ProtectHome@localhost / status
+     3494.332622     parse_status: [OB]
+     3494.332638     parsing: [OB]
+     3494.332652     ups_on_batt: ProtectHome@localhost (first time)
+     3494.332667     do_notify: ntype 0x0001 (ONBATT)
+     3494.332681     UPS ProtectHome@localhost on battery
+     sh: wall: command not found
+     
+     ==> /var/log/messages <==
+     Mar 30 19:21:38 nix9000 upssched[10494]: Timer daemon started
+     Mar 30 19:21:38 nix9000 upssched[10494]: New timer: onbatt (25 seconds)
+     
+     ==> /var/log/upstart/upsmon <==
+     Network UPS Tools upsmon 2.6.1
+     3495.332879     pollups: ProtectHome@localhost
+     3495.332933     get_var: ProtectHome@localhost / status
+     3495.333052     parse_status: [OB]
+     3495.333070     parsing: [OB]
+     3496.333163     pollups: ProtectHome@localhost
+     3496.333209     get_var: ProtectHome@localhost / status
+     3496.333314     parse_status: [OB]
+     3496.333331     parsing: [OB]
+     3497.333419     pollups: ProtectHome@localhost
+     3497.333472     get_var: ProtectHome@localhost / status
+     3497.333612     parse_status: [OB]
+     3497.333632     parsing: [OB]
+
+### upsc ProtectHome@localhost
+
+     battery.voltage: 13.50
+     battery.voltage.nominal: 12.0
+     beeper.status: enabled
+     device.type: ups
+     driver.name: blazer_usb
+     driver.parameter.pollinterval: 2
+     driver.parameter.port: /dev/hidraw_protecthome
+     driver.version: 2.6.1
+     driver.version.internal: 0.03
+     input.current.nominal: 2.0
+     input.frequency: 49.9
+     input.frequency.nominal: 50
+     input.voltage: 241.4
+     input.voltage.fault: 241.4
+     input.voltage.nominal: 230
+     output.voltage: 235.6
+     ups.delay.shutdown: 30
+     ups.delay.start: 180
+     ups.load: 3
+     ups.productid: 5161
+     ups.status: OL
+     ups.temperature: 25.0
+     ups.type: offline / line interactive
+     ups.vendorid: 0665
+
 links
 -----
 
