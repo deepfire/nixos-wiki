@@ -1,11 +1,10 @@
 How to use Nix to create Plone development environment
 ======================================================
 
-All files can also be downloaded from following gist:
-<https://gist.github.com/garbas/5293558>
+<https://github.com/garbas/plone-nix>
 
-In above gist there is also script called "install\_nix.sh" which might
-help you with setting up Nix.
+In above repository there is also script called "install\_nix.sh" which
+might help you with setting up Nix.
 
 For rest of the steps It is assumed you already installed Nix on your
 system.
@@ -13,7 +12,7 @@ system.
 Quickstart
 ----------
 
-1\. Download gist from link above
+1\. Download/Clone above git repository
 
 2\. (optional) In case you don't have Nix install you can use
 "install\_nix.sh" to install it.
@@ -30,7 +29,7 @@ What actually happened above?
 Gist from above contains few files:
 
     - buildout.cfg
-    - plone.nix
+    - dev.nix
     - Makefile
 
 "buildout.cfg" is actually a normal buildout configuration file we are
@@ -38,12 +37,11 @@ used in Plone already. Only thing special about it that we have to pin
 few eggs to specific versions (look at versions section).
 
     [buildout]
-    extends = http://dist.plone.org/release/4.3/versions.cfg
+    extends = http://dist.plone.org/release/4.3.2/versions.cfg
     eggs-directory = eggs
     versions = versions
     unzip = true
-    parts =
-    instance
+    parts = instance
 
     [instance]
     recipe = plone.recipe.zope2instance
@@ -55,34 +53,27 @@ few eggs to specific versions (look at versions section).
         Plone
 
     [versions]
-    zc.buildout = 1.7.1
-    distribute = 0.6.34
 
-"plone.nix" is nix expression where we define which things should be
+"dev.nix" is nix expression where we define which things should be
 installed for us by nix. Expression below tells to use Python 2.7, Plone
 and some other eggs which are listed under "paths".
 
     { }:
 
     let
-        pkgs = import <nixpkgs> { };
+      pkgs = import <nixpkgs> { };
     in
 
     with pkgs;
 
     buildEnv {
-        name = "plone-env";
-        paths = [
-            python27
-            python27Packages.distribute
-            python27Packages.recursivePthLoader
-            python27Packages.virtualenv
-            plone43Packages.plone
-            plone43Packages.pillow
-            plone43Packages.mailinglogger
-            plone43Packages.plone_recipe_zope2instance
-            plone43Packages.zc_recipe_egg
-        ] ++ lib.attrValues python27.modules;
+      name = "plone-bootstrap";
+      paths = [
+        python27
+        python27Packages.recursivePthLoader
+        python27Packages.virtualenv
+        python27Packages.Plone
+      ] ++ lib.attrValues python27.modules;
     }
 
 "Makefile". Convinient place to gather commands but essantially what
@@ -92,7 +83,7 @@ happends when you run make is:
 "plone.nix" and create profile in current folder called "nixenv". On
 NixOS you don't need to export NIX\_PATH.
 
-       NIX_PATH=~/.nix-defexpr/channels nix-build --out-link nixenv plone.nix
+       NIX_PATH=~/.nix-defexpr/channels nix-build --out-link nixenv dev.nix
 
 2\. Using virtualenv command which you installed from previous command
 create python virtual environment.
