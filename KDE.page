@@ -1,0 +1,76 @@
+[[edit](/w/index.php?title=KDE&action=edit&section=1 "Edit section: WikiPedia Definition")] WikiPedia Definition
+----------------------------------------------------------------------------------------------------------------
+
+> *KDE* (/ˌkeɪdiːˈiː/) *is an international free software community
+> producing an integrated set of cross-platform applications designed to
+> run on Linux, FreeBSD, Solaris, Microsoft Windows, and OS X systems.
+> It is known for its Plasma Desktop, a desktop environment provided as
+> the default working environment on many Linux distributions, such as
+> openSUSE, Mageia and Kubuntu and is default desktop environment on
+> PC-BSD, a BSD operating system.*
+
+[[edit](/w/index.php?title=KDE&action=edit&section=2 "Edit section: KDE on Nix")] KDE on Nix
+--------------------------------------------------------------------------------------------
+
+KDE and Nix are both cross-platform. Add hydra and Disnix in to the mix
+and you have the means to create local, private and secure application
+deployment network that is cross-platform. Add to the fact that KDE and
+Nix(OS) are very versatile in regards to options and configurations that
+you give the user, administrator or developer a lot of leeway to develop
+and deploy stable production environments.
+
+[[edit](/w/index.php?title=KDE&action=edit&section=3 "Edit section: The code behind KDE")] The code behind KDE
+--------------------------------------------------------------------------------------------------------------
+
+The reason why KDE is cross-platform compatible is because it bases it
+self on the C++ GUI framework QT. QT was developed by Trolltech and has
+since been sold and re-sold again to different commercial outfits. But
+it has not deterred the development of the KDE suite and it still serves
+as one of the best examples of what QT is capable of doing.
+
+[[edit](/w/index.php?title=KDE&action=edit&section=4 "Edit section: How to install KDE")] How to install KDE
+------------------------------------------------------------------------------------------------------------
+
+*1. Open a terminal and two text editor windows/tabs*
+
+*2. Open `/etc/nixos/configurations.nix` and
+`/etc/nixos/hardware-configurations.nix`*
+
+*3. Either find or create a `services.xserver` entry, like so*
+
+     services.xserver = {
+       displayManager.kdm.enable = true;
+       desktopManager.kde4.enable = true;
+     };
+
+ (services.xserver) 
+:   Rather than writing *services.xserver* at the beginning of every
+    variable we make it into an array to make the editing and scope of
+    the subject easier by abstraction.
+ (services.xserver.)displayManager.kdm.enable 
+:   uses KDM as the default login screen
+ (services.xserver.)desktopManager.kde4.enable 
+:   uses KDE as the default desktop environment
+
+[[edit](/w/index.php?title=KDE&action=edit&section=5 "Edit section: How to install the whole KDE suite system-wide")] How to install the whole KDE suite system-wide
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Proceed from point \#2 in the previous steps and also:
+
+*4. Either find or create a `environment.systemPackages` entry, like
+so:*
+
+    environment.systempackages = {
+      
+    }
+
+*5. Add the bulk of the KDE packages (github listing:
+`nixpkgs/pkgs/desktops/kde-4.12`) in place to call all dependencies or
+copy paste this list in to the environment.systemPackages entry:*
+
+` `
+
+    # KDE packages 
+    pkgs.kde4.kdemultimedia pkgs.kde4.kdegraphics pkgs.kde4.kdeutils pkgs.kde4.applications pkgs.kde4.kdegames pkgs.kde4.kdeedu pkgs.kde4.kdebindings pkgs.kde4.kdeaccessibility pkgs.kde4.kde_baseapps pkgs.kde4.kactivities pkgs.kde4.kdeadmin pkgs.kde4.kdeartwork pkgs.kde4.kde_base_artwork pkgs.kde4.kdenetwork pkgs.kde4.kdepim pkgs.kde4.kdepimlibs pkgs.kde4.kdeplasma_addons pkgs.kde4.kdesdk pkgs.kde4.kdetoys pkgs.kde4.kde_wallpapers pkgs.kde4.kdewebdev pkgs.kde4.oxygen_icons pkgs.kde4.kdebase_workspace pkgs.kde4.kdelibs pkgs.kde4.kdevelop pkgs.kde4.kdevplatform
+
+
