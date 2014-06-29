@@ -16,8 +16,7 @@ If you don't have NixOS as your host OS, you should first [install the
 Nix package manager](http://nixos.org/nix/download.html) and obtain the
 Nixpkgs and NixOS source trees:
 
-    $ svn co https://svn.nixos.org/repos/nix/nixpkgs/trunk nixpkgs
-    $ svn co https://svn.nixos.org/repos/nix/nixos/trunk nixos
+    $ git clone https://github.com/NixOS/nixpkgs nixpkgs
 
 To speed up builds by using pre-built binaries, you should do:
 
