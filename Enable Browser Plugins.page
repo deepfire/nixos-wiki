@@ -1,0 +1,22 @@
+You can configure chromium with NixOS the standard way:
+
+\`\`\` nixpkgs.config = {
+
+       firefox = {
+        jre = false;
+        enableGoogleTalkPlugin = true;
+        enableAdobeFlash = true;
+       };
+
+       chromium = {
+        jre = false;
+        enableGoogleTalkPlugin = true;
+        enableAdobeFlash = true;
+       };
+
+     };
+
+\`\`\`
+
+and then install \*chromiumWrapper\*
+
