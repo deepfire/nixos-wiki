@@ -1,0 +1,7 @@
+(viric) I think Side-by-side components are the way to go, so DLL are
+not taken as \*strictly shared\* by Windows only based on the filename.
+[This document section
+3.3](http://msdn.microsoft.com/en-us/library/ms995843.aspx) says that
+this behaviour of sxs will only happen if the files are placed in the
+named directory, or otherwise they will be taken as shared.
+
