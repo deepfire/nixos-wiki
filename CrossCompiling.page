@@ -72,6 +72,13 @@ For usual derivations in the native build, buildInputs and
 buildNativeInputs get merged and built for the native system, and
 analogous for propagatedBuildInputs and propagatedBuildNativeInputs.
 
+**TODO**: These variables should be renamed just before merging the
+branch into the mainline. Attributes ending with "\*buildInputs" should
+be renamed to "\*hostInputs" and attributes ending with
+"\*buildNativeInputs" should be renamed to "\*buildInputs". This
+renaming is pending until the final merge to avoid the complexity of
+merging mainline updates into the branch.
+
 New variables in the builder
 ----------------------------
 
