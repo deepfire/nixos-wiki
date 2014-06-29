@@ -1,0 +1,39 @@
+[[edit](/w/index.php?title=NixOS_Filesystem_Notes&action=edit&section=1 "Edit section: NixOS Filesystem")] NixOS Filesystem
+===========================================================================================================================
+
+If you discover secrets about the NixOS Filesystem, such as how they are
+created or their purpose, add it here.
+
+  --------------------------------------------------------------------------
+  Directory/File
+  Notes
+  Related Links
+  ------------------------ ------------------------ ------------------------
+  `/run/current-system/sw`
+  Modules add paths to
+  packages into
+  `config.environment.syst
+  emPackages`
+  attribute. This is
+  copied into the
+  `config.system.path`
+  attribute, which creates
+  symlinks from the
+  `/run/current-system/sw`
+  directory into
+  derivations in the Nix
+  store.
+  [system-path.nix](https:
+  //github.com/NixOS/nixpk
+  gs/blob/master/nixos/mod
+  ules/config/system-path.
+  nix)\
+
+  [top-level.nix](https://
+  github.com/NixOS/nixpkgs
+  /blob/master/nixos/modul
+  es/system/activation/top
+  -level.nix)
+  --------------------------------------------------------------------------
+
+
