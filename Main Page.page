@@ -53,11 +53,8 @@ Using Nix
 ### Issues
 
 -   [Error Messages](//Error Messages)
-
-<!-- -->
-
-       * Solve GConf errors when running GNOME applications (such as GnuCash)
-
+-   [Solve GConf errors when running GNOME applications (such as
+    GnuCash)](//Solve GConf errors when running GNOME applications)
 -   [FAQ](//FAQ)
 -   [NixOS Projects on GitHub](https://github.com/NixOS) to search for
     issues
