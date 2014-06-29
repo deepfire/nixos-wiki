@@ -1,12 +1,12 @@
-Wireless networking
-===================
+[[edit](/w/index.php?title=Wpa_supplicant&action=edit&section=1 "Edit section: Wireless networking")] Wireless networking
+=========================================================================================================================
 
 NixOS' uses wpa\_supplicant for wireless networking. This article
 describes how to configure NixOS to use wpa\_supplicant and to connect
 to a variety of wireless networks.
 
-Configuration
--------------
+[[edit](/w/index.php?title=Wpa_supplicant&action=edit&section=2 "Edit section: Configuration")] Configuration
+-------------------------------------------------------------------------------------------------------------
 
 To enable wireless networking add the following attribute to your
 `configuration.nix` and reconfigure your system.
@@ -19,22 +19,22 @@ mandatory for wireless networking to have this set. (Is this true?)
 It might also be a good idea to enable a firewall by setting
 `networking.firewall.enable = true;`. (Explain pros and cons.)
 
-Prerequisites
--------------
+[[edit](/w/index.php?title=Wpa_supplicant&action=edit&section=3 "Edit section: Prerequisites")] Prerequisites
+-------------------------------------------------------------------------------------------------------------
 
 Before proceeding make sure to check whether your wireless network card
 has properly been recognized. You can check this by issuing `iwconfig`
 and you should see a wireless extension being reported for `wlan0`.
 
-### Scan for wireless networks
+### [[edit](/w/index.php?title=Wpa_supplicant&action=edit&section=4 "Edit section: Scan for wireless networks")] Scan for wireless networks
 
 To scan for wireless networks in range you can use the following
 command.
 
     iwlist wlan0 scan
 
-Wirless networks
-----------------
+[[edit](/w/index.php?title=Wpa_supplicant&action=edit&section=5 "Edit section: Wirless networks")] Wirless networks
+-------------------------------------------------------------------------------------------------------------------
 
 Configuration of wireless networks is being done in
 `/etc/wpa_supplicant.conf`. This file is readable and writable by root
@@ -74,7 +74,7 @@ This will append to `/etc/wpa_supplicant.conf` something like this:
            psk=d2b1d5f68ef2c2b04a89361f0722e65a1591de6d82b979d03fabf501c4356589
     }
 
-### Insecure wireless networks
+### [[edit](/w/index.php?title=Wpa_supplicant&action=edit&section=6 "Edit section: Insecure wireless networks")] Insecure wireless networks
 
 To connect to a wireless network named `insecureNetwork` which isn't
 secured by a passphrase use the following configuration.
