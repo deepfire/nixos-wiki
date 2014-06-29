@@ -246,8 +246,8 @@ Here is a simple yet complete example of how to use `ghcWithPackages` in
        };
      }
 
-If you now the Nix attribute name of a particular package (you only need
-the last component), you can add it to the list to have it (and its
+If you know the Nix attribute name of a particular package (you only
+need the last component), you can add it to the list to have it (and its
 dependencies) installed for the selected version of GHC. As always, by
 using `haskellPackages.ghcWithPackages`, we refer to the current version
 of GHC. You can explicitly select another version of GHC, too. For
