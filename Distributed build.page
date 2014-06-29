@@ -1,0 +1,66 @@
+Sometimes you want to use a faster machine for building a nix derivation
+you want to use on a slower one. If both of them run NixOS you can
+follow this little HOWTO to make it happen.
+
+Prerequisites
+-------------
+
+You'll need to setup public key based login from the slower machine to
+root account on the one that'll do the actual building, and this article
+won't cover setting this up (there are many that do, so you shouldn't
+have any problem googling this).
+
+Preparing
+---------
+
+First you have to prepare the remote-systems.conf file on the slower
+machine, for example in /etc/nixos/remote-systems.conf, with contents
+similar to:
+
+    root@builder.example.com i686-linux /etc/nixos/id_rsa 4
+
+Where:
+
+1\. root@builder.example.com is and addres of the machine that'll do the
+build. If you want to use port other than 22, you have to set up an
+alias in /root/.ssh/config
+
+2\. i686-linux is a platform of that machine
+
+3\. /etc/nixos/id\_rsa is a path to the private part of a key used to log
+in to the builder
+
+4\. 4 is a number of jobs that should be run in parallel on that machine
+
+As a convenience, we'll make a little script. Put this into
+/etc/nixos/remote-build-env:
+
+    mkdir /tmp/build-remote-load/
+    chmod a+rwX /tmp/build-remote-load/
+
+    # First find our build hook script
+    STORE_PATH_FOR_NIX=$(ls -l `which nix-env` | awk '{ sub( /bin\/nix-env/, "", $NF ); print $NF }')
+    BUILD_REMOTE=`find "${STORE_PATH_FOR_NIX}" -name build-remote.pl`
+
+    # now set up environment for nix-worker                    
+    export NIX_BUILD_HOOK="${BUILD_REMOTE}"
+    export NIX_REMOTE_SYSTEMS="/etc/nixos/remote-systems.conf"
+    export NIX_CURRENT_LOAD="/tmp/build-remote-load"
+
+Running the build
+-----------------
+
+This is the part that you'll have to do every time you want to build
+something remotely. First, as root:
+
+    stop nix-daemon
+    . /etc/nixos/remote-build-env
+    nix-worker --daemon &
+
+Then, as a user you want to do the build as:
+
+    . /etc/nixos/remote-build-env
+
+after that you can run nix-env normally, and the work should be
+distributed among machines in your remote-systems.conf
+
