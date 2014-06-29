@@ -37,10 +37,11 @@ is shown by alsamixer without using the 'S' key).
     nix-env -i
 
 After this step you should be seeing xine and gstreamer backends in the
-systemsettings / Hardware / Multimedia 's Backends tab.
+systemsettings / Computer Administration / Multimedia 's Backends tab.
 
 -   If you still see Pulseaudio as the only option in the main tab of
-    systemsettings / Hardware / Multimedia, do the following:
+    systemsettings / Computer Administration / Multimedia, do the
+    following:
 
 <!-- -->
 
@@ -50,7 +51,8 @@ systemsettings / Hardware / Multimedia 's Backends tab.
 -   Log out of kde and re-login
 
 Now you should be able to select your audio card, default hw0,0 etc as
-your audio device in systemsettings / Hardware / Multimedia
+your audio device in systemsettings / Computer Administration /
+Multimedia
 
 Test the audio and enjoy the relaxing KDE's arpeggio.
 
