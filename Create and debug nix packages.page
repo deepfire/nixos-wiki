@@ -9,9 +9,8 @@ say you are running nixos using nixpkgs and you want to make a change,
 update a package, add a new package etc. First you need to clone the
 NixOS repositories:
 
-     $ cd $HOME
-     $ mkdir -p code
-     $ cd code
+     $ mkdir -p nixrepos
+     $ cd nixrepos
      $ git clone https://github.com/NixOS/nixpkgs
      $ git clone https://github.com/NixOS/nixos
 
@@ -28,32 +27,36 @@ how to install from the local repository
 this section tells you how to apply changes to your current system based
 on your local repositories:
 
+**first do this**
+
+     $ export NIXREPOS=/some/path/nixrepos # example: export NIXREPOS=/home/user/nixrepos
+
 **example: list all available software** from the local repository
 \~/code/nixpkgs
 
-     $ NIX_PATH="nixos=$HOME/code/nixpkgs" nix-env -f '<nixos>' -qa '*'
+     $ NIX_PATH="nixos=$NIXREPOS/nixpkgs" nix-env -f '<nixos>' -qa '*'
 
 **example: install software from local repository**
 
-     $ NIX_PATH="nixos=$HOME/code/nixpkgs" nix-env -f '<nixos>' -i python-urlgrabber
+     $ NIX_PATH="nixos=$NIXREPOS/nixpkgs" nix-env -f '<nixos>' -i python-urlgrabber
 
 **example: update the system** based on your local **\~/code/nixos** and
 **\~/code/nixpkgs**
 
-     $ nixos-rebuild -I nixos=~/code/nixos -I nixpkgs=~/code/nixpkgs switch
+     $ nixos-rebuild -I nixos=$NIXREPOS/nixos -I nixpkgs=$NIXREPOS/nixpkgs switch
 
 **example: build an expression and put the output in to
 \`pwd\`/results**
 
-     $ nix-build ~/code/nixpkgs -A irssi
+     $ nix-build $NIXREPOS/nixpkgs -A irssi
 
 **example: get an environment which is used to build irssi**
 
-     $ nix-build ~/code/nixpkgs --run-env -A irssi
+     $ nix-build $NIXREPOS/nixpkgs --run-env -A irssi
 
 **example: get an persistent environment which is used to build irssi**
 
-     $ nix-build ~/code/nixpkgs --run-env -A irssi --add-root
+     $ nix-build $NIXREPOS/nixpkgs --run-env -A irssi --add-root
 
 **NOTE:** it would be awesome if there was a bash/zsh extension which
 would export NIX\_PATH=\~/code, when entering the directory \~/code/ in
