@@ -15,8 +15,9 @@ responsible for launching the steam binary, which is also in \$HOME.
 Nix problems and constraints
 ----------------------------
 
--   We don't have /bin/bash and many scripts point there
--   We don't have the dinamic loader in /lib
+-   We don't have /bin/bash and many scripts point there. Similarly for
+    /usr/bin/python, for some functionality.
+-   We don't have the dynamic loader in /lib
 -   The steam.sh script in \$HOME could not be patched last I tried, as
     it is checked and rewritten by steam
 -   The steam binary cannot be patched, it's also checked
