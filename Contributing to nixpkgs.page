@@ -1,5 +1,5 @@
-Intro
------
+[[edit](/w/index.php?title=Contributing_to_nixpkgs&action=edit&section=1 "Edit section: Intro")] Intro
+------------------------------------------------------------------------------------------------------
 
 This is the easiest and more straightforward way I know to modify and
 expand [nixpkgs](https://nixos.org/nixpkgs/). I hope this article will
@@ -20,8 +20,8 @@ of the tools for the nixpkgs development workflow.
 *All operations explained on this document, if tested, have been tested
 on a [NixOS](https://nixos.org/nixos/) system.*
 
-Cloning the "NixOS/nixpkgs" repository on GitHub
-------------------------------------------------
+[[edit](/w/index.php?title=Contributing_to_nixpkgs&action=edit&section=2 "Edit section: Cloning the "NixOS/nixpkgs" repository on GitHub")] Cloning the "NixOS/nixpkgs" repository on GitHub
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -   I had to sign up at GitHub. This is free (as in beer) as of
     2013-03-20.
@@ -31,8 +31,8 @@ Cloning the "NixOS/nixpkgs" repository on GitHub
 -   This results in your own somewhat-independent repository:
     `https://github.com/your_username/nixpkgs`
 
-Retrieving a working copy of your repository
---------------------------------------------
+[[edit](/w/index.php?title=Contributing_to_nixpkgs&action=edit&section=3 "Edit section: Retrieving a working copy of your repository")] Retrieving a working copy of your repository
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -   Now you can clone your repository somewhere on your system:
 
@@ -74,8 +74,8 @@ Retrieving a working copy of your repository
 -   Also, when talking about directories I will try to always include
     the trailing slash.
 
-Following the white rabbit
---------------------------
+[[edit](/w/index.php?title=Contributing_to_nixpkgs&action=edit&section=4 "Edit section: Following the white rabbit")] Following the white rabbit
+------------------------------------------------------------------------------------------------------------------------------------------------
 
 -   I will center this tutorial on the nix expression that packages the
     [i3 window manager](http://i3wm.org/), as this expression is quite
@@ -121,8 +121,8 @@ and
     *packages* thanks to the `callPackage` on
     `pkgs/top-level/all-packages.nix`.
 
-The actual package "recipe"
----------------------------
+[[edit](/w/index.php?title=Contributing_to_nixpkgs&action=edit&section=5 "Edit section: The actual package "recipe"")] The actual package "recipe"
+--------------------------------------------------------------------------------------------------------------------------------------------------
 
 -   We will dive (not too deep, though) on
     `pkgs/applications/window-managers/i3/default.nix` which is the nix
@@ -174,8 +174,8 @@ The actual package "recipe"
     relevance of the colon that follows its closing curly brace. I just
     don't know so much *yet*.
 
-Making changes
---------------
+[[edit](/w/index.php?title=Contributing_to_nixpkgs&action=edit&section=6 "Edit section: Making changes")] Making changes
+------------------------------------------------------------------------------------------------------------------------
 
 -   On your local clone of your forked repository you can edit whatever
     you want.
@@ -262,8 +262,8 @@ Making changes
        i3lock = callPackage ../applications/window-managers/i3/lock.nix {
          cairo = cairo.override { xcbSupport = true; };
 
-Testing the changes
--------------------
+[[edit](/w/index.php?title=Contributing_to_nixpkgs&action=edit&section=7 "Edit section: Testing the changes")] Testing the changes
+----------------------------------------------------------------------------------------------------------------------------------
 
 -   The changes made to these *nix expressions* are affecting the build
     process and therefore the behavior of the resulting binaries,
@@ -410,10 +410,10 @@ Testing the changes
     the old `i3bar` from the *nix store* was on my `$PATH`. Obviously
     that was before I learned the `nix-env` invocation shown above.
 
-Pushing the local changes to GitHub
------------------------------------
+[[edit](/w/index.php?title=Contributing_to_nixpkgs&action=edit&section=8 "Edit section: Pushing the local changes to GitHub")] Pushing the local changes to GitHub
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-### Committing to the local repository
+### [[edit](/w/index.php?title=Contributing_to_nixpkgs&action=edit&section=9 "Edit section: Committing to the local repository")] Committing to the local repository
 
 -   The first step is to commit your local changes to the local
     repository.
@@ -649,7 +649,7 @@ Pushing the local changes to GitHub
     #
     nothing to commit, working directory clean
 
-### Pushing to GitHub
+### [[edit](/w/index.php?title=Contributing_to_nixpkgs&action=edit&section=10 "Edit section: Pushing to GitHub")] Pushing to GitHub
 
 -   Now we want to push the local commits to our clone of NixOS/nixpkgs
     at GitHub:
@@ -665,8 +665,8 @@ Pushing the local changes to GitHub
     To https://github.com/your_username/nixpkgs.git
        1c86db4..4c7daed  example -> example
 
-Sending a pull request to the official nixpkgs repository
----------------------------------------------------------
+[[edit](/w/index.php?title=Contributing_to_nixpkgs&action=edit&section=11 "Edit section: Sending a pull request to the official nixpkgs repository")] Sending a pull request to the official nixpkgs repository
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 step by step guide: [pull request](//Pull request)
 
@@ -694,8 +694,8 @@ step by step guide: [pull request](//Pull request)
     request".
 -   That's it :)
 
-Waiting for your changes to appear on the *nix channel*
--------------------------------------------------------
+[[edit](/w/index.php?title=Contributing_to_nixpkgs&action=edit&section=12 "Edit section: Waiting for your changes to appear on the nix channel")] Waiting for your changes to appear on the *nix channel*
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 -   *If* your pull request is accepted, your changes will be part of
     *NixOS/nixpkgs*.
@@ -709,8 +709,9 @@ Waiting for your changes to appear on the *nix channel*
     versions or new packages, and then the resulting binaries will be
     available on the NixOS channel.
 
-Beyond this point (and getting help)
-------------------------------------
+[[edit](/w/index.php?title=Contributing_to_nixpkgs&action=edit&section=13 "Edit section: See also")] See also
+-------------------------------------------------------------------------------------------------------------
 
--   See <https://nixos.org/development/>
+-   [Create and debug nix packages](//Create and debug nix packages)
+-   <https://nixos.org/development/>
 
