@@ -81,7 +81,7 @@ To auto-snapshot a ZFS filesystem or a ZVol, set its
     $ zfs set com.sun:auto-snapshot=true <pool>/<fs>
 
 (Note that by default this property will be inherited by all descendent
-datasets, but you can set their properties to false if you want to.)
+datasets, but you can set their properties to false if you prefer.)
 
 Then, to enable the auto-snapshot service, add this to your
 `configuration.nix`:
