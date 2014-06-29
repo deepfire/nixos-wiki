@@ -1,0 +1,15 @@
+Enabling Xen
+------------
+
+To enable the Xen hypervisor in a NixOS system, just enable the
+following option in `configuration.nix`:
+
+    virtualisation.xen.enable = true;
+
+Then run `nixos-rebuild switch` and reboot. The system should now boot
+Xen, with your NixOS system running as the privileged Domain 0 (Dom0).
+You may also want to set the option
+`virtualisation.xen.domain0MemorySize` to limit the amount of memory
+reserved for Dom0, e.g.
+
+    virtualisation.xen.domain0MemorySize = 512;
