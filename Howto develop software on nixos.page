@@ -274,4 +274,4 @@ clang.nix:
 
 Then initialise the shell::
 
-       nix-shell test.nix -A clangEnv
+       $ nix-shell clang.nix -A clangEnv
