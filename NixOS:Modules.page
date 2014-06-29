@@ -9,8 +9,8 @@ This page describes how you can create a module. If you want a pratical
 view, you should have a look into this small
 [tutorial](//NixOS:extend NixOS).
 
-Vocabulary
-----------
+[[edit](/w/index.php?title=NixOS:Modules&action=edit&section=1 "Edit section: Vocabulary")] Vocabulary
+------------------------------------------------------------------------------------------------------
 
 -   [Declaration](//NixOS:Declaration): All options which are used with
     the `mkOption` function are declared. Declared options should at
@@ -27,11 +27,11 @@ Vocabulary
     definition in the computation of an option result.
 
 To find all files which are defining or declaring an option, you may
-refer to the generated NixOS manual or to the `man` page of
-`configuration.nix`.
+refer to the generated [NixOS manual](http://nixos.org/nixos/manual) or
+to the `man` page of `configuration.nix`.
 
-Syntax
-------
+[[edit](/w/index.php?title=NixOS:Modules&action=edit&section=2 "Edit section: Syntax")] Syntax
+----------------------------------------------------------------------------------------------
 
 Modules are declared with the following syntax:
 
@@ -97,13 +97,13 @@ and the attribute set.
       # ...
     }
 
-References
-----------
+[[edit](/w/index.php?title=NixOS:Modules&action=edit&section=3 "Edit section: References")] References
+------------------------------------------------------------------------------------------------------
 
 -   [NixOS Documentation](http://nixos.org/nixos/docs.html)
 
-Related Work
-------------
+[[edit](/w/index.php?title=NixOS:Modules&action=edit&section=4 "Edit section: Related Work")] Related Work
+----------------------------------------------------------------------------------------------------------
 
 -   Debian [Config::Model](http://wiki.debian.org/PackageConfigUpgrade):
 
