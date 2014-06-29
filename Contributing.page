@@ -106,3 +106,14 @@ hitting the "merge" button on github is fine, however doing
 
 is finer, because history will be cleaner.
 
+contributing to the nixpkgs manual
+----------------------------------
+
+The documentation for nixpkgs is in the nixpkgs/docs directory. To build
+it locally you need to install libxslt and docbook-xslt and then run
+\`make\`.
+
+    $ nix-env -i docbook-xslt libxslt
+    $ cd $NIXPKGS_ALL/docs
+    $ make manual.html
+    $ firefox manual.html
