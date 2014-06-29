@@ -124,9 +124,14 @@ variables set:
 all these variables contain include paths and ldflags used by the
 compiler.
 
-**note: this means that once these paths are set correctly (caused by
-the load-sdl-env command) you don't need tools like sdl-config or
-pkgconfig at all.**
+**note: the load-sdl-env using sdl is just an example here, however the
+mentioned environment variables can be used for various libraries which
+don't even use sdl-config like tools.**
+
+**note: once these paths are set correctly (caused by the load-sdl-env
+command) you would not depend on tools like sdl-config or pkgconfig.
+this helps to get libraries working which don't use these kind of tools
+to make them accessible.**
 
 ### code completion in kdevelop
 
