@@ -36,3 +36,13 @@ Work on solving some of the following issues
 -   <https://github.com/chaoflow/nixpkgs> (python branch)
 -   <https://gitorious.org/nixpkgs-python-overlay>
 
+Known issues:
+
+-   Overzealous wrapPythonPrograms, also wraps included modules (just
+    use wrapProgram?)
+
+Considerations:
+
+-   Should we use distribute as the basis for installing python
+    packages?
+
