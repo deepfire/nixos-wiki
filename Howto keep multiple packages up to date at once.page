@@ -29,3 +29,17 @@ collection in yet another collection. Keeping such a big collection
 containing all important packages which you use everyday makes it easy
 to upgrade or move your setup to another pc.
 
+**Question**: This approach does not detect file collisions. When I
+install the expression
+
+        haskellStuff = pkgs.misc.collection {
+           name = "my-haskell-packages";
+           list = (with pkgs.haskellPackages_ghc704; [ghc]) ++
+                  (with pkgs.haskellPackages_ghc721; [ghc]) ;
+        };always
+       
+
+then I end up have both packages in one profile even though they collide
+in several binaries, i.e. "ghc", "runhaskell", etc. This seems to be a
+bit of a problem?
+
