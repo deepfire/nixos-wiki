@@ -36,7 +36,7 @@ install the expression
            name = "my-haskell-packages";
            list = (with pkgs.haskellPackages_ghc704; [ghc]) ++
                   (with pkgs.haskellPackages_ghc721; [ghc]) ;
-        };always
+        };
        
 
 then I end up have both packages in one profile even though they collide
