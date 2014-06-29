@@ -75,8 +75,8 @@ corresponding branch for this.
 
 You can create a branch to track the upstream master branch:
 
-     git checkout -b upstream-master upstream/master
-     git pull
+     $ git checkout -b upstream-master upstream/master
+     $ git pull
 
 This will put you into a branch with all the latest changes. Hydra, the
 build farm, regularly creates binaries, but, since people are constantly
@@ -84,22 +84,34 @@ contributing to the nix repositories, it is usually the case that there
 are changes in the master branch which have not yet made it into the
 binary channel. To take advantage of available binaries you can switch
 to the revision which produced the binaries in your current system and
-apply your changes there. You can use \`nixos-version\` to see the
+apply your changes from there. You can use \`nixos-version\` to see the
 relevant short revision hash:
 
      $ nixos-version 
      13.07pre4871_18de9f6-3c35dae (Aardvark)
+     ${NixOS release}_${NixOS revision}-${nixpkgs revision}
 
 This string shows the Nixos release number (13.07pre4871) followed by
 the nixos revision used to produce your current system (18de9f6)
 followed by the nixpkgs revision (3c35dae).
 
- After making some changes you can commit them into your local repo:
+     $ git branch
+     upstream-master
+     $ git checkout -b nixpkgs-channel 3c35dae
+     Switched to a new branch 'nixpkgs-channel'
+     $ git checkout -b my-new-pkg
+     Switched to a new branch 'my-new-pkg'
 
-     git add foo
-     git commit
+After making some changes you can commit them into your local repo:
 
- And then you can merge the upstream changes into your branch
+     $ git add foo
+     $ git commit
+
+Then you push your changes to your fork:
+
+     $ git push origin my-new-pkg
+
+You can use this to open a pull request on github.
 
 If some time has passed since you have created your fork, you will want
 to merge your changes with upstream and test that it still works.
@@ -107,41 +119,9 @@ to merge your changes with upstream and test that it still works.
      git fetch upstream
      git merge upstream
 
-### Take advantage of available binaries from Hydra
+Using nix-shell for package development
+---------------------------------------
 
-problem: if you use a local git checkout of nixos/nixpkgs's **upstream
-master** to develop software with, you might end up in compiling a lot
-when doing: **nixos-rebuild switch**. this happens for example when
-there is a fundamental change which requires a lot of packages to be
-rebuilt. It is even likely that you hit bugs/issues which are caused by
-someone else.
-
-Ideally **you want to change the state of your current system** which
-means that **you will not work on upstream/master** but **on the state
-of the channel** which is known to be pretty stable.
-
-A channel is only updated if a hydra build job succeeded, that means
-(compared to using a local upstream/master git checkout of
-nixos/nixpkgs) if you type **nix-env -i firefox**
-
-    * you might get an older binary substitute if the hydra build of the new expression hasn't finished yet
-    * you might get an older binary substitute if the hydra build of a newer version failed
-
-#### nixos-version
-
-      nixos-version
-      0.2pre-769b74c-f430032
-
-The last strings at the end indicate the git short revision hash of
-nixos and nixpkgs. The first one (769b74) is nixos revision, the second
-one is the nixpkgs (f430032) revision.
-
-      cd $NIXREPOS/nixpkgs
-
-You can create a
-
-      git pull
-      git checkout -b nixpkgschannel f430032
       nix-shell $NIXREPOS/nixpkgs  -A bc
       mkdir -p /tmp/foo/out
       cd /tmp/foo
