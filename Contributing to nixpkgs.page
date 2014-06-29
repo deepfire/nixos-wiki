@@ -36,7 +36,20 @@ Retrieving a working copy of your repository
 
 -   Now you can clone your repository somewhere on your system:
 
-        mkdir ~/devel/ && cd ~/devel/ && git clone https://github.com/your_username/nixpkgs.git
+<!-- -->
+
+    mkdir ~/devel/
+    cd ~/devel/
+    git clone https://github.com/your_username/nixpkgs.git
+    git remote add upstream https://github.com/NixOS/nixpkgs.git
+
+-   When the clone is not recent or you suspect there have been changes
+    upstream (in official nixpkgs):
+
+<!-- -->
+
+    git fetch upstream
+    git merge upstream/master
 
 -   You should get a git repository with the whole nixpkgs tree under
     `~/devel/nixpkgs/`
