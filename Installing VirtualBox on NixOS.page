@@ -45,7 +45,11 @@ Then add it to the Nix store:
 
 (Replace *pkgs.linuxPackages* with the package set you want to use)
 
- Switch to the new system configuration:
+or set nixos option:
+
+      nixpkgs.config.virtualbox.enableExtensionPack = true;
+
+Switch to the new system configuration:
 
     nixos-rebuild switch
 
