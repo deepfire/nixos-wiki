@@ -1,0 +1,78 @@
+[[edit](/w/index.php?title=UDX_Initiative&action=edit&section=1 "Edit section: NixOS UDX Initiative")] NixOS UDX Initiative
+===========================================================================================================================
+
+**WARNING: Page is filled with jokes the author thought was funny. This
+is however not the Linux kernel and we have standards here. As such
+most, if not all, will be edited out in the "final version"**
+
+[[edit](/w/index.php?title=UDX_Initiative&action=edit&section=2 "Edit section: Introduction")] Introduction
+-----------------------------------------------------------------------------------------------------------
+
+UDX stands for "User & Developer eXperience" and this page features a
+set of easy to remember guidelines for how to illustrate solutions to
+problems or how to properly write documentation. It contains simple ways
+of creating a readable and structured documents or even approaches to
+conversations in regards to using, maintaining and developing for
+Nix(OS), Linux or KDE. By following these guidelines verbatim we can
+ensure an easy learning curve for the newly initiated and clean, uniform
+and semantic documentation for all.
+
+[[edit](/w/index.php?title=UDX_Initiative&action=edit&section=3 "Edit section: Be concise, be polite, be direct and be brief")] Be concise, be polite, be direct and be brief
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+You catch more bee's with honey, and people comprehend subjects much
+more easily when they are at ease (though it can also be said that
+"extreme motivation" can get people to do "the darndest things").
+Shakespear also said that "brevity is the soul of wit", meaning that if
+you keep it "short and sweet" the point will be ever ever oh so more
+clearer to the listener or reader (that hypocritical immortal bard...!)
+I often catch my self rambling on, editing documents from being huge
+stacks of "papers" to a couple of papers or two of concise and direct
+information. This is because we don't have time to read all this fancy
+language; what is the function behind it? What is it you are trying to
+communicate? In other words...
+
+[[edit](/w/index.php?title=UDX_Initiative&action=edit&section=4 "Edit section: K.I.S.S. or "Keep it simple stupid"")] K.I.S.S. or "Keep it simple stupid"
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+A simple rule of thumb about everything: "if you can't explain something
+as if you're talking to a child you haven't understood the process fully
+yourself" (provided the child has an open mind and good math skills). Of
+course this is just a short and sweet statement that deals with a very
+important subject, and that's Keep It Simple, Stupid. We all have a
+tendency to overthink things. How to live, how to work, how to love, and
+even how to code and document. Sometimes you need to step back and ask
+your self: "Am I over-thinking this?" Chances are you're right at least
+half of the time.
+
+In regards to simple questions being asked:
+
+-   If you were asked a question, did the person asking provide you with
+    all the necessary information?
+-   If you were asked a question, is the person fixated on a possible
+    solution to a problem without having enough evidence to suggest that
+    the person has confirmed that this maybe the case?
+-   If you were asked a question, does it seem like the person is
+    confusing terms?
+
+In any which case; ask them to tell you their direct issue, to explain
+in simple terms what they are trying to achieve.
+
+But then again...
+
+[[edit](/w/index.php?title=UDX_Initiative&action=edit&section=5 "Edit section: Explain something like if you're teaching A to Z")] Explain something like if you're teaching A to Z
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+When dealing with computers it's easy to forget that some people just
+don't know what they're doing (\<-Psst.. this hypocrite right here).
+Shut up, parentheses! So it's good to actually be be a bit verbose as
+you are concise. You're not going to explain every feature or function
+of a program or procedure, but to at least explain each step with enough
+context to help someone who is not informed learn more about their
+operating system environment. For example:
+
+Let's take a very simple command, say **nix-env -i**. In this case the
+explanation is either way simple "installs a package", or you could try
+to explain the process of nix-env -i verbatum, as easy and simple as
+possible, for educational purposes.
+
