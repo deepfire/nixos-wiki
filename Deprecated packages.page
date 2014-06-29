@@ -69,9 +69,9 @@ Policykit (not polkit!) reverse dependencies
   Maintainer
   Plan
   ------------------------ ------------------------ ------------------------
-  HAL                      gnome-2/GConf
-  No meta.maintainer       No meta.maintainer
-  Remove (see above)       Upgrade
+  HAL
+  No meta.maintainer
+  Remove (see above)
   --------------------------------------------------------------------------
 
 gtk-2.16.x
