@@ -19,8 +19,9 @@ Known issues
 -   As of 2014-03-04, you shouldn't use a ZVol as a swap device, as it
     deadlocks under memory pressure
 -   As of 2014-03-04, you should set the `mountpoint` property of your
-    ZFS filesystems to be `legacy` and let NixOS manage them, otherwise
-    some filesystems may fail to mount due to ordering issues
+    ZFS filesystems to be `legacy` and let NixOS mount them using
+    systemd, otherwise some filesystems may fail to mount due to
+    ordering issues
 
 How to use it
 -------------
