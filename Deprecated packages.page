@@ -1,8 +1,8 @@
 This page contains information about various deprecated packages and
 their reverse-dependencies.
 
-HAL
----
+[[edit](/w/index.php?title=Deprecated_packages&action=edit&section=1 "Edit section: HAL")] HAL
+----------------------------------------------------------------------------------------------
 
 Package
 
@@ -16,7 +16,7 @@ Plan
 
 Nicolas Pierron
 
-Nicolass will test nut without HAL near end of January 2011
+Added nut-2.6.3 without hal support
 
 Xfce-4.6
 
@@ -24,8 +24,8 @@ No meta.maintainer
 
 Switch to 4.8 and remove 4.6
 
-Policykit (not polkit!)
------------------------
+[[edit](/w/index.php?title=Deprecated_packages&action=edit&section=2 "Edit section: Policykit (not polkit!)")] Policykit (not polkit!)
+--------------------------------------------------------------------------------------------------------------------------------------
 
   --------------------------------------------------------------------------
   Package
@@ -37,8 +37,8 @@ Policykit (not polkit!)
   Remove (see above)
   --------------------------------------------------------------------------
 
-Qt3/KDE3
---------
+[[edit](/w/index.php?title=Deprecated_packages&action=edit&section=3 "Edit section: Qt3/KDE3")] Qt3/KDE3
+--------------------------------------------------------------------------------------------------------
 
 Qt 3.x and KDE 3.x are not supported by Nokia and KDE team. Most
 packages migrated to KDE 4.x. If we cannot avoid using qt-3.x and/or
