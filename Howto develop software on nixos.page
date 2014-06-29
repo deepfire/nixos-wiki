@@ -1,25 +1,28 @@
-Example Case
-------------
+What is a Development Environment?
+----------------------------------
 
-Many software developers use an IDE to edit source code. In this
-tutorial, we will discuss using the [KDevelop
-IDE](http://www.kdevelop.org) to develop an application. This
-application is built by using a standard compiler, CMake, and QT, and it
-is managed using Git. So, to get started developing this application, we
-need to install these tools in our environment.
+Many software developers use an IDE to edit source code, such as
+[KDevelop IDE](http://www.kdevelop.org) or [Eclipse
+<http://www.eclipse.org>].
 
-Unlike other Linux or Unix systems, a normal NixOS instance has none of
-these tools. What does this mean? If a NixOS user types `make` in a
-normal terminal, an error will be displayed which says a program named
-"make" does not exist.
+In this tutorial, we will discuss using tools such as these to develop
+an application, which we will call MyApp. MyApp is built with a standard
+compiler, CMake, and QT, and it is managed using Git. To get started
+working on MyApp, we need have the ability to build it, which means we
+need to install these tools into our environment. When we say "install a
+tool into an environment", what does this mean? In this case, developing
+software, it means the tools must be easily accessible from a terminal.
+To clarify, if a tool, such as Make is **not** installed in our
+environment and we type `make` in a shell, an error will be displayed,
+telling us that "make" does not exist.
 
-So, how can we use Nix to obtain an environment which contains all tools
+How can we use Nix to obtain an environment which contains all tools
 required to work on a project?
 
 Two solutions: A) Rely on app's package B) Manually define build
 environment
 
-### A) Rely on Nix Package
+### Obtaining an Environment from an App's Nix Package
 
 A Nix package declares everything required to build the packaged code.
 Therefore, if we want to work on the packaged app, we can ask the
@@ -32,18 +35,18 @@ store, and sets up the environment to point to it. Finally, it destroys
 this child shell.
 
 We want to iteratively modify and build the packaged app. Can we ask Nix
-to \`\`\`not\`\`\` destroy the child shell, and instead let us use it
-for working on the app? Yes we can. A Nix command was created for
-exactly this use-case - the `nix-shell` command. To work on the `nvi`
-app, which is a Nix-packaged app, use the following command to set up
-all build tools in a child shell.
+to *not'* destroy the child shell, and instead let us use it for working
+on the app? Yes we can. A Nix command was created for exactly this
+use-case - the `nix-shell` command. For example, to work on the `nvi`
+Nix-packaged app, use the following command to set up all build tools in
+a child shell.
 
      nix-shell [--command /bin/sh] nvi
 
  Additional info:
 <https://github.com/NixOS/nix/commit/7f38087f35e6f74a73bfdb28da8acd8930565d51>
 
-### B) Manually Define Build Environment
+### Obtaining an Environment from a Custom Definition
 
 The first solution, to rely on the Nix package, will give us a single
 shell which can build the app, which is a very useful tool. Sometimes,
@@ -62,32 +65,75 @@ rather complicated, but the key idea is that Nix manages which of its
 applications are visible. This set of applications is called a "User
 Environment".
 
-#### Managing User Environments with myEnvFun
+#### Introducing myEnvFun
 
 So, our goal is to create a User Environment which contains all required
 tools to edit a Nix-packaged app. How do we create this User
 Environment? An app was created which helps us define a custom User
 Environment and then switch to it. This package is called `myEnvFun`.
 
-How do we use `myEnvFun`? Currently, it requires a bit of setup. The
-documentation for this setup exists in the [`myEnvFun` source
+How do we use `myEnvFun`? Currently, it requires a bit of setup. If you
+want to read existing documentation, you have to read the [`myEnvFun`
+source
 code](https://github.com/NixOS/nixpkgs/blob/master/pkgs/misc/my-env/default.nix).
+I'm trying to better document this tool with this Wiki page.
 
-The `nixpkgs/pkgs/misc/my-env/default.nix` Nix expression is intended to
-be used by a normal user. Just open the mentioned file with the text
-editor of choice and look at the comments (which should be very similar
-to the contents of this Wiki page), so read on.
+So, how do we use this tool? The idea is that we write a Nix expression
+which defines a development environment, more precisely, **the tools**
+we want in our development environment. Nix manages dependencies and
+ensures they are built. Can we say that code editing tools are
+dependencies of a development environment? Sure!
 
-### a simple example \~/.nixpkgs/config.nix
+So, the idea is that we create a Nix expression which accepts a name and
+a set of Nix packages. The name will be the name of the development
+environment, and the set of Nix packages will be the set of tools we
+need to work on MyApp.
 
-this file contains the user configuration for one or more custom
-environments. let's create it:
+First, install the `myEnvFun` tool.
 
-     $ mkdir ~/.nixpkgs
+     $ nix-env -i myEnvFun
 
-ensure that the config.nix contains something like:
+Then, place the Nix expression which defines our development environment
+in `~/.nixpkgs/config.nix`. Using the following code as a template, we
+can create an environment, name it, and add tools to it.
 
-     $ cat config.nix
+     {
+       packageOverrides = pkgs : with pkgs; {
+         sdlEnv = pkgs.myEnvFun {
+             name = "someEnvName";
+             buildInputs = [ stdenv pkgconfig toolOne toolTwo toolThree ];
+         };
+       };
+     }
+
+With this development environment defined, we install the package which
+contains it with the following command. Note that the package which
+contains our environment uses a `env-<envName>` naming convention.
+
+     $ nix-env -i env-someEnvName
+
+To switch to this environment, we use the following command. Note the
+naming convention.
+
+     $ load-env-someEnvName
+
+#### Using myEnvFun Environments
+
+To test the results, try to use one of this environment's tools from
+this shell.
+
+Other shells won't have this environment, so we must use the
+`load-env-someEnvName` command again to switch to the environment before
+using its tools.
+
+#### Example: "SDL" Environment
+
+The author of [this blog
+post](http://invalidmagic.wordpress.com/2012/03/23/developing-software-using-nixos/)
+shows how to use the `myEnvFun` tool to create an environment to use
+SDL. He creates an SDL environment for it with the following Nix
+expression.
+
      {
        packageOverrides = pkgs : with pkgs; {
          sdlEnv = pkgs.myEnvFun {
@@ -97,85 +143,59 @@ ensure that the config.nix contains something like:
        };
      }
 
-by following the installation procedure of our new custom environment,
-also found in /etc/nixos/nixpkgs/pkgs/misc/my-env/default.nix, one can
-extend his standard environment by the desired new environment.
+Then, we can use the SDL environment as follows.
 
-     $ nix-env -i env-sdl
+First, load the SDL environment.
 
-using this new environment:
-
-     $ load-env-sdl
-
-to verify that the new environment got all tools needed, type:
-
-     $ make
-
-and verify that the tool is there.
-
-### how to use that environment
-
-after the new environment has loaded you can use the tools as if you
-were on ubuntu or debian linux where all the tools are available
-throughout the whole system once they have been installed. note that on
-other shells you won't have these tools, so you also have to change the
-environment if you want them to have the tools as well.
-
-loading the environment
-
-     [joachim@eliteBook-8530w:~/Desktop/projects]$ load-env-sdl
+     [~/Desktop/projects]$ load-env-sdl
      env-sdl loaded
 
-using sdl-config to get the cflags
+Then we can use commands which exist only in this SDL environment,
+because they exist in Nix packages declared in the environment
+definition. For example, we can use the `sdl-config` command to get
+cflags.
 
-     sdl:[joachim@eliteBook-8530w:~/Desktop/projects]$ sdl-config --cflags
+     sdl:[~/Desktop/projects]$ sdl-config --cflags
      -I/nix/store/652x8hnhja32z3ja4hip04ygn8mh9cwi-SDL-1.2.14/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT
 
-using sdl-config to get the library postition
+And we can use `sdl-config` command to get library position.
 
-     sdl:[joachim@eliteBook-8530w:~/Desktop/projects]$ sdl-config --libs
+     sdl:[~/Desktop/projects]$ sdl-config --libs
      -L/nix/store/652x8hnhja32z3ja4hip04ygn8mh9cwi-SDL-1.2.14/lib -Wl,-rpath,/nix/store/652x8hnhja32z3ja4hip04ygn8mh9cwi-SDL-1.2.14/lib -lSDL -lpthread
 
-in the `Makefile` of your sdl using project you usually call sdl-config
-to get these values and paths.
+In the `Makefile` of a project which uses SDL, we usually use
+`sdl-config` to get these values and paths. In an SDL environment, we
+can also use these commands.
 
-**note: the exact path might differ from mine as you might have a
-different hash**
+#### Related Topics
 
-### another example
+##### Using Libraries not using `pkgconfig`
 
-<http://invalidmagic.wordpress.com/2012/03/23/developing-software-using-nixos/>
-
-other related topics
---------------------
-
-### how to use libraries which don't have a sdl-config or don't use pkgconfig
-
-when you load `load-env-sdl` there will be some additional environment
+When you load `load-env-sdl` there will be some additional environment
 variables set:
 
 -   CMAKE\_PREFIX\_PATH
 -   NIX\_CFLAGS\_COMPILE
 -   NIX\_LDFLAGS
 
-all these variables contain include paths and ldflags used by the
+All these variables contain include paths and ldflags used by the
 compiler.
 
-**note: the load-env-sdl using sdl is just an example here, however the
-mentioned environment variables can be used for various libraries which
-don't even use sdl-config like tools.**
+Note: `load-env-sdl` and SDL is just an example. The mentioned
+environment variables can be used for various libraries which don't use
+`sdl-config`-like tools.
 
-**note: once these paths are set correctly (caused by the
-load-env-whateverYourEnvironmentIsCalled command) you would not depend
-on tools like sdl-config or pkgconfig. this helps to get libraries
-working which don't use these kind of tools to make them accessible.**
+Note: Once these paths are set correctly (caused by the
+`load-env-someEnvName` command) you would not depend on tools like
+`sdl-config` or `pkgconfig`. This helps to get libraries working which
+don't use these kind of tools to make them accessible.
 
-### code completion in kdevelop
+##### Code Completion in KDevelop
 
-kdevelop has code completion but it requires the source of the used
-libraries of course. On NixOS these libraries however reside in the
-/nix/store and are therefore more or less very strange compared to other
-distributions.
+KDevelop has code completion but it requires the source of the used
+libraries of course. On NixOS these libraries however reside in
+`/nix/store` and are therefore more or less very strange compared to
+other distributions.
 
 To have full code completion in kdevelop you need this procedure:
 
@@ -191,10 +211,10 @@ To have full code completion in kdevelop you need this procedure:
 What might not work is that you can open several projects in this
 kdevelop session. But that should be a minor issue i guess.
 
-sample development environments
+Sample Development Environments
 -------------------------------
 
-### Python development environment
+### Python Development Environment
 
        {
          # Define a myEnvFun environment, which makes use of pythonPlone
@@ -223,10 +243,10 @@ sample development environments
          };
        }
 
-summary
+Summary
 -------
 
-it is easy to add several different environments to
+It is easy to add several different environments to
 `~/.nixpkgs/config.nix` and these can then be used, one at a time, for
 development. one can exit from such an environment using `CTRL+D` or
 simply by typing `exit` as it is realized as a sub-shell (similar to
