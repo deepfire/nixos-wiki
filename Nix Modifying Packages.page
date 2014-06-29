@@ -9,7 +9,7 @@ expressions.
 -   Fork the NixPkgs project and modify the package's Nix expression in
     your fork, then, optionally, push this modification back to the
     project.
--   Create a Nix expression which modifies existing Nix packages.
+-   Create a Nix expression which overrides existing Nix packages.
 
 Fork and Modify NixPkgs
 -----------------------
@@ -32,28 +32,45 @@ your changes.
 
        $ git clone https://github.com/your_username/nixpkgs.git ~/my-fork
 
-### Using NixPkgs Fork
+### Modifying a Forked Package
 
-We can use Nix commands, such as the `nix-env -i` command, with either
-the default NixPkgs installation or our fork of NixPkgs.
+Now you can modify a package. Open the
+`~/my-fork/nixpkgs/pkgs/top-level/all-packages.nix` file and find the
+name of the package you want to modify from the set of attributes.
+Consider Filezilla, for example, which is defined like this:
+`filezilla = callPackage ../applications/networking/ftp/filezilla { };`.
+To modify the Filezilla package, modify the
+`../applications/networking/ftp/filezilla/default.nix` file, as
+`default.nix` is the default file name used by Nix if not specified.
 
-Our NixPkgs fork is not in Nix's search path, which means Nix commands,
-like the `nix-env` command, will still use the existing NixPkgs
-installation. To tell Nix to use our fork of the NixPkgs repository, we
-add its path to the `NIX_PATH` environment variable like
-"my-nixpkgs=path/to/fork/nixpkgs", then use "`<my-nixpkgs>`" in Nix
-commands.
+### Using Your Fork of NixPkgs
+
+After modifying a package's Nix expression, we need to test it. When we
+normally use Nix commands, such as the `nix-env -i` command, the default
+NixPkgs installation is used. We can, however, specify a different
+NixPkgs installation for Nix commands to use.
 
        ### Install from default NixPkgs:
        $ nix-env -i firefox
-       
+
+To specify a different NixPkgs installation, we need to add it to Nix's
+search path, which is used to find Nix expressions. To do this, modify
+the `NIX_PATH` environment variable to add a path alias, which looks
+like "my-nixpkgs=/path/to/fork/nixpkgs". With this path alias defined,
+we can use it to tell Nix to use our NixPkgs fork. To use the path alias
+in Nix commands, place it inside angle brackets, like "`<my-nixpkgs>`",
+when using Nix commands.
+
        ### Install from our NixPkgs fork: (yet to be tested by author)
        $ export NIX_PATH=my-nixpkgs=~/my-fork/nixpkgs:NIX_PATH
        $ nix-env -i <my-nixpkgs/default.nix> firefox
        $ nix-env -i <my-nixpkgs> firefox
 
-Modify Existing Packages
-------------------------
+If you have problems, see the [Debugging a Nix
+Package](//Debugging a Nix Package) wiki page.
+
+Overriding Existing Packages
+----------------------------
 
 By default, the file at `~/.nixpkgs/config.nix` is used, but this can be
 overridden by specifying a file's path in the `NIXPKGS_CONFIG`
