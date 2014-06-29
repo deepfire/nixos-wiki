@@ -85,6 +85,9 @@ Acpi thinks lid is always open
     [ierton@greyblade:~]$ cat /proc/acpi/button/lid/LID0/state 
     state:      open
 
+Related [Kernel bug
+\#44161](https://bugzilla.kernel.org/show_bug.cgi?id=44161)
+
 ### Multimedia keys
 
 -   rfkill/fanless don't work
