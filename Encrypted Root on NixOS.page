@@ -34,15 +34,24 @@ In this example we assume that:
 
 ### Make sure initrd finds and mounts the root partition
 
+The current implementation always opens the luks devices in the stage1
+(before mounting the rootfs).
+
+This part of configuration.nix will make cryptsetup luksOpen to be
+called after the LVM initialisation for /dev/sda2 to the name
+'luksroot':
+
       boot.initrd.luks.enable = true;
       boot.initrd.luks.devices = [ { name = "luksroot"; device = "/dev/sda2"; } ];
 
-Additionally you can encrypt your /home partition or any other partition
-with a different luks container, then use:
+You can extend the list, if you have for example a ciphered swap
+partition too, or any else:
 
-      boot.initrd.postDeviceCommands = "cryptsetup luksOpen /dev/sda3 lukshome";
-
-**Note: don't forget the kernel modules listed below**
+      boot.initrd.luks.enable = true;
+      boot.initrd.luks.devices = [
+        { name = "luksroot"; device = "/dev/sda2"; }
+        { name = "swap"; device = "/dev/sda3"; }
+      ];
 
 ### creating encrypted swap
 
