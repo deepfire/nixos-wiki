@@ -2,18 +2,29 @@ this wiki page describes **how to work with nixos/nixpkgs/...**:
 
      https://github.com/nixos
 
+basics
+------
+
+say of are running nixos using nixpkgs. if you want to change parts of
+your system you need to use git:
+
+     $ cd $HOME/code/
+     $ mkdir code; cd code
+     $ git clone https://github.com/NixOS/nixpkgs
+     $ git clone https://github.com/NixOS/nixos
+
+now you have two local repositories: nixpkgs and nixos
+
 our workflow is similar to the diaspora documented one, so have a
 glimpse there as well:
 
      https://github.com/diaspora/diaspora/wiki/Git-Workflow
 
-basics
-------
-
-if you want to change parts of the system
-
 how to install from the local overlay
 -------------------------------------
+
+this section tells you how to apply changes to your current system based
+on your local repositories:
 
 list all available software from the **local overlay \~/code/nixpkgs**
 
