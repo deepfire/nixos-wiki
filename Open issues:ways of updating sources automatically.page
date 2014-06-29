@@ -6,8 +6,8 @@ consider learning or utilizing uscan. (Link?)
 
 The following implementations exist:
 
-Ludovic Courtes eval xml then parse
------------------------------------
+[[edit](/w/index.php?title=Open_issues:ways_of_updating_sources_automatically&action=edit&section=1 "Edit section: Ludovic Courtes eval xml then parse")] Ludovic Courtes eval xml then parse
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 For full information read the original thread
 [mailinglist](http://www.mail-archive.com/nix-dev@cs.uu.nl/msg03825.html)
@@ -24,8 +24,8 @@ options. Also if you put update information into the meta attributes
 which are not passed to the builder there are many lines between the
 sorce declaration and the update information. So its easy to miss.
 
-Michael Raskins autoupdate scripts
-----------------------------------
+[[edit](/w/index.php?title=Open_issues:ways_of_updating_sources_automatically&action=edit&section=2 "Edit section: Michael Raskins autoupdate scripts")] Michael Raskins autoupdate scripts
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 description: pkgs/build-support/upstream-updater/design.txt
 
@@ -45,8 +45,8 @@ nixpkgs-utilities (gitorious) repository adding a --help option.
 AFAIK Eelco Dolstra also dislikes having many small files for this
 purpose.
 
-Marc Weber's nix-repository-manager
------------------------------------
+[[edit](/w/index.php?title=Open_issues:ways_of_updating_sources_automatically&action=edit&section=3 "Edit section: Marc Weber's nix-repository-manager")] Marc Weber's nix-repository-manager
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 [github](http://github.com/MarcWeber/nix-repository-manager) basic idea:
 Keep it simple. Text regions are introduced which start by special
@@ -92,8 +92,8 @@ links by xpath from HTML pages selecting the newest version. It can be
 installed easily using the
 [nixpkgs-haskell-overlay](http://github.com/MarcWeber/nixpkgs-haskell-overlay)
 
-Tobias Hunger's Auto package updating script v2
------------------------------------------------
+[[edit](/w/index.php?title=Open_issues:ways_of_updating_sources_automatically&action=edit&section=4 "Edit section: Tobias Hunger's Auto package updating script v2")] Tobias Hunger's Auto package updating script v2
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 [mailinglist first
 version](http://article.gmane.org/gmane.linux.distributions.nixos/5575/match=auto+package+updating+script)
