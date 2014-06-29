@@ -122,3 +122,69 @@ will call the next gcc in PATH in the builds, not using /usr/bin/gcc.
 
     /niximpure/home:
     total 0
+
+### Server side
+
+Having a copy of stdenv-updates nixpkgs, you can build your
+cross-compilers for distcc. Prepare a directory for them:
+
+    mkdir distcc
+    cd distcc
+
+And create a nix file (`pi.nix`) for example there with these contents:
+
+    let
+      pkgsFun = import <nixpkgs>;
+      pkgsNoParams = pkgsFun {};
+    in
+    pkgsFun
+    {
+       crossSystem = {
+           config = "armv6l-unknown-linux-gnueabi";
+           bigEndian = false;
+           arch = "arm";
+           float = "hard";
+           fpu = "vfp";
+           withTLS = true;
+           libc = "glibc";
+           platform = pkgsNoParams.platforms.raspberrypi;
+           openssl.system = "linux-generic32";
+           gcc = {
+             arch = "armv6";
+             fpu = "vfp";
+             float = "hard";
+             abi = "aapcs-linux";
+           };
+       };
+
+       config = pkgs: {
+         packageOverrides = pkgs : {
+           platform = pkgs.platforms.sheevaplug;
+           distccMasquerade = pkgs.distccMasquerade.override {
+             gccRaw = pkgs.gccCrossStageFinal.gcc;
+             binutils = pkgs.binutilsCross;
+           };
+         };
+         kernel.extraConfig = 
+           IPV6 y
+           BLK_DEV_LOOP y
+         ;
+       };
+    }
+
+In case `gcc_realCross = gcc47_realCross`, you can build the gcc 4.7
+cross-compiler this way. The gcc 4.7 compiler is the compiler in the
+bootstrap-tools to build the stdenv.
+
+    nix-build -o pi-gcc47 distccMasquerade pi.nix
+
+You can then start distcc serving this, having distcc installed, and
+running:
+
+    PATH=`pwd`/pi-gcc47/bin:$PATH distccd --allow 192.168.1.0/24 --stats --stats-port 8032
+
+Once stdenv is built, as it includes gcc 4.6, you will need the
+cross-compiler gcc 4.6, which you can build using the same technique as
+before, but changing `gcc_realCross = gcc46_realCross` in nixpkgs'
+`all-packages.nix`.
+
