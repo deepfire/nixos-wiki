@@ -23,10 +23,10 @@ Support
 -------
 
 -   Ethernet: Yes.
--   Wireless: Not tested.
--   Bluetooth: Not tested.
+-   Wireless: Yes.
+-   Bluetooth: Yes.
 -   Sound: Yes.
--   Video: Yes.
+-   Video: Yes. (dual screen working fine)
 -   Software Raid: Yes.
 -   Keyboard: some Function (Fn) keys are not recognized / mapped
     correctly.
