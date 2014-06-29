@@ -101,27 +101,55 @@ instead use that one.
 ### Creating a `config.nix` File
 
 What does Nix expect the `config.nix` file to look like? To modify
-existing packages, it must accept `pkgs` as a parameter and have an
-attribute named `packageOverrides`.
+existing packages, this file must contain an attribute named
+`packageOverrides`, which will be called as a function and given the
+original NixPkgs list as a parameter. Here are some example `config.nix`
+files.
 
-Here are some examples (all yet to be tested by author).
+Override a package's arguments:
 
-Override normal package:
-
-       pkgs : {
-         packageOverrides = pkgs : rec {
+       {
+         packageOverrides = pkgs: rec {
+           # Make "xbmc" use the "python26" package,
+           #   instead of NixPkgs default python version.
            xbmc.override {
-             python = python26;
+             python = pkgs.python26;
            };
          };
        }
 
-Override Haskell library package:
+Override a package's attributes:
 
-       pkgs : {
-         packageOverrides = pkgs : rec {
+       {
+         packageOverrides = pkgs: rec {
+           # Override the "mu" package's "postInstall" phase to move some files.
+           mu = pkgs.stdenv.lib.overrideDerivation pkgs.mu (oldAttrs : {
+             postInstall = 
+               mv $out/share/emacs/site-lisp/mu4e/* $out/share/emacs/site-lisp/
+             ;
+           });
+           
+           # Create a new package, "mySed", which is identical to an
+           #   existing package, "gnused", but uses a different version.
+           mySed = overrideDerivation pkgs.gnused (oldAttrs: {
+             name = "sed-4.2.2-pre";
+             src = fetchurl {
+               url = ftp://alpha.gnu.org/gnu/sed/sed-4.2.2-pre.tar.bz2;
+               sha256 = "11nq06d131y4wmf3drm0yk502d2xc6n5qy82cg88rb9nqd2lj41k";
+             };
+             patches = [];
+           });
+         };
+       }
+
+ Override Haskell library package:
+
+       {
+         packageOverrides = pkgs: rec {
            myHaskellPackages =
-             let callPackage = pkgs.lib.callPackageWith myHaskellPackages; in
+             let
+               callPackage = pkgs.lib.callPackageWith myHaskellPackages;
+             in
                pkgs.recurseIntoAttrs (pkgs.haskellPackages.override {
                  extraPrefs = self : {
                    boomerang = callPackage ./haskell/boomerang.nix {};
@@ -130,12 +158,12 @@ Override Haskell library package:
          };
        }
 
-Create shell which has a custom environment by using the
+Create a package which contains a set of packages by using the
 [`myEnvFun`](//Howto develop software on nixos#Introducing myEnvFun)
-function:
+function.
 
        {
-         packageOverrides = pkgs : with pkgs; {
+         packageOverrides = pkgs: with pkgs; {
            sdlEnv = pkgs.myEnvFun {
              name = "someEnvName";
              buildInputs = [ stdenv pkgconfig toolOne toolTwo toolThree ];
