@@ -1,0 +1,9 @@
+To do: Add content for this page: "Creating Nix Packages"
+
+Standard Environment
+--------------------
+
+Most packages build their software in the "standard environment". Read
+the [Standard Environment wiki
+documentation](//NixPkgs Standard Environment).
+
