@@ -219,3 +219,28 @@ Otherwise, you may get further info by disabling PulseAudio respawning
 (see above) and starting it in verbose mode:
 
     $ pulseaudio -vvv
+
+### System optimizations for low latency audio with JACK
+
+Some of the following settings, documented in
+<http://wiki.linuxmusicians.com/doku.php?id=system_configuration> can be
+very helpful to reduce xruns and improve responsiveness:
+
+      boot.postBootCommands = ''
+          ${pkgs.procps}/sbin/sysctl -w vm.swappiness=10
+      '';
+
+      security.pam.loginLimits =
+        [{ domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited"; }
+         { domain = "@audio"; item = "rtprio"; type = "-"; value = "99"; }
+        ];
+
+      services = {
+        udev = {
+          packages = [ pkgs.ffado ]; # If you have a FireWire audio interface
+          extraRules = ''
+            KERNEL=="rtc0", GROUP="audio"
+            KERNEL=="hpet", GROUP="audio"
+          '';
+        };
+      };
