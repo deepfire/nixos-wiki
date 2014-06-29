@@ -44,53 +44,51 @@ panel.
 First thing we want to do is formatting our root partition and mount it
 to /mnt.
 
-1.  mkfs.ext3 /dev/xvdb1
-2.  mount /dev/xvdb1 /mnt
+    # mkfs.ext3 /dev/xvdb1
+    # mount /dev/xvdb1 /mnt
 
 Next we need to download the minimal installation CD and mount it some
 place.
 
-1.  cd \~
-2.  mkdir inst host
-3.  wget
-    <http://nixos.org/releases/nixos/latest-iso-minimal-x86_64-linux>
-4.  modprobe loop
-5.  mount -o loop latest-iso-minimal-x86\_64-linux ./inst
-6.  unsquashfs inst/nix-store.squashfs '\*' -d host/nix/store
+    # cd ~
+    # mkdir inst host
+    # wget http://nixos.org/releases/nixos/latest-iso-minimal-x86_64-linux
+    # modprobe loop
+    # mount -o loop latest-iso-minimal-x86_64-linux ./inst
+    # unsquashfs inst/nix-store.squashfs '*' -d host/nix/store
 
 We also need the unsquashfs binary from squashfs-tools. You can install
 it by the following commands.
 
-1.  emerge --sync
-2.  emerge squashfs-tools
+    # emerge --sync
+    # emerge squashfs-tools
 
 Next, we extract nix-store.squashfs from the installation medium to
 yield a NixOS system we can chroot into.
 
-1.  cp /etc/resolve.conf host/nix/etc/
-2.  mkdir host/dev host/proc host/sys
-3.  for fn in dev proc sys; do mount --bind /\$fn host/fn; done
+    # cp /etc/resolve.conf host/nix/etc/
+    # mkdir host/dev host/proc host/sys
+    # for fn in dev proc sys; do mount --bind /$fn host/fn; done
 
-1.  find host -type f -name init | grep nixos
+    # find host -type f -name init | grep nixos
 
 host/nix/store/abwlkvzyjd2i39b1l1wfv7v9ilx88fwi-nixos-0.1pre34067-34077/init
 
-1.  find host -type f -name bash | tail -n 1
+    # find host -type f -name bash | tail -n 1
 
 host/nix/store/bmgq2jrn6719r6j55gs4rzfp0azcbazy-bash-4.2-p24/bin/bash
 
 (edit init, add bash call, remove upstart)
 
-1.  chroot host
-    /nix/store/abwlkvzyjd2i39b1l1wfv7v9ilx88fwi-nixos-0.1pre34067-34077/init
+    # chroot host /nix/store/abwlkvzyjd2i39b1l1wfv7v9ilx88fwi-nixos-0.1pre34067-34077/init
 
-1.  (chroot) nixos-option --install
-2.  (chroot) \$EDITOR /etc/nixos/configuration.nix
+    # (chroot) nixos-option --install
+    # (chroot) $EDITOR /etc/nixos/configuration.nix
 
 (example configuration file)
 
-1.  (chroot) nixos-checkout
-2.  (chroot) nixos-install
+    # (chroot) nixos-checkout
+    # (chroot) nixos-install
 
 (set root password)
 
