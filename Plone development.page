@@ -157,7 +157,6 @@ build tools.
       };
 
       # Define a myEnvFun environment, which makes use of pythonPlone
-      # You can 
       packageOverrides = pkgs: {
         plone = pkgs.myEnvFun {
           name = "plone";
