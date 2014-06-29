@@ -50,3 +50,26 @@ to know who comitted a line.
 Sander: Suggestion: maybe someone should verify what the impact is of a
 change by checking the build job status on [[1]](http://hydra.nixos.org)
 
+HOW to verify that you didn't break evaluation by accident ?
+------------------------------------------------------------
+
+Run a script like this: (TODO: improve it and add more documentation)
+
+    #!/bin/sh
+    set -e -x
+
+    export NIXOS=${NIXOS:-/etc/nixos/nixos}
+    export NIXPKGS_ALL=${NIXPKGS_ALL:-/etc/nixos/nixpkgs}
+
+    # evaluate all derivations found in all-packages.nix:
+    nix-env -qa '*' --show-trace -P --out-path -f $NIXPKGS_ALL/pkgs/top-level/all-packages.nix
+
+    # evaluate all derivations found in release.nix before starting the build:
+    # nix-env -qa '*' $NIXPKGS_ALL/pkgs/top-level/release.nix
+    # nix-instantiate --readonly-mode $NIXPKGS_ALL/pkgs/top-level/release.nix --show-trace
+
+    # build a release tarball which contains the most important packages (?)
+    nix-build -A tarball $NIXOS/release.nix --show-trace
+
+TODO: explain what is done exactly
+
