@@ -14,11 +14,12 @@ Hello people using luksRoot... I changed that a bit on nixos, I hope
 that for the better. I used it to get a ciphered swap that works for
 hibernation.
 
-If you had: boot.initrd.luksRoot = "/dev/sda2";
-
-Then now you have to write: boot.initrd.luks.enable = true;
-boot.initrd.luks.devices = [ { name = "luksroot"; device = "/dev/sda2";
-} ]
+     If you had:
+     boot.initrd.luksRoot = "/dev/sda2";
+     
+     Then now you have to write:
+     boot.initrd.luks.enable = true;
+     boot.initrd.luks.devices = [ { name = "luksroot"; device = "/dev/sda2"; } ]
 
 Config
 ------
