@@ -26,6 +26,18 @@ Just do:
 Error messages
 --------------
 
+### Failed to access the USB subsystem
+
+The message:
+
+    Failed to access the USB subsystem.
+    VirtualBox is not currently allowed to access USB devices. You can change this by allowing your user to access the 'usbfs' folder and files. Please see the user manual for a more detailed explanation.
+
+Shows that you do not have access to the usbfs. **Such USB access might
+require Oracle VirtualBox (non-free) and the VirtualBox Extension Pack
+installed** on the Host computer, as well as the user being part of the
+vboxusers group.
+
 ### Missing kernel modules
 
 If you get this error message (like this), something went wrong:
