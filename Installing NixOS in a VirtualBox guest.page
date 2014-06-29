@@ -8,7 +8,8 @@ Using NixOS with VirtualBox on OS X.
 -   Base Memory Size: 768 MB (or more)
 -   New Hard Disk of 8 GB
 -   Mount the CD-Rom with the NixOs iso (by clicking on CD/DVD-ROM)
--   Click on Settings / Advanced and enable PAE/NX
+-   Click on Settings / Advanced (or possibly System / Processor) and
+    enable PAE/NX
 -   Networking: select "Attached to: NAT". Change host-interface to
     "en1: Airport".
 -   Now you can install nix using the nixos manual:
