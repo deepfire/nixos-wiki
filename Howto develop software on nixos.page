@@ -73,14 +73,17 @@ following command.
 
 #### Example 3: Using myEnvFun to Create a Persistent Development Environment
 
-The main difference between using myEnvFun and nix-shell is that with
-myEnvFun building and activating the development environment are two
-separate steps. This allows you to determine when the environment gets
-updated. By using a profile you can also roll back to an earlier
-environment if need be.
+The main difference between `myEnvFun` and `nix-shell` is the separation
+between building a development environment and activating it. If we use
+`myEnvFun`, we can individually perform these two steps. This allows us
+to control when that environment gets updated. Also, if we use a Nix
+user profile, we can roll back to an earlier environment.
+
+To illustrate, suppose we have defined a development environment which
+contains Clang, as defined by the following Nix expression.
 
        # clangenv.nix
-
+       
        let
           pkgs = import <nixpkgs> {};
           stdenv = pkgs.stdenv;
@@ -91,26 +94,28 @@ environment if need be.
            };
        }
 
-Build the environment:
+We can build this environment and activate it in two separate steps.
 
+       # Build the environment.
        $ nix-build -A clangEnv clangenv.nix
-
-Activate the environment:
-
+       
+       # Activate the environment.
        $ ./result/bin/load-env-clang
 
-With a persistent profile:
+To lock this development environment, we can use a user profile. The
+following commands install our Clang environment into the `clang` user
+profile and makes a convenience link to that profile's Clang environment
+into the current directory.
 
        $ nix-env -iA clangEnv -f envfun.nix -p /nix/var/nix/gcroots/per-user/clang
+       
+       # Make a convenience link.
        $ ln -sf /nix/var/nix/gcroots/per-user/clang/bin/load-env-clang .
-
-Activate the environment:
-
+       
+       # Activate the environment.
        $ ./load-env-clang
-
-Since you are using a profile, you can switch to earlier development
-profiles if you wish
-
+       
+       # Optionally, rollback to an earlier generation of this profile.
        $ nix-env --list-generations -p /nix/var/nix/gcroots/per-user/clang
 
 ### Obtaining an Environment from a Custom Definition
