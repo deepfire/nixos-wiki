@@ -14,13 +14,15 @@ NixOS Desktop
 
 Audio & KDE & Xorg
 
-  Virtual Machine
+  Infrastructure & Deployment
   -------------------------------------------
   Test Infrastructure & NixOps & Deployment
 
-  Contribute (Code, Docs, etc.)
-  -------------------------------
-  Git / Github intructions
+Contribute (Code, Docs, etc.)
+
+[Contributing](//Main Page Contributing)
+
+Git / Github intructions
 
   NixOS Modules
   --------------------------------------
