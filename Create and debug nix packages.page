@@ -40,7 +40,7 @@ on your local repositories:
 
      $ nixos-rebuild -I nixos=~/code/nixos -I nixpkgs=~/code/nixpkgs 
 
-**example:** build an expression\`\`\` and put the output in to
+**example:** build an expression and put the output in to
 \`pwd\`/results
 
      $ nix-build ~/code/nixpkgs -A irssi
