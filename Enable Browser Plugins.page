@@ -17,7 +17,20 @@ You can configure chromium with NixOS the standard way:
 
       };
 
-and then install \*chromiumWrapper\*
+and then install `chromiumWrapper`.
+
+Pepper Plugins
+--------------
+
+Chromium recently removed support for Mozilla (NPAPI) plugins. The
+options to enable the new Pepper plugins for Flash and PDF are:
+
+    nixpkgs.config = {
+      chromium = {
+        enablePepperFlash = true;
+        enablePepperPDF = true;
+      };
+    };
 
 Enable GPU support
 ------------------
