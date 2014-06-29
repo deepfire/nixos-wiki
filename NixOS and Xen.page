@@ -38,6 +38,9 @@ filesystem:
     $ dd if=/dev/zero of=/vmdisks/mrkitty-root.img bs=1M count=4096
     $ mkfs.ext3 -F -L nixos /vmdisks/mrkitty-root.img
 
+(For sparse allocation, do
+`dd if=/dev/zero of=/vmdisks/mrkitty-root.img bs=1M seek=4096 count=0`.)
+
 Warning: because we're going to use pv-grub to boot the domain, the
 filesystem that holds `/boot` must be one that is supported by pv-grub.
 This includes `ext2` and `ext3`, but excludes `ext4`. Thus, if you want
