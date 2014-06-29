@@ -38,7 +38,7 @@ used in Plone already. Only thing special about it that we have to pin
 few eggs to specific versions (look at versions section).
 
     [buildout]
-    extends = http://dist.plone.org/release/4.3rc1/versions.cfg
+    extends = http://dist.plone.org/release/4.3/versions.cfg
     eggs-directory = eggs
     versions = versions
     unzip = true
@@ -55,9 +55,8 @@ few eggs to specific versions (look at versions section).
         Plone
 
     [versions]
-    zc.buildout = 1.7.0
+    zc.buildout = 1.7.1
     distribute = 0.6.34
-    plone.recipe.zope2instance = 4.2.10
 
 "plone.nix" is nix expression where we define which things should be
 installed for us by nix. Expression below tells to use Python 2.7, Plone
