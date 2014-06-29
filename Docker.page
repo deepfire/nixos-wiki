@@ -1,0 +1,11 @@
+This page needs to be created and designed. For now, it's just notes.
+Sorry :-(
+
+ Conversation on \#docker channel about packaging Docker v0.10.0:
+
+       <chexxor> backjlack, I included btrfsProgs as a build dependency, but it looks like the docker daemon can't use it, saying something like "/var/docker/X" is not a btrfs volume. Does the OS require some setup to use the AuFS or btrfs drivers?
+       <backjlack> chexxor: Yes, if you want to use btrfs, you need to create a btrfs partition and make Docker use it like this:
+           a) ln -s /btrfs/mountpoint/docker_storage /var/lib/docker (docker_storage must exist and /var/lib/docker must not exist)
+           OR
+           b) start the Docker daemon with `-g /btrfs/mountpoint/docker_storage".
+       <backjlack> If that fails, you can set the graphdriver (storage driver) by hand with `-s btrfs -g /btrfs/mountpoint/docker_storage`.
