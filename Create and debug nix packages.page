@@ -134,6 +134,7 @@ now we have find out which phases we need to run:
 
 so when developing you need to run these phases in a row:
 
+      unpackPhase
       patchPhase
       configurePhase
       buildPhase
