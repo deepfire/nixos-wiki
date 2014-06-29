@@ -143,6 +143,12 @@ commands working fine:
       platform = pkgs.platforms.fuloong2f_n32;
     }
 
+Support
+-------
+
+Feel free to ask in the mailing list nix-dev@cs.uu.nl or in
+irc.freenode.net\#nixos
+
 Sheevaplug
 ==========
 
