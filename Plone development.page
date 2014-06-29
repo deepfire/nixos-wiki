@@ -88,6 +88,7 @@ happends when you run make is:
 plone.nix
 
        Download (if not already downloaded) all nix packages listed in "plone.nix" and create profile in current folder called "nixenv".
+       On NixOS you don't need to export NIX_PATH.
 
 2\. ./nixenv/bin/virtualenv --distribute --clear .
 
