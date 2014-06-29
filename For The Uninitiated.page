@@ -13,7 +13,7 @@ focuses on easily understood, simple and clear explanations and
 documentation to ensure the least amount of communication faults between
 User & Developer
 
-### The Basics
+### [[edit](/w/index.php?title=For_The_Uninitiated&action=edit&section=1 "Edit section: The Basics")] The Basics
 
 A command line is a line of text which the user can write text in to run
 applications and manipulate the environment and operating system, which
@@ -26,7 +26,7 @@ function (**--verbose**). When using verbose we are asking the command
 to not filter or omit any information, but to give as much information
 as possible (or to be *verbose*).
 
-### Filtering Commands
+### [[edit](/w/index.php?title=For_The_Uninitiated&action=edit&section=2 "Edit section: Filtering Commands")] Filtering Commands
 
  *Cut* [[1]](http://man.he.net/?topic=cut&section=all) 
 :   Cut allows you to cut out certain bytes, characters and fields
