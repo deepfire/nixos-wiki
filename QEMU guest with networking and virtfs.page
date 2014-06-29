@@ -117,6 +117,13 @@ To mount this on the guest:
 
     mount -t 9p -o trans=virtio host_share /mnt/host_share -oversion=9p2000.L
 
+NOTE:
+
+There appears to be a problem with using VirtFS where fsync fails
+
+    e.g. when running `git clone` 
+    fatal: fsync error on '/some/path/.git/objects/pack/tmp_idx_h8upsf': Invalid argument
+
 Tips
 ----
 
