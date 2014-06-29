@@ -1,6 +1,10 @@
 This can be done using a Nix OS installation: nix-build -A iso\_minimal
 /etc/nixos/nixos/release.nix
 
+Software on the CDROM image can be extended or changed according to the
+rules for a normal Nix OS installation, see [install/remove
+software](//Install/remove software)
+
 Without NixOS you need to supply the
 [source](https://svn.nixos.org/repos/nix/nixos/trunk/) instead of
 /etc/nixos/nixos.
