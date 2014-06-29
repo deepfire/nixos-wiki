@@ -142,7 +142,7 @@ build tools.
 
     {
       # Define a myEnvFun environment, which makes use of pythonPlone
-      packageOverrides = pkgs: {
+      packageOverrides = pkgs: rec {
 
         # Define a version of python which has access to all the Plone modules
         pythonPlone = pkgs.pythonFull.override {
