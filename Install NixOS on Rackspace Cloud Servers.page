@@ -42,7 +42,7 @@ have important data on it.
 
 First, you need to put your Cloud Server into Rescue Mode from the
 Rackspace Cloud control panel. This will mount a rescue system. Your
-actual system is available at /dev/xvdb1 (root) and /dev/xvdc1 (swap).
+actual system is available at /dev/xvdb1 (root) and /dev/xvdd1 (swap).
 
 First thing we want to do is formatting our root partition and mount it
 to /mnt.
