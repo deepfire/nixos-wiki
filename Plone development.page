@@ -84,32 +84,37 @@ and some other eggs which are listed under "paths".
 "Makefile". Convinient place to gather commands but essantially what
 happends when you run make is:
 
-1\. NIX\_PATH=\~/.nix-defexpr/channels nix-build --out-link nixenv
-plone.nix
+1\. Download (if not already downloaded) all nix packages listed in
+"plone.nix" and create profile in current folder called "nixenv". On
+NixOS you don't need to export NIX\_PATH.
 
-       Download (if not already downloaded) all nix packages listed in "plone.nix" and create profile in current folder called "nixenv".
-       On NixOS you don't need to export NIX_PATH.
+       NIX_PATH=~/.nix-defexpr/channels nix-build --out-link nixenv plone.nix
 
-2\. ./nixenv/bin/virtualenv --distribute --clear .
+2\. Using virtualenv command which you installed from previous command
+create python virtual environment.
 
-       Using virtualenv command which you installed from previous command create python virtual environment.
+       ./nixenv/bin/virtualenv --distribute --clear .
 
-3\. echo ../../../nixenv/lib/python2.7/site-packages \>
-lib/python2.7/site-packages/nixenv.pth
+3\. Make sure virtual environment we created in previous step sees all
+eggs we installed with nix (in step 1).
 
-       Make sure virtual environment we created in previous step sees all eggs we installed with nix (in step 1).
+       echo ../../../nixenv/lib/python2.7/site-packages > lib/python2.7/site-packages/nixenv.pth
 
-4\. ./bin/easy\_install -H "" zc.buildout
+4\. Use this weird easy\_install feature that creates binaries if it
+doesn't exists already even if egg is already installed.
 
-       Use this weird easy_install feature that creates binaries if it doesn't exists already even if egg is already installed.
+       ./bin/easy_install -H "" zc.buildout
 
-5\. bin/buildout
+5\. "bin/buildout" command created in previous step and you use it like
+you would with any other buildout installation.
 
-       "bin/buildout" command created in previous step and you use it like you would with any other buildout installation.
+       bin/buildout
 
-6\. bin/instance fg
+6\. "bin/buildout" should create "bin/instance" or whatever you specified
+in "buildout.cfg" and by running "bin/instance fg" you'll start Plone in
+foreground mode.
 
-       "bin/buildout" should create "bin/instance" or whatever you specified in "buildout.cfg" and by running "bin/instance fg" you'll start Plone in foreground mode.
+       bin/instance fg
 
 Conclusion
 ----------
