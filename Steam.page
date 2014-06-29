@@ -51,8 +51,11 @@ aszlig started working in this in his branch:
 
 ### chroot
 
--   Pros: it would allow us to have binaries in the expected paths
-    without disrupting the system
+-   Pros:
+    -   it would allow us to have binaries in the expected paths without
+        disrupting the system
+    -   Steam itself, as well as Valve games and perhaps others like to
+        checksum their executables, so patching does not work
 -   Cons: performance?
 
 shlevy/aristid proposed this approach. Noone has tried :)
