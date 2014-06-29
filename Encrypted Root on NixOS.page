@@ -44,6 +44,34 @@ with a different luks container, then use:
 
 **Note: don't forget the kernel modules listed below**
 
+### creating encrypted swap
+
+If you don't use lvm2 then you have a problem with creating and using an
+encrypted swap. One approach would be to unlock the swap partition with
+a keyfile instead of a random key:
+
+First create a normal encrpyted partition and after unlocking it, format
+it as swap space using mkswap.
+
+      cryptsetup luksFormat /dev/sdXY
+      cryptsetup luksOpen /dev/sdXY swap
+      mkswap /dev/mapper/swap
+
+Then create a keyfile for auto-unlocking swap and store it in the root
+folder (if this is your first installation store it in /mnt/root/) and
+add it to the swap partition
+
+      dd if=/dev/urandom of=/root/keyfile bs=1024 count=1
+      chmod 0400 /root/keyfile
+      cryptsetup luksAddKey /dev/sdXY /root/keyfile
+
+Then enhance your configuration.nix with the following
+
+      boot.initrd.postMountCommands = "cryptsetup luksOpen --key-file /mnt-root/root/keyfile /dev/sdaXY swap";
+      swapDevices = [
+        { device = "/dev/mapper/swap"; }
+      ];
+
 ### no encrypted root filesystem, no encrypted swap but only encrypted /home
 
 If you **only want to have an encrypted home directory**, you need to
