@@ -136,3 +136,36 @@ You will need two more packages
 
     readline-6.2-2.aix5.1.ppc.rpm
     sqlite-3.7.5-1.aix5.1.ppc.rpm
+
+    #
+    #
+    # --enable-static - otherwise nix-env coredumps
+    # --enable-static-nix - otherwise nix-env coredumps
+    # --disable-largefile - prevent linking issues
+    # --localstatedir - point to /home/lowes/ with enough space
+    # --with-store-dir - point to /home/lowes/ with enough space
+    # --with-system - uname -m works incorrectly on AIX so configure
+    #                 was not able to set properly machine
+    #
+    #
+    #
+    #fallocate function does not work correctly on AIX
+    #
+    export PATH=/opt/freeware/bin:$PATH
+    export PATH=/opt/qib/app/coreutils-8.4/bin/:$PATH
+    export INSTALL_DIR=/opt/qib/app/nix-trunk
+    rm -rf ${INSTALL_DIR} \
+    && ./configure \
+     --prefix=${INSTALL_DIR} \
+     --localstatedir=/home/lowes/nix-trunk/var \
+     --with-store-dir=/home/lowes/nix-trunk/store \
+     --enable-static \
+     --enable-static-nix \
+     --disable-largefile \
+     --with-system=powerpc-aix \
+     --with-coreutils-bin=/opt/qib/app/coreutils-8.4/bin \
+    && perl -p -i -e 's/#define HAVE_POSIX_FALLOCATE 1/\/\*#define HAVE_POSIX_FALLOCATE 1\*\//g' config.h \
+    && perl -p -i -e 's/\$shell/\$SHELL/g' tests/user-envs.builder.sh \
+    && make \
+    && make check \
+    && make install
