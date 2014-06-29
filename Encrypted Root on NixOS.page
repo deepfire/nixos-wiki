@@ -1,0 +1,82 @@
+There are many possible encrypted root setups. This guide is for setting
+up LVM over Luks, which is an easy and safe setup that will satisfy most
+users. Other setups should still be sufficiently similar.
+
+Important
+---------
+
+Here you will find \*only\* NixOS-specific bits. For general information
+regarding this setup, how to partition disks and such refer to
+[[1]](http://wiki.archlinux.org/index.php/System_Encryption_with_LUKS_for_dm-crypt)
+or other detailed guide.
+
+Config
+------
+
+In this example we assume that your boot partition is /dev/sda1 and your
+luks-encrypted partition is /dev/sda2 that contains the LVM volume group
+"vg".
+
+This is what needs to be put into /etc/nixos/configuration.nix:
+
+### Specify the necessary kernel options
+
+Override the current kernel to specify extra configuration options:
+
+      nixpkgs.config = {
+        packageOverrides = pkgs: {
+          linux_2_6_32 = pkgs.linux_2_6_32.override {
+            extraConfig = ''
+              DM_CRYPT y
+              BLK_DEV_DM y
+              CRYPTO_CBC y
+              CRYPTO_SHA1 y
+
+            '';
+          };
+        };
+      };
+
+### Make sure initrd finds and mounts the root partition
+
+      boot.initrd.extraUtilsCommands = "cp -r ${pkgs.cryptsetup}/lib/* $out/lib/;cp -r ${pkgs.popt}/lib/* $out/lib; cp ${pkgs.cryptsetup}/sbin/* $out/bin";
+      boot.initrd.postDeviceCommands = "cryptsetup luksOpen /dev/sda2 pvcrypt;lvm vgscan;lvm vgchange -ay";
+
+### Extra modules you might need
+
+Depending on the encryption algorithm you have chosen for your Luks
+volume, you will probably need to ensure kernel has the necessary crypto
+modules.
+
+If you are unsure which ones, run
+
+    cryptsetup luksDump /dev/sda2
+
+What you are looking for is this:
+
+    LUKS header information for /dev/sda2
+
+    Version:        1
+    Cipher name:    aes
+    Cipher mode:    cbc-essiv:sha256
+    Hash spec:      sha1
+
+In this example you need SHA1, SHA256, AES, and CBC.
+
+Modules can be either compiled in like we did earlier in the kernel
+config for CBC and SHA1, or if they are compiled as standalone modules,
+you can put them into initrd like this:
+
+    boot.initrd.kernelModules = ["aes-i586" "sha256" "sha1"];
+
+### Root Filesystem
+
+      fileSystems = [ {
+        mountPoint = "/";
+        device = "/dev/mapper/vg-root";
+      } {
+        mountPoint = "/boot";
+        device = "/dev/sda1";
+      }
+      #other filesystems go here 
+      ]
