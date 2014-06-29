@@ -15,11 +15,11 @@ Using NixOS with VirtualBox on OS X.
     "en1: Airport".
 -   Now you can install nix using the nixos manual:
 
-     $ fdisk /dev/sda (create a full partition, don't skip this step)
+     $ fdisk /dev/sda (create a full partition, don't skip this step, example commands for quick setup: n,p,1,w)
      $ mke2fs -j -L nixos /dev/sda1 (idem)
      $ mount LABEL=nixos /mnt
      $ mkdir -p /mnt/etc/nixos
-     $ nixos-hardware-scan > /mnt/etc/nixos/configuration.nix
+     $ nixos-hardware-scan > /mnt/etc/nixos/configuration.nix (for quick setup overwrite configuration.nix completely with example below)
      $ nano /mnt/etc/nixos/configuration.nix
 
 (add the fileSystems. this is what my final config looks like:)
