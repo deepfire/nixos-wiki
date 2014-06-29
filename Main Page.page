@@ -53,6 +53,8 @@ HOWTOs
 
 -   [How to install Firefox with Java plugin](//Java in Firefox)
 
+-   [Encrypted root(home, swap) on NixOS](//Encrypted Root on NixOS)
+
 Development
 -----------
 
