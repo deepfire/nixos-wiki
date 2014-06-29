@@ -4,8 +4,8 @@ Compute](http://openstack.org/projects/compute/) (also known as
 currently limited to running all of Nova on a single machine, so it's
 mostly useful for experimentation.
 
-Enabling Nova
--------------
+[[edit](/w/index.php?title=NixOS_and_OpenStack_Compute&action=edit&section=1 "Edit section: Enabling Nova")] Enabling Nova
+--------------------------------------------------------------------------------------------------------------------------
 
 Add the following to your `configuration.nix`:
 
@@ -28,8 +28,8 @@ and run `nixos-rebuild switch`. This will enable several daemons:
 -   `rabbitmq` is a messaging protocol used by the various Nova
     components to communicate with each other.
 
-Configuring and testing Nova
-----------------------------
+[[edit](/w/index.php?title=NixOS_and_OpenStack_Compute&action=edit&section=2 "Edit section: Configuring and testing Nova")] Configuring and testing Nova
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 
 You can now create a user with administrative privileges:
 
@@ -105,8 +105,8 @@ So we can now log in using the SSH key generated above:
     # uname -a
     Linux ttylinux_host 2.6.35-22-virtual #35-Ubuntu SMP Sat Oct 16 23:19:29 UTC 2010 x86_64 GNU/Linux
 
-Running NixOS
--------------
+[[edit](/w/index.php?title=NixOS_and_OpenStack_Compute&action=edit&section=3 "Edit section: Running NixOS")] Running NixOS
+--------------------------------------------------------------------------------------------------------------------------
 
 Of course you'll want to run NixOS VMs in your private cloud. This
 requires building a NixOS disk image.
@@ -143,8 +143,8 @@ Once the VM is running, you should be able to log in via SSH. For
 information on using the VM, see [NixOS on Amazon
 EC2](//NixOS on Amazon EC2).
 
-To Do
------
+[[edit](/w/index.php?title=NixOS_and_OpenStack_Compute&action=edit&section=4 "Edit section: To Do")] To Do
+----------------------------------------------------------------------------------------------------------
 
 -   Support running Nova components on multiple machines (especially
     `nova-compute`).
