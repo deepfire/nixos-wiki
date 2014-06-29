@@ -11,44 +11,48 @@ If you are stumped by an error message, add it here.
   Solution
   Related Links
   -------------- -------------- -------------- -------------- --------------
-  `` error: cann
-  ot auto-call a
-   function that
-   has an argume
-  nt without a d
-  efault value (
-  `stdenv') ``
-  Trying to
-  build an
-  individual
-  package with:
-  `nix-build --d
-  ry-run ./defau
-  lt.nix`
-  A Nix function
-  was called
-  without a
-  required
-  argument.
-  Use `--arg` or
-  `--argstr` to
-  specify
-  arguments.
-  [Nix Manual:
-  Common
-  Options](http:
-  //nixos.org/ni
-  x/manual/#sec-
-  common-options
-  )\
-   [Explanation
-  in email
-  thread](http:/
-  /lists.science
-  .uu.nl/piperma
-  il/nix-dev/200
-  9-July/002671.
-  html)
+  `` error: cann `/nix/store/*-
+  ot auto-call a libtool-2.4.2/
+   function that bin/libtool: 1
+   has an argume 581: /nix/stor
+  nt without a d e/*-libtool-2.
+  efault value ( 4.2/bin/libtoo
+  `stdenv') ``   l: preserve_ar
+  Trying to      gs+= --tag CC:
+  build an        not found`
+  individual     Building a
+  package with:  package which
+  `nix-build --d depends on
+  ry-run ./defau libtool.
+  lt.nix`        The `--tag CC`
+  A Nix function argument is
+  was called     used when
+  without a      libtool is
+  required       called,
+  argument.      but...somethin
+  Use `--arg` or g.
+  `--argstr` to  Ensure Bash is
+  specify        the shell
+  arguments.     used. The
+  [Nix Manual:   "libtool"
+  Common         package
+  Options](http: references
+  //nixos.org/ni `/bin/sh`,
+  x/manual/#sec- which is
+  common-options expected to be
+  )\             Bash.
+   [Explanation  [NAS-Central:
+  in email       Compiling for
+  thread](http:/ Dummies](http:
+  /lists.science //forum.nas-ce
+  .uu.nl/piperma ntral.org/view
+  il/nix-dev/200 topic.php?f=24
+  9-July/002671. 9&t=7955#p3638
+  html)          5):
+                 See the line
+                 before "not
+                 found", which
+                 uses /bin/sh.
   --------------------------------------------------------------------------
 
 
